@@ -8,3 +8,9 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
+
+# Native Android build output
+android-app/.gradle/
+android-app/build/
+android-app/app/build/
+android-app/local.properties

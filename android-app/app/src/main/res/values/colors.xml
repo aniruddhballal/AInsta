@@ -1,0 +1,6 @@
+<resources>
+    <color name="ainsta_black">#000000</color>
+    <color name="ainsta_white">#FFFFFF</color>
+    <color name="ainsta_divider">#DDDDDD</color>
+    <color name="ainsta_secondary">#555555</color>
+</resources>
