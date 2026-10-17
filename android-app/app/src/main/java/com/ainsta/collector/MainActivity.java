@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -45,8 +46,26 @@ public final class MainActivity extends Activity {
 
         LinearLayout content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
-        content.setPadding(UiStyles.dp(this, 20), UiStyles.dp(this, 10), UiStyles.dp(this, 20), UiStyles.dp(this, 14));
+        int horizontalPadding = UiStyles.dp(this, 20);
+        int baseTopPadding = UiStyles.dp(this, 10);
+        int baseBottomPadding = UiStyles.dp(this, 14);
+        content.setPadding(horizontalPadding, baseTopPadding, horizontalPadding, baseBottomPadding);
+        content.setOnApplyWindowInsetsListener((view, insets) -> {
+            int topInset;
+            int bottomInset;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                android.graphics.Insets bars = insets.getInsets(android.view.WindowInsets.Type.systemBars());
+                topInset = bars.top;
+                bottomInset = bars.bottom;
+            } else {
+                topInset = insets.getSystemWindowInsetTop();
+                bottomInset = insets.getSystemWindowInsetBottom();
+            }
+            view.setPadding(horizontalPadding, baseTopPadding + topInset, horizontalPadding, baseBottomPadding + bottomInset);
+            return insets;
+        });
         scroll.addView(content);
+        content.post(content::requestApplyInsets);
 
         content.addView(buildHeader());
         content.addView(UiStyles.rule(this, Color.BLACK, 1));
