@@ -8,7 +8,9 @@ existing session for the profile checks.
 from __future__ import annotations
 
 import argparse
+import configparser
 import html
+import os
 import re
 import time
 from datetime import datetime, timezone
@@ -63,6 +65,38 @@ def load_instagram_urls(path: Path) -> list[str]:
 def username_from_url(url: str) -> str:
     parts = [part for part in urlsplit(url).path.split("/") if part]
     return parts[0] if parts else ""
+
+
+def find_default_firefox_profile() -> Path | None:
+    """Find the default Windows Firefox profile containing the user's login."""
+    appdata = os.environ.get("APPDATA")
+    if not appdata:
+        return None
+
+    profiles_ini = Path(appdata) / "Mozilla" / "Firefox" / "profiles.ini"
+    if not profiles_ini.exists():
+        return None
+
+    config = configparser.ConfigParser()
+    config.read(profiles_ini, encoding="utf-8")
+    candidates: list[tuple[bool, Path]] = []
+
+    for section in config.sections():
+        if not section.lower().startswith("profile"):
+            continue
+        profile_path = config.get(section, "Path", fallback="")
+        if not profile_path:
+            continue
+        is_relative = config.getint(section, "IsRelative", fallback=1) == 1
+        resolved = (profiles_ini.parent / profile_path) if is_relative else Path(profile_path)
+        if resolved.exists():
+            is_default = config.getboolean(section, "Default", fallback=False)
+            candidates.append((is_default, resolved))
+
+    if not candidates:
+        return None
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    return candidates[0][1]
 
 
 def extract_bio(driver: webdriver.Firefox) -> str:
@@ -313,6 +347,12 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="HTML report path (default: bot-account-info.html)")
     parser.add_argument("--timeout", type=int, default=25, help="Seconds to wait for page elements (default: 25)")
     parser.add_argument("--pause", type=float, default=1.5, help="Seconds between profile checks (default: 1.5)")
+    parser.add_argument(
+        "--firefox-profile",
+        type=Path,
+        default=None,
+        help="Firefox profile directory to reuse; defaults to the Windows default profile",
+    )
     args = parser.parse_args()
 
     urls = load_instagram_urls(args.input)
@@ -324,6 +364,15 @@ def main() -> int:
 
     options = Options()
     options.headless = False
+    profile = args.firefox_profile or find_default_firefox_profile()
+    if profile is not None:
+        if not profile.exists():
+            raise SystemExit(f"Firefox profile does not exist: {profile}")
+        options.profile = str(profile)
+        print(f"Using Firefox profile: {profile}")
+        print("Close normal Firefox before continuing so the logged-in profile can be copied cleanly.")
+    else:
+        print("No Firefox profile was found; Selenium will start a fresh profile.")
 
     try:
         driver = webdriver.Firefox(options=options)
