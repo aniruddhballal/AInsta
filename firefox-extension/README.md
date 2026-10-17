@@ -1,17 +1,25 @@
 # Firefox collector
 
-This is a temporary Firefox extension for collecting the 25 Instagram profiles in the repository's `bots.md` file. It uses the currently logged-in Instagram session and reads the page DOM; it does not use Selenium, screen coordinates, or Tab/Enter counts.
+This temporary Firefox extension maintains a persistent, deduplicated Instagram profile catalog. It uses the currently logged-in Instagram session and reads the page DOM; it does not use Selenium, screen coordinates, or Tab/Enter counts.
 
 ## Run it
 
 1. Keep Firefox open and logged in to Instagram.
 2. Open `about:debugging#/runtime/this-firefox` in Firefox.
-3. Click **Load Temporary Add-on…**.
-4. Select `firefox-extension/manifest.json` from this repository.
-5. Open any Instagram profile page. A **Finsta collector** panel appears in the lower-right corner.
-6. Click **Start / restart** once. Leave the tab alone while it visits each profile.
-7. Firefox downloads `bot-account-info.html` when all profiles are finished. Move that downloaded file into the repository root if you want it tracked there.
+3. Click **Load Temporary Add-on…** or **Reload** for the Finsta extension.
+4. Select `firefox-extension/manifest.json` when Firefox asks for a file.
+5. Open any Instagram profile. The **Finsta collector** panel appears in the lower-right corner.
 
-The extension saves progress in Instagram's local storage, so a page refresh does not lose already collected rows. Use **Stop** to pause before manually navigating away. Clicking **Start / restart** clears the previous run and begins again from the first URL.
+## Maintain the catalog
 
-If Instagram displays a login, checkpoint, rate-limit, or consent page, stop the run, handle that page manually, return to a profile, and start again.
+- **＋ Add current profile** saves the open profile.
+- Adding the same profile again does nothing; URLs are normalized and deduplicated by username.
+- **↻ Mark current for refresh** makes a saved profile pending again.
+- **▶ Run pending profiles** visits only profiles that have never been successfully fetched or were marked for refresh.
+- **⇩ Export bots.md** downloads the current deduplicated URL list.
+- **⇩ Download report** downloads the current catalog and captured fields as `bot-account-info.html`.
+- **■ Stop collection** stops the queue without deleting saved profiles.
+
+The catalog tracks `added_at`, `last_fetched_at`, status, errors, bio, Account based in, Date joined, and captured text. The browser cannot silently write into the repository, so move the downloaded `bots.md` or HTML report into the repo when you want to replace those files.
+
+If Instagram displays a login, checkpoint, rate-limit, or consent page, stop the run, handle that page manually, return to Instagram, and start the pending run again.
