@@ -447,7 +447,15 @@
       const minimized = panel.dataset.minimized === "true";
       if (!minimized && event.target.closest("button")) return;
       const rect = panel.getBoundingClientRect();
-      drag = { offsetX: event.clientX - rect.left, offsetY: event.clientY - rect.top, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, moved: false };
+      drag = {
+        offsetX: event.clientX - rect.left,
+        offsetY: event.clientY - rect.top,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        moved: false,
+        onToggle: Boolean(event.target.closest("[data-toggle]"))
+      };
       header.setPointerCapture(event.pointerId);
       header.style.cursor = "grabbing";
     });
@@ -460,10 +468,12 @@
 
     const stopDragging = (event) => {
       if (!drag || event.pointerId !== drag.pointerId) return;
-      if (drag.moved) panel.dataset.suppressToggleClick = "true";
+      const clickedToggle = drag.onToggle && !drag.moved && panel.dataset.minimized === "true";
+      if (drag.moved || clickedToggle) panel.dataset.suppressToggleClick = "true";
       drag = null;
       header.style.cursor = "grab";
       if (header.hasPointerCapture(event.pointerId)) header.releasePointerCapture(event.pointerId);
+      if (clickedToggle) setPanelMinimized(false);
     };
     header.addEventListener("pointerup", stopDragging);
     header.addEventListener("pointercancel", stopDragging);
