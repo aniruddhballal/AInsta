@@ -4,6 +4,7 @@
   const STORAGE_KEY = "finsta-profile-catalog-v2";
   const REPORT_NAME = "bot-account-info.html";
   const BOTS_FILE_NAME = "bots.md";
+  const UI_MINIMIZED_KEY = "finsta-panel-minimized";
   const NOT_SHOWN = "Not shown";
   const RESERVED_PATHS = new Set([
     "accounts", "direct", "directory", "emails", "explore", "reels",
@@ -380,6 +381,20 @@
     button.style.setProperty("color", color, "important");
   }
 
+  function setPanelMinimized(minimized) {
+    const panel = document.getElementById("finsta-collector-panel");
+    if (!panel) return;
+    const body = panel.querySelector("[data-body]");
+    const toggle = panel.querySelector("[data-toggle]");
+    localStorage.setItem(UI_MINIMIZED_KEY, minimized ? "true" : "false");
+    panel.dataset.minimized = minimized ? "true" : "false";
+    body.style.display = minimized ? "none" : "grid";
+    panel.style.width = minimized ? "150px" : "270px";
+    panel.style.padding = minimized ? "8px 10px" : "13px";
+    toggle.textContent = minimized ? "Restore" : "Minimize";
+    toggle.setAttribute("aria-label", minimized ? "Restore Finsta collector" : "Minimize Finsta collector");
+  }
+
   function updatePanel(message = "") {
     const panel = document.getElementById("finsta-collector-panel");
     if (!panel) return;
@@ -395,13 +410,13 @@
     const runButton = panel.querySelector("[data-run]");
 
     currentNode.textContent = current
-      ? `Current: @${current.username} — ${saved ? "✓ saved" : "not saved"}`
+      ? `Current: @${current.username} — ${saved ? "saved" : "not saved"}`
       : "Open a profile to add it";
     countNode.textContent = `Saved: ${state.profiles.length} · Pending: ${pending}`;
     addButton.style.display = current ? "block" : "none";
     refreshButton.style.display = saved ? "block" : "none";
-    addButton.textContent = saved ? "✓ Already saved" : "＋ Add current profile";
-    runButton.textContent = `▶ Run pending profiles (${pending})`;
+    addButton.textContent = saved ? "Already saved" : "Add current profile";
+    runButton.textContent = `Run pending profiles (${pending})`;
 
     if (state.run && state.run.active) {
       const position = Math.min(state.run.index + 1, state.run.queue.length);
@@ -514,24 +529,40 @@
     if (document.getElementById("finsta-collector-panel")) return;
     const panel = document.createElement("aside");
     panel.id = "finsta-collector-panel";
-    panel.innerHTML = `<strong>Finsta collector</strong><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>＋ Add current profile</button><button data-refresh>↻ Mark current for refresh</button><button data-run>▶ Run pending profiles</button><button data-export>⇩ Export bots.md</button><button data-report>⇩ Download report</button><button data-stop>■ Stop collection</button>`;
+    panel.innerHTML = `<div data-header><strong>Finsta collector</strong><button data-toggle>Minimize</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>Add current profile</button><button data-refresh>Mark current for refresh</button><button data-run>Run pending profiles</button><button data-export>Export bots.md</button><button data-report>Download report</button><button data-stop>Stop collection</button></div>`;
     Object.assign(panel.style, {
       position: "fixed", right: "16px", bottom: "16px", zIndex: "2147483647",
-      display: "grid", gap: "7px", width: "270px", padding: "13px", color: "#172033",
-      background: "#ffffff", border: "1px solid #aebbd0", borderRadius: "10px",
-      boxShadow: "0 5px 24px #0004", font: "14px system-ui, sans-serif"
+      width: "270px", padding: "13px", color: "#1f2937",
+      background: "#ffffff", border: "1px solid #d7dee8", borderRadius: "6px",
+      boxShadow: "0 6px 22px rgba(31, 41, 55, 0.18)", font: "14px Arial, sans-serif"
     });
+    const header = panel.querySelector("[data-header]");
+    const body = panel.querySelector("[data-body]");
+    const toggle = panel.querySelector("[data-toggle]");
+    Object.assign(header.style, {
+      display: "flex", alignItems: "center", justifyContent: "space-between",
+      gap: "12px", paddingBottom: "9px", borderBottom: "1px solid #edf0f4"
+    });
+    Object.assign(body.style, { display: "grid", gap: "7px", paddingTop: "10px" });
+    header.querySelector("strong").style.setProperty("color", "#111827", "important");
+    header.querySelector("strong").style.setProperty("font-size", "15px", "important");
+    Object.assign(toggle.style, {
+      padding: "3px 7px", borderRadius: "4px", cursor: "pointer",
+      font: "600 11px Arial, sans-serif", background: "#ffffff"
+    });
+    toggle.style.setProperty("color", "#267a3d", "important");
+    toggle.style.setProperty("border", "1px solid #267a3d", "important");
     panel.querySelectorAll("[data-current], [data-count], [data-status]").forEach((node) => {
-      node.style.setProperty("color", "#172033", "important");
+      node.style.setProperty("color", "#374151", "important");
       node.style.setProperty("line-height", "1.35", "important");
     });
-    panel.querySelector("strong").style.setProperty("color", "#172033", "important");
-    setButtonStyle(panel.querySelector("[data-add]"), "#1769e0", "1px solid #0d4fae");
-    setButtonStyle(panel.querySelector("[data-refresh]"), "#536dfe", "1px solid #304ffe");
-    setButtonStyle(panel.querySelector("[data-run]"), "#16803c", "1px solid #0b5d29");
-    setButtonStyle(panel.querySelector("[data-export]"), "#5b4b9a", "1px solid #413572");
-    setButtonStyle(panel.querySelector("[data-report]"), "#5b4b9a", "1px solid #413572");
-    setButtonStyle(panel.querySelector("[data-stop]"), "#b42318", "1px solid #7a1710");
+    setButtonStyle(panel.querySelector("[data-add]"), "#2f9e44", "1px solid #267a3d");
+    setButtonStyle(panel.querySelector("[data-refresh]"), "#ffffff", "1px solid #2f9e44", "#267a3d");
+    setButtonStyle(panel.querySelector("[data-run]"), "#2f9e44", "1px solid #267a3d");
+    setButtonStyle(panel.querySelector("[data-export]"), "#ffffff", "1px solid #9aa5b1", "#374151");
+    setButtonStyle(panel.querySelector("[data-report]"), "#ffffff", "1px solid #9aa5b1", "#374151");
+    setButtonStyle(panel.querySelector("[data-stop]"), "#ffffff", "1px solid #c2413a", "#a32922");
+    toggle.addEventListener("click", () => setPanelMinimized(panel.dataset.minimized !== "true"));
     panel.querySelector("[data-add]").addEventListener("click", addCurrentProfile);
     panel.querySelector("[data-refresh]").addEventListener("click", refreshCurrentProfile);
     panel.querySelector("[data-run]").addEventListener("click", startRun);
@@ -540,6 +571,7 @@
     panel.querySelector("[data-stop]").addEventListener("click", stopRun);
     document.documentElement.appendChild(panel);
     updatePanel();
+    setPanelMinimized(localStorage.getItem(UI_MINIMIZED_KEY) === "true");
   }
 
   addPanel();
