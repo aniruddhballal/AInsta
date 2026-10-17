@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -70,7 +69,7 @@ public final class ProfileStore {
                 if (!profile.normalizedUsername.isEmpty()) seen.add(profile.normalizedUsername);
             }
             if (seen.contains(normalized)) return false;
-            profiles.add(new Profile(username.trim().replaceFirst("^@", ""), normalized, Instant.now().toString()));
+            profiles.add(new Profile(username.trim().replaceFirst("^@", ""), normalized, Long.toString(System.currentTimeMillis())));
             return write(context, profiles);
         }
     }

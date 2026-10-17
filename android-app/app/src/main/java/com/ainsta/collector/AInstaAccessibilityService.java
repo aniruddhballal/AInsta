@@ -5,6 +5,7 @@ import android.graphics.PixelFormat;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Build;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.View;
@@ -97,7 +98,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     }
 
     private int overlayType() {
-        return Settings.canDrawOverlays(this)
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Settings.canDrawOverlays(this)
                 ? WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
                 : WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY;
     }
