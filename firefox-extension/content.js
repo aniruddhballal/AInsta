@@ -403,6 +403,7 @@
     toggle.style.width = minimized ? "36px" : "auto";
     toggle.style.height = minimized ? "36px" : "auto";
     toggle.style.padding = minimized ? "0" : "3px 7px";
+    toggle.style.borderRadius = "0";
     toggle.style.setProperty("background", minimized ? "#000000" : "#ffffff", "important");
     toggle.style.setProperty("color", minimized ? "#ffffff" : "#000000", "important");
     toggle.style.setProperty("border", "1px solid #000000", "important");
@@ -439,24 +440,27 @@
     const header = panel.querySelector("[data-header]");
     let drag = null;
     header.style.cursor = "grab";
+    header.style.userSelect = "none";
     header.style.setProperty("touch-action", "none", "important");
 
     header.addEventListener("pointerdown", (event) => {
-      if (event.target.closest("button")) return;
+      const minimized = panel.dataset.minimized === "true";
+      if (!minimized && event.target.closest("button")) return;
       const rect = panel.getBoundingClientRect();
-      drag = { offsetX: event.clientX - rect.left, offsetY: event.clientY - rect.top, pointerId: event.pointerId };
+      drag = { offsetX: event.clientX - rect.left, offsetY: event.clientY - rect.top, pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, moved: false };
       header.setPointerCapture(event.pointerId);
       header.style.cursor = "grabbing";
-      event.preventDefault();
     });
 
     header.addEventListener("pointermove", (event) => {
       if (!drag || event.pointerId !== drag.pointerId) return;
+      if (Math.hypot(event.clientX - drag.startX, event.clientY - drag.startY) > 4) drag.moved = true;
       setPanelPosition(panel, event.clientX - drag.offsetX, event.clientY - drag.offsetY);
     });
 
     const stopDragging = (event) => {
       if (!drag || event.pointerId !== drag.pointerId) return;
+      if (drag.moved) panel.dataset.suppressToggleClick = "true";
       drag = null;
       header.style.cursor = "grab";
       if (header.hasPointerCapture(event.pointerId)) header.releasePointerCapture(event.pointerId);
@@ -623,7 +627,7 @@
     header.querySelector("strong").style.setProperty("font-weight", "700", "important");
     header.querySelector("strong").style.setProperty("letter-spacing", "1px", "important");
     Object.assign(toggle.style, {
-      padding: "3px 7px", borderRadius: "4px", cursor: "pointer",
+      padding: "3px 7px", borderRadius: "0", cursor: "pointer",
       font: "700 10px Arial, sans-serif", letterSpacing: "0.8px", background: "#ffffff"
     });
     toggle.style.setProperty("color", "#000000", "important");
@@ -638,7 +642,13 @@
     setButtonStyle(panel.querySelector("[data-export]"), "#ffffff", "1px solid #000000", "#000000");
     setButtonStyle(panel.querySelector("[data-report]"), "#ffffff", "1px solid #000000", "#000000");
     setButtonStyle(panel.querySelector("[data-stop]"), "#ffffff", "1px solid #000000", "#000000");
-    toggle.addEventListener("click", () => setPanelMinimized(panel.dataset.minimized !== "true"));
+    toggle.addEventListener("click", () => {
+      if (panel.dataset.suppressToggleClick === "true") {
+        delete panel.dataset.suppressToggleClick;
+        return;
+      }
+      setPanelMinimized(panel.dataset.minimized !== "true");
+    });
     panel.querySelector("[data-add]").addEventListener("click", addCurrentProfile);
     panel.querySelector("[data-refresh]").addEventListener("click", refreshCurrentProfile);
     panel.querySelector("[data-run]").addEventListener("click", startRun);
