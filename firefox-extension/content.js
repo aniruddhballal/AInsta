@@ -4,8 +4,8 @@
   const STORAGE_KEY = "finsta-instagram-about-collector-v1";
   const REPORT_NAME = "bot-account-info.html";
   const NOT_SHOWN = "Not shown";
-  // Keep the first run small while the selectors are being verified. Remove
-  // .slice(0, 6) after a successful test run to process the full list.
+  // This list mirrors the profiles in bots.md. Keep bots.md itself out of
+  // commits because it is user-maintained input.
   const URLS = [
     "https://www.instagram.com/filmrollstoriess/",
     "https://www.instagram.com/pichypeapp/",
@@ -33,7 +33,7 @@
     "https://www.instagram.com/starson.ig/",
     "https://www.instagram.com/reelrestock/",
     "https://www.instagram.com/onlyhi_story_/"
-  ].slice(0, 6);
+  ];
 
   const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
