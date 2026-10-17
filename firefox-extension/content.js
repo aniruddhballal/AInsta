@@ -108,6 +108,38 @@
     return { version: 2, profiles, run: null };
   }
 
+  function migrateLegacyState() {
+    const state = createInitialState();
+    try {
+      const legacy = JSON.parse(localStorage.getItem("finsta-instagram-about-collector-v1") || "null");
+      if (!legacy || !Array.isArray(legacy.results)) return state;
+      for (const result of legacy.results) {
+        const profile = normalizeProfileUrl(result.url);
+        if (!profile) continue;
+        let saved = findProfile(state, profile.key);
+        if (!saved) {
+          saved = makeProfile(profile);
+          state.profiles.push(saved);
+        }
+        if (result.status === "Collected") {
+          Object.assign(saved, {
+            bio: result.bio || NOT_SHOWN,
+            country: result.country || NOT_SHOWN,
+            date_joined: result.date_joined || NOT_SHOWN,
+            status: "collected",
+            last_error: "",
+            profile_text: result.profile_text || "",
+            about_text: result.about_text || "",
+            last_fetched_at: legacy.completed_at || now()
+          });
+        }
+      }
+    } catch (_error) {
+      // If the old state is malformed, start with the seeded catalog.
+    }
+    return state;
+  }
+
   function writeState(state) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }
@@ -116,7 +148,7 @@
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) {
-        const initial = createInitialState();
+        const initial = migrateLegacyState();
         writeState(initial);
         return initial;
       }
@@ -125,7 +157,7 @@
     } catch (_error) {
       // Recreate a usable catalog if local storage contains invalid data.
     }
-    const initial = createInitialState();
+    const initial = migrateLegacyState();
     writeState(initial);
     return initial;
   }
