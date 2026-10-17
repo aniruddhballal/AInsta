@@ -314,21 +314,31 @@
     if (document.getElementById("finsta-collector-panel")) return;
     const panel = document.createElement("aside");
     panel.id = "finsta-collector-panel";
-    panel.innerHTML = `<strong>Finsta collector</strong><span data-status>Ready — ${URLS.length} profiles loaded</span><button data-start>Start / restart</button><button data-stop>Stop</button>`;
+    panel.innerHTML = `<strong>Finsta collector</strong><span data-status>Ready — ${URLS.length} profiles loaded</span><button data-start>▶ Start / restart collection</button><button data-stop>■ Stop collection</button>`;
     Object.assign(panel.style, {
       position: "fixed", right: "16px", bottom: "16px", zIndex: "2147483647",
       display: "grid", gap: "8px", width: "230px", padding: "12px", color: "#172033",
       background: "#fff", border: "1px solid #ccd5e5", borderRadius: "10px",
       boxShadow: "0 5px 24px #0003", font: "14px system-ui, sans-serif"
     });
-    panel.querySelectorAll("button").forEach((button) => Object.assign(button.style, {
-      padding: "7px 9px", border: "1px solid #b9c4d8", borderRadius: "6px", cursor: "pointer", background: "#f3f6fb"
-    }));
-    panel.querySelector("[data-start]").addEventListener("click", () => {
+    const startButton = panel.querySelector("[data-start]");
+    const stopButton = panel.querySelector("[data-stop]");
+    [startButton, stopButton].forEach((button) => {
+      Object.assign(button.style, {
+        padding: "9px 10px", borderRadius: "6px", cursor: "pointer",
+        font: "600 13px system-ui, sans-serif", textAlign: "center"
+      });
+      button.style.setProperty("color", "#ffffff", "important");
+    });
+    startButton.style.setProperty("background", "#1769e0", "important");
+    startButton.style.setProperty("border", "1px solid #0d4fae", "important");
+    stopButton.style.setProperty("background", "#b42318", "important");
+    stopButton.style.setProperty("border", "1px solid #7a1710", "important");
+    startButton.addEventListener("click", () => {
       writeState({ active: true, index: 0, results: [], started_at: new Date().toISOString() });
       location.href = URLS[0];
     });
-    panel.querySelector("[data-stop]").addEventListener("click", () => {
+    stopButton.addEventListener("click", () => {
       const state = readState() || { index: 0, results: [] };
       state.active = false;
       writeState(state);
