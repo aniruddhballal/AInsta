@@ -4,6 +4,8 @@
   const STORAGE_KEY = "finsta-instagram-about-collector-v1";
   const REPORT_NAME = "bot-account-info.html";
   const NOT_SHOWN = "Not shown";
+  // Keep the first run small while the selectors are being verified. Remove
+  // .slice(0, 6) after a successful test run to process the full list.
   const URLS = [
     "https://www.instagram.com/filmrollstoriess/",
     "https://www.instagram.com/pichypeapp/",
@@ -31,7 +33,7 @@
     "https://www.instagram.com/starson.ig/",
     "https://www.instagram.com/reelrestock/",
     "https://www.instagram.com/onlyhi_story_/"
-  ];
+  ].slice(0, 6);
 
   const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
@@ -79,7 +81,7 @@
   }
 
   function clickableElements(root = document) {
-    return [...root.querySelectorAll("button, [role='button'], [role='menuitem'], a")]
+    return [...root.querySelectorAll("button, [role='button'], [role='menuitem'], [tabindex='0'], a")]
       .filter(visible);
   }
 
@@ -107,18 +109,52 @@
     }) || null;
   }
 
-  function dialogText() {
-    const dialog = [...document.querySelectorAll("[role='dialog'], [aria-modal='true']")]
+  function aboutDialogText() {
+    // Do not treat the options menu as the dialog. The actual account dialog
+    // must contain at least one of Instagram's account-information labels.
+    const candidates = [...document.querySelectorAll("body *")]
       .filter(visible)
-      .at(-1);
-    return dialog ? dialog.innerText : "";
+      .map((element) => element.innerText || "")
+      .filter((text) => {
+        const value = normalized(text);
+        return value.includes("about this account") &&
+          (value.includes("date joined") || value.includes("account based in"));
+      })
+      .sort((left, right) => left.length - right.length);
+    return candidates[0] || "";
+  }
+
+  function findBioExpandButton() {
+    const header = document.querySelector("main header");
+    if (!header) return null;
+    return clickableElements(header).find((element) => {
+      const label = cleanText(element.innerText || element.getAttribute("aria-label") || "");
+      return /^(more|see translation)$/i.test(label);
+    }) || null;
+  }
+
+  async function expandBio() {
+    // Long bios are initially collapsed behind a visible “more” control.
+    // Repeat once in case Instagram renders the control after the first click.
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const button = findBioExpandButton();
+      if (!button) return;
+      button.click();
+      await sleep(600);
+    }
   }
 
   function extractLabelValue(text, label) {
     const lines = linesFrom(text);
     const wanted = normalized(label);
     for (let index = 0; index < lines.length; index += 1) {
-      if (normalized(lines[index]) !== wanted) continue;
+      const line = lines[index];
+      const normalizedLine = normalized(line);
+      if (normalizedLine !== wanted) {
+        const inline = line.match(new RegExp(`${label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[:\\-]?\\s*(.+)$`, "i"));
+        if (inline && inline[1]) return inline[1].trim();
+        continue;
+      }
       for (const candidate of lines.slice(index + 1, index + 4)) {
         if (!["date joined", "account based in", "former usernames"].includes(normalized(candidate))) {
           return candidate;
@@ -184,6 +220,7 @@
 
   async function collectCurrent(url) {
     updatePanel(`Reading @${usernameFromUrl(url)}…`);
+    await expandBio();
     const profile = profileText();
     const options = await waitFor(findOptionsButton);
     if (!options) return resultFor(url, "Could not find profile options", profile);
@@ -193,13 +230,19 @@
     if (!aboutItem) return resultFor(url, "Could not find About this account", profile);
 
     aboutItem.click();
-    const about = await waitFor(dialogText);
+    let about = await waitFor(aboutDialogText, 15000, 300);
+
+    // A delayed React transition can leave the menu visible after the first
+    // synthetic click. Retry the same menu item once, then wait again.
+    if (!about) {
+      const retryItem = findAboutMenuItem();
+      if (retryItem) {
+        retryItem.click();
+        about = await waitFor(aboutDialogText, 15000, 300);
+      }
+    }
     if (!about) return resultFor(url, "About this account dialog did not open", profile);
 
-    const normalizedAbout = normalized(about);
-    if (!normalizedAbout.includes("date joined") && !normalizedAbout.includes("account based in")) {
-      return resultFor(url, "Dialog opened but expected fields were not found", profile, about);
-    }
     return resultFor(url, "Collected", profile, about);
   }
 
