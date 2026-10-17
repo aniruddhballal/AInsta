@@ -67,7 +67,9 @@
   function normalizeProfileUrl(value) {
     try {
       const parsed = new URL(value, location.origin);
-      if (!/^https?:$/.test(parsed.protocol) || !/(^|\.)instagram\.com$/i.test(parsed.hostname)) return null;
+      const hostname = parsed.hostname.toLocaleLowerCase();
+      const isInstagramHost = hostname === "instagram.com" || hostname.endsWith(".instagram.com");
+      if (!/^https?:$/.test(parsed.protocol) || !isInstagramHost) return null;
       const parts = parsed.pathname.split("/").filter(Boolean);
       if (parts.length !== 1 || RESERVED_PATHS.has(parts[0].toLocaleLowerCase())) return null;
       const username = parts[0];
