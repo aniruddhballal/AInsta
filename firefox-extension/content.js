@@ -1,11 +1,11 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "finsta-profile-catalog-v2";
+  const STORAGE_KEY = "ainsta-profile-catalog-v2";
   const REPORT_NAME = "bot-account-info.html";
   const BOTS_FILE_NAME = "bots.md";
-  const UI_MINIMIZED_KEY = "finsta-panel-minimized";
-  const UI_POSITION_KEY = "finsta-panel-position";
+  const UI_MINIMIZED_KEY = "ainsta-panel-minimized";
+  const UI_POSITION_KEY = "ainsta-panel-position";
   const NOT_SHOWN = "Not shown";
   const RESERVED_PATHS = new Set([
     "accounts", "direct", "directory", "emails", "explore", "reels",
@@ -115,7 +115,7 @@
   function migrateLegacyState() {
     const state = createInitialState();
     try {
-      const legacy = JSON.parse(localStorage.getItem("finsta-instagram-about-collector-v1") || "null");
+      const legacy = JSON.parse(localStorage.getItem("ainsta-instagram-about-collector-v1") || "null");
       if (!legacy || !Array.isArray(legacy.results)) return state;
       for (const result of legacy.results) {
         const profile = normalizeProfileUrl(result.url);
@@ -385,7 +385,7 @@
   }
 
   function setPanelMinimized(minimized) {
-    const panel = document.getElementById("finsta-collector-panel");
+    const panel = document.getElementById("ainsta-collector-panel");
     if (!panel) return;
     const body = panel.querySelector("[data-body]");
     const header = panel.querySelector("[data-header]");
@@ -409,7 +409,7 @@
     toggle.style.setProperty("background", "#ffffff", "important");
     toggle.style.setProperty("color", "#000000", "important");
     toggle.style.setProperty("border", "1px solid #000000", "important");
-    toggle.setAttribute("aria-label", minimized ? "Restore Finsta collector" : "Minimize Finsta collector");
+    toggle.setAttribute("aria-label", minimized ? "Restore AInsta collector" : "Minimize AInsta collector");
     toggle.title = minimized ? "Restore collector" : "Minimize collector";
     const rect = panel.getBoundingClientRect();
     setPanelPosition(panel, rect.left, rect.top);
@@ -486,7 +486,7 @@
   }
 
   function updatePanel(message = "") {
-    const panel = document.getElementById("finsta-collector-panel");
+    const panel = document.getElementById("ainsta-collector-panel");
     if (!panel) return;
     const state = readState();
     const current = currentProfile();
@@ -571,8 +571,8 @@
   }
 
   async function runCollector() {
-    if (window.__finstaCollectorRunning) return;
-    window.__finstaCollectorRunning = true;
+    if (window.__ainstaCollectorRunning) return;
+    window.__ainstaCollectorRunning = true;
     try {
       let state = readState();
       if (!state.run || !state.run.active) return;
@@ -611,15 +611,15 @@
     } catch (error) {
       updatePanel(`Collector error: ${error.message || error}`);
     } finally {
-      window.__finstaCollectorRunning = false;
+      window.__ainstaCollectorRunning = false;
     }
   }
 
   function addPanel() {
-    if (document.getElementById("finsta-collector-panel")) return;
+    if (document.getElementById("ainsta-collector-panel")) return;
     const panel = document.createElement("aside");
-    panel.id = "finsta-collector-panel";
-    panel.innerHTML = `<div data-header><strong>FINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT</button><button data-stop>STOP COLLECTION</button></div>`;
+    panel.id = "ainsta-collector-panel";
+    panel.innerHTML = `<div data-header><strong>AINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT</button><button data-stop>STOP COLLECTION</button></div>`;
     Object.assign(panel.style, {
       position: "fixed", left: "16px", top: "16px", zIndex: "2147483647",
       width: "270px", padding: "13px", color: "#000000",

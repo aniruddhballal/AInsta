@@ -6,9 +6,9 @@ This temporary Firefox extension maintains a persistent, deduplicated Instagram 
 
 1. Keep Firefox open and logged in to Instagram.
 2. Open `about:debugging#/runtime/this-firefox` in Firefox.
-3. Click **Load Temporary Add-on…** or **Reload** for the Finsta extension.
+3. Click **Load Temporary Add-on…** or **Reload** for the AInsta extension.
 4. Select `firefox-extension/manifest.json` when Firefox asks for a file.
-5. Open any Instagram profile. The **Finsta collector** panel appears in the lower-right corner.
+5. Open any Instagram profile. The **AInsta collector** panel appears in the lower-right corner.
 
 ## Maintain the catalog
 

@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Finsta Instagram About Collector",
+  "name": "AInsta Instagram About Collector",
   "version": "2.0.0",
   "description": "Maintain a deduplicated Instagram profile catalog and collect pending profile details from the current logged-in Firefox session.",
   "content_scripts": [
