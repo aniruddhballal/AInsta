@@ -2,8 +2,8 @@
 
 This is a desktop macro, not a browser-driver script. It uses the currently
 open Firefox window, keyboard shortcuts, and the clipboard. On each profile,
-13 Tabs + Enter opens the profile options menu, then 4 Tabs + Enter opens
-About this account.
+19 Tabs + Enter expands the bio, then 13 or 14 Tabs + Enter opens the profile
+options menu, and 4 Tabs + Enter opens About this account.
 """
 
 from __future__ import annotations
@@ -92,14 +92,35 @@ def copy_visible_page_text() -> str:
         return ""
 
 
-def open_about_this_account(menu_wait: float, tab_wait: float) -> None:
+def open_about_this_account(
+    bio_tabs: int,
+    options_tabs: int,
+    menu_tabs: int,
+    menu_wait: float,
+    tab_wait: float,
+) -> None:
     """Use the known Firefox tab order to open About this account."""
-    pyautogui.press("tab", presses=13, interval=tab_wait)
+    pyautogui.press("tab", presses=bio_tabs, interval=tab_wait)
     pyautogui.press("enter")
     time.sleep(menu_wait)
-    pyautogui.press("tab", presses=4, interval=tab_wait)
+    pyautogui.press("tab", presses=options_tabs, interval=tab_wait)
     pyautogui.press("enter")
     time.sleep(menu_wait)
+    pyautogui.press("tab", presses=menu_tabs, interval=tab_wait)
+    pyautogui.press("enter")
+    time.sleep(menu_wait)
+
+
+def story_is_visible(profile_text: str) -> bool:
+    """Detect common accessible labels used when a profile story is visible."""
+    text = normalized(profile_text)
+    markers = (
+        "view story",
+        "watch story",
+        "view profile story",
+        "profile story available",
+    )
+    return any(marker in text for marker in markers)
 
 
 def extract_label_value(text: str, label: str) -> str:
@@ -151,8 +172,14 @@ def extract_bio(profile_text: str, username: str) -> str:
 
 def collect_one(
     url: str,
+    bio_tabs: int,
+    no_story_options_tabs: int,
+    story_options_tabs: int,
+    story_mode: str,
+    menu_tabs: int,
     page_wait: float,
     menu_wait: float,
+    tab_wait: float,
 ) -> dict[str, str]:
     username = username_from_url(url)
     result = {
@@ -168,12 +195,22 @@ def collect_one(
 
     try:
         open_profile_tab(url, page_wait)
-        profile_text = copy_visible_page_text()
-        result["profile_text"] = profile_text
-        result["bio"] = extract_bio(profile_text, username)
+        initial_text = copy_visible_page_text()
         pyautogui.press("escape")
+        detected_story = story_is_visible(initial_text)
+        has_story = detected_story if story_mode == "auto" else story_mode == "yes"
 
-        open_about_this_account(menu_wait, tab_wait=0.08)
+        # Reset focus and the page before starting the exact tab sequence.
+        pyautogui.hotkey("ctrl", "r")
+        time.sleep(page_wait)
+        options_tabs = story_options_tabs if has_story else no_story_options_tabs
+        open_about_this_account(
+            bio_tabs=bio_tabs,
+            options_tabs=options_tabs,
+            menu_tabs=menu_tabs,
+            menu_wait=menu_wait,
+            tab_wait=tab_wait,
+        )
 
         about_text = copy_visible_page_text()
         result["about_text"] = about_text
@@ -182,6 +219,8 @@ def collect_one(
             raise RuntimeError("About this account dialog was not found")
         result["country"] = extract_label_value(about_text, "Account based in")
         result["date_joined"] = extract_label_value(about_text, "Date joined")
+        result["profile_text"] = about_text
+        result["bio"] = extract_bio(about_text, username)
         result["status"] = "Collected"
     except Exception as exc:  # Continue to the next profile if one page fails.
         result["status"] = f"Could not collect: {type(exc).__name__}: {exc}"
@@ -258,6 +297,12 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="HTML report path (default: bot-account-info.html)")
     parser.add_argument("--page-wait", type=float, default=5.0, help="Seconds to wait after navigation (default: 5)")
     parser.add_argument("--menu-wait", type=float, default=1.0, help="Seconds to wait after each menu click (default: 1)")
+    parser.add_argument("--tab-wait", type=float, default=0.08, help="Seconds between Tab presses (default: 0.08)")
+    parser.add_argument("--bio-tabs", type=int, default=19, help="Tabs before Enter to expand the bio (default: 19)")
+    parser.add_argument("--no-story-options-tabs", type=int, default=13, help="Tabs before Enter for options without a story (default: 13)")
+    parser.add_argument("--story-options-tabs", type=int, default=14, help="Tabs before Enter for options with a story (default: 14)")
+    parser.add_argument("--menu-tabs", type=int, default=4, help="Tabs before Enter inside the options menu (default: 4)")
+    parser.add_argument("--story-mode", choices=("auto", "yes", "no"), default="auto", help="Story detection mode (default: auto)")
     args = parser.parse_args()
 
     urls = load_instagram_urls(args.input)
@@ -280,7 +325,17 @@ def main() -> int:
     try:
         for index, url in enumerate(urls, start=1):
             print(f"[{index}/{len(urls)}] Checking @{username_from_url(url)}")
-            result = collect_one(url, args.page_wait, args.menu_wait)
+            result = collect_one(
+                url=url,
+                bio_tabs=args.bio_tabs,
+                no_story_options_tabs=args.no_story_options_tabs,
+                story_options_tabs=args.story_options_tabs,
+                story_mode=args.story_mode,
+                menu_tabs=args.menu_tabs,
+                page_wait=args.page_wait,
+                menu_wait=args.menu_wait,
+                tab_wait=args.tab_wait,
+            )
             results.append(result)
             render_html(results, args.output)
             print(f"       {result['status']} | bio={result['bio'][:60]} | country={result['country']} | date={result['date_joined']}")

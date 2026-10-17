@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "Finsta Instagram About Collector",
+  "version": "1.0.0",
+  "description": "Collect Instagram profile bio and About this account details from the current logged-in Firefox session.",
+  "content_scripts": [
+    {
+      "matches": ["*://www.instagram.com/*", "*://instagram.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
