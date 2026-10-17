@@ -391,7 +391,7 @@
     body.style.display = minimized ? "none" : "grid";
     panel.style.width = minimized ? "150px" : "270px";
     panel.style.padding = minimized ? "8px 10px" : "13px";
-    toggle.textContent = minimized ? "Restore" : "Minimize";
+    toggle.textContent = minimized ? "RESTORE" : "MINIMIZE";
     toggle.setAttribute("aria-label", minimized ? "Restore Finsta collector" : "Minimize Finsta collector");
   }
 
@@ -415,8 +415,8 @@
     countNode.textContent = `Saved: ${state.profiles.length} · Pending: ${pending}`;
     addButton.style.display = current ? "block" : "none";
     refreshButton.style.display = saved ? "block" : "none";
-    addButton.textContent = saved ? "Already saved" : "Add current profile";
-    runButton.textContent = `Run pending profiles (${pending})`;
+    addButton.textContent = saved ? "ALREADY SAVED" : "ADD CURRENT PROFILE";
+    runButton.textContent = `RUN PENDING PROFILES (${pending})`;
 
     if (state.run && state.run.active) {
       const position = Math.min(state.run.index + 1, state.run.queue.length);
@@ -529,39 +529,41 @@
     if (document.getElementById("finsta-collector-panel")) return;
     const panel = document.createElement("aside");
     panel.id = "finsta-collector-panel";
-    panel.innerHTML = `<div data-header><strong>Finsta collector</strong><button data-toggle>Minimize</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>Add current profile</button><button data-refresh>Mark current for refresh</button><button data-run>Run pending profiles</button><button data-export>Export bots.md</button><button data-report>Download report</button><button data-stop>Stop collection</button></div>`;
+    panel.innerHTML = `<div data-header><strong>FINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT</button><button data-stop>STOP COLLECTION</button></div>`;
     Object.assign(panel.style, {
       position: "fixed", right: "16px", bottom: "16px", zIndex: "2147483647",
-      width: "270px", padding: "13px", color: "#1f2937",
-      background: "#ffffff", border: "1px solid #d7dee8", borderRadius: "6px",
-      boxShadow: "0 6px 22px rgba(31, 41, 55, 0.18)", font: "14px Arial, sans-serif"
+      width: "270px", padding: "13px", color: "#000000",
+      background: "#ffffff", border: "1px solid #000000", borderRadius: "0",
+      boxShadow: "none", font: "14px Arial, sans-serif"
     });
     const header = panel.querySelector("[data-header]");
     const body = panel.querySelector("[data-body]");
     const toggle = panel.querySelector("[data-toggle]");
     Object.assign(header.style, {
       display: "flex", alignItems: "center", justifyContent: "space-between",
-      gap: "12px", paddingBottom: "9px", borderBottom: "1px solid #edf0f4"
+      gap: "12px", paddingBottom: "10px", borderBottom: "1px solid #000000"
     });
     Object.assign(body.style, { display: "grid", gap: "7px", paddingTop: "10px" });
-    header.querySelector("strong").style.setProperty("color", "#111827", "important");
-    header.querySelector("strong").style.setProperty("font-size", "15px", "important");
+    header.querySelector("strong").style.setProperty("color", "#000000", "important");
+    header.querySelector("strong").style.setProperty("font-size", "16px", "important");
+    header.querySelector("strong").style.setProperty("font-weight", "700", "important");
+    header.querySelector("strong").style.setProperty("letter-spacing", "1px", "important");
     Object.assign(toggle.style, {
       padding: "3px 7px", borderRadius: "4px", cursor: "pointer",
-      font: "600 11px Arial, sans-serif", background: "#ffffff"
+      font: "700 10px Arial, sans-serif", letterSpacing: "0.8px", background: "#ffffff"
     });
-    toggle.style.setProperty("color", "#267a3d", "important");
-    toggle.style.setProperty("border", "1px solid #267a3d", "important");
+    toggle.style.setProperty("color", "#000000", "important");
+    toggle.style.setProperty("border", "1px solid #000000", "important");
     panel.querySelectorAll("[data-current], [data-count], [data-status]").forEach((node) => {
-      node.style.setProperty("color", "#374151", "important");
+      node.style.setProperty("color", "#555555", "important");
       node.style.setProperty("line-height", "1.35", "important");
     });
-    setButtonStyle(panel.querySelector("[data-add]"), "#2f9e44", "1px solid #267a3d");
-    setButtonStyle(panel.querySelector("[data-refresh]"), "#ffffff", "1px solid #2f9e44", "#267a3d");
-    setButtonStyle(panel.querySelector("[data-run]"), "#2f9e44", "1px solid #267a3d");
-    setButtonStyle(panel.querySelector("[data-export]"), "#ffffff", "1px solid #9aa5b1", "#374151");
-    setButtonStyle(panel.querySelector("[data-report]"), "#ffffff", "1px solid #9aa5b1", "#374151");
-    setButtonStyle(panel.querySelector("[data-stop]"), "#ffffff", "1px solid #c2413a", "#a32922");
+    setButtonStyle(panel.querySelector("[data-add]"), "#000000", "1px solid #000000");
+    setButtonStyle(panel.querySelector("[data-refresh]"), "#ffffff", "1px solid #000000", "#000000");
+    setButtonStyle(panel.querySelector("[data-run]"), "#000000", "1px solid #000000");
+    setButtonStyle(panel.querySelector("[data-export]"), "#ffffff", "1px solid #000000", "#000000");
+    setButtonStyle(panel.querySelector("[data-report]"), "#ffffff", "1px solid #000000", "#000000");
+    setButtonStyle(panel.querySelector("[data-stop]"), "#ffffff", "1px solid #000000", "#000000");
     toggle.addEventListener("click", () => setPanelMinimized(panel.dataset.minimized !== "true"));
     panel.querySelector("[data-add]").addEventListener("click", addCurrentProfile);
     panel.querySelector("[data-refresh]").addEventListener("click", refreshCurrentProfile);
