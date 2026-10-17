@@ -386,14 +386,30 @@
     const panel = document.getElementById("finsta-collector-panel");
     if (!panel) return;
     const body = panel.querySelector("[data-body]");
+    const header = panel.querySelector("[data-header]");
+    const title = header.querySelector("strong");
     const toggle = panel.querySelector("[data-toggle]");
     localStorage.setItem(UI_MINIMIZED_KEY, minimized ? "true" : "false");
     panel.dataset.minimized = minimized ? "true" : "false";
     body.style.display = minimized ? "none" : "grid";
-    panel.style.width = minimized ? "150px" : "270px";
-    panel.style.padding = minimized ? "8px 10px" : "13px";
-    toggle.textContent = minimized ? "RESTORE" : "MINIMIZE";
+    panel.style.width = minimized ? "36px" : "270px";
+    panel.style.height = minimized ? "36px" : "auto";
+    panel.style.padding = minimized ? "0" : "13px";
+    header.style.paddingBottom = minimized ? "0" : "10px";
+    header.style.borderBottom = minimized ? "none" : "1px solid #000000";
+    header.style.justifyContent = minimized ? "center" : "space-between";
+    title.style.display = minimized ? "none" : "block";
+    toggle.textContent = minimized ? "" : "MINIMIZE";
+    toggle.style.width = minimized ? "36px" : "auto";
+    toggle.style.height = minimized ? "36px" : "auto";
+    toggle.style.padding = minimized ? "0" : "3px 7px";
+    toggle.style.setProperty("background", minimized ? "#000000" : "#ffffff", "important");
+    toggle.style.setProperty("color", minimized ? "#ffffff" : "#000000", "important");
+    toggle.style.setProperty("border", "1px solid #000000", "important");
     toggle.setAttribute("aria-label", minimized ? "Restore Finsta collector" : "Minimize Finsta collector");
+    toggle.title = minimized ? "Restore collector" : "Minimize collector";
+    const rect = panel.getBoundingClientRect();
+    setPanelPosition(panel, rect.left, rect.top);
   }
 
   function setPanelPosition(panel, left, top, save = true) {
