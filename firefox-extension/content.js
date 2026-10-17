@@ -531,7 +531,7 @@
     panel.id = "finsta-collector-panel";
     panel.innerHTML = `<div data-header><strong>FINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT</button><button data-stop>STOP COLLECTION</button></div>`;
     Object.assign(panel.style, {
-      position: "fixed", right: "16px", bottom: "16px", zIndex: "2147483647",
+      position: "fixed", left: "16px", top: "16px", zIndex: "2147483647",
       width: "270px", padding: "13px", color: "#000000",
       background: "#ffffff", border: "1px solid #000000", borderRadius: "0",
       boxShadow: "none", font: "14px Arial, sans-serif"
