@@ -1,8 +1,9 @@
 """Use the existing Firefox window to collect Instagram profile details.
 
 This is a desktop macro, not a browser-driver script. It uses the currently
-open Firefox window, keyboard shortcuts, the clipboard, and two calibrated
-mouse positions to click Instagram's profile options and About this account.
+open Firefox window, keyboard shortcuts, and the clipboard. On each profile,
+13 Tabs + Enter opens the profile options menu, then 4 Tabs + Enter opens
+About this account.
 """
 
 from __future__ import annotations
@@ -82,7 +83,6 @@ def open_profile_tab(url: str, page_wait: float) -> None:
 
 def copy_visible_page_text() -> str:
     """Copy all visible browser text without changing its Unicode characters."""
-    pyautogui.press("escape")
     pyautogui.hotkey("ctrl", "a")
     pyautogui.hotkey("ctrl", "c")
     time.sleep(0.25)
@@ -90,6 +90,16 @@ def copy_visible_page_text() -> str:
         return pyperclip.paste()
     except pyperclip.PyperclipException:
         return ""
+
+
+def open_about_this_account(menu_wait: float, tab_wait: float) -> None:
+    """Use the known Firefox tab order to open About this account."""
+    pyautogui.press("tab", presses=13, interval=tab_wait)
+    pyautogui.press("enter")
+    time.sleep(menu_wait)
+    pyautogui.press("tab", presses=4, interval=tab_wait)
+    pyautogui.press("enter")
+    time.sleep(menu_wait)
 
 
 def extract_label_value(text: str, label: str) -> str:
@@ -139,35 +149,8 @@ def extract_bio(profile_text: str, username: str) -> str:
     return bio if bio else NOT_SHOWN
 
 
-def calibrate_positions(
-    options_position: tuple[int, int] | None,
-    about_position: tuple[int, int] | None,
-) -> tuple[tuple[int, int], tuple[int, int]]:
-    if options_position is None:
-        input(
-            "Move the mouse over Instagram's three-dots profile options button, "
-            "then press Enter here: "
-        )
-        options_position = pyautogui.position()
-
-    pyautogui.click(*options_position)
-    time.sleep(0.8)
-
-    if about_position is None:
-        input(
-            "With the options menu open, move the mouse over 'About this account', "
-            "then press Enter here: "
-        )
-        about_position = pyautogui.position()
-
-    pyautogui.press("escape")
-    return options_position, about_position
-
-
 def collect_one(
     url: str,
-    options_position: tuple[int, int],
-    about_position: tuple[int, int],
     page_wait: float,
     menu_wait: float,
 ) -> dict[str, str]:
@@ -188,14 +171,15 @@ def collect_one(
         profile_text = copy_visible_page_text()
         result["profile_text"] = profile_text
         result["bio"] = extract_bio(profile_text, username)
+        pyautogui.press("escape")
 
-        pyautogui.click(*options_position)
-        time.sleep(menu_wait)
-        pyautogui.click(*about_position)
-        time.sleep(menu_wait)
+        open_about_this_account(menu_wait, tab_wait=0.08)
 
         about_text = copy_visible_page_text()
         result["about_text"] = about_text
+        about_text_normalized = normalized(about_text)
+        if "date joined" not in about_text_normalized and "account based in" not in about_text_normalized:
+            raise RuntimeError("About this account dialog was not found")
         result["country"] = extract_label_value(about_text, "Account based in")
         result["date_joined"] = extract_label_value(about_text, "Date joined")
         result["status"] = "Collected"
@@ -268,24 +252,12 @@ def render_html(results: list[dict[str, str]], output_path: Path) -> None:
     output_path.write_text(document, encoding="utf-8")
 
 
-def parse_position(value: str | None) -> tuple[int, int] | None:
-    if not value:
-        return None
-    try:
-        x, y = (int(part.strip()) for part in value.split(",", maxsplit=1))
-        return x, y
-    except (ValueError, TypeError):
-        raise SystemExit(f"Invalid coordinate '{value}'. Use the format x,y, for example 900,220.")
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT, help="File containing Instagram URLs (default: bots.md)")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="HTML report path (default: bot-account-info.html)")
     parser.add_argument("--page-wait", type=float, default=5.0, help="Seconds to wait after navigation (default: 5)")
     parser.add_argument("--menu-wait", type=float, default=1.0, help="Seconds to wait after each menu click (default: 1)")
-    parser.add_argument("--options-position", help="Skip calibration with x,y coordinates for the three-dots button")
-    parser.add_argument("--about-position", help="Skip calibration with x,y coordinates for About this account")
     args = parser.parse_args()
 
     urls = load_instagram_urls(args.input)
@@ -301,10 +273,6 @@ def main() -> int:
 
     open_profile_tab(urls[0], args.page_wait)
     input("If needed, log in to Instagram in the Firefox tab, then press Enter here: ")
-
-    options_position = parse_position(args.options_position)
-    about_position = parse_position(args.about_position)
-    options_position, about_position = calibrate_positions(options_position, about_position)
     pyautogui.hotkey("ctrl", "w")
     time.sleep(0.5)
 
@@ -312,7 +280,7 @@ def main() -> int:
     try:
         for index, url in enumerate(urls, start=1):
             print(f"[{index}/{len(urls)}] Checking @{username_from_url(url)}")
-            result = collect_one(url, options_position, about_position, args.page_wait, args.menu_wait)
+            result = collect_one(url, args.page_wait, args.menu_wait)
             results.append(result)
             render_html(results, args.output)
             print(f"       {result['status']} | bio={result['bio'][:60]} | country={result['country']} | date={result['date_joined']}")
