@@ -5,6 +5,7 @@
   const REPORT_NAME = "bot-account-info.html";
   const BOTS_FILE_NAME = "bots.md";
   const UI_MINIMIZED_KEY = "finsta-panel-minimized";
+  const UI_POSITION_KEY = "finsta-panel-position";
   const NOT_SHOWN = "Not shown";
   const RESERVED_PATHS = new Set([
     "accounts", "direct", "directory", "emails", "explore", "reels",
@@ -395,6 +396,63 @@
     toggle.setAttribute("aria-label", minimized ? "Restore Finsta collector" : "Minimize Finsta collector");
   }
 
+  function setPanelPosition(panel, left, top, save = true) {
+    const maxLeft = Math.max(0, window.innerWidth - panel.offsetWidth);
+    const maxTop = Math.max(0, window.innerHeight - panel.offsetHeight);
+    const nextLeft = Math.max(0, Math.min(Math.round(left), maxLeft));
+    const nextTop = Math.max(0, Math.min(Math.round(top), maxTop));
+    panel.style.left = `${nextLeft}px`;
+    panel.style.top = `${nextTop}px`;
+    if (save) localStorage.setItem(UI_POSITION_KEY, JSON.stringify({ left: nextLeft, top: nextTop }));
+  }
+
+  function restorePanelPosition(panel) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(UI_POSITION_KEY) || "null");
+      if (saved && Number.isFinite(saved.left) && Number.isFinite(saved.top)) {
+        setPanelPosition(panel, saved.left, saved.top, false);
+        return;
+      }
+    } catch (_error) {
+      // Use the default top-left position when the saved position is invalid.
+    }
+    setPanelPosition(panel, 16, 16, false);
+  }
+
+  function makePanelDraggable(panel) {
+    const header = panel.querySelector("[data-header]");
+    let drag = null;
+    header.style.cursor = "grab";
+    header.style.setProperty("touch-action", "none", "important");
+
+    header.addEventListener("pointerdown", (event) => {
+      if (event.target.closest("button")) return;
+      const rect = panel.getBoundingClientRect();
+      drag = { offsetX: event.clientX - rect.left, offsetY: event.clientY - rect.top, pointerId: event.pointerId };
+      header.setPointerCapture(event.pointerId);
+      header.style.cursor = "grabbing";
+      event.preventDefault();
+    });
+
+    header.addEventListener("pointermove", (event) => {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      setPanelPosition(panel, event.clientX - drag.offsetX, event.clientY - drag.offsetY);
+    });
+
+    const stopDragging = (event) => {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      drag = null;
+      header.style.cursor = "grab";
+      if (header.hasPointerCapture(event.pointerId)) header.releasePointerCapture(event.pointerId);
+    };
+    header.addEventListener("pointerup", stopDragging);
+    header.addEventListener("pointercancel", stopDragging);
+    window.addEventListener("resize", () => {
+      const rect = panel.getBoundingClientRect();
+      setPanelPosition(panel, rect.left, rect.top);
+    });
+  }
+
   function updatePanel(message = "") {
     const panel = document.getElementById("finsta-collector-panel");
     if (!panel) return;
@@ -572,6 +630,8 @@
     panel.querySelector("[data-report]").addEventListener("click", () => downloadReport(readState()));
     panel.querySelector("[data-stop]").addEventListener("click", stopRun);
     document.documentElement.appendChild(panel);
+    restorePanelPosition(panel);
+    makePanelDraggable(panel);
     updatePanel();
     setPanelMinimized(localStorage.getItem(UI_MINIMIZED_KEY) === "true");
   }
