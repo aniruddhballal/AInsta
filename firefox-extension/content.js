@@ -404,8 +404,8 @@
     toggle.style.height = minimized ? "36px" : "auto";
     toggle.style.padding = minimized ? "0" : "3px 7px";
     toggle.style.borderRadius = "0";
-    toggle.style.setProperty("background", minimized ? "#000000" : "#ffffff", "important");
-    toggle.style.setProperty("color", minimized ? "#ffffff" : "#000000", "important");
+    toggle.style.setProperty("background", "#ffffff", "important");
+    toggle.style.setProperty("color", "#000000", "important");
     toggle.style.setProperty("border", "1px solid #000000", "important");
     toggle.setAttribute("aria-label", minimized ? "Restore Finsta collector" : "Minimize Finsta collector");
     toggle.title = minimized ? "Restore collector" : "Minimize collector";
