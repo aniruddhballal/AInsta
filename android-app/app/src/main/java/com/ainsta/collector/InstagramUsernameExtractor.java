@@ -95,6 +95,7 @@ public final class InstagramUsernameExtractor {
         int score = 12;
         String id = viewId == null ? "" : viewId.toLowerCase(Locale.ROOT);
         if (id.contains("username")) score += 45;
+        if (id.contains("action_bar_title")) score += 60;
         if (id.contains("profile")) score += 18;
         if (id.contains("title")) score += 12;
         if (description) score += 14;
