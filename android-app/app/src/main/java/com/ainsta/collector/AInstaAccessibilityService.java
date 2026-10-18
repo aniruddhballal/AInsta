@@ -1,7 +1,6 @@
 package com.ainsta.collector;
 
 import android.accessibilityservice.AccessibilityService;
-import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
@@ -34,12 +33,19 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     protected void onServiceConnected() {
         super.onServiceConnected();
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        mainHandler.post(this::showBubble);
+        mainHandler.post(this::syncBubbleVisibility);
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
-        if (bubble == null) mainHandler.post(this::showBubble);
+        if (event == null) return;
+        boolean instagramEvent = INSTAGRAM_PACKAGE.equals(String.valueOf(event.getPackageName()));
+        if (instagramEvent) {
+            if (bubble == null) mainHandler.post(this::showBubble);
+        } else if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
+                || event.getEventType() == AccessibilityEvent.TYPE_WINDOWS_CHANGED) {
+            mainHandler.post(this::syncBubbleVisibility);
+        }
     }
 
     @Override
@@ -136,6 +142,14 @@ public final class AInstaAccessibilityService extends AccessibilityService {
                 addAccessibilityOverlay(view, params);
             }
         }
+    }
+
+    private void syncBubbleVisibility() {
+        AccessibilityNodeInfo root = getRootInActiveWindow();
+        boolean instagramActive = root != null
+                && INSTAGRAM_PACKAGE.equals(String.valueOf(root.getPackageName()));
+        if (root != null) root.recycle();
+        if (instagramActive) showBubble(); else removeBubble();
     }
 
     private void addAccessibilityOverlay(TextView view, WindowManager.LayoutParams params) {
