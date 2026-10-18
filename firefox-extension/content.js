@@ -309,12 +309,19 @@
     };
   }
 
+  function isUnavailableProfileText(text) {
+    return /page isn['’]t available|page may have been removed/i.test(text || "");
+  }
+
   async function collectCurrent(profile) {
     updatePanel(`Reading @${profile.username}…`);
     await expandBio();
     const capturedProfile = profileText();
     const options = await waitFor(findOptionsButton);
-    if (!options) return resultFor(profile, "Could not find profile options", capturedProfile, "", "Profile options not found");
+    if (!options) {
+      if (isUnavailableProfileText(capturedProfile)) return resultFor(profile, "Deleted account", capturedProfile);
+      return resultFor(profile, "Could not find profile options", capturedProfile, "", "Profile options not found");
+    }
 
     options.click();
     const aboutItem = await waitFor(findAboutMenuItem);
