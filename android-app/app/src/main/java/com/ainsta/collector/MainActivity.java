@@ -2,6 +2,7 @@ package com.ainsta.collector;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.graphics.Rect;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -32,6 +33,8 @@ public final class MainActivity extends Activity {
     private TextView storageStatus;
     private EditText searchInput;
     private List<Profile> loadedProfiles = new ArrayList<>();
+    private boolean keyboardVisible;
+    private int scrollBeforeKeyboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public final class MainActivity extends Activity {
         getWindow().setStatusBarColor(Color.WHITE);
         getWindow().setNavigationBarColor(Color.WHITE);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContentView(buildScreen());
     }
 
@@ -74,6 +78,7 @@ public final class MainActivity extends Activity {
         });
         scroll.addView(content);
         content.post(content::requestApplyInsets);
+        scroll.getViewTreeObserver().addOnGlobalLayoutListener(() -> updateKeyboardLayout(scroll));
 
         content.addView(buildHeader());
         content.addView(UiStyles.rule(this, Color.BLACK, 1));
@@ -118,6 +123,28 @@ public final class MainActivity extends Activity {
         privacy.setLineSpacing(UiStyles.dp(this, 2), 1.0f);
         content.addView(privacy, margin(0, 4, 0, 0));
         return scroll;
+    }
+
+    private void updateKeyboardLayout(ScrollView scroll) {
+        Rect visibleFrame = new Rect();
+        scroll.getWindowVisibleDisplayFrame(visibleFrame);
+        int obscuredHeight = scroll.getRootView().getHeight() - visibleFrame.bottom;
+        boolean nowVisible = obscuredHeight > UiStyles.dp(this, 160);
+        if (nowVisible == keyboardVisible) return;
+
+        keyboardVisible = nowVisible;
+        if (nowVisible) {
+            scrollBeforeKeyboard = scroll.getScrollY();
+            scroll.postDelayed(() -> {
+                if (!keyboardVisible || searchInput == null) return;
+                int target = Math.max(0, searchInput.getTop() - UiStyles.dp(this, 100));
+                scroll.smoothScrollTo(0, target);
+            }, 100L);
+        } else {
+            scroll.postDelayed(() -> {
+                if (!keyboardVisible) scroll.smoothScrollTo(0, scrollBeforeKeyboard);
+            }, 100L);
+        }
     }
 
     private View buildHeader() {
