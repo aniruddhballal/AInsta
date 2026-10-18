@@ -5,6 +5,8 @@ import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -179,7 +181,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
             if (attempt < MAX_CAPTURE_ATTEMPTS) {
                 mainHandler.postDelayed(() -> captureCurrentProfile(source, attempt + 1), CAPTURE_RETRY_DELAY_MS);
             } else {
-                showMessage("Open an Instagram profile first");
+                showCaptureFailure(source, "Open an Instagram profile first");
             }
             return;
         }
@@ -189,7 +191,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
             if (attempt < MAX_CAPTURE_ATTEMPTS) {
                 mainHandler.postDelayed(() -> captureCurrentProfile(source, attempt + 1), CAPTURE_RETRY_DELAY_MS);
             } else {
-                showMessage("Could not identify this profile");
+                showCaptureFailure(source, "Could not identify this profile");
             }
             return;
         }
@@ -197,6 +199,27 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         showMessage(added ? "Saved @" + username : "Already saved @" + username);
         if (added && source == bubble && source.getBackground() instanceof CaptureBubbleDrawable) {
             ((CaptureBubbleDrawable) source.getBackground()).startShimmer();
+        } else if (!added) {
+            showCaptureFailureFeedback(source);
+        }
+    }
+
+    private void showCaptureFailure(TextView source, String message) {
+        showMessage(message);
+        showCaptureFailureFeedback(source);
+    }
+
+    private void showCaptureFailureFeedback(TextView source) {
+        if (source != bubble) return;
+        if (source.getBackground() instanceof CaptureBubbleDrawable) {
+            ((CaptureBubbleDrawable) source.getBackground()).startFailureFeedback();
+        }
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        if (vibrator == null || !vibrator.hasVibrator()) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(55L, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            vibrator.vibrate(55L);
         }
     }
 

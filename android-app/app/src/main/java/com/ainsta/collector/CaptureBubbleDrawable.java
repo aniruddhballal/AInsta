@@ -25,7 +25,9 @@ public final class CaptureBubbleDrawable extends Drawable {
     private final Path clipPath = new Path();
     private final Drawable alien;
     private ValueAnimator shimmerAnimator;
+    private ValueAnimator failureAnimator;
     private float shimmerCenter = -18f;
+    private float jitterOffset;
 
     public CaptureBubbleDrawable(Context context) {
         backgroundPaint.setColor(Color.BLACK);
@@ -42,7 +44,7 @@ public final class CaptureBubbleDrawable extends Drawable {
         float offsetY = bounds.top + (bounds.height() - ICON_SIZE * scale) / 2f;
 
         canvas.save();
-        canvas.translate(offsetX, offsetY);
+        canvas.translate(offsetX + jitterOffset * scale, offsetY);
         canvas.scale(scale, scale);
 
         RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
@@ -67,10 +69,9 @@ public final class CaptureBubbleDrawable extends Drawable {
             canvas.restore();
         }
 
-        canvas.restore();
-
-        alien.setBounds(bounds);
+        alien.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
         alien.draw(canvas);
+        canvas.restore();
     }
 
     public void startShimmer() {
@@ -94,10 +95,30 @@ public final class CaptureBubbleDrawable extends Drawable {
         shimmerAnimator.start();
     }
 
+    public void startFailureFeedback() {
+        if (failureAnimator != null) failureAnimator.cancel();
+        jitterOffset = 0f;
+        failureAnimator = ValueAnimator.ofFloat(0f, -2.2f, 2.2f, -1.6f, 1.6f, 0f);
+        failureAnimator.setDuration(260L);
+        failureAnimator.addUpdateListener(animation -> {
+            jitterOffset = (float) animation.getAnimatedValue();
+            invalidateSelf();
+        });
+        failureAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                failureAnimator = null;
+                jitterOffset = 0f;
+                invalidateSelf();
+            }
+        });
+        failureAnimator.start();
+    }
+
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-        if (alien != null) alien.setBounds(bounds);
+        if (alien != null) alien.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
     }
 
     @Override
