@@ -111,7 +111,9 @@ public final class MainActivity extends Activity {
         content.addView(heading);
 
         searchInput = buildSearchInput();
-        content.addView(searchInput, new LinearLayout.LayoutParams(-1, UiStyles.dp(this, 56)));
+        LinearLayout.LayoutParams searchParams = new LinearLayout.LayoutParams(-1, UiStyles.dp(this, 56));
+        searchParams.setMargins(0, UiStyles.dp(this, 10), 0, 0);
+        content.addView(searchInput, searchParams);
 
         profileList = new LinearLayout(this);
         profileList.setOrientation(LinearLayout.VERTICAL);
