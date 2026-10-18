@@ -2,7 +2,6 @@ package com.ainsta.collector;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.graphics.Rect;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -65,20 +64,24 @@ public final class MainActivity extends Activity {
         content.setOnApplyWindowInsetsListener((view, insets) -> {
             int topInset;
             int bottomInset;
+            boolean imeVisible;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 android.graphics.Insets bars = insets.getInsets(android.view.WindowInsets.Type.systemBars());
+                android.graphics.Insets ime = insets.getInsets(android.view.WindowInsets.Type.ime());
                 topInset = bars.top;
-                bottomInset = bars.bottom;
+                bottomInset = Math.max(bars.bottom, ime.bottom);
+                imeVisible = ime.bottom > bars.bottom;
             } else {
                 topInset = insets.getSystemWindowInsetTop();
                 bottomInset = insets.getSystemWindowInsetBottom();
+                imeVisible = bottomInset > UiStyles.dp(this, 160);
             }
             view.setPadding(horizontalPadding, baseTopPadding + topInset, horizontalPadding, baseBottomPadding + bottomInset);
+            updateKeyboardState(scroll, imeVisible);
             return insets;
         });
         scroll.addView(content);
         content.post(content::requestApplyInsets);
-        scroll.getViewTreeObserver().addOnGlobalLayoutListener(() -> updateKeyboardLayout(scroll));
 
         content.addView(buildHeader());
         content.addView(UiStyles.rule(this, Color.BLACK, 1));
@@ -125,13 +128,8 @@ public final class MainActivity extends Activity {
         return scroll;
     }
 
-    private void updateKeyboardLayout(ScrollView scroll) {
-        Rect visibleFrame = new Rect();
-        scroll.getWindowVisibleDisplayFrame(visibleFrame);
-        int obscuredHeight = scroll.getRootView().getHeight() - visibleFrame.bottom;
-        boolean nowVisible = obscuredHeight > UiStyles.dp(this, 160);
+    private void updateKeyboardState(ScrollView scroll, boolean nowVisible) {
         if (nowVisible == keyboardVisible) return;
-
         keyboardVisible = nowVisible;
         if (nowVisible) {
             scrollBeforeKeyboard = scroll.getScrollY();
