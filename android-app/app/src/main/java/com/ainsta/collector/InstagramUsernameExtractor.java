@@ -12,11 +12,13 @@ import java.util.regex.Pattern;
 public final class InstagramUsernameExtractor {
     // Instagram permits usernames to end in an underscore, but not a period.
     private static final Pattern USERNAME_PATTERN = Pattern.compile("@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?)");
-    private static final Pattern PROFILE_DESCRIPTION = Pattern.compile("(?i)(?:profile|avatar|picture)(?:[^@A-Za-z0-9._]{0,24})(?:of|for)?(?:[^@A-Za-z0-9._]{0,4})@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?)");
+    private static final Pattern PROFILE_DESCRIPTION = Pattern.compile("(?i)(?:profile\\s+(?:picture|photo|avatar)|(?:profile|avatar|picture)(?!\\s+(?:picture|photo|avatar)\\b))(?:\\s+(?:of|for))?\\s+@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?)");
+    private static final Pattern PROFILE_URL = Pattern.compile("(?i)(?:https?://)?(?:www\\.)?instagram\\.com/([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?)/?");
+    private static final Pattern METRIC_TOKEN = Pattern.compile("(?i)\\d+(?:\\.\\d+)?[kmb]?(?:posts?|followers?|following?|likes?|comments?)");
     private static final String[] REJECTED = {
             "instagram", "followers", "following", "follow", "message", "editprofile", "edit profile",
             "share profile", "threads", "home", "search", "reels", "shop", "explore", "notifications",
-            "direct", "more", "posts", "likes", "comments", "suggested", "add friend"
+            "direct", "more", "posts", "likes", "comments", "suggested", "add friend", "picture", "profile", "avatar"
     };
 
     private InstagramUsernameExtractor() {}
@@ -46,15 +48,17 @@ public final class InstagramUsernameExtractor {
             String value = text.toString().trim();
             if (!value.isEmpty()) {
                 allText.add(value);
-                addCandidate(value, viewId, bounds, false, candidates);
+                String urlUsername = profileUrlUsername(value);
+                if (urlUsername.isEmpty()) addCandidate(value, viewId, bounds, false, candidates);
+                else addCandidate(urlUsername, viewId, bounds, true, candidates);
             }
         }
         if (description != null) {
             String value = description.toString().trim();
             if (!value.isEmpty()) {
                 allText.add(value);
-                Matcher matcher = PROFILE_DESCRIPTION.matcher(value);
-                if (matcher.find()) addCandidate(matcher.group(1), viewId, bounds, true, candidates);
+                String profileUsername = profileDescriptionUsername(value);
+                if (!profileUsername.isEmpty()) addCandidate(profileUsername, viewId, bounds, true, candidates);
                 else addCandidate(value, viewId, bounds, true, candidates);
             }
         }
@@ -66,6 +70,17 @@ public final class InstagramUsernameExtractor {
                 child.recycle();
             }
         }
+    }
+
+    static String profileDescriptionUsername(String value) {
+        if (value == null) return "";
+        Matcher matcher = PROFILE_DESCRIPTION.matcher(value.trim());
+        return matcher.find() ? ProfileStore.normalizeUsername(matcher.group(1)) : "";
+    }
+
+    private static String profileUrlUsername(String value) {
+        Matcher matcher = PROFILE_URL.matcher(value);
+        return matcher.find() ? ProfileStore.normalizeUsername(matcher.group(1)) : "";
     }
 
     private static void addCandidate(String raw, String viewId, Rect bounds, boolean description, List<Candidate> candidates) {
@@ -98,11 +113,11 @@ public final class InstagramUsernameExtractor {
         return false;
     }
 
-    private static boolean isRejected(String value) {
+    static boolean isRejected(String value) {
         // Match only complete UI labels. A substring check incorrectly rejects
         // real usernames such as "reelscantheal" because it contains "reels".
         for (String rejected : REJECTED) if (value.equals(rejected)) return true;
-        return value.matches("\\d+");
+        return value.matches("\\d+") || METRIC_TOKEN.matcher(value).matches();
     }
 
     private static final class Candidate {
