@@ -18,7 +18,7 @@ public final class InstagramUsernameExtractor {
     private static final String[] REJECTED = {
             "instagram", "followers", "following", "follow", "message", "editprofile", "edit profile",
             "share profile", "threads", "home", "search", "reels", "shop", "explore", "notifications",
-            "direct", "more", "posts", "likes", "comments", "suggested", "add friend", "picture", "profile", "avatar", "community"
+            "direct", "more", "posts", "likes", "comments", "suggested", "add friend", "picture", "profile", "avatar", "community", "reposted"
     };
 
     private InstagramUsernameExtractor() {}

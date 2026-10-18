@@ -19,6 +19,7 @@ public class InstagramUsernameExtractorTest {
         assertTrue(InstagramUsernameExtractor.isRejected("picture"));
         assertTrue(InstagramUsernameExtractor.isRejected("community"));
         assertTrue(InstagramUsernameExtractor.isRejected("profile"));
+        assertTrue(InstagramUsernameExtractor.isRejected("reposted"));
     }
 
     @Test
