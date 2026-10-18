@@ -141,6 +141,18 @@ public final class ProfileStore {
         String[] projection = {MediaStore.MediaColumns._ID};
         String selection = MediaStore.MediaColumns.DISPLAY_NAME + "=? AND " + MediaStore.MediaColumns.RELATIVE_PATH + "=?";
         String[] args = {FILE_NAME, RELATIVE_PATH + "/"};
+        Uri uri = findFile(resolver, collection, projection, selection, args);
+        if (uri != null) return uri;
+
+        // Some file managers and adb copies update the path on disk without
+        // preserving MediaStore's RELATIVE_PATH metadata. The filename is
+        // still unique for AInsta, so use it as a safe compatibility fallback.
+        return findFile(resolver, collection, projection,
+                MediaStore.MediaColumns.DISPLAY_NAME + "=?", new String[]{FILE_NAME});
+    }
+
+    private static Uri findFile(ContentResolver resolver, Uri collection, String[] projection,
+                                String selection, String[] args) {
         try (Cursor cursor = resolver.query(collection, projection, selection, args, null)) {
             if (cursor != null && cursor.moveToFirst()) {
                 long id = cursor.getLong(0);
