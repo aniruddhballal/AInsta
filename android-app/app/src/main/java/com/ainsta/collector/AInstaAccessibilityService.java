@@ -2,7 +2,6 @@ package com.ainsta.collector;
 
 import android.accessibilityservice.AccessibilityService;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Build;
@@ -68,13 +67,13 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     private void showBubble() {
         if (bubbleAttached || windowManager == null) return;
         TextView view = new TextView(this);
-        view.setText("A");
+        view.setText("");
         view.setTextColor(0xFF000000);
         view.setTextSize(16);
         view.setGravity(Gravity.CENTER);
         view.setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD);
         view.setContentDescription("AInsta capture profile");
-        view.setBackground(bubbleBackground());
+        view.setBackgroundResource(R.drawable.ainsta_bubble);
         view.setElevation(dp(4));
         view.setOnClickListener(ignored -> captureCurrentProfile(view));
 
@@ -196,9 +195,9 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         }
         boolean added = ProfileStore.addIfAbsent(getApplicationContext(), username);
         showMessage(added ? "Saved @" + username : "Already saved @" + username);
-        source.setText(added ? "✓" : "A");
+        source.setText(added ? "\u2713" : "");
         mainHandler.postDelayed(() -> {
-            if (source == bubble) source.setText("A");
+            if (source == bubble) source.setText("");
         }, 1200);
     }
 
@@ -237,14 +236,6 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         } catch (IllegalArgumentException ignored) {
             // The overlay may have been removed while the gesture was ending.
         }
-    }
-
-    private GradientDrawable bubbleBackground() {
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(0xFFFFFFFF);
-        drawable.setStroke(dp(1), 0xFF000000);
-        drawable.setCornerRadius(0);
-        return drawable;
     }
 
     private void removeBubble() {
