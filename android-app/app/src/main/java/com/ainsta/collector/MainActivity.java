@@ -54,6 +54,7 @@ public final class MainActivity extends Activity {
     private View buildScreen() {
         ScrollView scroll = new ScrollView(this);
         scroll.setBackgroundColor(Color.WHITE);
+        scroll.setClipToPadding(true);
 
         LinearLayout content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
@@ -76,7 +77,8 @@ public final class MainActivity extends Activity {
                 bottomInset = insets.getSystemWindowInsetBottom();
                 imeVisible = bottomInset > UiStyles.dp(this, 160);
             }
-            content.setPadding(horizontalPadding, baseTopPadding + topInset, horizontalPadding, baseBottomPadding + bottomInset);
+            view.setPadding(0, topInset, 0, bottomInset);
+            content.setPadding(horizontalPadding, baseTopPadding, horizontalPadding, baseBottomPadding);
             updateKeyboardState(scroll, imeVisible);
             return insets;
         });
