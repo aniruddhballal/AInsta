@@ -20,8 +20,8 @@ import android.view.animation.DecelerateInterpolator;
 public final class CaptureBubbleDrawable extends Drawable {
     private static final float ICON_SIZE = 48f;
     private static final long SHIMMER_DURATION_MS = 650L;
-    private static final long SAVED_SHINE_DURATION_MS = 680L;
-    private static final float SAVED_WORM_LENGTH = 17f;
+    private static final long SAVED_SHINE_DURATION_MS = 1100L;
+    private static final float SAVED_WORM_LENGTH = 24f;
 
     private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint savedShinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -133,9 +133,9 @@ public final class CaptureBubbleDrawable extends Drawable {
         savedBorderMeasure.setPath(savedBorderPath, true);
         float length = savedBorderMeasure.getLength();
         float center = -SAVED_WORM_LENGTH + savedShineProgress * (length + 2f * SAVED_WORM_LENGTH);
-        drawWormSegment(canvas, center - SAVED_WORM_LENGTH, center + 5f, 0x36E7ECF2, 1.05f, length);
-        drawWormSegment(canvas, center - 7f, center + 4f, 0x9ADFE6EF, 1.25f, length);
-        drawWormSegment(canvas, center - 2f, center + 2.5f, 0xFFFDFEFF, 1.55f, length);
+        drawWormSegment(canvas, center - SAVED_WORM_LENGTH, center + 6f, 0x4DE7ECF2, 1.15f, length);
+        drawWormSegment(canvas, center - 10f, center + 5f, 0xB5E5EBF2, 1.45f, length);
+        drawWormSegment(canvas, center - 3f, center + 3f, 0xFFFDFEFF, 2.05f, length);
     }
 
     private void drawWormSegment(Canvas canvas, float start, float end, int color, float width, float length) {
