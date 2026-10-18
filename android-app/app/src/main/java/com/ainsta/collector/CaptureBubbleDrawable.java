@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
@@ -19,20 +20,28 @@ import android.view.animation.DecelerateInterpolator;
 public final class CaptureBubbleDrawable extends Drawable {
     private static final float ICON_SIZE = 48f;
     private static final long SHIMMER_DURATION_MS = 650L;
-    private static final int SAVED_HIGHLIGHT_COLOR = 0xFF7CF5A8;
+    private static final int SAVED_BORDER_COLOR = 0xFFC8D0DA;
+    private static final int SAVED_SHINE_COLOR = 0xFFFFFFFF;
+    private static final long SAVED_SHINE_DURATION_MS = 720L;
 
     private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint savedHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint savedShinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint shimmerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path clipPath = new Path();
+    private final Path savedBorderPath = new Path();
+    private final Path savedShinePath = new Path();
+    private final PathMeasure savedBorderMeasure = new PathMeasure();
     private final Drawable alien;
     private ValueAnimator shimmerAnimator;
     private ValueAnimator pulseAnimator;
     private ValueAnimator failureAnimator;
+    private ValueAnimator savedShineAnimator;
     private float shimmerCenter = -18f;
     private float pulseScale = 1f;
     private float jitterOffset;
     private boolean alreadySaved;
+    private float savedShineProgress = 1f;
 
     public CaptureBubbleDrawable(Context context) {
         backgroundPaint.setColor(Color.BLACK);
@@ -56,11 +65,12 @@ public final class CaptureBubbleDrawable extends Drawable {
         RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
         canvas.drawRoundRect(bubbleBounds, 12f, 12f, backgroundPaint);
         if (alreadySaved) {
-            savedHighlightPaint.setColor(SAVED_HIGHLIGHT_COLOR);
+            savedHighlightPaint.setColor(SAVED_BORDER_COLOR);
             savedHighlightPaint.setStyle(Paint.Style.STROKE);
             savedHighlightPaint.setStrokeWidth(3.5f);
             savedHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
             canvas.drawRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, savedHighlightPaint);
+            drawSavedShine(canvas, bubbleBounds);
         }
 
         if (shimmerAnimator != null && shimmerAnimator.isRunning()) {
@@ -90,7 +100,66 @@ public final class CaptureBubbleDrawable extends Drawable {
     public void setAlreadySaved(boolean alreadySaved) {
         if (this.alreadySaved == alreadySaved) return;
         this.alreadySaved = alreadySaved;
+        if (alreadySaved) {
+            startSavedShine();
+        } else {
+            cancelSavedShine();
+        }
         invalidateSelf();
+    }
+
+    private void startSavedShine() {
+        cancelSavedShine();
+        savedShineProgress = 0f;
+        savedShineAnimator = ValueAnimator.ofFloat(0f, 1f);
+        savedShineAnimator.setDuration(SAVED_SHINE_DURATION_MS);
+        savedShineAnimator.setInterpolator(new android.view.animation.LinearInterpolator());
+        savedShineAnimator.addUpdateListener(animation -> {
+            savedShineProgress = (float) animation.getAnimatedValue();
+            invalidateSelf();
+        });
+        savedShineAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                savedShineAnimator = null;
+                savedShineProgress = 1f;
+                invalidateSelf();
+            }
+        });
+        savedShineAnimator.start();
+    }
+
+    private void cancelSavedShine() {
+        if (savedShineAnimator != null) savedShineAnimator.cancel();
+        savedShineAnimator = null;
+        savedShineProgress = 1f;
+    }
+
+    private void drawSavedShine(Canvas canvas, RectF bubbleBounds) {
+        if (savedShineAnimator == null || !savedShineAnimator.isRunning()) return;
+        savedBorderPath.reset();
+        savedBorderPath.addRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, Path.Direction.CW);
+        savedBorderMeasure.setPath(savedBorderPath, true);
+        float length = savedBorderMeasure.getLength();
+        float center = savedShineProgress * length;
+        float halfLength = 12f;
+        float start = center - halfLength;
+        float end = center + halfLength;
+        savedShinePath.reset();
+        if (start < 0f) {
+            savedBorderMeasure.getSegment(length + start, length, savedShinePath, true);
+            savedBorderMeasure.getSegment(0f, end, savedShinePath, true);
+        } else if (end > length) {
+            savedBorderMeasure.getSegment(start, length, savedShinePath, true);
+            savedBorderMeasure.getSegment(0f, end - length, savedShinePath, true);
+        } else {
+            savedBorderMeasure.getSegment(start, end, savedShinePath, true);
+        }
+        savedShinePaint.setColor(SAVED_SHINE_COLOR);
+        savedShinePaint.setStyle(Paint.Style.STROKE);
+        savedShinePaint.setStrokeWidth(4.5f);
+        savedShinePaint.setStrokeCap(Paint.Cap.ROUND);
+        canvas.drawPath(savedShinePath, savedShinePaint);
     }
 
     public void startShimmer() {
@@ -182,6 +251,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     public void setAlpha(int alpha) {
         backgroundPaint.setAlpha(alpha);
         savedHighlightPaint.setAlpha(alpha);
+        savedShinePaint.setAlpha(alpha);
         shimmerPaint.setAlpha(alpha);
         alien.setAlpha(alpha);
         invalidateSelf();
