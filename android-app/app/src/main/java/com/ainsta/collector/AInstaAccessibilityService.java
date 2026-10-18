@@ -195,12 +195,17 @@ public final class AInstaAccessibilityService extends AccessibilityService {
             }
             return;
         }
-        boolean added = ProfileStore.addIfAbsent(getApplicationContext(), username);
-        showMessage(added ? "Saved @" + username : "Already saved @" + username);
-        if (added && source == bubble && source.getBackground() instanceof CaptureBubbleDrawable) {
-            ((CaptureBubbleDrawable) source.getBackground()).startShimmer();
-        } else if (!added) {
-            showCaptureFailureFeedback(source);
+        ProfileStore.SaveResult result = ProfileStore.add(getApplicationContext(), username);
+        if (result == ProfileStore.SaveResult.ADDED) {
+            showMessage("Saved @" + username);
+            if (source == bubble && source.getBackground() instanceof CaptureBubbleDrawable) {
+                ((CaptureBubbleDrawable) source.getBackground()).startShimmer();
+            }
+        } else if (result == ProfileStore.SaveResult.ALREADY_PRESENT) {
+            showMessage("Already saved @" + username);
+            showAlreadySavedFeedback(source);
+        } else {
+            showCaptureFailure(source, "Could not save @" + username);
         }
     }
 
@@ -217,9 +222,27 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         if (vibrator == null || !vibrator.hasVibrator()) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            vibrator.vibrate(VibrationEffect.createOneShot(55L, VibrationEffect.DEFAULT_AMPLITUDE));
+            vibrator.vibrate(VibrationEffect.createWaveform(
+                    new long[]{0L, 45L, 45L, 45L},
+                    new int[]{0, 110, 0, 110},
+                    -1
+            ));
         } else {
-            vibrator.vibrate(55L);
+            vibrator.vibrate(new long[]{0L, 45L, 45L, 45L}, -1);
+        }
+    }
+
+    private void showAlreadySavedFeedback(TextView source) {
+        if (source != bubble) return;
+        if (source.getBackground() instanceof CaptureBubbleDrawable) {
+            ((CaptureBubbleDrawable) source.getBackground()).startAlreadySavedFeedback();
+        }
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        if (vibrator == null || !vibrator.hasVibrator()) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(28L, 70));
+        } else {
+            vibrator.vibrate(28L);
         }
     }
 

@@ -25,6 +25,12 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 public final class ProfileStore {
+    public enum SaveResult {
+        ADDED,
+        ALREADY_PRESENT,
+        FAILED
+    }
+
     private static final String FILE_NAME = "profiles.json";
     private static final String RELATIVE_PATH = Environment.DIRECTORY_DOCUMENTS + "/AInsta";
     // Instagram permits usernames to end in an underscore, but not a period.
@@ -61,17 +67,21 @@ public final class ProfileStore {
     }
 
     public static boolean addIfAbsent(Context context, String username) {
+        return add(context, username) == SaveResult.ADDED;
+    }
+
+    public static SaveResult add(Context context, String username) {
         String normalized = normalizeUsername(username);
-        if (normalized.isEmpty()) return false;
+        if (normalized.isEmpty()) return SaveResult.FAILED;
         synchronized (LOCK) {
             List<Profile> profiles = read(context);
             Set<String> seen = new HashSet<>();
             for (Profile profile : profiles) {
                 if (!profile.normalizedUsername.isEmpty()) seen.add(profile.normalizedUsername);
             }
-            if (seen.contains(normalized)) return false;
+            if (seen.contains(normalized)) return SaveResult.ALREADY_PRESENT;
             profiles.add(new Profile(username.trim().replaceFirst("^@", ""), normalized, Long.toString(System.currentTimeMillis())));
-            return write(context, profiles);
+            return write(context, profiles) ? SaveResult.ADDED : SaveResult.FAILED;
         }
     }
 

@@ -25,8 +25,10 @@ public final class CaptureBubbleDrawable extends Drawable {
     private final Path clipPath = new Path();
     private final Drawable alien;
     private ValueAnimator shimmerAnimator;
+    private ValueAnimator pulseAnimator;
     private ValueAnimator failureAnimator;
     private float shimmerCenter = -18f;
+    private float pulseScale = 1f;
     private float jitterOffset;
 
     public CaptureBubbleDrawable(Context context) {
@@ -40,12 +42,13 @@ public final class CaptureBubbleDrawable extends Drawable {
         if (bounds.isEmpty()) return;
 
         float scale = Math.min(bounds.width(), bounds.height()) / ICON_SIZE;
-        float offsetX = bounds.left + (bounds.width() - ICON_SIZE * scale) / 2f;
-        float offsetY = bounds.top + (bounds.height() - ICON_SIZE * scale) / 2f;
+        float renderedScale = scale * pulseScale;
+        float offsetX = bounds.left + (bounds.width() - ICON_SIZE * renderedScale) / 2f + jitterOffset * scale;
+        float offsetY = bounds.top + (bounds.height() - ICON_SIZE * renderedScale) / 2f;
 
         canvas.save();
-        canvas.translate(offsetX + jitterOffset * scale, offsetY);
-        canvas.scale(scale, scale);
+        canvas.translate(offsetX, offsetY);
+        canvas.scale(renderedScale, renderedScale);
 
         RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
         canvas.drawRoundRect(bubbleBounds, 12f, 12f, backgroundPaint);
@@ -75,6 +78,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     }
 
     public void startShimmer() {
+        cancelPulseAndFailure();
         if (shimmerAnimator != null) shimmerAnimator.cancel();
         shimmerCenter = -18f;
         shimmerAnimator = ValueAnimator.ofFloat(-18f, ICON_SIZE + 18f);
@@ -95,8 +99,33 @@ public final class CaptureBubbleDrawable extends Drawable {
         shimmerAnimator.start();
     }
 
+    public void startAlreadySavedFeedback() {
+        if (shimmerAnimator != null) shimmerAnimator.cancel();
+        cancelFailure();
+        pulseScale = 1f;
+        pulseAnimator = ValueAnimator.ofFloat(1f, 0.91f, 1.04f, 0.96f, 1f);
+        pulseAnimator.setDuration(320L);
+        pulseAnimator.setInterpolator(new DecelerateInterpolator());
+        pulseAnimator.addUpdateListener(animation -> {
+            pulseScale = (float) animation.getAnimatedValue();
+            invalidateSelf();
+        });
+        pulseAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                pulseAnimator = null;
+                pulseScale = 1f;
+                invalidateSelf();
+            }
+        });
+        pulseAnimator.start();
+    }
+
     public void startFailureFeedback() {
+        if (shimmerAnimator != null) shimmerAnimator.cancel();
+        if (pulseAnimator != null) pulseAnimator.cancel();
         if (failureAnimator != null) failureAnimator.cancel();
+        pulseScale = 1f;
         jitterOffset = 0f;
         failureAnimator = ValueAnimator.ofFloat(0f, -2.2f, 2.2f, -1.6f, 1.6f, 0f);
         failureAnimator.setDuration(260L);
@@ -113,6 +142,18 @@ public final class CaptureBubbleDrawable extends Drawable {
             }
         });
         failureAnimator.start();
+    }
+
+    private void cancelPulseAndFailure() {
+        if (pulseAnimator != null) pulseAnimator.cancel();
+        cancelFailure();
+        pulseScale = 1f;
+        jitterOffset = 0f;
+    }
+
+    private void cancelFailure() {
+        if (failureAnimator != null) failureAnimator.cancel();
+        jitterOffset = 0f;
     }
 
     @Override
