@@ -171,7 +171,7 @@
   }
 
   function pendingProfiles(state) {
-    return state.profiles.filter((profile) => !profile.last_fetched_at || profile.status !== "collected");
+    return state.profiles.filter((profile) => !profile.last_fetched_at || String(profile.status).toLocaleLowerCase() !== "collected");
   }
 
   function visible(element) {
