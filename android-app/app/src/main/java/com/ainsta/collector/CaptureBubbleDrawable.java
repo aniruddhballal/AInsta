@@ -20,14 +20,10 @@ import android.view.animation.DecelerateInterpolator;
 public final class CaptureBubbleDrawable extends Drawable {
     private static final float ICON_SIZE = 48f;
     private static final long SHIMMER_DURATION_MS = 650L;
-    private static final int SAVED_BORDER_COLOR = 0xFFD2D7DE;
-    private static final int SAVED_SHINE_COLOR = 0xFFFDFEFF;
     private static final long SAVED_SHINE_DURATION_MS = 680L;
-    private static final float SAVED_BORDER_STROKE_WIDTH = 1.35f;
-    private static final float SAVED_SHINE_STROKE_WIDTH = 1.9f;
+    private static final float SAVED_WORM_LENGTH = 17f;
 
     private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint savedHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint savedShinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint shimmerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path clipPath = new Path();
@@ -66,14 +62,7 @@ public final class CaptureBubbleDrawable extends Drawable {
 
         RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
         canvas.drawRoundRect(bubbleBounds, 12f, 12f, backgroundPaint);
-        if (alreadySaved) {
-            savedHighlightPaint.setColor(SAVED_BORDER_COLOR);
-            savedHighlightPaint.setStyle(Paint.Style.STROKE);
-            savedHighlightPaint.setStrokeWidth(SAVED_BORDER_STROKE_WIDTH);
-            savedHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
-            canvas.drawRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, savedHighlightPaint);
-            drawSavedShine(canvas, bubbleBounds);
-        }
+        if (alreadySaved) drawSavedShine(canvas);
 
         if (shimmerAnimator != null && shimmerAnimator.isRunning()) {
             clipPath.reset();
@@ -137,23 +126,27 @@ public final class CaptureBubbleDrawable extends Drawable {
         savedShineProgress = 1f;
     }
 
-    private void drawSavedShine(Canvas canvas, RectF bubbleBounds) {
+    private void drawSavedShine(Canvas canvas) {
         if (savedShineAnimator == null || !savedShineAnimator.isRunning()) return;
         savedBorderPath.reset();
         savedBorderPath.addRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, Path.Direction.CW);
         savedBorderMeasure.setPath(savedBorderPath, true);
         float length = savedBorderMeasure.getLength();
-        float halfLength = 10f;
-        float center = -halfLength + savedShineProgress * (length + 2f * halfLength);
-        float start = Math.max(0f, center - halfLength);
-        float end = Math.min(length, center + halfLength);
+        float center = -SAVED_WORM_LENGTH + savedShineProgress * (length + 2f * SAVED_WORM_LENGTH);
+        drawWormSegment(canvas, center - SAVED_WORM_LENGTH, center + 5f, 0x36E7ECF2, 1.05f, length);
+        drawWormSegment(canvas, center - 7f, center + 4f, 0x9ADFE6EF, 1.25f, length);
+        drawWormSegment(canvas, center - 2f, center + 2.5f, 0xFFFDFEFF, 1.55f, length);
+    }
+
+    private void drawWormSegment(Canvas canvas, float start, float end, int color, float width, float length) {
+        start = Math.max(0f, start);
+        end = Math.min(length, end);
+        if (start >= end) return;
         savedShinePath.reset();
-        if (start < end) {
-            savedBorderMeasure.getSegment(start, end, savedShinePath, true);
-        }
-        savedShinePaint.setColor(SAVED_SHINE_COLOR);
+        savedBorderMeasure.getSegment(start, end, savedShinePath, true);
+        savedShinePaint.setColor(color);
         savedShinePaint.setStyle(Paint.Style.STROKE);
-        savedShinePaint.setStrokeWidth(SAVED_SHINE_STROKE_WIDTH);
+        savedShinePaint.setStrokeWidth(width);
         savedShinePaint.setStrokeCap(Paint.Cap.ROUND);
         canvas.drawPath(savedShinePath, savedShinePaint);
     }
@@ -246,7 +239,6 @@ public final class CaptureBubbleDrawable extends Drawable {
     @Override
     public void setAlpha(int alpha) {
         backgroundPaint.setAlpha(alpha);
-        savedHighlightPaint.setAlpha(alpha);
         savedShinePaint.setAlpha(alpha);
         shimmerPaint.setAlpha(alpha);
         alien.setAlpha(alpha);
