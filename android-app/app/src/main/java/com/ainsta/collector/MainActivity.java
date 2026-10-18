@@ -103,7 +103,7 @@ public final class MainActivity extends Activity {
         content.addView(heading);
 
         searchInput = buildSearchInput();
-        content.addView(searchInput, margin(0, 10, 0, 0));
+        content.addView(searchInput, new LinearLayout.LayoutParams(-1, UiStyles.dp(this, 56)));
 
         profileList = new LinearLayout(this);
         profileList.setOrientation(LinearLayout.VERTICAL);
@@ -250,7 +250,6 @@ public final class MainActivity extends Activity {
         LinearLayout empty = new LinearLayout(this);
         empty.setOrientation(LinearLayout.VERTICAL);
         empty.setPadding(0, UiStyles.dp(this, 22), 0, UiStyles.dp(this, 22));
-        empty.addView(UiStyles.rule(this, Color.BLACK, 4), new LinearLayout.LayoutParams(UiStyles.dp(this, 42), UiStyles.dp(this, 4)));
         empty.addView(UiStyles.text(this, "No matching profile", 24, Color.BLACK, true), margin(0, 20, 0, 0));
         empty.addView(UiStyles.text(this, "Try a username, @username, or Instagram profile URL.", 15, Color.BLACK, false), margin(0, 10, 0, 0));
         return empty;
@@ -260,7 +259,6 @@ public final class MainActivity extends Activity {
         LinearLayout empty = new LinearLayout(this);
         empty.setOrientation(LinearLayout.VERTICAL);
         empty.setPadding(0, UiStyles.dp(this, 22), 0, UiStyles.dp(this, 22));
-        empty.addView(UiStyles.rule(this, Color.BLACK, 4), new LinearLayout.LayoutParams(UiStyles.dp(this, 42), UiStyles.dp(this, 4)));
         empty.addView(UiStyles.text(this, "Nothing saved yet", 24, Color.BLACK, true), margin(0, 20, 0, 0));
         empty.addView(UiStyles.text(this, "Open an Instagram profile, then tap the white AInsta square to add its username.", 15, Color.BLACK, false), margin(0, 10, 0, 0));
         return empty;
