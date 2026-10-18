@@ -20,9 +20,11 @@ import android.view.animation.DecelerateInterpolator;
 public final class CaptureBubbleDrawable extends Drawable {
     private static final float ICON_SIZE = 48f;
     private static final long SHIMMER_DURATION_MS = 650L;
-    private static final int SAVED_BORDER_COLOR = 0xFFC8D0DA;
-    private static final int SAVED_SHINE_COLOR = 0xFFFFFFFF;
-    private static final long SAVED_SHINE_DURATION_MS = 720L;
+    private static final int SAVED_BORDER_COLOR = 0xFFD2D7DE;
+    private static final int SAVED_SHINE_COLOR = 0xFFFDFEFF;
+    private static final long SAVED_SHINE_DURATION_MS = 680L;
+    private static final float SAVED_BORDER_STROKE_WIDTH = 1.35f;
+    private static final float SAVED_SHINE_STROKE_WIDTH = 1.9f;
 
     private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint savedHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -67,7 +69,7 @@ public final class CaptureBubbleDrawable extends Drawable {
         if (alreadySaved) {
             savedHighlightPaint.setColor(SAVED_BORDER_COLOR);
             savedHighlightPaint.setStyle(Paint.Style.STROKE);
-            savedHighlightPaint.setStrokeWidth(3.5f);
+            savedHighlightPaint.setStrokeWidth(SAVED_BORDER_STROKE_WIDTH);
             savedHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
             canvas.drawRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, savedHighlightPaint);
             drawSavedShine(canvas, bubbleBounds);
@@ -141,23 +143,17 @@ public final class CaptureBubbleDrawable extends Drawable {
         savedBorderPath.addRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, Path.Direction.CW);
         savedBorderMeasure.setPath(savedBorderPath, true);
         float length = savedBorderMeasure.getLength();
-        float center = savedShineProgress * length;
-        float halfLength = 12f;
-        float start = center - halfLength;
-        float end = center + halfLength;
+        float halfLength = 10f;
+        float center = -halfLength + savedShineProgress * (length + 2f * halfLength);
+        float start = Math.max(0f, center - halfLength);
+        float end = Math.min(length, center + halfLength);
         savedShinePath.reset();
-        if (start < 0f) {
-            savedBorderMeasure.getSegment(length + start, length, savedShinePath, true);
-            savedBorderMeasure.getSegment(0f, end, savedShinePath, true);
-        } else if (end > length) {
-            savedBorderMeasure.getSegment(start, length, savedShinePath, true);
-            savedBorderMeasure.getSegment(0f, end - length, savedShinePath, true);
-        } else {
+        if (start < end) {
             savedBorderMeasure.getSegment(start, end, savedShinePath, true);
         }
         savedShinePaint.setColor(SAVED_SHINE_COLOR);
         savedShinePaint.setStyle(Paint.Style.STROKE);
-        savedShinePaint.setStrokeWidth(4.5f);
+        savedShinePaint.setStrokeWidth(SAVED_SHINE_STROKE_WIDTH);
         savedShinePaint.setStrokeCap(Paint.Cap.ROUND);
         canvas.drawPath(savedShinePath, savedShinePaint);
     }
