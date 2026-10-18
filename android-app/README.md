@@ -15,6 +15,7 @@ AInsta is a native Android companion for collecting Instagram profile usernames.
 - Usernames are normalized case-insensitively and duplicate profiles are not added.
 - Successful saves show a toast and a left-to-right shimmer across the bubble.
 - Already-saved profiles show a separate toast, pulse animation, and short vibration.
+- While an Instagram profile is open, the capture bubble gets a persistent mint highlight when that username is already saved; the check is debounced and event-driven, without continuous polling.
 - Capture or save failures show a separate toast, jitter animation, and warning vibration.
 - The main app shows permission status for overlay access and accessibility access.
 - The saved-profile catalog displays the username and its derived Instagram profile URL.

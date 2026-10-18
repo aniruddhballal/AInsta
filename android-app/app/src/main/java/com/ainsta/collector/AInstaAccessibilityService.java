@@ -18,6 +18,9 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public final class AInstaAccessibilityService extends AccessibilityService {
     private static final String INSTAGRAM_PACKAGE = "com.instagram.android";
     private static final String BUBBLE_POSITION_PREFS = "capture_bubble_position";
@@ -25,15 +28,20 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     private static final String BUBBLE_Y = "y";
     private static final int MAX_CAPTURE_ATTEMPTS = 4;
     private static final long CAPTURE_RETRY_DELAY_MS = 350L;
+    private static final long PROFILE_STATE_DELAY_MS = 180L;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
+    private final Set<String> savedUsernames = new HashSet<>();
+    private final Runnable savedProfileStateUpdate = this::updateSavedProfileState;
     private WindowManager windowManager;
     private TextView bubble;
     private boolean bubbleAttached;
+    private String observedUsername = "";
 
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        refreshSavedUsernames();
         mainHandler.post(this::syncBubbleVisibility);
     }
 
@@ -43,6 +51,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         boolean instagramEvent = INSTAGRAM_PACKAGE.equals(String.valueOf(event.getPackageName()));
         if (instagramEvent) {
             if (bubble == null) mainHandler.post(this::showBubble);
+            scheduleSavedProfileStateUpdate();
         } else if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
                 || event.getEventType() == AccessibilityEvent.TYPE_WINDOWS_CHANGED) {
             mainHandler.post(this::syncBubbleVisibility);
@@ -138,6 +147,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
             windowManager.addView(view, params);
             bubble = view;
             bubbleAttached = true;
+            scheduleSavedProfileStateUpdate();
         } catch (WindowManager.BadTokenException | SecurityException ignored) {
             if (overlayType() == WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY) {
                 addAccessibilityOverlay(view, params);
@@ -159,6 +169,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
             windowManager.addView(view, params);
             bubble = view;
             bubbleAttached = true;
+            scheduleSavedProfileStateUpdate();
         } catch (RuntimeException ignored) {
             // The system may be tearing the accessibility service down.
         }
@@ -172,6 +183,41 @@ public final class AInstaAccessibilityService extends AccessibilityService {
 
     private void captureCurrentProfile(TextView source) {
         captureCurrentProfile(source, 0);
+    }
+
+    private void scheduleSavedProfileStateUpdate() {
+        mainHandler.removeCallbacks(savedProfileStateUpdate);
+        mainHandler.postDelayed(savedProfileStateUpdate, PROFILE_STATE_DELAY_MS);
+    }
+
+    private void updateSavedProfileState() {
+        if (bubble == null || !bubbleAttached) return;
+        AccessibilityNodeInfo root = getRootInActiveWindow();
+        if (root == null || !INSTAGRAM_PACKAGE.equals(String.valueOf(root.getPackageName()))) {
+            if (root != null) root.recycle();
+            observedUsername = "";
+            setBubbleAlreadySaved(false);
+            return;
+        }
+        String username = InstagramUsernameExtractor.extract(root);
+        root.recycle();
+        if (username.equals(observedUsername)) return;
+        observedUsername = username;
+        setBubbleAlreadySaved(!username.isEmpty() && savedUsernames.contains(username));
+    }
+
+    private void refreshSavedUsernames() {
+        savedUsernames.clear();
+        for (Profile profile : ProfileStore.read(getApplicationContext())) {
+            if (!profile.normalizedUsername.isEmpty()) savedUsernames.add(profile.normalizedUsername);
+        }
+    }
+
+    private void setBubbleAlreadySaved(boolean alreadySaved) {
+        if (bubble == null) return;
+        if (bubble.getBackground() instanceof CaptureBubbleDrawable) {
+            ((CaptureBubbleDrawable) bubble.getBackground()).setAlreadySaved(alreadySaved);
+        }
     }
 
     private void captureCurrentProfile(TextView source, int attempt) {
@@ -197,11 +243,15 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         }
         ProfileStore.SaveResult result = ProfileStore.add(getApplicationContext(), username);
         if (result == ProfileStore.SaveResult.ADDED) {
+            savedUsernames.add(username);
+            setBubbleAlreadySaved(true);
             showMessage("Saved @" + username);
             if (source == bubble && source.getBackground() instanceof CaptureBubbleDrawable) {
                 ((CaptureBubbleDrawable) source.getBackground()).startShimmer();
             }
         } else if (result == ProfileStore.SaveResult.ALREADY_PRESENT) {
+            savedUsernames.add(username);
+            setBubbleAlreadySaved(true);
             showMessage("Already saved @" + username);
             showAlreadySavedFeedback(source);
         } else {
@@ -284,6 +334,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     }
 
     private void removeBubble() {
+        mainHandler.removeCallbacks(savedProfileStateUpdate);
         if (bubble != null && bubbleAttached && windowManager != null) {
             try {
                 windowManager.removeView(bubble);
@@ -293,6 +344,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         }
         bubble = null;
         bubbleAttached = false;
+        observedUsername = "";
     }
 
     private int dp(int value) {

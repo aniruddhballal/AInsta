@@ -19,8 +19,10 @@ import android.view.animation.DecelerateInterpolator;
 public final class CaptureBubbleDrawable extends Drawable {
     private static final float ICON_SIZE = 48f;
     private static final long SHIMMER_DURATION_MS = 650L;
+    private static final int SAVED_HIGHLIGHT_COLOR = 0xFF7CF5A8;
 
     private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint savedHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint shimmerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path clipPath = new Path();
     private final Drawable alien;
@@ -30,6 +32,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     private float shimmerCenter = -18f;
     private float pulseScale = 1f;
     private float jitterOffset;
+    private boolean alreadySaved;
 
     public CaptureBubbleDrawable(Context context) {
         backgroundPaint.setColor(Color.BLACK);
@@ -52,6 +55,13 @@ public final class CaptureBubbleDrawable extends Drawable {
 
         RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
         canvas.drawRoundRect(bubbleBounds, 12f, 12f, backgroundPaint);
+        if (alreadySaved) {
+            savedHighlightPaint.setColor(SAVED_HIGHLIGHT_COLOR);
+            savedHighlightPaint.setStyle(Paint.Style.STROKE);
+            savedHighlightPaint.setStrokeWidth(3.5f);
+            savedHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
+            canvas.drawRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, savedHighlightPaint);
+        }
 
         if (shimmerAnimator != null && shimmerAnimator.isRunning()) {
             clipPath.reset();
@@ -75,6 +85,12 @@ public final class CaptureBubbleDrawable extends Drawable {
         alien.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
         alien.draw(canvas);
         canvas.restore();
+    }
+
+    public void setAlreadySaved(boolean alreadySaved) {
+        if (this.alreadySaved == alreadySaved) return;
+        this.alreadySaved = alreadySaved;
+        invalidateSelf();
     }
 
     public void startShimmer() {
@@ -165,6 +181,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     @Override
     public void setAlpha(int alpha) {
         backgroundPaint.setAlpha(alpha);
+        savedHighlightPaint.setAlpha(alpha);
         shimmerPaint.setAlpha(alpha);
         alien.setAlpha(alpha);
         invalidateSelf();
