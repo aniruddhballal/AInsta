@@ -15,5 +15,3 @@ android-app/build/
 android-app/app/build/
 android-app/local.properties
 
-# bot analysis folders
-/bot-analysis/
