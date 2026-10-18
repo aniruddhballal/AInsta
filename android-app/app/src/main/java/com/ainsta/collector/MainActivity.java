@@ -8,14 +8,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.text.InputType;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public final class MainActivity extends Activity {
     private LinearLayout profileList;
@@ -24,6 +30,8 @@ public final class MainActivity extends Activity {
     private TextView overlayStatus;
     private TextView accessibilityStatus;
     private TextView storageStatus;
+    private EditText searchInput;
+    private List<Profile> loadedProfiles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +102,9 @@ public final class MainActivity extends Activity {
         heading.addView(profileCount);
         content.addView(heading);
 
+        searchInput = buildSearchInput();
+        content.addView(searchInput, margin(0, 10, 0, 0));
+
         profileList = new LinearLayout(this);
         profileList.setOrientation(LinearLayout.VERTICAL);
         content.addView(profileList, margin(0, 10, 0, 0));
@@ -156,20 +167,93 @@ public final class MainActivity extends Activity {
     }
 
     private void refreshScreen() {
-        List<Profile> profiles = ProfileStore.read(this);
-        String count = profiles.size() + (profiles.size() == 1 ? " PROFILE" : " PROFILES");
+        loadedProfiles = ProfileStore.read(this);
+        String count = loadedProfiles.size() + (loadedProfiles.size() == 1 ? " PROFILE" : " PROFILES");
         if (headerCount != null) headerCount.setText(count);
-        if (profileCount != null) profileCount.setText(count);
         if (overlayStatus != null) overlayStatus.setText(Settings.canDrawOverlays(this) ? "READY" : "NEEDS ACCESS");
         if (accessibilityStatus != null) accessibilityStatus.setText(isAccessibilityEnabled() ? "READY" : "NEEDS ACCESS");
         if (storageStatus != null) storageStatus.setText("Stored in " + ProfileStore.storageLocation());
+        renderProfiles();
+    }
+
+    private EditText buildSearchInput() {
+        EditText input = new EditText(this);
+        input.setSingleLine(true);
+        input.setTextSize(15);
+        input.setTextColor(Color.BLACK);
+        input.setHintTextColor(0xFF777777);
+        input.setHint("Search username or profile URL");
+        input.setContentDescription("Search saved profiles");
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI);
+        input.setPadding(UiStyles.dp(this, 14), 0, UiStyles.dp(this, 14), 0);
+        input.setBackground(UiStyles.outline(this, Color.WHITE, Color.BLACK));
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                renderProfiles();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
+        return input;
+    }
+
+    private void renderProfiles() {
         if (profileList == null) return;
         profileList.removeAllViews();
-        if (profiles.isEmpty()) {
+        if (loadedProfiles.isEmpty()) {
+            if (profileCount != null) profileCount.setText("0 PROFILES");
             profileList.addView(buildEmptyState());
             return;
         }
-        for (Profile profile : profiles) profileList.addView(buildProfileRow(profile));
+
+        String query = searchInput == null ? "" : searchInput.getText().toString().trim().toLowerCase(Locale.ROOT);
+        query = normalizeSearchQuery(query);
+        List<Profile> matches = new ArrayList<>();
+        for (Profile profile : loadedProfiles) {
+            String url = "instagram.com/" + profile.normalizedUsername + "/";
+            String searchable = ("@" + profile.username + " " + profile.normalizedUsername + " " + url)
+                    .toLowerCase(Locale.ROOT);
+            if (query.isEmpty() || searchable.contains(query)) matches.add(profile);
+        }
+
+        if (profileCount != null) {
+            if (query.isEmpty()) {
+                profileCount.setText(loadedProfiles.size() + (loadedProfiles.size() == 1 ? " PROFILE" : " PROFILES"));
+            } else {
+                profileCount.setText(matches.size() + (matches.size() == 1 ? " MATCH" : " MATCHES"));
+            }
+        }
+        if (matches.isEmpty()) {
+            profileList.addView(buildNoMatchesState());
+            return;
+        }
+        for (Profile profile : matches) profileList.addView(buildProfileRow(profile));
+    }
+
+    private String normalizeSearchQuery(String query) {
+        String normalized = query.trim();
+        if (normalized.startsWith("@")) normalized = normalized.substring(1);
+        if (normalized.startsWith("https://")) normalized = normalized.substring(8);
+        else if (normalized.startsWith("http://")) normalized = normalized.substring(7);
+        if (normalized.startsWith("www.")) normalized = normalized.substring(4);
+        return normalized;
+    }
+
+    private View buildNoMatchesState() {
+        LinearLayout empty = new LinearLayout(this);
+        empty.setOrientation(LinearLayout.VERTICAL);
+        empty.setPadding(0, UiStyles.dp(this, 22), 0, UiStyles.dp(this, 22));
+        empty.addView(UiStyles.rule(this, Color.BLACK, 4), new LinearLayout.LayoutParams(UiStyles.dp(this, 42), UiStyles.dp(this, 4)));
+        empty.addView(UiStyles.text(this, "No matching profile", 24, Color.BLACK, true), margin(0, 20, 0, 0));
+        empty.addView(UiStyles.text(this, "Try a username, @username, or Instagram profile URL.", 15, Color.BLACK, false), margin(0, 10, 0, 0));
+        return empty;
     }
 
     private View buildEmptyState() {
