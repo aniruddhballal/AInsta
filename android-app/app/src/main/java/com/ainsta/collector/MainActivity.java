@@ -61,7 +61,7 @@ public final class MainActivity extends Activity {
         int baseTopPadding = UiStyles.dp(this, 10);
         int baseBottomPadding = UiStyles.dp(this, 14);
         content.setPadding(horizontalPadding, baseTopPadding, horizontalPadding, baseBottomPadding);
-        content.setOnApplyWindowInsetsListener((view, insets) -> {
+        scroll.setOnApplyWindowInsetsListener((view, insets) -> {
             int topInset;
             int bottomInset;
             boolean imeVisible;
@@ -76,12 +76,12 @@ public final class MainActivity extends Activity {
                 bottomInset = insets.getSystemWindowInsetBottom();
                 imeVisible = bottomInset > UiStyles.dp(this, 160);
             }
-            view.setPadding(horizontalPadding, baseTopPadding + topInset, horizontalPadding, baseBottomPadding + bottomInset);
+            content.setPadding(horizontalPadding, baseTopPadding + topInset, horizontalPadding, baseBottomPadding + bottomInset);
             updateKeyboardState(scroll, imeVisible);
             return insets;
         });
         scroll.addView(content);
-        content.post(content::requestApplyInsets);
+        scroll.post(scroll::requestApplyInsets);
 
         content.addView(buildHeader());
         content.addView(UiStyles.rule(this, Color.BLACK, 1));
