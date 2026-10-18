@@ -1,6 +1,6 @@
 # AInsta
 
-AInsta is a small toolkit for building and maintaining a clean Instagram profile catalog. It includes a native Android collector for saving usernames while browsing Instagram, a temporary Firefox extension for collecting profile details, and an older desktop analysis helper for processing profile lists.
+AInsta is a small toolkit for building and maintaining a clean Instagram profile catalog. It includes a native Android collector for saving usernames while browsing Instagram and a temporary Firefox extension for collecting profile details and generating analysis reports.
 
 ## Project layout
 
@@ -8,7 +8,7 @@ AInsta is a small toolkit for building and maintaining a clean Instagram profile
 | --- | --- |
 | [`android-app/`](android-app/README.md) | Native Android app and accessibility service. It shows a draggable capture bubble over Instagram, extracts validated usernames, stores them in a searchable catalog, and provides save-state feedback. |
 | [`firefox-extension/`](firefox-extension/README.md) | Temporary Firefox extension that maintains a browser-side catalog, visits pending Instagram profiles, collects profile/About this account details, and exports Markdown or HTML reports. |
-| `bot-analysis/` | Desktop analysis helpers and generated artifacts, including `scrape_instagram_about.py`, profile URL lists, and an HTML account-information report. |
+| `bot-analysis/` | Saved profile URL lists and generated HTML account-information reports. |
 | [`AInsta.apk`](AInsta.apk) | APK snapshot kept at the repository root for convenient transfer or installation. For a freshly built APK, use the Android build instructions. |
 
 The Android app and Firefox extension are separate collectors. They do not share live storage: Android uses a public JSON file on the device, while Firefox uses browser `localStorage`.
@@ -36,9 +36,9 @@ Load the temporary add-on from `about:debugging#/runtime/this-firefox` while log
 
 See the [Firefox extension README](firefox-extension/README.md) for the full workflow and failure handling.
 
-### 3. Analyze or process lists
+### 3. Review reports
 
-The `bot-analysis/` folder contains the older desktop helper and its related lists/reports. `scrape_instagram_about.py` uses the currently open Firefox window, clipboard, and keyboard automation; it is not a browser-driver implementation. It requires an active, logged-in Firefox session and is more sensitive to Instagram UI changes than the extension.
+The `bot-analysis/` folder contains the exported profile lists and generated HTML report. The Firefox extension is the supported workflow for collecting profile details; it reads the active Instagram page DOM and exports the report directly.
 
 ## Data and privacy boundaries
 
