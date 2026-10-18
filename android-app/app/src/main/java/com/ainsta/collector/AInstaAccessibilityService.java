@@ -73,7 +73,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         view.setGravity(Gravity.CENTER);
         view.setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD);
         view.setContentDescription("AInsta capture profile");
-        view.setBackgroundResource(R.drawable.ainsta_bubble);
+        view.setBackground(new CaptureBubbleDrawable(this));
         view.setElevation(dp(4));
         view.setOnClickListener(ignored -> captureCurrentProfile(view));
 
@@ -195,10 +195,9 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         }
         boolean added = ProfileStore.addIfAbsent(getApplicationContext(), username);
         showMessage(added ? "Saved @" + username : "Already saved @" + username);
-        source.setText(added ? "\u2713" : "");
-        mainHandler.postDelayed(() -> {
-            if (source == bubble) source.setText("");
-        }, 1200);
+        if (added && source == bubble && source.getBackground() instanceof CaptureBubbleDrawable) {
+            ((CaptureBubbleDrawable) source.getBackground()).startShimmer();
+        }
     }
 
     private void showMessage(String message) {

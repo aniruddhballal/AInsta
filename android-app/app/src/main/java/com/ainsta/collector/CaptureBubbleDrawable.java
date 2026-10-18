@@ -1,0 +1,133 @@
+package com.ainsta.collector;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.animation.DecelerateInterpolator;
+
+/** Draws the capture bubble and its one-shot success shimmer. */
+public final class CaptureBubbleDrawable extends Drawable {
+    private static final float ICON_SIZE = 48f;
+    private static final long SHIMMER_DURATION_MS = 650L;
+
+    private final Paint backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint shimmerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Path clipPath = new Path();
+    private final Drawable alien;
+    private ValueAnimator shimmerAnimator;
+    private float shimmerCenter = -18f;
+
+    public CaptureBubbleDrawable(Context context) {
+        backgroundPaint.setColor(Color.BLACK);
+        alien = context.getDrawable(R.drawable.ainsta_alien);
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (bounds.isEmpty()) return;
+
+        float scale = Math.min(bounds.width(), bounds.height()) / ICON_SIZE;
+        float offsetX = bounds.left + (bounds.width() - ICON_SIZE * scale) / 2f;
+        float offsetY = bounds.top + (bounds.height() - ICON_SIZE * scale) / 2f;
+
+        canvas.save();
+        canvas.translate(offsetX, offsetY);
+        canvas.scale(scale, scale);
+
+        RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
+        canvas.drawRoundRect(bubbleBounds, 12f, 12f, backgroundPaint);
+
+        if (shimmerAnimator != null && shimmerAnimator.isRunning()) {
+            clipPath.reset();
+            clipPath.addRoundRect(bubbleBounds, 12f, 12f, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(clipPath);
+            shimmerPaint.setShader(new LinearGradient(
+                    shimmerCenter - 13f,
+                    0f,
+                    shimmerCenter + 13f,
+                    0f,
+                    new int[]{0x00FFFFFF, 0x38FFFFFF, 0xD8FFFFFF, 0x38FFFFFF, 0x00FFFFFF},
+                    new float[]{0f, 0.28f, 0.5f, 0.72f, 1f},
+                    Shader.TileMode.CLAMP
+            ));
+            canvas.drawRect(0f, 0f, ICON_SIZE, ICON_SIZE, shimmerPaint);
+            shimmerPaint.setShader(null);
+            canvas.restore();
+        }
+
+        canvas.restore();
+
+        alien.setBounds(bounds);
+        alien.draw(canvas);
+    }
+
+    public void startShimmer() {
+        if (shimmerAnimator != null) shimmerAnimator.cancel();
+        shimmerCenter = -18f;
+        shimmerAnimator = ValueAnimator.ofFloat(-18f, ICON_SIZE + 18f);
+        shimmerAnimator.setDuration(SHIMMER_DURATION_MS);
+        shimmerAnimator.setInterpolator(new DecelerateInterpolator());
+        shimmerAnimator.addUpdateListener(animation -> {
+            shimmerCenter = (float) animation.getAnimatedValue();
+            invalidateSelf();
+        });
+        shimmerAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                shimmerAnimator = null;
+                shimmerCenter = -18f;
+                invalidateSelf();
+            }
+        });
+        shimmerAnimator.start();
+    }
+
+    @Override
+    protected void onBoundsChange(Rect bounds) {
+        super.onBoundsChange(bounds);
+        if (alien != null) alien.setBounds(bounds);
+    }
+
+    @Override
+    public void setAlpha(int alpha) {
+        backgroundPaint.setAlpha(alpha);
+        shimmerPaint.setAlpha(alpha);
+        alien.setAlpha(alpha);
+        invalidateSelf();
+    }
+
+    @Override
+    public void setColorFilter(android.graphics.ColorFilter colorFilter) {
+        backgroundPaint.setColorFilter(colorFilter);
+        shimmerPaint.setColorFilter(colorFilter);
+        alien.setColorFilter(colorFilter);
+        invalidateSelf();
+    }
+
+    @Override
+    public int getOpacity() {
+        return android.graphics.PixelFormat.TRANSLUCENT;
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return 48;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return 48;
+    }
+}
