@@ -28,7 +28,7 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     private static final String BUBBLE_Y = "y";
     private static final int MAX_CAPTURE_ATTEMPTS = 4;
     private static final long CAPTURE_RETRY_DELAY_MS = 350L;
-    private static final long PROFILE_STATE_DELAY_MS = 180L;
+    private static final long PROFILE_STATE_DELAY_MS = 40L;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private final Set<String> savedUsernames = new HashSet<>();
     private final Runnable savedProfileStateUpdate = this::updateSavedProfileState;
@@ -51,7 +51,12 @@ public final class AInstaAccessibilityService extends AccessibilityService {
         boolean instagramEvent = INSTAGRAM_PACKAGE.equals(String.valueOf(event.getPackageName()));
         if (instagramEvent) {
             if (bubble == null) mainHandler.post(this::showBubble);
-            scheduleSavedProfileStateUpdate();
+            if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+                mainHandler.removeCallbacks(savedProfileStateUpdate);
+                mainHandler.post(savedProfileStateUpdate);
+            } else {
+                scheduleSavedProfileStateUpdate();
+            }
         } else if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED
                 || event.getEventType() == AccessibilityEvent.TYPE_WINDOWS_CHANGED) {
             mainHandler.post(this::syncBubbleVisibility);
