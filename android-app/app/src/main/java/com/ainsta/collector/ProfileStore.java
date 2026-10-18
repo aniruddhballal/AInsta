@@ -27,7 +27,8 @@ import java.util.regex.Pattern;
 public final class ProfileStore {
     private static final String FILE_NAME = "profiles.json";
     private static final String RELATIVE_PATH = Environment.DIRECTORY_DOCUMENTS + "/AInsta";
-    private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-z0-9](?:[a-z0-9._]{0,28}[a-z0-9])?");
+    // Instagram permits usernames to end in an underscore, but not a period.
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-z0-9](?:[a-z0-9._]{0,28}[a-z0-9_])?");
     private static final Object LOCK = new Object();
 
     private ProfileStore() {}

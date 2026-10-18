@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 public final class AInstaAccessibilityService extends AccessibilityService {
     private static final String INSTAGRAM_PACKAGE = "com.instagram.android";
+    private static final int MAX_CAPTURE_ATTEMPTS = 4;
+    private static final long CAPTURE_RETRY_DELAY_MS = 350L;
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
     private WindowManager windowManager;
     private TextView bubble;
@@ -104,16 +106,28 @@ public final class AInstaAccessibilityService extends AccessibilityService {
     }
 
     private void captureCurrentProfile(TextView source) {
+        captureCurrentProfile(source, 0);
+    }
+
+    private void captureCurrentProfile(TextView source, int attempt) {
         AccessibilityNodeInfo root = getRootInActiveWindow();
         if (root == null || !INSTAGRAM_PACKAGE.equals(String.valueOf(root.getPackageName()))) {
-            showMessage("Open an Instagram profile first");
             if (root != null) root.recycle();
+            if (attempt < MAX_CAPTURE_ATTEMPTS) {
+                mainHandler.postDelayed(() -> captureCurrentProfile(source, attempt + 1), CAPTURE_RETRY_DELAY_MS);
+            } else {
+                showMessage("Open an Instagram profile first");
+            }
             return;
         }
         String username = InstagramUsernameExtractor.extract(root);
         root.recycle();
         if (username.isEmpty()) {
-            showMessage("Could not identify this profile");
+            if (attempt < MAX_CAPTURE_ATTEMPTS) {
+                mainHandler.postDelayed(() -> captureCurrentProfile(source, attempt + 1), CAPTURE_RETRY_DELAY_MS);
+            } else {
+                showMessage("Could not identify this profile");
+            }
             return;
         }
         boolean added = ProfileStore.addIfAbsent(getApplicationContext(), username);

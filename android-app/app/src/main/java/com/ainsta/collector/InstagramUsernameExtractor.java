@@ -10,8 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class InstagramUsernameExtractor {
-    private static final Pattern USERNAME_PATTERN = Pattern.compile("@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9])?)");
-    private static final Pattern PROFILE_DESCRIPTION = Pattern.compile("(?i)(?:profile|avatar|picture)(?:[^@A-Za-z0-9._]{0,24})(?:of|for)?(?:[^@A-Za-z0-9._]{0,4})@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9])?)");
+    // Instagram permits usernames to end in an underscore, but not a period.
+    private static final Pattern USERNAME_PATTERN = Pattern.compile("@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?)");
+    private static final Pattern PROFILE_DESCRIPTION = Pattern.compile("(?i)(?:profile|avatar|picture)(?:[^@A-Za-z0-9._]{0,24})(?:of|for)?(?:[^@A-Za-z0-9._]{0,4})@?([A-Za-z0-9](?:[A-Za-z0-9._]{0,28}[A-Za-z0-9_])?)");
     private static final String[] REJECTED = {
             "instagram", "followers", "following", "follow", "message", "editprofile", "edit profile",
             "share profile", "threads", "home", "search", "reels", "shop", "explore", "notifications",
@@ -98,7 +99,9 @@ public final class InstagramUsernameExtractor {
     }
 
     private static boolean isRejected(String value) {
-        for (String rejected : REJECTED) if (value.equals(rejected) || value.contains(rejected)) return true;
+        // Match only complete UI labels. A substring check incorrectly rejects
+        // real usernames such as "reelscantheal" because it contains "reels".
+        for (String rejected : REJECTED) if (value.equals(rejected)) return true;
         return value.matches("\\d+");
     }
 

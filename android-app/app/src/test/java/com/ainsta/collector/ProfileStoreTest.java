@@ -17,6 +17,11 @@ public final class ProfileStoreTest {
     }
 
     @Test
+    public void acceptsUsernameEndingInUnderscore() {
+        assertEquals("creator_", ProfileStore.normalizeUsername("@Creator_"));
+    }
+
+    @Test
     public void rejectsAmbiguousOrInvalidValues() {
         assertEquals("", ProfileStore.normalizeUsername("profile name"));
         assertEquals("", ProfileStore.normalizeUsername("profile-name"));
