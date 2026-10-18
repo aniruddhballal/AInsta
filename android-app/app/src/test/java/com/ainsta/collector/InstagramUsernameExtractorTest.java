@@ -17,6 +17,7 @@ public class InstagramUsernameExtractorTest {
     @Test
     public void rejectsAccessibilityLabels() {
         assertTrue(InstagramUsernameExtractor.isRejected("picture"));
+        assertTrue(InstagramUsernameExtractor.isRejected("community"));
         assertTrue(InstagramUsernameExtractor.isRejected("profile"));
     }
 

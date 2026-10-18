@@ -8,7 +8,7 @@
   const UI_POSITION_KEY = "ainsta-panel-position";
   const NOT_SHOWN = "Not shown";
   const RESERVED_PATHS = new Set([
-    "accounts", "direct", "directory", "emails", "explore", "reels",
+    "accounts", "community", "direct", "directory", "emails", "explore", "picture", "reels",
     "reel", "p", "press", "privacy", "session", "stories", "web"
   ]);
 
