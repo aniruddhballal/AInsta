@@ -16,6 +16,8 @@ This temporary Firefox extension maintains a persistent, deduplicated Instagram 
 - Expands the profile bio when Instagram provides a bio expansion control.
 - Opens **About this account** through the profile options menu and captures:
   - bio
+  - displayed post count
+  - each post URL and its published timestamp when Instagram exposes one
   - Account based in
   - Date joined
   - raw visible profile text
@@ -48,9 +50,9 @@ Open an individual profile and click **ADD CURRENT PROFILE**. If the profile is 
 ### Collect pending details
 
 1. Click **RUN PENDING PROFILES**.
-2. The extension navigates the current tab to each pending profile.
-3. It reads the profile, opens the options menu, and opens **About this account**.
-4. It saves the result and continues through the queue.
+2. The extension navigates the current tab to each pending profile and scrolls the profile grid to collect post links.
+3. It reads the displayed post count, opens the options menu, and opens **About this account**.
+4. It visits each discovered post to read its published timestamp, then continues through the profile queue.
 5. When the queue finishes, it downloads `bot-account-info.html` automatically.
 
 Use **MARK CURRENT FOR REFRESH** to make an existing profile pending again. Use **STOP COLLECTION** to stop the queue; saved profiles and completed results remain intact.
@@ -58,7 +60,9 @@ Use **MARK CURRENT FOR REFRESH** to make an existing profile pending again. Use 
 ### Export files
 
 - **EXPORT BOTS.MD** downloads the current profile URLs as `bots.md`.
-- **DOWNLOAD REPORT** downloads `bot-account-info.html` with links, usernames, bios, account location, join date, statuses, timestamps, and expandable captured text.
+- **DOWNLOAD REPORT** downloads `bot-account-info.html` with links, usernames, bios, post counts and post dates, account location, join date, statuses, timestamps, and expandable captured text.
+
+Post dates are collected by visiting the post pages in the logged-in tab, so collection takes longer for profiles with many posts. Dates may be unavailable for posts Instagram does not expose to the current session.
 
 Firefox downloads are not written directly into the repository. Move the downloaded file into the appropriate repository folder when you want to replace a checked-in catalog or report.
 

@@ -101,6 +101,9 @@
       bio: NOT_SHOWN,
       country: NOT_SHOWN,
       date_joined: NOT_SHOWN,
+      posts_count: NOT_SHOWN,
+      post_urls: [],
+      post_dates: [],
       profile_text: "",
       about_text: ""
     };
@@ -297,11 +300,58 @@
     return (header || document.querySelector("main") || document.body).innerText || "";
   }
 
-  function resultFor(profile, status, capturedProfile = "", about = "", error = "") {
+  function extractPostsCount(text) {
+    const match = String(text || "").match(/([\d.,]+\s*[KMB]?)\s+posts?\b/i);
+    return match ? match[1].replace(/\s+/g, "") : NOT_SHOWN;
+  }
+
+  function collectPostUrls() {
+    const urls = new Set();
+    for (const anchor of document.querySelectorAll("main a[href]")) {
+      try {
+        const url = new URL(anchor.href, location.origin);
+        if (!/^\/(p|reel|tv)\/[^/]+\/?$/.test(url.pathname)) continue;
+        urls.add(`https://www.instagram.com${url.pathname}`);
+      } catch (_error) {
+        // Ignore malformed or non-post links.
+      }
+    }
+    return [...urls];
+  }
+
+  async function collectAllPostUrls() {
+    const urls = new Set(collectPostUrls());
+    let previousHeight = 0;
+    let stableBottomPasses = 0;
+    for (let pass = 0; pass < 500 && stableBottomPasses < 5; pass += 1) {
+      const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      window.scrollTo(0, height);
+      await sleep(650);
+      collectPostUrls().forEach((url) => urls.add(url));
+      const nextHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      if (nextHeight <= height && nextHeight === previousHeight) stableBottomPasses += 1;
+      else stableBottomPasses = 0;
+      previousHeight = nextHeight;
+    }
+    window.scrollTo(0, 0);
+    return [...urls];
+  }
+
+  async function collectPostDate() {
+    const time = await waitFor(() => {
+      const candidates = [...document.querySelectorAll("main time[datetime], article time[datetime], time[datetime]")];
+      return candidates.find((item) => !Number.isNaN(Date.parse(item.dateTime || item.getAttribute("datetime")))) || null;
+    }, 12000, 300);
+    return time ? new Date(time.dateTime || time.getAttribute("datetime")).toISOString() : NOT_SHOWN;
+  }
+
+  function resultFor(profile, status, capturedProfile = "", about = "", error = "", postUrls = []) {
     return {
       bio: extractBio(capturedProfile, profile.username),
       country: extractLabelValue(about, "Account based in"),
       date_joined: extractLabelValue(about, "Date joined"),
+      posts_count: extractPostsCount(capturedProfile),
+      post_urls: postUrls,
       status,
       last_error: error,
       profile_text: capturedProfile,
@@ -317,15 +367,17 @@
     updatePanel(`Reading @${profile.username}…`);
     await expandBio();
     const capturedProfile = profileText();
+    updatePanel(`Finding posts for @${profile.username}…`);
+    const postUrls = await collectAllPostUrls();
     const options = await waitFor(findOptionsButton);
     if (!options) {
-      if (isUnavailableProfileText(capturedProfile)) return resultFor(profile, "Deleted account", capturedProfile);
-      return resultFor(profile, "Could not find profile options", capturedProfile, "", "Profile options not found");
+      if (isUnavailableProfileText(capturedProfile)) return resultFor(profile, "Deleted account", capturedProfile, "", "", postUrls);
+      return resultFor(profile, "Could not find profile options", capturedProfile, "", "Profile options not found", postUrls);
     }
 
     options.click();
     const aboutItem = await waitFor(findAboutMenuItem);
-    if (!aboutItem) return resultFor(profile, "Could not find About this account", capturedProfile, "", "About menu item not found");
+    if (!aboutItem) return resultFor(profile, "Could not find About this account", capturedProfile, "", "About menu item not found", postUrls);
 
     aboutItem.click();
     let about = await waitFor(aboutDialogText, 15000, 300);
@@ -336,9 +388,9 @@
         about = await waitFor(aboutDialogText, 15000, 300);
       }
     }
-    if (!about) return resultFor(profile, "About this account dialog did not open", capturedProfile, "", "Account dialog did not contain expected fields");
+    if (!about) return resultFor(profile, "About this account dialog did not open", capturedProfile, "", "Account dialog did not contain expected fields", postUrls);
 
-    return resultFor(profile, "Collected", capturedProfile, about, "");
+    return resultFor(profile, "Collected", capturedProfile, about, "", postUrls);
   }
 
   function escapeHtml(value) {
@@ -354,11 +406,13 @@
     const generated = new Date().toLocaleString();
     const rows = state.profiles.map((profile, index) => {
       const bio = escapeHtml(profile.bio).replace(/\n/g, "<br>");
+      const postDates = (profile.post_dates || []).map((item) => `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.url)}</a> — ${escapeHtml(item.date || NOT_SHOWN)}</li>`).join("");
+      const posts = `<details><summary>${(profile.post_dates || []).length} post dates</summary><ul>${postDates || "<li>No post dates collected.</li>"}</ul></details>`;
       const captured = `<details><summary>Profile text</summary><pre>${escapeHtml(profile.profile_text || "No profile text captured.")}</pre></details><details><summary>About text</summary><pre>${escapeHtml(profile.about_text || "No About this account text captured.")}</pre></details>`;
-      return `<tr><td>${index + 1}</td><td><a href="${escapeHtml(profile.url)}" target="_blank" rel="noreferrer">${escapeHtml(profile.url)}</a></td><td>${escapeHtml(profile.username)}</td><td class="bio">${bio}</td><td>${escapeHtml(profile.country)}</td><td>${escapeHtml(profile.date_joined)}</td><td>${escapeHtml(profile.status)}${profile.last_error ? `<br><small>${escapeHtml(profile.last_error)}</small>` : ""}</td><td>${escapeHtml(profile.added_at)}</td><td>${escapeHtml(profile.last_fetched_at || "Not fetched")}</td><td>${captured}</td></tr>`;
+      return `<tr><td>${index + 1}</td><td><a href="${escapeHtml(profile.url)}" target="_blank" rel="noreferrer">${escapeHtml(profile.url)}</a></td><td>${escapeHtml(profile.username)}</td><td class="bio">${bio}</td><td>${escapeHtml(profile.posts_count || NOT_SHOWN)}</td><td>${posts}</td><td>${escapeHtml(profile.country)}</td><td>${escapeHtml(profile.date_joined)}</td><td>${escapeHtml(profile.status)}${profile.last_error ? `<br><small>${escapeHtml(profile.last_error)}</small>` : ""}</td><td>${escapeHtml(profile.added_at)}</td><td>${escapeHtml(profile.last_fetched_at || "Not fetched")}</td><td>${captured}</td></tr>`;
     }).join("");
 
-    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Instagram Bot Account Information</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f5f7fb}body{margin:0;padding:2rem}main{max-width:1800px;margin:0 auto}h1{margin:0 0 .35rem}.meta{color:#536079;margin:0 0 1.25rem}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce2ee;border-radius:12px;box-shadow:0 4px 18px #1c2b4a12}table{width:100%;min-width:1700px;border-collapse:collapse}th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #e8ecf3}th{background:#eef2f8;color:#33415d;font-size:.9rem}tr:last-child td{border-bottom:0}a{color:#2457c5;word-break:break-all}.bio{white-space:pre-wrap;max-width:28rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;max-width:32rem}details{min-width:8rem;margin-bottom:.35rem}small{color:#8b1e1e}</style></head><body><main><h1>Instagram bot account information</h1><p class="meta">Generated: ${escapeHtml(generated)} | Rows: ${state.profiles.length} | Fields: Bio, Account based in, Date joined, Added, and Last fetched.</p><div class="table-wrap"><table><thead><tr><th>#</th><th>Account URL</th><th>Username</th><th>Bio</th><th>Account based in</th><th>Date joined</th><th>Status</th><th>Added</th><th>Last fetched</th><th>Captured text</th></tr></thead><tbody>${rows}</tbody></table></div></main></body></html>`;
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Instagram Bot Account Information</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f5f7fb}body{margin:0;padding:2rem}main{max-width:1800px;margin:0 auto}h1{margin:0 0 .35rem}.meta{color:#536079;margin:0 0 1.25rem}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce2ee;border-radius:12px;box-shadow:0 4px 18px #1c2b4a12}table{width:100%;min-width:1900px;border-collapse:collapse}th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #e8ecf3}th{background:#eef2f8;color:#33415d;font-size:.9rem}tr:last-child td{border-bottom:0}a{color:#2457c5;word-break:break-all}.bio{white-space:pre-wrap;max-width:28rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;max-width:32rem}details{min-width:8rem;margin-bottom:.35rem}ul{padding-left:1.2rem;max-width:28rem}li{margin-bottom:.35rem}small{color:#8b1e1e}</style></head><body><main><h1>Instagram bot account information</h1><p class="meta">Generated: ${escapeHtml(generated)} | Rows: ${state.profiles.length} | Fields: Bio, Posts, post dates, Account based in, Date joined, Added, and Last fetched.</p><div class="table-wrap"><table><thead><tr><th>#</th><th>Account URL</th><th>Username</th><th>Bio</th><th>Posts</th><th>Post dates</th><th>Account based in</th><th>Date joined</th><th>Status</th><th>Added</th><th>Last fetched</th><th>Captured text</th></tr></thead><tbody>${rows}</tbody></table></div></main></body></html>`;
   }
 
   function downloadFile(name, content, type) {
@@ -549,7 +603,7 @@
     const state = readState();
     const queue = pendingProfiles(state).map((profile) => profile.key);
     if (!queue.length) return updatePanel("Nothing pending. Add a profile or mark one for refresh.");
-    state.run = { active: true, queue, index: 0, started_at: now() };
+    state.run = { active: true, queue, index: 0, phase: "profile", post_index: 0, started_at: now() };
     writeState(state);
     updatePanel(`Starting ${queue.length} pending profile${queue.length === 1 ? "" : "s"}…`);
     navigateToRunTarget();
@@ -568,10 +622,30 @@
     const expected = state.run.queue[state.run.index];
     const target = findProfile(state, expected);
     if (!target) return updatePanel("The queued profile no longer exists.");
-    const current = currentProfile();
-    if (!current || current.key !== target.key) {
-      updatePanel(`Opening @${target.username} (${state.run.index + 1}/${state.run.queue.length})…`);
-      location.href = target.url;
+    const targetUrl = state.run.phase === "posts"
+      ? (target.post_urls || [])[state.run.post_index]
+      : target.url;
+    if (!targetUrl && state.run.phase === "posts") {
+      state.run.phase = "profile";
+      state.run.post_index = 0;
+      state.run.index += 1;
+      writeState(state);
+      if (state.run.index >= state.run.queue.length) {
+        state.run.active = false;
+        writeState(state);
+        downloadReport(state);
+        updatePanel(`Finished. Downloaded ${REPORT_NAME}.`);
+      } else {
+        setTimeout(navigateToRunTarget, 0);
+      }
+      return;
+    }
+    if (!targetUrl) return updatePanel("The queued profile has no target URL.");
+    if (location.href.split("?")[0].replace(/\/$/, "") !== targetUrl.replace(/\/$/, "")) {
+      updatePanel(state.run.phase === "posts"
+        ? `Opening post ${state.run.post_index + 1}/${(target.post_urls || []).length} for @${target.username}…`
+        : `Opening @${target.username} (${state.run.index + 1}/${state.run.queue.length})…`);
+      location.href = targetUrl;
       return;
     }
     setTimeout(runCollector, 900);
@@ -586,6 +660,36 @@
       const expectedKey = state.run.queue[state.run.index];
       const target = findProfile(state, expectedKey);
       if (!target) return updatePanel("Queued profile was not found in the catalog.");
+      if (state.run.phase === "posts") {
+        const expectedUrl = (target.post_urls || [])[state.run.post_index];
+        if (!expectedUrl || !location.pathname.startsWith(new URL(expectedUrl).pathname)) return navigateToRunTarget();
+        updatePanel(`Reading post date ${state.run.post_index + 1}/${target.post_urls.length} for @${target.username}…`);
+        const date = await collectPostDate();
+        state = readState();
+        if (!state.run || !state.run.active) return updatePanel("Collector stopped before saving this post date.");
+        const saved = findProfile(state, expectedKey);
+        saved.post_dates = saved.post_dates || [];
+        saved.post_dates.push({ url: expectedUrl, date });
+        state.run.post_index += 1;
+        if (state.run.post_index >= (saved.post_urls || []).length) {
+          state.run.phase = "profile";
+          state.run.post_index = 0;
+          state.run.index += 1;
+          if (saved.status === "Collected") saved.last_fetched_at = now();
+          delete saved.post_urls;
+        }
+        writeState(state);
+        if (state.run.index >= state.run.queue.length) {
+          state.run.active = false;
+          writeState(state);
+          downloadReport(state);
+          updatePanel(`Finished. Downloaded ${REPORT_NAME}.`);
+          return;
+        }
+        await sleep(650);
+        navigateToRunTarget();
+        return;
+      }
       const current = currentProfile();
       if (!current || current.key !== target.key) return navigateToRunTarget();
 
@@ -595,15 +699,22 @@
       const saved = findProfile(state, target.key);
       if (!saved) return updatePanel("Profile disappeared from the catalog.");
       Object.assign(saved, result);
+      saved.post_dates = [];
       if (result.status === "Collected") {
-        saved.last_fetched_at = now();
+        saved.last_fetched_at = saved.post_urls && saved.post_urls.length ? null : now();
         saved.last_error = "";
       } else {
         saved.last_fetched_at = null;
       }
-      state.run.index += 1;
+      if (saved.post_urls && saved.post_urls.length) {
+        state.run.phase = "posts";
+        state.run.post_index = 0;
+      } else {
+        state.run.phase = "profile";
+        state.run.index += 1;
+      }
 
-      if (state.run.index >= state.run.queue.length) {
+      if (state.run.phase === "profile" && state.run.index >= state.run.queue.length) {
         state.run.active = false;
         writeState(state);
         downloadReport(state);
@@ -612,7 +723,9 @@
       }
 
       writeState(state);
-      updatePanel(`${result.status}. Moving to ${state.run.index + 1}/${state.run.queue.length}…`);
+      updatePanel(state.run.phase === "posts"
+        ? `${result.status}. Reading ${saved.post_urls.length} post dates for @${saved.username}…`
+        : `${result.status}. Moving to ${state.run.index + 1}/${state.run.queue.length}…`);
       await sleep(900);
       navigateToRunTarget();
     } catch (error) {
