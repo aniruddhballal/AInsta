@@ -8,6 +8,7 @@ type Profile = {
   added_at?: string; last_fetched_at?: string | null; profile_text?: string; about_text?: string;
   collection_issues?: Issue[];
   deep_status?: string;
+  ignored?: boolean;
 };
 type Job = { id: string; kind: 'surface' | 'deep'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
@@ -78,6 +79,17 @@ function App() {
     catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not stop collection.'); }
     finally { setBusy(false); }
   }
+  async function setIgnored(username: string, ignored: boolean) {
+    setError('');
+    try {
+      await api('/profiles/ignore', { method: 'POST', body: JSON.stringify({ profile_key: username.toLocaleLowerCase(), ignored }) });
+      if (ignored) {
+        setSurfaceSelection((current) => { const next = new Set(current); next.delete(username.toLocaleLowerCase()); return next; });
+        setDeepSelection((current) => { const next = new Set(current); next.delete(username.toLocaleLowerCase()); return next; });
+      }
+      await refresh();
+    } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not update profile.'); }
+  }
 
   const tabs: { id: Tab; label: string; count: number }[] = [
     { id: 'master', label: 'Master list', count: profiles.length },
@@ -94,9 +106,9 @@ function App() {
     <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => { setTab(item.id); setSearch(''); }}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
     {!data ? <section className="empty">Connecting to the local account data…</section> : <>
       {tab === 'master' && <section>
-        <div className="toolbar"><label className="search"><span>⌕</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, visibleProfiles)}>{visibleProfiles.length && visibleProfiles.every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
+        <div className="toolbar"><label className="search"><span>⌕</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, visibleProfiles.filter((profile) => !profile.ignored))}>{visibleProfiles.some((profile) => !profile.ignored) && visibleProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
         <div className="selection-bar"><span><strong>{surfaceSelection.size}</strong> selected for surface analysis</span><button className="button primary" disabled={!surfaceSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('surface', surfaceSelection)}>Run surface analysis <span>→</span></button></div>
-        <ProfileTable profiles={visibleProfiles} mode="master" selection={surfaceSelection} onToggle={(username) => toggle(surfaceSelection, setSurfaceSelection, username)} />
+        <ProfileTable profiles={visibleProfiles} mode="master" selection={surfaceSelection} onToggle={(username) => toggle(surfaceSelection, setSurfaceSelection, username)} onIgnore={(username, ignored) => void setIgnored(username, ignored)} />
         {!visibleProfiles.length && <div className="empty">No profiles match “{search}”.</div>}
       </section>}
       {tab === 'surface' && <section>
@@ -108,18 +120,18 @@ function App() {
         <div className="toolbar"><label className="search"><span>⌕</span><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label><span className="helper">Post dates are collected only after surface analysis succeeds.</span></div>
         <ProfileTable profiles={visibleProfiles.filter(successful)} mode="deep" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
       </section>}
-      {tab === 'issues' && <section className="issues">{issues.length ? issues.slice().reverse().map((issue, index) => <article className="issue" key={issue.id || `${issue.username}-${issue.occurred_at}-${index}`}><div className="issue-icon">!</div><div className="issue-body"><div className="issue-head"><strong>@{issue.username || 'Unknown profile'}</strong><span>{text(issue.code)}</span></div><p>{text(issue.message)}</p><small>{fmt(issue.occurred_at)}</small>{issue.recommended_action && <p className="muted">{issue.recommended_action}</p>}</div><div className="issue-links">{issue.profile_url && <a href={issue.profile_url} target="_blank" rel="noreferrer">Profile ↗</a>}{issue.post_url && <a href={issue.post_url} target="_blank" rel="noreferrer">Post ↗</a>}</div></article>) : <div className="empty"><span className="check">✓</span><h3>No issues recorded</h3><p>Collection problems will appear here with the affected profile.</p></div>}</section>}
+      {tab === 'issues' && <section className="issues">{issues.length ? issues.slice().reverse().map((issue, index) => { const affected = profiles.find((profile) => key(profile) === issue.username?.toLocaleLowerCase()); return <article className="issue" key={issue.id || `${issue.username}-${issue.occurred_at}-${index}`}><div className="issue-icon">!</div><div className="issue-body"><div className="issue-head"><strong>@{issue.username || 'Unknown profile'}</strong><span>{text(issue.code)}</span></div><p>{text(issue.message)}</p><small>{fmt(issue.occurred_at)}</small>{issue.recommended_action && <p className="muted">{issue.recommended_action}</p>}</div><div className="issue-links">{issue.profile_url && <a href={issue.profile_url} target="_blank" rel="noreferrer">Profile ↗</a>}{issue.post_url && <a href={issue.post_url} target="_blank" rel="noreferrer">Post ↗</a>}{affected && <button className="link-button" onClick={() => void setIgnored(affected.username, !affected.ignored)}>{affected.ignored ? 'Restore profile' : 'Ignore profile'}</button>}</div></article>; }) : <div className="empty"><span className="check">✓</span><h3>No issues recorded</h3><p>Collection problems will appear here with the affected profile.</p></div>}</section>}
     </>}
     <footer><span>AINSTA · LOCAL PROFILE DATA</span><span>Reads and writes <code>bot-account-info.json</code></span></footer>
   </main>;
 }
 
-function ProfileTable({ profiles, mode, selection, onToggle }: { profiles: Profile[]; mode: 'master' | 'surface' | 'deep'; selection: Set<string>; onToggle: (username: string) => void }) {
+function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profiles: Profile[]; mode: 'master' | 'surface' | 'deep'; selection: Set<string>; onToggle: (username: string) => void; onIgnore?: (username: string, ignored: boolean) => void }) {
   if (!profiles.length) return <div className="empty">{mode === 'surface' ? 'No surface results yet. Select profiles from the master list to begin.' : mode === 'deep' ? 'No post date records yet.' : 'No profiles in the catalog.'}</div>;
-  return <div className="table-wrap"><table><thead><tr>{mode !== 'deep' && <th className="check-col"><span className="sr-only">Select</span></th>}<th>PROFILE</th>{mode === 'master' && <><th>PHONE CATALOG ADDED</th><th>SURFACE STATUS</th></>}{mode === 'surface' && <><th>BIO / PROFILE TEXT / ABOUT TEXT</th><th>COUNTRY</th><th>DATE JOINED</th><th>POSTS</th><th>STATUS</th><th>ADDED AT</th><th>LAST FETCHED</th><th>LAST ERROR</th></>}{mode === 'deep' && <><th>POST DATES</th><th>STATUS</th><th>LAST FETCHED</th></>}</tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}>
-    {mode !== 'deep' && <td><input aria-label={`Select @${profile.username}`} type="checkbox" checked={selection.has(key(profile))} disabled={mode === 'surface' && !successful(profile)} onChange={() => onToggle(key(profile))} /></td>}
+  return <div className="table-wrap"><table><thead><tr>{mode !== 'deep' && <th className="check-col"><span className="sr-only">Select</span></th>}<th>PROFILE</th>{mode === 'master' && <><th>PHONE CATALOG ADDED</th><th>SURFACE STATUS</th><th>REVIEW</th></>}{mode === 'surface' && <><th>BIO / PROFILE TEXT / ABOUT TEXT</th><th>COUNTRY</th><th>DATE JOINED</th><th>POSTS</th><th>STATUS</th><th>ADDED AT</th><th>LAST FETCHED</th><th>LAST ERROR</th></>}{mode === 'deep' && <><th>POST DATES</th><th>STATUS</th><th>LAST FETCHED</th></>}</tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}>
+    {mode !== 'deep' && <td><input aria-label={`Select @${profile.username}`} type="checkbox" checked={selection.has(key(profile))} disabled={profile.ignored || (mode === 'surface' && !successful(profile))} onChange={() => onToggle(key(profile))} /></td>}
     <td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<span>↗</span></a><small>{profile.url}</small></div></div></td>
-    {mode === 'master' && <><td>{fmt(profile.added_at)}</td><td><Status value={profile.last_fetched_at ? profile.status || 'Fetched' : 'Pending'} /></td></>}
+    {mode === 'master' && <><td>{fmt(profile.added_at)}</td><td><Status value={profile.ignored ? 'Ignored' : profile.last_fetched_at ? profile.status || 'Fetched' : 'Pending'} /></td><td><button className="link-button" onClick={() => onIgnore?.(profile.username, !profile.ignored)}>{profile.ignored ? 'Restore' : 'Ignore'}</button></td></>}
     {mode === 'surface' && <><td className="bio-cell"><details><summary>{text(profile.bio).slice(0, 70)}{String(profile.bio || '').length > 70 ? '…' : ''}</summary><pre>{text(profile.bio)}{'\n\nProfile text\n'}{text(profile.profile_text)}{'\n\nAbout text\n'}{text(profile.about_text)}</pre></details></td><td>{text(profile.country)}</td><td>{text(profile.date_joined)}</td><td>{text(profile.posts_count)}</td><td><Status value={profile.status} /></td><td>{fmt(profile.added_at)}</td><td>{fmt(profile.last_fetched_at)}</td><td className="error-text">{text(profile.last_error)}</td></>}
     {mode === 'deep' && <><td><details><summary>{profile.post_dates?.length || 0} dates collected</summary><ul className="post-list">{(profile.post_dates || []).map((post) => <li key={post.url}><a href={post.url} target="_blank" rel="noreferrer">{post.date || 'Date unavailable'} ↗</a></li>)}</ul></details></td><td><Status value={profile.deep_status || 'Pending'} /></td><td>{fmt(profile.last_fetched_at)}</td></>}
   </tr>)}</tbody></table></div>;

@@ -49,6 +49,7 @@ async function loadData() {
       posts_count: 'Not shown',
       post_dates: [],
       status: 'Pending',
+      ignored: false,
       last_error: '',
       added_at: entry.first_seen_at || now(),
       last_fetched_at: null,
@@ -141,6 +142,7 @@ async function route(request, response) {
       const selected = [...new Set((body.profile_keys || []).map((value) => String(value).toLocaleLowerCase()))];
       const profiles = selected.map((key) => data.profiles.find((p) => keyOf(p) === key)).filter(Boolean);
       if (!profiles.length || profiles.length !== selected.length) return send(response, 400, { error: 'Select at least one valid profile.' });
+      if (profiles.some((profile) => profile.ignored)) return send(response, 400, { error: 'Unignore selected profiles before starting analysis.' });
       if (kind === 'deep' && profiles.some((profile) => !isSurfaceComplete(profile))) {
         return send(response, 400, { error: 'Deep analysis can only run for profiles with completed surface analysis.' });
       }
@@ -152,6 +154,19 @@ async function route(request, response) {
       data.workflow.active_job = job;
       await saveData(data);
       return send(response, 202, { job });
+    }
+
+    if (request.method === 'POST' && pathname === '/api/profiles/ignore') {
+      const body = await jsonBody(request);
+      const data = await loadData();
+      if (data.workflow.active_job?.profile_keys.includes(String(body.profile_key || '').toLocaleLowerCase())) {
+        return send(response, 409, { error: 'Stop the active job before changing one of its profiles.' });
+      }
+      const profile = data.profiles.find((p) => keyOf(p) === String(body.profile_key || '').toLocaleLowerCase());
+      if (!profile) return send(response, 404, { error: 'Profile not found.' });
+      profile.ignored = Boolean(body.ignored);
+      await saveData(data);
+      return send(response, 200, { ok: true, ignored: profile.ignored });
     }
 
     if (request.method === 'POST' && pathname === '/api/jobs/cancel') {
