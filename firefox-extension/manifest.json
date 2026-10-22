@@ -1,8 +1,16 @@
 {
   "manifest_version": 2,
-  "name": "AInsta Instagram About Collector",
-  "version": "2.0.0",
-  "description": "Maintain a deduplicated Instagram profile catalog and collect pending profile details from the current logged-in Firefox session.",
+  "name": "AInsta Dashboard Collector",
+  "version": "3.0.0",
+  "description": "Collects Instagram profile and post information only for jobs started in the local AInsta dashboard.",
+  "permissions": [
+    "tabs",
+    "http://127.0.0.1:4317/*"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
   "content_scripts": [
     {
       "matches": ["*://www.instagram.com/*", "*://instagram.com/*"],
