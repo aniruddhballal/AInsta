@@ -20,6 +20,15 @@ Open `http://127.0.0.1:5173`. The command starts the React/Vite UI and a Node AP
 
 The dashboard API is the only writer for dashboard data. It stores profile records, post dates, job progress, and issues in `bot-account-info.json`. It writes the file atomically and preserves existing profile fields. Text is stored as JSON strings, so captions, bios, and raw page text do not get interpolated into HTML.
 
+## Repair an older text export
+
+The original checked-in report contains some text that was repeatedly decoded as Windows-1252 instead of UTF-8. The one-time repair script reverses the four verified encoding layers in affected `bio`, `profile_text`, and `about_text` fields. It defaults to preview mode; run it with `--apply` to update the JSON atomically:
+
+```powershell
+node scripts/repair-profile-text-encoding.mjs
+node scripts/repair-profile-text-encoding.mjs --apply
+```
+
 Optional: set `AINSTA_DATA_FILE` to point the API at another JSON file, or `AINSTA_API_PORT` to change its port. If the API port changes, update the Vite proxy and extension manifest host permission to match.
 
 ## Build
