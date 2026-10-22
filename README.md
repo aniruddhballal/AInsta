@@ -7,12 +7,12 @@ AInsta is a small toolkit for building and maintaining an Instagram profile cata
 | Folder/file | Purpose |
 | --- | --- |
 | [`android-app/`](android-app/README.md) | Native Android app and accessibility service. It shows a draggable capture bubble over Instagram, extracts validated usernames, stores them in a searchable catalog, and provides save-state feedback. |
-| [`firefox-extension/`](firefox-extension/README.md) | Temporary Firefox extension that maintains a browser-side catalog, visits pending Instagram profiles, collects profile/About this account details, and exports Markdown or HTML reports. |
+| [`firefox-extension/`](firefox-extension/README.md) | Temporary Firefox add-on that collects profile and post details only for jobs started in the dashboard. |
 | [`web-dashboard/`](web-dashboard/README.md) | Local React dashboard and loopback API for searching the phone catalog, selecting accounts, and running surface or deep analysis into the shared JSON file. |
 | `bot-analysis/` | Saved profile URL lists and generated HTML account-information reports. |
 | [`AInsta.apk`](AInsta.apk) | APK snapshot kept at the repository root for convenient transfer or installation. For a freshly built APK, use the Android build instructions. |
 
-The Android app and desktop dashboard still use separate files: Android writes `Documents/AInsta/profiles.json`, while the dashboard uses `bot-analysis/bot-account-info.json`. The Firefox extension performs DOM collection only for dashboard jobs and sends results back to the local API.
+The Android app and desktop dashboard use separate files. Android writes its phone catalog to `Documents/AInsta/profiles.json`; the dashboard imports usernames from the repository's `bot-analysis/botsainsta.md` file into `bot-analysis/bot-account-info.json`. There is no automatic phone-to-computer sync: copy or merge the phone catalog into the repository catalog when you want to bring new captures into the dashboard. Despite its `.md` suffix, `botsainsta.md` contains JSON in the same catalog format as the Android file. The Firefox add-on performs DOM collection only for jobs explicitly started in the dashboard and sends results to its local API.
 
 ## Typical workflow
 
@@ -28,7 +28,11 @@ The app catalog can search by username, `@username`, or Instagram profile URL. T
 
 See the [Android README](android-app/README.md) for permissions, storage details, build commands, and platform limitations.
 
-### 2. Analyze profiles from the local dashboard
+### 2. Bring phone captures into the repository
+
+The Android catalog and dashboard catalog are separate. To analyze new phone captures on your computer, copy `Documents/AInsta/profiles.json` from the phone and merge its `profiles` entries into `bot-analysis/botsainsta.md`, matching profiles by `normalized_username` so existing catalog entries are not duplicated. The repository's `botsainsta.md` is JSON despite the legacy `.md` extension. If you do not have new phone captures, you can use the catalog already included in the repository.
+
+### 3. Start the local dashboard
 
 Start the dashboard from the repository root:
 
@@ -38,9 +42,13 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173`, load the temporary add-on using the [Firefox extension instructions](firefox-extension/README.md), then select profiles in the dashboard and start surface or deep analysis. The dashboard imports phone-catalog usernames from `bot-analysis/botsainsta.md` into `bot-account-info.json` without replacing existing profile results. All app data, job progress, and issues are stored in that JSON file. The local API binds only to `127.0.0.1`.
+Open `http://127.0.0.1:5173`. The dashboard imports usernames from `bot-analysis/botsainsta.md` into `bot-analysis/bot-account-info.json` without replacing existing profile results. The local API binds only to `127.0.0.1`.
 
-### 3. Review reports
+### 4. Load the Firefox add-on and collect
+
+In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on…**, and select `firefox-extension/manifest.json`. Keep the dashboard and Firefox open while collecting. In the dashboard, select profiles and run **Surface analysis** first; after it succeeds, select those profiles in **Deep analysis** to collect post dates. The add-on waits for dashboard jobs and does not scan profiles on its own. Profile data, post dates, job progress, and issues are stored in `bot-analysis/bot-account-info.json`.
+
+### 5. Review reports
 
 The dashboard has Master list, Surface analysis, Deep analysis, and Issues tabs. It reads and writes the same data file used by the reusable report viewer:
 

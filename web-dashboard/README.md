@@ -9,7 +9,9 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173`. The command starts the React/Vite UI and a Node API at `http://127.0.0.1:4317`. Both bind to loopback only. Load `../firefox-extension/manifest.json` as a temporary add-on in Firefox and sign in to Instagram before starting a collection job.
+Open `http://127.0.0.1:5173`. The command starts the React/Vite UI and a Node API at `http://127.0.0.1:4317`. Both bind to loopback only. Load `../firefox-extension/manifest.json` as a temporary add-on in Firefox and sign in to Instagram before starting a collection job; see the [Firefox add-on README](../firefox-extension/README.md) for the exact steps.
+
+The Android app saves captures on the phone to `Documents/AInsta/profiles.json`. There is no automatic phone-to-dashboard sync. To analyze new phone captures, copy and merge their `profiles` entries into `../bot-analysis/botsainsta.md` by `normalized_username`. That file is JSON despite its `.md` extension. On startup, the dashboard imports catalog entries into `../bot-analysis/bot-account-info.json` without replacing existing profile results.
 
 ## Workflow
 
