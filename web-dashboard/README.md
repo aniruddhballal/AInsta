@@ -22,6 +22,10 @@ The Android app saves captures on the phone to `Documents/AInsta/profiles.json`.
 
 The dashboard API is the only writer for dashboard data. It stores profile records, post dates, job progress, and issues in `bot-account-info.json`. It writes the file atomically and preserves existing profile fields. Text is stored as JSON strings, so captions, bios, and raw page text do not get interpolated into HTML.
 
+## Open the standalone report
+
+With the dashboard server running, open `http://127.0.0.1:4317/report`. The report automatically reads the latest `bot-account-info.json` through the local API. Opening `../bot-analysis/bot-account-info.html` directly as a `file:///` URL cannot automatically read the neighboring JSON file because browsers restrict local-file access; use the JSON picker in that case.
+
 ## Repair an older text export
 
 The original checked-in report contains some text that was repeatedly decoded as Windows-1252 instead of UTF-8. The one-time repair script reverses the four verified encoding layers in affected `bio`, `profile_text`, and `about_text` fields. It defaults to preview mode; run it with `--apply` to update the JSON atomically:

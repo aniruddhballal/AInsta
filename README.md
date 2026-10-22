@@ -50,10 +50,10 @@ In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, 
 
 ### 5. Review reports
 
-The dashboard has Master list, Surface analysis, Deep analysis, and Issues tabs. It reads and writes the same data file used by the reusable report viewer:
+The dashboard has Master list, Surface analysis, Deep analysis, and Issues tabs. While the dashboard server is running, open `http://127.0.0.1:4317/report` to view the latest JSON data automatically. The reusable report viewer is also available at:
 
 - `bot-account-info.json` - profile records, post dates, workflow state, and collection issues
-- `bot-account-info.html` - standalone read-only viewer for a JSON file
+- `bot-account-info.html` - read-only viewer served by the local API; direct `file:///` opens require manually choosing the JSON file because browsers block automatic reads of neighboring local files
 
 ## Data and privacy boundaries
 
