@@ -1,6 +1,6 @@
 # AInsta
 
-AInsta is a small toolkit for building and maintaining a clean Instagram profile catalog. It includes a native Android collector for saving usernames while browsing Instagram and a temporary Firefox extension for collecting profile details and generating analysis reports.
+AInsta is a small toolkit for building and maintaining an Instagram profile catalog. It includes a native Android collector, a local web dashboard, and a Firefox extension that collects only jobs started from that dashboard.
 
 ## Project layout
 
@@ -8,10 +8,11 @@ AInsta is a small toolkit for building and maintaining a clean Instagram profile
 | --- | --- |
 | [`android-app/`](android-app/README.md) | Native Android app and accessibility service. It shows a draggable capture bubble over Instagram, extracts validated usernames, stores them in a searchable catalog, and provides save-state feedback. |
 | [`firefox-extension/`](firefox-extension/README.md) | Temporary Firefox extension that maintains a browser-side catalog, visits pending Instagram profiles, collects profile/About this account details, and exports Markdown or HTML reports. |
+| [`web-dashboard/`](web-dashboard/README.md) | Local React dashboard and loopback API for searching the phone catalog, selecting accounts, and running surface or deep analysis into the shared JSON file. |
 | `bot-analysis/` | Saved profile URL lists and generated HTML account-information reports. |
 | [`AInsta.apk`](AInsta.apk) | APK snapshot kept at the repository root for convenient transfer or installation. For a freshly built APK, use the Android build instructions. |
 
-The Android app and Firefox extension are separate collectors. They do not share live storage: Android uses a public JSON file on the device, while Firefox uses browser `localStorage`.
+The Android app and desktop dashboard still use separate files: Android writes `Documents/AInsta/profiles.json`, while the dashboard uses `bot-analysis/bot-account-info.json`. The Firefox extension performs DOM collection only for dashboard jobs and sends results back to the local API.
 
 ## Typical workflow
 
@@ -27,19 +28,24 @@ The app catalog can search by username, `@username`, or Instagram profile URL. T
 
 See the [Android README](android-app/README.md) for permissions, storage details, build commands, and platform limitations.
 
-### 2. Collect profile details in Firefox
+### 2. Analyze profiles from the local dashboard
 
-Load the temporary add-on from `about:debugging#/runtime/this-firefox` while logged in to Instagram. The collector panel can add the current profile, mark profiles for refresh, run the pending queue, stop a run, and export:
+Start the dashboard from the repository root:
 
-- `bots.md` - deduplicated Instagram profile URLs
-- `bot-account-info.json` - collected profile data and a structured issue log for missing counts, dates, or failed profiles
-- `bot-account-info.html` - reusable viewer that loads the JSON data file separately
+```powershell
+cd web-dashboard
+npm install
+npm run dev
+```
 
-See the [Firefox extension README](firefox-extension/README.md) for the full workflow and failure handling.
+Open `http://127.0.0.1:5173`, load the temporary add-on using the [Firefox extension instructions](firefox-extension/README.md), then select profiles in the dashboard and start surface or deep analysis. The dashboard imports phone-catalog usernames from `bot-analysis/botsainsta.md` into `bot-account-info.json` without replacing existing profile results. All app data, job progress, and issues are stored in that JSON file. The local API binds only to `127.0.0.1`.
 
 ### 3. Review reports
 
-The `bot-analysis/` folder contains the exported profile lists and generated HTML report. The Firefox extension is the supported workflow for collecting profile details; it reads the active Instagram page DOM and exports the report directly.
+The dashboard has Master list, Surface analysis, Deep analysis, and Issues tabs. It reads and writes the same data file used by the reusable report viewer:
+
+- `bot-account-info.json` - profile records, post dates, workflow state, and collection issues
+- `bot-account-info.html` - standalone read-only viewer for a JSON file
 
 ## Data and privacy boundaries
 
