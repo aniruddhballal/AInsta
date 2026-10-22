@@ -32,7 +32,8 @@ See the [Android README](android-app/README.md) for permissions, storage details
 Load the temporary add-on from `about:debugging#/runtime/this-firefox` while logged in to Instagram. The collector panel can add the current profile, mark profiles for refresh, run the pending queue, stop a run, and export:
 
 - `bots.md` - deduplicated Instagram profile URLs
-- `bot-account-info.html` - profile links, usernames, bios, post counts and dates, account location, join date, statuses, timestamps, and expandable captured text
+- `bot-account-info.json` - collected profile data, including bios, post counts, and post dates
+- `bot-account-info.html` - reusable viewer that loads the JSON data file separately
 
 See the [Firefox extension README](firefox-extension/README.md) for the full workflow and failure handling.
 

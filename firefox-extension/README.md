@@ -23,9 +23,9 @@ This temporary Firefox extension maintains a persistent, deduplicated Instagram 
   - raw visible profile text
   - raw About this account text
   - status, error, added time, and last-fetched time
-- Downloads `bot-account-info.html` automatically when a pending run finishes.
+- Downloads the collected catalog as UTF-8 `bot-account-info.json` automatically when a pending run finishes; captions and bios stay as JSON strings, separate from the report viewer.
 - Exports the current deduplicated profile URLs as `bots.md`.
-- Downloads the full HTML report on demand.
+- Downloads the reusable HTML report viewer on demand.
 - Stops a collection run without deleting profiles or already-collected data.
 - Shows clear status messages for missing profiles, missing menus, failed dialogs, and completed runs.
 - The collector panel can be minimized and restored.
@@ -53,14 +53,15 @@ Open an individual profile and click **ADD CURRENT PROFILE**. If the profile is 
 2. The extension navigates the current tab to each pending profile and scrolls the profile grid to collect post links.
 3. It reads the displayed post count, opens the options menu, and opens **About this account**.
 4. It visits each discovered post to read its published timestamp, then continues through the profile queue.
-5. When the queue finishes, it downloads `bot-account-info.html` automatically.
+5. When the queue finishes, it downloads `bot-account-info.json` automatically.
 
 Use **MARK CURRENT FOR REFRESH** to make an existing profile pending again. Use **STOP COLLECTION** to stop the queue; saved profiles and completed results remain intact.
 
 ### Export files
 
 - **EXPORT BOTS.MD** downloads the current profile URLs as `bots.md`.
-- **DOWNLOAD REPORT** downloads `bot-account-info.html` with links, usernames, bios, post counts and post dates, account location, join date, statuses, timestamps, and expandable captured text.
+- **DOWNLOAD DATA JSON** downloads the collected records as `bot-account-info.json`. Share this file when you only want to share the data.
+- **DOWNLOAD REPORT VIEWER** downloads the reusable `bot-account-info.html` viewer. Open it and choose the JSON file to display the records; the viewer does not contain the data.
 
 Post dates are collected by visiting the post pages in the logged-in tab, so collection takes longer for profiles with many posts. Dates may be unavailable for posts Instagram does not expose to the current session.
 

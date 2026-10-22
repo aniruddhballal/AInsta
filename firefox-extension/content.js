@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = "ainsta-profile-catalog-v2";
   const REPORT_NAME = "bot-account-info.html";
+  const DATA_NAME = "bot-account-info.json";
   const BOTS_FILE_NAME = "bots.md";
   const UI_MINIMIZED_KEY = "ainsta-panel-minimized";
   const UI_POSITION_KEY = "ainsta-panel-position";
@@ -393,28 +394,6 @@
     return resultFor(profile, "Collected", capturedProfile, about, "", postUrls);
   }
 
-  function escapeHtml(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-
-  function renderReport(state) {
-    const generated = new Date().toLocaleString();
-    const rows = state.profiles.map((profile, index) => {
-      const bio = escapeHtml(profile.bio).replace(/\n/g, "<br>");
-      const postDates = (profile.post_dates || []).map((item) => `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.url)}</a> — ${escapeHtml(item.date || NOT_SHOWN)}</li>`).join("");
-      const posts = `<details><summary>${(profile.post_dates || []).length} post dates</summary><ul>${postDates || "<li>No post dates collected.</li>"}</ul></details>`;
-      const captured = `<details><summary>Profile text</summary><pre>${escapeHtml(profile.profile_text || "No profile text captured.")}</pre></details><details><summary>About text</summary><pre>${escapeHtml(profile.about_text || "No About this account text captured.")}</pre></details>`;
-      return `<tr><td>${index + 1}</td><td><a href="${escapeHtml(profile.url)}" target="_blank" rel="noreferrer">${escapeHtml(profile.url)}</a></td><td>${escapeHtml(profile.username)}</td><td class="bio">${bio}</td><td>${escapeHtml(profile.posts_count || NOT_SHOWN)}</td><td>${posts}</td><td>${escapeHtml(profile.country)}</td><td>${escapeHtml(profile.date_joined)}</td><td>${escapeHtml(profile.status)}${profile.last_error ? `<br><small>${escapeHtml(profile.last_error)}</small>` : ""}</td><td>${escapeHtml(profile.added_at)}</td><td>${escapeHtml(profile.last_fetched_at || "Not fetched")}</td><td>${captured}</td></tr>`;
-    }).join("");
-
-    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Instagram Bot Account Information</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f5f7fb}body{margin:0;padding:2rem}main{max-width:1800px;margin:0 auto}h1{margin:0 0 .35rem}.meta{color:#536079;margin:0 0 1.25rem}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce2ee;border-radius:12px;box-shadow:0 4px 18px #1c2b4a12}table{width:100%;min-width:1900px;border-collapse:collapse}th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #e8ecf3}th{background:#eef2f8;color:#33415d;font-size:.9rem}tr:last-child td{border-bottom:0}a{color:#2457c5;word-break:break-all}.bio{white-space:pre-wrap;max-width:28rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;max-width:32rem}details{min-width:8rem;margin-bottom:.35rem}ul{padding-left:1.2rem;max-width:28rem}li{margin-bottom:.35rem}small{color:#8b1e1e}</style></head><body><main><h1>Instagram bot account information</h1><p class="meta">Generated: ${escapeHtml(generated)} | Rows: ${state.profiles.length} | Fields: Bio, Posts, post dates, Account based in, Date joined, Added, and Last fetched.</p><div class="table-wrap"><table><thead><tr><th>#</th><th>Account URL</th><th>Username</th><th>Bio</th><th>Posts</th><th>Post dates</th><th>Account based in</th><th>Date joined</th><th>Status</th><th>Added</th><th>Last fetched</th><th>Captured text</th></tr></thead><tbody>${rows}</tbody></table></div></main></body></html>`;
-  }
-
   function downloadFile(name, content, type) {
     const blob = new Blob([content], { type });
     const link = document.createElement("a");
@@ -426,8 +405,25 @@
     setTimeout(() => URL.revokeObjectURL(link.href), 5000);
   }
 
-  function downloadReport(state) {
-    downloadFile(REPORT_NAME, renderReport(state), "text/html;charset=utf-8");
+  function downloadReport() {
+    downloadFile(REPORT_NAME, renderReport(), "text/html;charset=utf-8");
+  }
+
+  function renderReport() {
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Instagram Bot Account Information</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f5f7fb}body{margin:0;padding:2rem}main{max-width:1800px;margin:0 auto}h1{margin:0 0 .35rem}.meta{color:#536079;margin:.6rem 0 1.25rem}.load{padding:1rem;background:#fff;border:1px solid #dce2ee;border-radius:12px;margin:1rem 0}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce2ee;border-radius:12px;box-shadow:0 4px 18px #1c2b4a12}table{width:100%;min-width:1900px;border-collapse:collapse}th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #e8ecf3}th{background:#eef2f8;color:#33415d;font-size:.9rem}tr:last-child td{border-bottom:0}a{color:#2457c5;word-break:break-all}.bio{white-space:pre-wrap;max-width:28rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;max-width:32rem}details{min-width:8rem;margin-bottom:.35rem}ul{padding-left:1.2rem;max-width:28rem}li{margin-bottom:.35rem}.error{color:#8b1e1e}</style></head><body><main><h1>Instagram bot account information</h1><section class="load"><label for="data-file">Choose bot-account-info.json:</label> <input id="data-file" type="file" accept=".json,application/json"><p>Each time you update the data, choose the latest JSON file here.</p></section><p id="meta" class="meta">No data loaded.</p><p id="error" class="error" role="alert"></p><div class="table-wrap"><table><thead><tr><th>#</th><th>Account URL</th><th>Username</th><th>Bio</th><th>Posts</th><th>Post dates</th><th>Account based in</th><th>Date joined</th><th>Status</th><th>Added</th><th>Last fetched</th><th>Captured text</th></tr></thead><tbody id="rows"></tbody></table></div></main><script>
+const input=document.getElementById("data-file"),rows=document.getElementById("rows"),meta=document.getElementById("meta"),error=document.getElementById("error");
+function cell(row,value,className){const td=document.createElement("td");td.textContent=value==null?"":String(value);if(className)td.className=className;row.appendChild(td);return td}
+function link(value){const a=document.createElement("a");a.textContent=value||"";try{const u=new URL(value);if(u.protocol==="https:"&&u.hostname==="www.instagram.com"){a.href=u.href;a.target="_blank";a.rel="noreferrer"}}catch(_){}return a}
+function details(summary,content){const d=document.createElement("details"),s=document.createElement("summary");s.textContent=summary;d.append(s,content);return d}
+function pre(value){const p=document.createElement("pre");p.textContent=value||"";return p}
+function render(data){if(!data||!Array.isArray(data.profiles))throw new Error("This JSON file does not contain a profiles list.");rows.replaceChildren();data.profiles.forEach((p,i)=>{const tr=document.createElement("tr");cell(tr,i+1);const urlCell=cell(tr,"");urlCell.appendChild(link(p.url));cell(tr,p.username);cell(tr,p.bio,"bio");cell(tr,p.posts_count);const postCell=cell(tr,"");const list=document.createElement("ul");(Array.isArray(p.post_dates)?p.post_dates:[]).forEach(item=>{const li=document.createElement("li");li.append(link(item.url),document.createTextNode(" — "+(item.date||"Not shown")));list.appendChild(li)});postCell.appendChild(details((p.post_dates||[]).length+" post dates",list));cell(tr,p.country);cell(tr,p.date_joined);const statusCell=cell(tr,"");statusCell.append(document.createTextNode(p.status||""));if(p.last_error){statusCell.appendChild(document.createElement("br"));const small=document.createElement("small");small.textContent=p.last_error;statusCell.appendChild(small)}cell(tr,p.added_at);cell(tr,p.last_fetched_at||"Not fetched");const captured=cell(tr,"");captured.append(details("Profile text",pre(p.profile_text||"No profile text captured.")),details("About text",pre(p.about_text||"No About this account text captured.")));rows.appendChild(tr)});meta.textContent="Generated: "+(data.generated_at||"Unknown")+" | Rows: "+data.profiles.length+" | Fields: Bio, Posts, post dates, Account based in, Date joined, Added, and Last fetched."}
+input.addEventListener("change",async()=>{error.textContent="";const file=input.files&&input.files[0];if(!file)return;try{render(JSON.parse(await file.text()))}catch(e){rows.replaceChildren();meta.textContent="No data loaded.";error.textContent="Could not read data file: "+e.message}});
+</script></body></html>`;
+  }
+
+  function downloadData(state) {
+    const data = { format: "ainsta-bot-account-info", version: 1, generated_at: now(), profiles: state.profiles };
+    downloadFile(DATA_NAME, `${JSON.stringify(data, null, 2)}\n`, "application/json;charset=utf-8");
   }
 
   function downloadBotsFile(state) {
@@ -633,8 +629,8 @@
       if (state.run.index >= state.run.queue.length) {
         state.run.active = false;
         writeState(state);
-        downloadReport(state);
-        updatePanel(`Finished. Downloaded ${REPORT_NAME}.`);
+        downloadData(state);
+        updatePanel(`Finished. Downloaded ${DATA_NAME}.`);
       } else {
         setTimeout(navigateToRunTarget, 0);
       }
@@ -682,8 +678,8 @@
         if (state.run.index >= state.run.queue.length) {
           state.run.active = false;
           writeState(state);
-          downloadReport(state);
-          updatePanel(`Finished. Downloaded ${REPORT_NAME}.`);
+          downloadData(state);
+          updatePanel(`Finished. Downloaded ${DATA_NAME}.`);
           return;
         }
         await sleep(650);
@@ -717,8 +713,8 @@
       if (state.run.phase === "profile" && state.run.index >= state.run.queue.length) {
         state.run.active = false;
         writeState(state);
-        downloadReport(state);
-        updatePanel(`Finished. Downloaded ${REPORT_NAME}.`);
+        downloadData(state);
+        updatePanel(`Finished. Downloaded ${DATA_NAME}.`);
         return;
       }
 
@@ -739,7 +735,7 @@
     if (document.getElementById("ainsta-collector-panel")) return;
     const panel = document.createElement("aside");
     panel.id = "ainsta-collector-panel";
-    panel.innerHTML = `<div data-header><strong>AINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT</button><button data-stop>STOP COLLECTION</button></div>`;
+    panel.innerHTML = `<div data-header><strong>AINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT VIEWER</button><button data-json>DOWNLOAD DATA JSON</button><button data-stop>STOP COLLECTION</button></div>`;
     Object.assign(panel.style, {
       position: "fixed", left: "16px", top: "16px", zIndex: "2147483647",
       width: "270px", padding: "13px", color: "#000000",
@@ -773,6 +769,7 @@
     setButtonStyle(panel.querySelector("[data-run]"), "#000000", "1px solid #000000");
     setButtonStyle(panel.querySelector("[data-export]"), "#ffffff", "1px solid #000000", "#000000");
     setButtonStyle(panel.querySelector("[data-report]"), "#ffffff", "1px solid #000000", "#000000");
+    setButtonStyle(panel.querySelector("[data-json]"), "#ffffff", "1px solid #000000", "#000000");
     setButtonStyle(panel.querySelector("[data-stop]"), "#ffffff", "1px solid #000000", "#000000");
     toggle.addEventListener("click", () => {
       if (panel.dataset.suppressToggleClick === "true") {
@@ -785,7 +782,8 @@
     panel.querySelector("[data-refresh]").addEventListener("click", refreshCurrentProfile);
     panel.querySelector("[data-run]").addEventListener("click", startRun);
     panel.querySelector("[data-export]").addEventListener("click", () => downloadBotsFile(readState()));
-    panel.querySelector("[data-report]").addEventListener("click", () => downloadReport(readState()));
+    panel.querySelector("[data-report]").addEventListener("click", () => downloadReport());
+    panel.querySelector("[data-json]").addEventListener("click", () => downloadData(readState()));
     panel.querySelector("[data-stop]").addEventListener("click", stopRun);
     document.documentElement.appendChild(panel);
     restorePanelPosition(panel);
