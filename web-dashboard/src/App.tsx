@@ -14,7 +14,7 @@ type Profile = {
 type Job = { id: string; kind: 'surface' | 'deep'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
 type Tab = 'master' | 'surface' | 'deep' | 'issues';
-type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'issues' | 'ignored';
+type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
 
 const API = '/api';
 const key = (profile: Profile) => profile.username.toLocaleLowerCase();
@@ -63,6 +63,8 @@ function App() {
     if (profile.ignored) return surfaceFilter === 'all';
     if (surfaceFilter === 'needs_surface') return !successful(profile);
     if (surfaceFilter === 'collected') return successful(profile);
+    if (surfaceFilter === 'collection_failed') return profile.status?.toLocaleLowerCase() === 'collection failed';
+    if (surfaceFilter === 'deleted_account') return profile.status?.toLocaleLowerCase() === 'deleted account';
     if (surfaceFilter === 'issues') return Boolean(profile.last_error || profile.collection_issues?.length || issues.some((issue) => issue.username?.toLocaleLowerCase() === key(profile)));
     return true;
   }), [visibleProfiles, surfaceFilter, issues]);
@@ -122,7 +124,7 @@ function App() {
     <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => { setTab(item.id); setSearch(''); }}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
     {!data ? <section className="empty">Connecting to the local account data…</section> : <>
       {tab === 'master' && <section>
-        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
+        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="collection_failed">Collection failed</option><option value="deleted_account">Deleted account</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
         <div className="selection-bar"><span><strong>{masterProfiles.length}</strong> visible <span className="count-separator" aria-hidden="true">·</span> <strong>{surfaceSelection.size}</strong> selected for surface analysis</span><button className="button primary" disabled={!surfaceSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('surface', surfaceSelection)}>Run surface analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
         <ProfileTable profiles={masterProfiles} mode="master" selection={surfaceSelection} onToggle={(username) => toggle(surfaceSelection, setSurfaceSelection, username)} onIgnore={(username, ignored) => void setIgnored(username, ignored)} />
         {!masterProfiles.length && <div className="empty">No profiles match the current search and status filter.</div>}
