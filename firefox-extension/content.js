@@ -97,6 +97,7 @@
       username: profile.username,
       added_at: timestamp,
       last_fetched_at: null,
+      ignored: false,
       status: "pending",
       last_error: "",
       bio: NOT_SHOWN,
@@ -175,7 +176,7 @@
   }
 
   function pendingProfiles(state) {
-    return state.profiles.filter((profile) => !profile.last_fetched_at || String(profile.status).toLocaleLowerCase() !== "collected");
+    return state.profiles.filter((profile) => !profile.ignored && (!profile.last_fetched_at || String(profile.status).toLocaleLowerCase() !== "collected"));
   }
 
   function visible(element) {
@@ -346,13 +347,37 @@
     return time ? new Date(time.dateTime || time.getAttribute("datetime")).toISOString() : NOT_SHOWN;
   }
 
+  function collectionIssue(profile, code, message, postUrl = "") {
+    return {
+      code,
+      message,
+      profile_url: profile.url,
+      post_url: postUrl || null,
+      occurred_at: now(),
+      recommended_action: "Use MARK CURRENT FOR REFRESH to retry, or IGNORE CURRENT PROFILE to exclude this profile from future runs."
+    };
+  }
+
   function resultFor(profile, status, capturedProfile = "", about = "", error = "", postUrls = []) {
+    const postsCount = extractPostsCount(capturedProfile);
+    const collectionIssues = [];
+    if (postsCount === NOT_SHOWN) {
+      collectionIssues.push(collectionIssue(profile, "POST_COUNT_UNAVAILABLE", "The displayed post count could not be identified in the profile header."));
+    }
+    if (status !== "Collected") {
+      const code = status === "Deleted account" ? "ACCOUNT_UNAVAILABLE" : "PROFILE_COLLECTION_FAILED";
+      collectionIssues.push(collectionIssue(profile, code, error || status));
+    }
+    if (postsCount !== NOT_SHOWN && !/^0(?:[.,]0+)?$/.test(postsCount) && postUrls.length === 0) {
+      collectionIssues.push(collectionIssue(profile, "POST_LINKS_UNAVAILABLE", "A post count was shown, but no post links were found while scrolling the profile."));
+    }
     return {
       bio: extractBio(capturedProfile, profile.username),
       country: extractLabelValue(about, "Account based in"),
       date_joined: extractLabelValue(about, "Date joined"),
-      posts_count: extractPostsCount(capturedProfile),
+      posts_count: postsCount,
       post_urls: postUrls,
+      collection_issues: collectionIssues,
       status,
       last_error: error,
       profile_text: capturedProfile,
@@ -410,19 +435,21 @@
   }
 
   function renderReport() {
-    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Instagram Bot Account Information</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f5f7fb}body{margin:0;padding:2rem}main{max-width:1800px;margin:0 auto}h1{margin:0 0 .35rem}.meta{color:#536079;margin:.6rem 0 1.25rem}.load{padding:1rem;background:#fff;border:1px solid #dce2ee;border-radius:12px;margin:1rem 0}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce2ee;border-radius:12px;box-shadow:0 4px 18px #1c2b4a12}table{width:100%;min-width:1900px;border-collapse:collapse}th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #e8ecf3}th{background:#eef2f8;color:#33415d;font-size:.9rem}tr:last-child td{border-bottom:0}a{color:#2457c5;word-break:break-all}.bio{white-space:pre-wrap;max-width:28rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;max-width:32rem}details{min-width:8rem;margin-bottom:.35rem}ul{padding-left:1.2rem;max-width:28rem}li{margin-bottom:.35rem}.error{color:#8b1e1e}</style></head><body><main><h1>Instagram bot account information</h1><section class="load"><label for="data-file">Choose bot-account-info.json:</label> <input id="data-file" type="file" accept=".json,application/json"><p>Each time you update the data, choose the latest JSON file here.</p></section><p id="meta" class="meta">No data loaded.</p><p id="error" class="error" role="alert"></p><div class="table-wrap"><table><thead><tr><th>#</th><th>Account URL</th><th>Username</th><th>Bio</th><th>Posts</th><th>Post dates</th><th>Account based in</th><th>Date joined</th><th>Status</th><th>Added</th><th>Last fetched</th><th>Captured text</th></tr></thead><tbody id="rows"></tbody></table></div></main><script>
-const input=document.getElementById("data-file"),rows=document.getElementById("rows"),meta=document.getElementById("meta"),error=document.getElementById("error");
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Instagram Bot Account Information</title><style>:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#172033;background:#f5f7fb}body{margin:0;padding:2rem}main{max-width:1800px;margin:0 auto}h1{margin:0 0 .35rem}.meta{color:#536079;margin:.6rem 0 1.25rem}.load,.issues{padding:1rem;background:#fff;border:1px solid #dce2ee;border-radius:12px;margin:1rem 0}.table-wrap{overflow-x:auto;background:#fff;border:1px solid #dce2ee;border-radius:12px;box-shadow:0 4px 18px #1c2b4a12}table{width:100%;min-width:1900px;border-collapse:collapse}th,td{padding:.75rem .9rem;text-align:left;vertical-align:top;border-bottom:1px solid #e8ecf3}th{background:#eef2f8;color:#33415d;font-size:.9rem}tr:last-child td{border-bottom:0}a{color:#2457c5;word-break:break-all}.bio{white-space:pre-wrap;max-width:28rem;overflow-wrap:anywhere}pre{white-space:pre-wrap;max-width:32rem}details{min-width:8rem;margin-bottom:.35rem}ul{padding-left:1.2rem;max-width:50rem}li{margin-bottom:.35rem}.error{color:#8b1e1e}</style></head><body><main><h1>Instagram bot account information</h1><section class="load"><label for="data-file">Choose bot-account-info.json:</label> <input id="data-file" type="file" accept=".json,application/json"><p>Choose the latest JSON export to view its records.</p></section><p id="meta" class="meta">No data loaded.</p><p id="error" class="error" role="alert"></p><section class="issues"><h2>Collection issues</h2><p id="issue-meta">No data loaded.</p><ul id="issues"></ul></section><div class="table-wrap"><table><thead><tr><th>#</th><th>Account URL</th><th>Username</th><th>Bio</th><th>Posts</th><th>Post dates</th><th>Account based in</th><th>Date joined</th><th>Status</th><th>Added</th><th>Last fetched</th><th>Captured text</th></tr></thead><tbody id="rows"></tbody></table></div></main><script>
+const input=document.getElementById("data-file"),rows=document.getElementById("rows"),meta=document.getElementById("meta"),error=document.getElementById("error"),issuesNode=document.getElementById("issues"),issueMeta=document.getElementById("issue-meta");
 function cell(row,value,className){const td=document.createElement("td");td.textContent=value==null?"":String(value);if(className)td.className=className;row.appendChild(td);return td}
 function link(value){const a=document.createElement("a");a.textContent=value||"";try{const u=new URL(value);if(u.protocol==="https:"&&u.hostname==="www.instagram.com"){a.href=u.href;a.target="_blank";a.rel="noreferrer"}}catch(_){}return a}
 function details(summary,content){const d=document.createElement("details"),s=document.createElement("summary");s.textContent=summary;d.append(s,content);return d}
 function pre(value){const p=document.createElement("pre");p.textContent=value||"";return p}
-function render(data){if(!data||!Array.isArray(data.profiles))throw new Error("This JSON file does not contain a profiles list.");rows.replaceChildren();data.profiles.forEach((p,i)=>{const tr=document.createElement("tr");cell(tr,i+1);const urlCell=cell(tr,"");urlCell.appendChild(link(p.url));cell(tr,p.username);cell(tr,p.bio,"bio");cell(tr,p.posts_count);const postCell=cell(tr,"");const list=document.createElement("ul");(Array.isArray(p.post_dates)?p.post_dates:[]).forEach(item=>{const li=document.createElement("li");li.append(link(item.url),document.createTextNode(" — "+(item.date||"Not shown")));list.appendChild(li)});postCell.appendChild(details((p.post_dates||[]).length+" post dates",list));cell(tr,p.country);cell(tr,p.date_joined);const statusCell=cell(tr,"");statusCell.append(document.createTextNode(p.status||""));if(p.last_error){statusCell.appendChild(document.createElement("br"));const small=document.createElement("small");small.textContent=p.last_error;statusCell.appendChild(small)}cell(tr,p.added_at);cell(tr,p.last_fetched_at||"Not fetched");const captured=cell(tr,"");captured.append(details("Profile text",pre(p.profile_text||"No profile text captured.")),details("About text",pre(p.about_text||"No About this account text captured.")));rows.appendChild(tr)});meta.textContent="Generated: "+(data.generated_at||"Unknown")+" | Rows: "+data.profiles.length+" | Fields: Bio, Posts, post dates, Account based in, Date joined, Added, and Last fetched."}
-input.addEventListener("change",async()=>{error.textContent="";const file=input.files&&input.files[0];if(!file)return;try{render(JSON.parse(await file.text()))}catch(e){rows.replaceChildren();meta.textContent="No data loaded.";error.textContent="Could not read data file: "+e.message}});
+function render(data){if(!data||!Array.isArray(data.profiles))throw new Error("This JSON file does not contain a profiles list.");rows.replaceChildren();data.profiles.forEach((p,i)=>{const tr=document.createElement("tr");cell(tr,i+1);const urlCell=cell(tr,"");urlCell.appendChild(link(p.url));cell(tr,p.username);cell(tr,p.bio,"bio");cell(tr,p.posts_count);const postCell=cell(tr,"");const list=document.createElement("ul");(Array.isArray(p.post_dates)?p.post_dates:[]).forEach(item=>{const li=document.createElement("li");li.append(link(item.url),document.createTextNode(" - "+(item.date||"Not shown")));list.appendChild(li)});postCell.appendChild(details((p.post_dates||[]).length+" post dates",list));cell(tr,p.country);cell(tr,p.date_joined);const statusCell=cell(tr,"");statusCell.append(document.createTextNode((p.status||"")+(p.ignored?" (ignored)":"")));if(p.last_error){statusCell.appendChild(document.createElement("br"));const small=document.createElement("small");small.textContent=p.last_error;statusCell.appendChild(small)}cell(tr,p.added_at);cell(tr,p.last_fetched_at||"Not fetched");const captured=cell(tr,"");captured.append(details("Profile text",pre(p.profile_text||"No profile text captured.")),details("About text",pre(p.about_text||"No About this account text captured.")));rows.appendChild(tr)});const issues=Array.isArray(data.issues)?data.issues:data.profiles.reduce((all,p)=>all.concat((p.collection_issues||[]).map(issue=>Object.assign({username:p.username},issue))),[]);issuesNode.replaceChildren();issueMeta.textContent=issues.length?issues.length+" issue(s) found. Review each entry and refresh or ignore the affected profile.":"No collection issues recorded.";issues.forEach(issue=>{const li=document.createElement("li");li.append(document.createTextNode((issue.username?"@"+issue.username:"Profile")+" - "+(issue.code||"Issue")+": "+(issue.message||"Details unavailable.")));if(issue.profile_url)li.append(document.createTextNode(" "),link(issue.profile_url));if(issue.post_url)li.append(document.createTextNode(" | Post: "),link(issue.post_url));if(issue.recommended_action)li.append(document.createTextNode(" | "+issue.recommended_action));issuesNode.appendChild(li)});meta.textContent="Generated: "+(data.generated_at||"Unknown")+" | Rows: "+data.profiles.length+" | Issues: "+issues.length+" | Fields: Bio, Posts, post dates, Account based in, Date joined, Added, and Last fetched."}
+input.addEventListener("change",async()=>{error.textContent="";const file=input.files&&input.files[0];if(!file)return;try{render(JSON.parse(await file.text()))}catch(e){rows.replaceChildren();issuesNode.replaceChildren();meta.textContent="No data loaded.";issueMeta.textContent="No data loaded.";error.textContent="Could not read data file: "+e.message}});
 </script></body></html>`;
   }
-
   function downloadData(state) {
-    const data = { format: "ainsta-bot-account-info", version: 1, generated_at: now(), profiles: state.profiles };
+    const issues = state.profiles.reduce((all, profile) => all.concat(
+      (profile.collection_issues || []).map((issue) => ({ ...issue, username: profile.username }))
+    ), []);
+    const data = { format: "ainsta-bot-account-info", version: 1, generated_at: now(), profiles: state.profiles, issues };
     downloadFile(DATA_NAME, `${JSON.stringify(data, null, 2)}\n`, "application/json;charset=utf-8");
   }
 
@@ -588,11 +615,23 @@ input.addEventListener("change",async()=>{error.textContent="";const file=input.
     const state = readState();
     const profile = current && findProfile(state, current.key);
     if (!profile) return updatePanel("Save this profile before marking it for refresh.");
+    profile.ignored = false;
     profile.last_fetched_at = null;
     profile.status = "pending";
     profile.last_error = "";
     writeState(state);
     updatePanel(`@${profile.username} is marked for refresh.`);
+  }
+
+  function ignoreCurrentProfile() {
+    const current = currentProfile();
+    const state = readState();
+    const profile = current && findProfile(state, current.key);
+    if (!profile) return updatePanel("Save this profile before ignoring it.");
+    if (state.run && state.run.active) return updatePanel("Stop the active run before ignoring a profile.");
+    profile.ignored = true;
+    writeState(state);
+    updatePanel(`@${profile.username} will be skipped in future runs. Mark it for refresh to include it again.`);
   }
 
   function startRun() {
@@ -666,6 +705,10 @@ input.addEventListener("change",async()=>{error.textContent="";const file=input.
         const saved = findProfile(state, expectedKey);
         saved.post_dates = saved.post_dates || [];
         saved.post_dates.push({ url: expectedUrl, date });
+        if (date === NOT_SHOWN) {
+          saved.collection_issues = saved.collection_issues || [];
+          saved.collection_issues.push(collectionIssue(saved, "POST_DATE_UNAVAILABLE", "Instagram did not expose a readable published timestamp for this post.", expectedUrl));
+        }
         state.run.post_index += 1;
         if (state.run.post_index >= (saved.post_urls || []).length) {
           state.run.phase = "profile";
@@ -725,7 +768,54 @@ input.addEventListener("change",async()=>{error.textContent="";const file=input.
       await sleep(900);
       navigateToRunTarget();
     } catch (error) {
-      updatePanel(`Collector error: ${error.message || error}`);
+      const message = error && error.message ? error.message : String(error);
+      const state = readState();
+      if (state.run && state.run.active) {
+        const key = state.run.queue[state.run.index];
+        const saved = findProfile(state, key);
+        if (saved) {
+          if (state.run.phase === "posts") {
+            const postUrl = (saved.post_urls || [])[state.run.post_index];
+            saved.post_dates = saved.post_dates || [];
+            if (postUrl) {
+              saved.post_dates.push({ url: postUrl, date: NOT_SHOWN });
+              saved.collection_issues = saved.collection_issues || [];
+              saved.collection_issues.push(collectionIssue(saved, "POST_DATE_READ_ERROR", message, postUrl));
+            }
+            state.run.post_index += 1;
+            if (state.run.post_index >= (saved.post_urls || []).length) {
+              state.run.phase = "profile";
+              state.run.post_index = 0;
+              state.run.index += 1;
+              if (saved.status === "Collected") saved.last_fetched_at = now();
+              delete saved.post_urls;
+            }
+          } else {
+            saved.collection_issues = saved.collection_issues || [];
+            saved.collection_issues.push(collectionIssue(saved, "PROFILE_READ_ERROR", message));
+            saved.status = "Collection error";
+            saved.last_error = message;
+            saved.last_fetched_at = null;
+            delete saved.post_urls;
+            state.run.phase = "profile";
+            state.run.index += 1;
+          }
+          writeState(state);
+          if (state.run.index >= state.run.queue.length) {
+            state.run.active = false;
+            writeState(state);
+            downloadData(state);
+            updatePanel(`Finished with issues. Downloaded ${DATA_NAME}.`);
+          } else {
+            updatePanel(`Logged an issue for @${saved.username}; continuing the queue…`);
+            setTimeout(navigateToRunTarget, 650);
+          }
+        } else {
+          updatePanel(`Collector error: ${message}`);
+        }
+      } else {
+        updatePanel(`Collector error: ${message}`);
+      }
     } finally {
       window.__ainstaCollectorRunning = false;
     }
@@ -735,7 +825,7 @@ input.addEventListener("change",async()=>{error.textContent="";const file=input.
     if (document.getElementById("ainsta-collector-panel")) return;
     const panel = document.createElement("aside");
     panel.id = "ainsta-collector-panel";
-    panel.innerHTML = `<div data-header><strong>AINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT VIEWER</button><button data-json>DOWNLOAD DATA JSON</button><button data-stop>STOP COLLECTION</button></div>`;
+    panel.innerHTML = `<div data-header><strong>AINSTA COLLECTOR</strong><button data-toggle>MINIMIZE</button></div><div data-body><span data-current>Open a profile to add it</span><span data-count></span><span data-status>Ready</span><button data-add>ADD CURRENT PROFILE</button><button data-refresh>MARK CURRENT FOR REFRESH</button><button data-ignore>IGNORE CURRENT PROFILE</button><button data-run>RUN PENDING PROFILES</button><button data-export>EXPORT BOTS.MD</button><button data-report>DOWNLOAD REPORT VIEWER</button><button data-json>DOWNLOAD DATA JSON</button><button data-stop>STOP COLLECTION</button></div>`;
     Object.assign(panel.style, {
       position: "fixed", left: "16px", top: "16px", zIndex: "2147483647",
       width: "270px", padding: "13px", color: "#000000",
@@ -766,6 +856,7 @@ input.addEventListener("change",async()=>{error.textContent="";const file=input.
     });
     setButtonStyle(panel.querySelector("[data-add]"), "#000000", "1px solid #000000");
     setButtonStyle(panel.querySelector("[data-refresh]"), "#ffffff", "1px solid #000000", "#000000");
+    setButtonStyle(panel.querySelector("[data-ignore]"), "#ffffff", "1px solid #000000", "#000000");
     setButtonStyle(panel.querySelector("[data-run]"), "#000000", "1px solid #000000");
     setButtonStyle(panel.querySelector("[data-export]"), "#ffffff", "1px solid #000000", "#000000");
     setButtonStyle(panel.querySelector("[data-report]"), "#ffffff", "1px solid #000000", "#000000");
@@ -780,6 +871,7 @@ input.addEventListener("change",async()=>{error.textContent="";const file=input.
     });
     panel.querySelector("[data-add]").addEventListener("click", addCurrentProfile);
     panel.querySelector("[data-refresh]").addEventListener("click", refreshCurrentProfile);
+    panel.querySelector("[data-ignore]").addEventListener("click", ignoreCurrentProfile);
     panel.querySelector("[data-run]").addEventListener("click", startRun);
     panel.querySelector("[data-export]").addEventListener("click", () => downloadBotsFile(readState()));
     panel.querySelector("[data-report]").addEventListener("click", () => downloadReport());

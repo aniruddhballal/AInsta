@@ -24,6 +24,9 @@ This temporary Firefox extension maintains a persistent, deduplicated Instagram 
   - raw About this account text
   - status, error, added time, and last-fetched time
 - Downloads the collected catalog as UTF-8 `bot-account-info.json` automatically when a pending run finishes; captions and bios stay as JSON strings, separate from the report viewer.
+- Records missing post counts, unreadable post dates, unavailable accounts, and collection errors in each profile's `collection_issues` list and the JSON file's top-level `issues` list.
+- Continues the queue after a collection issue and shows the logged issues in the HTML viewer.
+- Lets you ignore a saved profile so future runs skip it; marking it for refresh includes it again.
 - Exports the current deduplicated profile URLs as `bots.md`.
 - Downloads the reusable HTML report viewer on demand.
 - Stops a collection run without deleting profiles or already-collected data.
@@ -62,6 +65,8 @@ Use **MARK CURRENT FOR REFRESH** to make an existing profile pending again. Use 
 - **EXPORT BOTS.MD** downloads the current profile URLs as `bots.md`.
 - **DOWNLOAD DATA JSON** downloads the collected records as `bot-account-info.json`. Share this file when you only want to share the data.
 - **DOWNLOAD REPORT VIEWER** downloads the reusable `bot-account-info.html` viewer. Open it and choose the JSON file to display the records; the viewer does not contain the data.
+
+Review the viewer's **Collection issues** section to find profiles or posts that need attention. Each issue includes a code, message, affected profile or post URL, time, and suggested next step. On the affected profile, click **MARK CURRENT FOR REFRESH** to retry it or **IGNORE CURRENT PROFILE** to skip it in future runs. Marking an ignored profile for refresh includes it again.
 
 Post dates are collected by visiting the post pages in the logged-in tab, so collection takes longer for profiles with many posts. Dates may be unavailable for posts Instagram does not expose to the current session.
 
