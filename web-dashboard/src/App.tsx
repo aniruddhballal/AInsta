@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Activity, ArrowRight, ArrowUpRight, Circle, CircleAlert, CircleCheck, Database, Search, X } from 'lucide-react';
+import { Activity, ArrowRight, ArrowUpRight, Circle, CircleAlert, CircleCheck, Database, ListFilter, Search, X } from 'lucide-react';
 
 type PostDate = { url: string; date: string };
 type Issue = { id?: string; username?: string; profile_url?: string; post_url?: string; code?: string; message?: string; occurred_at?: string; recommended_action?: string };
@@ -14,6 +14,7 @@ type Profile = {
 type Job = { id: string; kind: 'surface' | 'deep'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
 type Tab = 'master' | 'surface' | 'deep' | 'issues';
+type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'issues' | 'ignored';
 
 const API = '/api';
 const key = (profile: Profile) => profile.username.toLocaleLowerCase();
@@ -37,6 +38,7 @@ function App() {
   const [data, setData] = useState<Data | null>(null);
   const [tab, setTab] = useState<Tab>('master');
   const [search, setSearch] = useState('');
+  const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>('all');
   const [surfaceSelection, setSurfaceSelection] = useState<Set<string>>(new Set());
   const [deepSelection, setDeepSelection] = useState<Set<string>>(new Set());
   const [busy, setBusy] = useState(false);
@@ -54,9 +56,17 @@ function App() {
     const needle = search.trim().toLocaleLowerCase();
     return profiles.filter((profile) => !needle || [profile.username, profile.url, profile.bio, profile.country].some((value) => String(value || '').toLocaleLowerCase().includes(needle)));
   }, [profiles, search]);
-  const readyForDeep = profiles.filter(successful);
   const activeJob = data?.workflow?.active_job || null;
   const issues = data?.issues || profiles.flatMap((profile) => (profile.collection_issues || []).map((issue) => ({ ...issue, username: issue.username || profile.username })));
+  const masterProfiles = useMemo(() => visibleProfiles.filter((profile) => {
+    if (surfaceFilter === 'ignored') return Boolean(profile.ignored);
+    if (profile.ignored) return surfaceFilter === 'all';
+    if (surfaceFilter === 'needs_surface') return !successful(profile);
+    if (surfaceFilter === 'collected') return successful(profile);
+    if (surfaceFilter === 'issues') return Boolean(profile.last_error || profile.collection_issues?.length || issues.some((issue) => issue.username?.toLocaleLowerCase() === key(profile)));
+    return true;
+  }), [visibleProfiles, surfaceFilter, issues]);
+  const readyForDeep = profiles.filter(successful);
   const doneCount = activeJob ? Math.min(activeJob.index, activeJob.profile_keys.length) : 0;
 
   function toggle(selection: Set<string>, setter: (next: Set<string>) => void, username: string) {
@@ -112,10 +122,10 @@ function App() {
     <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => { setTab(item.id); setSearch(''); }}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
     {!data ? <section className="empty">Connecting to the local account data…</section> : <>
       {tab === 'master' && <section>
-        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, visibleProfiles.filter((profile) => !profile.ignored))}>{visibleProfiles.some((profile) => !profile.ignored) && visibleProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
+        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
         <div className="selection-bar"><span><strong>{surfaceSelection.size}</strong> selected for surface analysis</span><button className="button primary" disabled={!surfaceSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('surface', surfaceSelection)}>Run surface analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
-        <ProfileTable profiles={visibleProfiles} mode="master" selection={surfaceSelection} onToggle={(username) => toggle(surfaceSelection, setSurfaceSelection, username)} onIgnore={(username, ignored) => void setIgnored(username, ignored)} />
-        {!visibleProfiles.length && <div className="empty">No profiles match “{search}”.</div>}
+        <ProfileTable profiles={masterProfiles} mode="master" selection={surfaceSelection} onToggle={(username) => toggle(surfaceSelection, setSurfaceSelection, username)} onIgnore={(username, ignored) => void setIgnored(username, ignored)} />
+        {!masterProfiles.length && <div className="empty">No profiles match the current search and status filter.</div>}
       </section>}
       {tab === 'surface' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label><span className="helper">Select completed profiles to collect post dates.</span></div>

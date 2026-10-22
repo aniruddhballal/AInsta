@@ -32,6 +32,11 @@
 .issue-icon svg{width:15px;height:15px;stroke-width:1.7}
 .issue-head span{color:#666660;background:#f4f4f1}
 .alert{border-color:#deded9;background:#f2f2ef;color:#343430;border-radius:4px}
+.filter-select{height:46px;display:flex;align-items:center;gap:9px;padding:0 11px;border:1px solid var(--line);background:#fff;border-radius:4px;color:#777;white-space:nowrap}
+.filter-icon{flex:none}
+.filter-select select{max-width:190px;border:0;outline:none;background:transparent;color:#343430;font:inherit;font-size:14px;cursor:pointer}
+.filter-select:focus-within{border-color:#bdbdb7;box-shadow:0 0 0 2px #1717170a}
+@media(max-width:780px){.filter-select{flex:1}.filter-select select{max-width:none;width:100%}}
 @media(max-width:780px){.shell{padding:0 20px}.topbar{height:64px}.intro{padding:34px 0 25px}.intro h1{font-size:29px}.tabs{gap:19px}.tab{font-size:11px}.toolbar{align-items:stretch;flex-wrap:wrap}.toolbar .search{max-width:none;flex-basis:100%}.helper{padding:3px 1px}.selection-bar{gap:10px;align-items:flex-start}.selection-bar .button{height:auto;min-height:36px}.table-wrap{margin-right:-1px}footer{gap:14px;line-height:1.5;flex-wrap:wrap}.connection{font-size:8px}.connection i{width:6px;height:6px}}
 @media(max-width:460px){.shell{padding:0 14px}.intro{align-items:flex-end}.lede{max-width:250px;line-height:1.5}.metric strong{font-size:25px}.selection-bar{font-size:10px}.selection-bar .button{font-size:9px;padding:0 9px}.issue{padding:12px;gap:8px;flex-wrap:wrap}.issue-links{padding-left:30px}}
 
