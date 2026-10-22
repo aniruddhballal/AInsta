@@ -15,6 +15,12 @@ const host = '127.0.0.1';
 const now = () => new Date().toISOString();
 const keyOf = (profile) => String(profile?.normalized_username || profile?.username || '').trim().toLocaleLowerCase();
 const isSurfaceComplete = (p) => Boolean(p?.last_fetched_at) && String(p.status || '').toLocaleLowerCase() === 'collected';
+function isoTimestamp(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const numeric = typeof value === 'number' || /^\d{10,13}$/.test(String(value).trim());
+  const date = new Date(numeric ? Number(value) : value);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
+}
 
 async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
@@ -36,10 +42,17 @@ async function loadData() {
   if (!Array.isArray(data.issues) || (!data.issues.length && legacyIssues.length)) { data.issues = legacyIssues; changed = true; }
   if (!data.workflow) { data.workflow = { active_job: null, recent_jobs: [] }; changed = true; }
   if (!Array.isArray(data.workflow.recent_jobs)) { data.workflow.recent_jobs = []; changed = true; }
+  for (const profile of data.profiles) {
+    for (const field of ['added_at', 'last_fetched_at', 'catalog_first_seen_at']) {
+      const normalized = isoTimestamp(profile[field]);
+      if (normalized && normalized !== profile[field]) { profile[field] = normalized; changed = true; }
+    }
+  }
   const byKey = new Map(data.profiles.map((profile) => [keyOf(profile), profile]));
   for (const entry of catalog.profiles || []) {
     const key = keyOf(entry);
     if (!key || byKey.has(key)) continue;
+    const firstSeenAt = isoTimestamp(entry.first_seen_at) || now();
     const profile = {
       url: `https://www.instagram.com/${encodeURIComponent(entry.username)}/`,
       username: entry.username,
@@ -51,12 +64,12 @@ async function loadData() {
       status: 'Pending',
       ignored: false,
       last_error: '',
-      added_at: entry.first_seen_at || now(),
+      added_at: firstSeenAt,
       last_fetched_at: null,
       profile_text: '',
       about_text: '',
       collection_issues: [],
-      catalog_first_seen_at: entry.first_seen_at || null
+      catalog_first_seen_at: firstSeenAt
     };
     data.profiles.push(profile);
     byKey.set(key, profile);

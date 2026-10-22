@@ -18,7 +18,12 @@ const API = '/api';
 const key = (profile: Profile) => profile.username.toLocaleLowerCase();
 const text = (value: unknown) => value == null || value === '' ? '—' : String(value);
 const successful = (profile: Profile) => Boolean(profile.last_fetched_at) && profile.status?.toLocaleLowerCase() === 'collected';
-const fmt = (value?: string | null) => value ? new Date(value).toLocaleString() : '—';
+const fmt = (value?: string | number | null) => {
+  if (value == null || value === '') return '—';
+  const numeric = typeof value === 'number' || /^\d{10,13}$/.test(String(value).trim());
+  const date = new Date(numeric ? Number(value) : value);
+  return Number.isNaN(date.getTime()) ? String(value) : date.toLocaleString();
+};
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API}${path}`, { ...init, headers: { 'Content-Type': 'application/json', ...init?.headers } });
