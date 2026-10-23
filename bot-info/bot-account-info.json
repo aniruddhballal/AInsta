@@ -1,7 +1,7 @@
 {
   "format": "dedgram-bot-account-info",
   "version": 1,
-  "generated_at": "2026-10-23T05:35:08.331Z",
+  "generated_at": "2026-10-23T06:18:53.304Z",
   "profiles": [
     {
       "url": "https://www.instagram.com/not.your.ordinary.nga/",
@@ -991,11 +991,24 @@
       "last_fetched_at": "2026-10-22T16:22:40.979Z",
       "profile_text": "edlt.shox\n🗽\n0 posts\n20.7K followers\n0 following\nReel creator • \nAI-generated profile\n③ 魔王軍との全面戦争を繰り広げる！『勇者伝説 公式\nInstagramです！TVアニメ『聖剣のレガリア』放送中！\n『劇場版特別編』デジタル配信/ブルーレイ＆DVD\n発売中\nFollow",
       "about_text": "About this account\nedlt.shox\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nTajikistan\nFormer usernames\n13",
-      "collection_issues": [],
+      "collection_issues": [
+        {
+          "id": "0f3a8ab9-2aab-4145-b5ae-5b620dbc79c4",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_LIST_INCOMPLETE",
+          "message": "The previous reel details scan found zero reel links despite the saved reel count of 76. The scan was incomplete; reload the updated Firefox add-on and retry.",
+          "occurred_at": "2026-10-23T06:18:51.772Z",
+          "recommended_action": "Reload the updated Firefox add-on, then retry the reel details scan for this profile."
+        }
+      ],
       "catalog_first_seen_at": "2026-10-18T01:41:00.223Z",
       "reels_count_last_attempt_at": "2026-10-23T05:35:06.794Z",
       "reels_count_status": "Complete",
-      "reels_count": 76
+      "reels_count": 76,
+      "reel_records": [],
+      "reels_data_last_fetched_at": "2026-10-23T06:18:51.772Z",
+      "reels_data_status": "Incomplete"
     },
     {
       "url": "https://www.instagram.com/anngry_birrds/",
@@ -2722,11 +2735,60 @@
       "message": "No post links were found while scrolling this profile.",
       "occurred_at": "2026-10-23T02:59:35.814Z",
       "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "0f3a8ab9-2aab-4145-b5ae-5b620dbc79c4",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_LIST_INCOMPLETE",
+      "message": "The previous reel details scan found zero reel links despite the saved reel count of 76. The scan was incomplete; reload the updated Firefox add-on and retry.",
+      "occurred_at": "2026-10-23T06:18:51.772Z",
+      "recommended_action": "Reload the updated Firefox add-on, then retry the reel details scan for this profile."
     }
   ],
   "workflow": {
     "active_job": null,
     "recent_jobs": [
+      {
+        "id": "66fee9b2-bca2-4551-a5ec-56253de1a1b9",
+        "kind": "reel_content",
+        "status": "completed",
+        "profile_keys": [
+          "edlt.shox"
+        ],
+        "index": 1,
+        "stage": "reel_content_profile",
+        "post_urls": [],
+        "post_index": 0,
+        "content_urls": [],
+        "content_index": 0,
+        "content_scan_complete": false,
+        "content_has_errors": false,
+        "started_at": "2026-10-23T06:18:31.188Z",
+        "updated_at": "2026-10-23T06:18:53.304Z",
+        "completed_at": "2026-10-23T06:18:53.304Z",
+        "last_activity_at": "2026-10-23T06:18:32.235Z"
+      },
+      {
+        "id": "0e6009c3-f5f9-4321-82b5-bd59d0eac50f",
+        "kind": "reel_content",
+        "status": "completed",
+        "profile_keys": [
+          "edlt.shox"
+        ],
+        "index": 1,
+        "stage": "reel_content_profile",
+        "post_urls": [],
+        "post_index": 0,
+        "content_urls": [],
+        "content_index": 0,
+        "content_scan_complete": false,
+        "content_has_errors": false,
+        "started_at": "2026-10-23T06:06:15.759Z",
+        "updated_at": "2026-10-23T06:06:37.491Z",
+        "completed_at": "2026-10-23T06:06:37.491Z",
+        "last_activity_at": "2026-10-23T06:06:17.226Z"
+      },
       {
         "id": "ef21f4ea-73d1-4e09-918f-d9bbf12ecd6a",
         "kind": "reels_count",

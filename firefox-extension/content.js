@@ -252,7 +252,9 @@
         if (kind === 'post' && /^\/(?:p|tv)\/[^/]+\/?$/.test(url.pathname)) {
           urls.add(`https://www.instagram.com${url.pathname}`);
         } else if (kind === 'reel') {
-          const match = url.pathname.match(/^\/(?:[^/]+\/reels\/|reel\/)([^/]+)\/?$/);
+          // Instagram exposes reel tiles as both /reel/<id>/ and
+          // /<username>/reel/<id>/ (the latter was missed by the old matcher).
+          const match = url.pathname.match(/^\/(?:[^/]+\/reels?\/|reel\/)([^/]+)\/?$/);
           if (match) urls.add(`https://www.instagram.com/reel/${encodeURIComponent(decodeURIComponent(match[1]))}/`);
         }
       } catch (_error) { /* Ignore invalid links. */ }
@@ -299,7 +301,9 @@
       else stablePasses = 0;
       if (stablePasses >= 5) { reachedEnd = true; break; }
     }
-    const complete = !error && (reachedEnd || (urls.size === 0 && emptyState));
+    // Reaching the bottom with zero links is not proof of an empty account:
+    // a changed Instagram URL shape or failed grid render can also cause it.
+    const complete = !error && ((reachedEnd && urls.size > 0) || emptyState);
     return {
       content_urls: [...urls], complete,
       error: error || (!complete ? 'Scrolling stopped before Instagram confirmed the end of the content list.' : '')
