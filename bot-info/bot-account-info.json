@@ -1,7 +1,7 @@
 {
   "format": "dedgram-bot-account-info",
   "version": 1,
-  "generated_at": "2026-10-23T02:59:37.391Z",
+  "generated_at": "2026-10-23T05:29:34.600Z",
   "profiles": [
     {
       "url": "https://www.instagram.com/not.your.ordinary.nga/",
@@ -991,8 +991,29 @@
       "last_fetched_at": "2026-10-22T16:22:40.979Z",
       "profile_text": "edlt.shox\n🗽\n0 posts\n20.7K followers\n0 following\nReel creator • \nAI-generated profile\n③ 魔王軍との全面戦争を繰り広げる！『勇者伝説 公式\nInstagramです！TVアニメ『聖剣のレガリア』放送中！\n『劇場版特別編』デジタル配信/ブルーレイ＆DVD\n発売中\nFollow",
       "about_text": "About this account\nedlt.shox\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nTajikistan\nFormer usernames\n13",
-      "collection_issues": [],
-      "catalog_first_seen_at": "2026-10-18T01:41:00.223Z"
+      "collection_issues": [
+        {
+          "id": "5165c9d1-a398-4447-98c3-ae680f74069e",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REELS_COUNT_SCAN_INCOMPLETE",
+          "message": "Instagram did not stay on the profile Reels tab.",
+          "occurred_at": "2026-10-23T05:28:13.959Z",
+          "recommended_action": "Review the Reels tab for loading or access errors, then retry the reel count scan."
+        },
+        {
+          "id": "29b6726b-161a-43b5-95a2-bc16187324c6",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REELS_COUNT_SCAN_INCOMPLETE",
+          "message": "No reel links loaded and Instagram did not show a clear empty state.",
+          "occurred_at": "2026-10-23T05:29:33.068Z",
+          "recommended_action": "Review the Reels tab for loading or access errors, then retry the reel count scan."
+        }
+      ],
+      "catalog_first_seen_at": "2026-10-18T01:41:00.223Z",
+      "reels_count_last_attempt_at": "2026-10-23T05:29:33.068Z",
+      "reels_count_status": "Incomplete"
     },
     {
       "url": "https://www.instagram.com/anngry_birrds/",
@@ -2719,11 +2740,61 @@
       "message": "No post links were found while scrolling this profile.",
       "occurred_at": "2026-10-23T02:59:35.814Z",
       "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "5165c9d1-a398-4447-98c3-ae680f74069e",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REELS_COUNT_SCAN_INCOMPLETE",
+      "message": "Instagram did not stay on the profile Reels tab.",
+      "occurred_at": "2026-10-23T05:28:13.959Z",
+      "recommended_action": "Review the Reels tab for loading or access errors, then retry the reel count scan."
+    },
+    {
+      "id": "29b6726b-161a-43b5-95a2-bc16187324c6",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REELS_COUNT_SCAN_INCOMPLETE",
+      "message": "No reel links loaded and Instagram did not show a clear empty state.",
+      "occurred_at": "2026-10-23T05:29:33.068Z",
+      "recommended_action": "Review the Reels tab for loading or access errors, then retry the reel count scan."
     }
   ],
   "workflow": {
     "active_job": null,
     "recent_jobs": [
+      {
+        "id": "9202d036-13b1-4bc5-905a-188d28d9e199",
+        "kind": "reels_count",
+        "status": "completed",
+        "profile_keys": [
+          "edlt.shox"
+        ],
+        "index": 1,
+        "stage": "reels_count",
+        "post_urls": [],
+        "post_index": 0,
+        "started_at": "2026-10-23T05:29:09.680Z",
+        "updated_at": "2026-10-23T05:29:34.600Z",
+        "completed_at": "2026-10-23T05:29:34.600Z",
+        "last_activity_at": "2026-10-23T05:29:10.753Z"
+      },
+      {
+        "id": "920ad03a-4a58-4e24-a26b-144fd4482d9a",
+        "kind": "reels_count",
+        "status": "completed",
+        "profile_keys": [
+          "edlt.shox"
+        ],
+        "index": 1,
+        "stage": "reels_count",
+        "post_urls": [],
+        "post_index": 0,
+        "started_at": "2026-10-23T05:28:10.465Z",
+        "updated_at": "2026-10-23T05:28:15.577Z",
+        "completed_at": "2026-10-23T05:28:15.577Z",
+        "last_activity_at": "2026-10-23T05:28:11.888Z"
+      },
       {
         "id": "62b05e62-c0b0-4cdd-8fb2-62315c83ff7c",
         "kind": "deep",
