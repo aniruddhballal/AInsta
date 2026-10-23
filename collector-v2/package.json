@@ -1,0 +1,15 @@
+{
+  "name": "dedgram-collector-v2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "login": "node src/cli.mjs login",
+    "collect": "node src/cli.mjs collect",
+    "status": "node src/cli.mjs status",
+    "report": "node src/cli.mjs report",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}
