@@ -1,7 +1,7 @@
 {
   "username": "goofybara777",
   "url": "https://www.instagram.com/goofybara777/",
-  "fetched_at": "2026-10-23T10:22:26.926Z",
+  "fetched_at": "2026-10-23T15:01:24.463Z",
   "display_name": "Goofybara",
   "bio": "If you love cats, you belong here 😻🐈♥️\nFollow for daily cuteness 🐾\nwww.instagram.com/goofybara777",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 26872,
-    "raw": "26,872",
+    "value": 26895,
+    "raw": "26,895",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 26872,
-        "raw": "26,872",
+        "value": 26895,
+        "raw": "26,895",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/806784720_18101098130093284_5170595210887361990_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NDEuQzMifQ%3D%3D&_nc_ohc=7JMbq9mWGK8Q7kNvwFIHZy9&_nc_oc=AdrMd8qvW5ssr5jmubOaODcOCzYMudvz3k7ESj5L77YnsCE-uOFJh8GY6k05x6tirejCa2YeBGp-aQsKjLO2xwfE&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=kOD8Pht_9LoC4ZeYWwdOQA&_nc_ss=7f6a8&oh=00_AQPenfDQuD9SDSo1XYP-DVio-5o0jhl2rTztO8gDx7AGzw&oe=6AE117F9",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/806784720_18101098130093284_5170595210887361990_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NDEuQzMifQ%3D%3D&_nc_ohc=7JMbq9mWGK8Q7kNvwFBvimf&_nc_oc=AdrY_KzKq6pJteynqgFLESf4FD0FARFsI8lbPwRUhsoNnIGdPIp4HI-0K1CzJQyt6dcRH2lvpwh_JKjybNfM0x2b&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=dRpBmgbMx272O5CMiIvi-g&_nc_ss=7f6a8&oh=00_AQNdDzvmzwPPRmaekdVd1Jsjb8QRcs5OrWfHQOnPXFEnyA&oe=6AE15039",
   "date_joined": "September 2026",
   "account_based_in": "Turkey",
   "former_usernames_count": {
@@ -86,7 +86,7 @@
       },
       "followers": {
         "label": "26.8K followers",
-        "exact_title": "26,872"
+        "exact_title": "26,895"
       },
       "following": {
         "label": "1 following",

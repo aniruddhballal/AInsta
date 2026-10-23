@@ -1,7 +1,7 @@
 {
   "username": "starson.ig",
   "url": "https://www.instagram.com/starson.ig/",
-  "fetched_at": "2026-10-23T10:23:37.829Z",
+  "fetched_at": "2026-10-23T15:15:21.422Z",
   "display_name": "STARSON⭐️",
   "bio": "あらゆる追いかけっこを繰り広げる! 「トムとジェリ - 公式Instagramです! Cartoon Networkにて『まいにちトムとジェリー』放送中! 『映画トムとジェリー』デジタル配信中/ブルーレイ&D VD発売中TEC (s23)",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 18027,
-    "raw": "18,027",
+    "value": 18018,
+    "raw": "18,018",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 18027,
-        "raw": "18,027",
+        "value": 18018,
+        "raw": "18,018",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": true,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/778882259_18087094904657875_4087066786831920189_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=3kjB28V3Ub4Q7kNvwGUMCby&_nc_oc=Ado_fb1GxBVbZU5BJiXBxnDcmPLoxvqyQc4x3lzJX-oPa6kc-bItRT-zVBcLjTpzQ6FT2YKg0H7Dvuv-uZZZWzlp&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=VKVz8Pa6GaUj7jKnn3xN2g&_nc_ss=7f6a8&oh=00_AQO_7QCuHV6CaZtf_K15zAg0kDt4FxV0W2tpJh4RrN97hg&oe=6AE0FEB9",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/778882259_18087094904657875_4087066786831920189_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=3kjB28V3Ub4Q7kNvwGByeN9&_nc_oc=AdoJUwNfGPcnkAjB8vs8ydM1eQ6FfiUN6RY5hoV3RZOgKkVYXV3OLLMtmHvbLI8dDHco478s7I0kh9jlArWeJG0X&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=whwfOQGxSifmZdhlQI8qlQ&_nc_ss=7f6a8&oh=00_AQN_KFoUIeDreXbBkHJORhqsu0404U8lx0xn9oVQ7enIWw&oe=6AE136F9",
   "date_joined": "September 2021",
   "account_based_in": "Not shared",
   "former_usernames_count": {
@@ -86,7 +86,7 @@
       },
       "followers": {
         "label": "18K followers",
-        "exact_title": "18,027"
+        "exact_title": "18,018"
       },
       "following": {
         "label": "178 following",

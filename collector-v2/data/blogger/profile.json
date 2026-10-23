@@ -1,7 +1,7 @@
 {
   "username": "blogger",
   "url": "https://www.instagram.com/blogger/",
-  "fetched_at": "2026-10-23T10:21:35.372Z",
+  "fetched_at": "2026-10-23T14:48:57.248Z",
   "display_name": "Travel/Fashion/Life Blogger",
   "bio": "Curating a Life of Style, Travel & Coffee\nElevated living through digital innovation & refined experiences\nblogger",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 130374,
-    "raw": "130,374",
+    "value": 130358,
+    "raw": "130,358",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 130374,
-        "raw": "130,374",
+        "value": 130358,
+        "raw": "130,358",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": "Digital creator",
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-5.fna.fbcdn.net/v/t51.2885-19/431141008_726033036392431_2149116517410144042_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=3y4n9EP789AQ7kNvwGyYZux&_nc_oc=Adral_vUf-n6InmL9FatXhmw9XYFFZlf8TyHFu43oP8huYsD9IpJaMuSaxpC52w6Hz9RvvoQmMX8wiOt98qSggcW&_nc_zt=24&_nc_ht=instagram.fblr1-5.fna&_nc_ss=7f6a8&oh=00_AQMn_n4YVBJJ9DTeBBtLPalDhuVDmx3juFgQztJh_uMTwg&oe=6AE10D3A",
+  "profile_picture_url": "https://instagram.fblr1-5.fna.fbcdn.net/v/t51.2885-19/431141008_726033036392431_2149116517410144042_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=4jIIJK97UowQ7kNvwEHQuqj&_nc_oc=AdoMk4zV9i4yfyxL7nPUHjQd9nq5iI9_uX6i1_WlYSzz_CPif9zN7NUYQ4qyop0HS6zcFYm7hqo04fRMO71u1wcb&_nc_zt=24&_nc_ht=instagram.fblr1-5.fna&_nc_ss=7f2a8&oh=00_AQPPMHJBhBDGGUynFc3BOVkXL2wd5dJtTlcgZZr_Hvwlhw&oe=6AE1457A",
   "date_joined": "May 2015",
   "account_based_in": "United Kingdom",
   "former_usernames_count": null,
@@ -82,7 +82,7 @@
       },
       "followers": {
         "label": "130K followers",
-        "exact_title": "130,374"
+        "exact_title": "130,358"
       },
       "following": {
         "label": "209 following",

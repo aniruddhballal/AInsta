@@ -1,23 +1,23 @@
 {
   "username": "gzfr",
   "url": "https://www.instagram.com/gzfr/",
-  "fetched_at": "2026-10-23T10:48:17.118Z",
+  "fetched_at": "2026-10-23T14:20:04.303Z",
   "display_name": null,
   "bio": "holly",
   "posts_count": {
-    "value": 1536,
-    "raw": "1,536",
+    "value": 1542,
+    "raw": "1,542",
     "approximate": false
   },
   "followers_count": {
-    "value": 578045,
-    "raw": "578,045",
+    "value": 578782,
+    "raw": "578,782",
     "approximate": false,
     "source": "header_title"
   },
   "following_count": {
-    "value": 1,
-    "raw": "1",
+    "value": 0,
+    "raw": "0",
     "approximate": false,
     "source": "header_text"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 578045,
-        "raw": "578,045",
+        "value": 578782,
+        "raw": "578,782",
         "approximate": false
       },
       "metadata": {
@@ -41,33 +41,33 @@
     },
     "following": {
       "header": {
-        "value": 1,
-        "raw": "1",
+        "value": 0,
+        "raw": "0",
         "approximate": false
       },
       "metadata": {
-        "value": 29,
-        "raw": "29",
+        "value": 28,
+        "raw": "28",
         "approximate": false
       },
       "conflict": true
     },
     "posts": {
       "header": {
-        "value": 1536,
-        "raw": "1,536",
+        "value": 1542,
+        "raw": "1,542",
         "approximate": false
       },
       "metadata": {
-        "value": 1536,
-        "raw": "1,536",
+        "value": 1542,
+        "raw": "1,542",
         "approximate": false
       }
     }
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=hlgdxoADaGUQ7kNvwET6kB_&_nc_oc=AdobMqomQ2N2d91gV_yKUOLv71iy4owjtY3p1iDNWNMfEFqPh8O4B2nD3_sam1w_oK7awWQQhWt-hQcU2nZDJVcg&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=dfVocmNPthSsE9gfBcrBrQ&_nc_ss=7f6a8&oh=00_AQMrbii-V0Z12tM3oIt5E1Q1hVqlGCJ2Tqbs1oeLFIvU1g&oe=6AE11D30",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=hlgdxoADaGUQ7kNvwGcZ5yD&_nc_oc=Adq9eLnoIm6Y7mZbZbUlsjeRU5lDgYYd3xPFKpAJ6mKmxsiweS8Z0qFIF2PudHH4aiOO_vpXIhg-Du9v2Ke9VIVK&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=Mp2wUeypkbCK8RKKbplLaw&_nc_ss=7f6a8&oh=00_AQMPHSrkn-i7b4Sd6Laa-rb28NcUOKB8W7qcaMKOjyov_Q&oe=6AE15570",
   "date_joined": "June 2022",
   "account_based_in": "Not shared",
   "former_usernames_count": {
@@ -76,9 +76,9 @@
     "approximate": false
   },
   "raw": {
-    "header_text": "gzfr\n1,536 posts\n578K followers\n1 following\nholly\nFollow\nMessage",
+    "header_text": "gzfr\n1,542 posts\n578K followers\n0 following\nholly\nFollow\nMessage",
     "about_text": "About this account\ngzfr\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJune 2022\nAccount based in\nNot shared\nFormer usernames\n3\nClose",
-    "description": "579K Followers, 29 Following, 1,536 Posts - @gzfr on Instagram: \"holly\"",
+    "description": "579K Followers, 28 Following, 1,542 Posts - @gzfr on Instagram: \"holly\"",
     "stat_evidence": {
       "posts": {
         "label": "",
@@ -86,15 +86,15 @@
       },
       "followers": {
         "label": "578K followers",
-        "exact_title": "578,045"
+        "exact_title": "578,782"
       },
       "following": {
-        "label": "1 following",
+        "label": "0 following",
         "exact_title": ""
       }
     }
   },
   "issues": [
-    "Page metadata says 29 following; current profile header says 1, which is used for the count."
+    "Page metadata says 28 following; current profile header says 0, which is used for the count."
   ]
 }

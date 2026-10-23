@@ -1,7 +1,7 @@
 {
-  "id": "1bd5d8d9-84cf-4032-8f71-562e6d83f333",
+  "id": "1bc89610-578b-45ff-9143-3bd4e9ad68f2",
   "mode": "profile_only",
-  "status": "interrupted",
+  "status": "running",
   "profiles": [
     "not.your.ordinary.nga",
     "gzfr",
@@ -633,546 +633,546 @@
   ],
   "results": {
     "not.your.ordinary.nga": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:47:59.607Z",
-      "finished_at": "2026-10-23T10:48:11.744Z",
-      "error": "Windows EPERM prevented saving the post grid scan before it finished.",
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:16:12.011Z",
+      "finished_at": "2026-10-23T14:19:58.678Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:47:59.607Z",
-          "finished_at": "2026-10-23T10:48:11.744Z",
-          "error": "Windows EPERM prevented saving the post grid scan before it finished."
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:16:12.011Z",
+          "finished_at": "2026-10-23T14:19:58.678Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "gzfr": {
-      "status": "interrupted",
-      "started_at": "2026-10-23T10:48:11.749Z",
-      "finished_at": "2026-10-23T14:11:12.372Z",
-      "error": "Collector process ended before the post grid scan finished.",
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:19:58.683Z",
+      "finished_at": "2026-10-23T14:23:40.837Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "interrupted",
-          "started_at": "2026-10-23T10:48:11.749Z",
-          "finished_at": "2026-10-23T14:11:12.372Z",
-          "error": "Collector process ended before the post grid scan finished."
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:19:58.683Z",
+          "finished_at": "2026-10-23T14:23:40.837Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "pigeon.flac": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:23:40.841Z",
+      "finished_at": "2026-10-23T14:24:29.241Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:23:40.841Z",
+          "finished_at": "2026-10-23T14:24:29.241Z",
           "error": null
         }
       }
     },
     "reposted": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:24:29.246Z",
+      "finished_at": "2026-10-23T14:24:45.923Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:24:29.246Z",
+          "finished_at": "2026-10-23T14:24:45.923Z",
           "error": null
         }
       }
     },
     "memekarbo": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:24:45.927Z",
+      "finished_at": "2026-10-23T14:25:47.640Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:24:45.927Z",
+          "finished_at": "2026-10-23T14:25:47.640Z",
           "error": null
         }
       }
     },
     "goofvault": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:25:47.643Z",
+      "finished_at": "2026-10-23T14:29:26.439Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:25:47.643Z",
+          "finished_at": "2026-10-23T14:29:26.439Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "asapcoder.exe": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:29:26.444Z",
+      "finished_at": "2026-10-23T14:33:04.918Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:29:26.444Z",
+          "finished_at": "2026-10-23T14:33:04.918Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "birobidzanih": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:33:04.920Z",
+      "finished_at": "2026-10-23T14:36:43.841Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:33:04.920Z",
+          "finished_at": "2026-10-23T14:36:43.841Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "pichypeapp": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:36:43.873Z",
+      "finished_at": "2026-10-23T14:37:17.644Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:36:43.873Z",
+          "finished_at": "2026-10-23T14:37:17.644Z",
           "error": null
         }
       }
     },
     "pexe.bh": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:37:17.650Z",
+      "finished_at": "2026-10-23T14:37:45.954Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:37:17.650Z",
+          "finished_at": "2026-10-23T14:37:45.954Z",
           "error": null
         }
       }
     },
     "9ineesss": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:37:45.959Z",
+      "finished_at": "2026-10-23T14:38:31.012Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:37:45.959Z",
+          "finished_at": "2026-10-23T14:38:31.012Z",
           "error": null
         }
       }
     },
     "printamovie": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:38:31.018Z",
+      "finished_at": "2026-10-23T14:39:10.830Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:38:31.018Z",
+          "finished_at": "2026-10-23T14:39:10.830Z",
           "error": null
         }
       }
     },
     "amanrajxofficial_12": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:39:10.842Z",
+      "finished_at": "2026-10-23T14:40:15.114Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:39:10.842Z",
+          "finished_at": "2026-10-23T14:40:15.114Z",
           "error": null
         }
       }
     },
     "hulksmash.exe": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:40:15.117Z",
+      "finished_at": "2026-10-23T14:40:37.289Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:40:15.117Z",
+          "finished_at": "2026-10-23T14:40:37.289Z",
           "error": null
         }
       }
     },
     "intr0vert.viks": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:40:37.294Z",
+      "finished_at": "2026-10-23T14:44:15.446Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:40:37.294Z",
+          "finished_at": "2026-10-23T14:44:15.446Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "diamond_bl0ckk": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:44:15.448Z",
+      "finished_at": "2026-10-23T14:44:54.230Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:44:15.448Z",
+          "finished_at": "2026-10-23T14:44:54.230Z",
           "error": null
         }
       }
     },
     "editor": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:44:54.232Z",
+      "finished_at": "2026-10-23T14:45:10.885Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:44:54.232Z",
+          "finished_at": "2026-10-23T14:45:10.885Z",
           "error": null
         }
       }
     },
     "kanyeglazerwest": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:45:10.887Z",
+      "finished_at": "2026-10-23T14:48:49.792Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:45:10.887Z",
+          "finished_at": "2026-10-23T14:48:49.792Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "blogger": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:48:49.795Z",
+      "finished_at": "2026-10-23T14:49:49.651Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:48:49.795Z",
+          "finished_at": "2026-10-23T14:49:49.651Z",
           "error": null
         }
       }
     },
     "vviennteru": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:49:49.655Z",
+      "finished_at": "2026-10-23T14:50:50.993Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:49:49.655Z",
+          "finished_at": "2026-10-23T14:50:50.993Z",
           "error": null
         }
       }
     },
     "sankuro75": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:50:50.996Z",
+      "finished_at": "2026-10-23T14:53:18.416Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:50:50.996Z",
+          "finished_at": "2026-10-23T14:53:18.416Z",
           "error": null
         }
       }
     },
     "thragg_grand_regentnumber1": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:53:18.419Z",
+      "finished_at": "2026-10-23T14:54:56.294Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:53:18.419Z",
+          "finished_at": "2026-10-23T14:54:56.294Z",
           "error": null
         }
       }
     },
     "notmemezz": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:54:56.297Z",
+      "finished_at": "2026-10-23T14:55:19.913Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:54:56.297Z",
+          "finished_at": "2026-10-23T14:55:19.913Z",
           "error": null
         }
       }
     },
     "hnvx.07": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-23T14:55:19.916Z",
+      "finished_at": "2026-10-23T14:55:25.212Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-23T14:55:19.916Z",
+          "finished_at": "2026-10-23T14:55:25.212Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "memesprcaf": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T14:55:25.215Z",
+      "finished_at": "2026-10-23T14:59:04.468Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T14:55:25.215Z",
+          "finished_at": "2026-10-23T14:59:04.468Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "2xamca": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T14:59:04.472Z",
+      "finished_at": "2026-10-23T15:01:18.324Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T14:59:04.472Z",
+          "finished_at": "2026-10-23T15:01:18.324Z",
           "error": null
         }
       }
     },
     "goofybara777": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T15:01:18.327Z",
+      "finished_at": "2026-10-23T15:04:58.235Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T15:01:18.327Z",
+          "finished_at": "2026-10-23T15:04:58.235Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "hezciv": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:04:58.241Z",
+      "finished_at": "2026-10-23T15:05:29.375Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:04:58.241Z",
+          "finished_at": "2026-10-23T15:05:29.375Z",
           "error": null
         }
       }
     },
     "z4rxk0": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:05:29.378Z",
+      "finished_at": "2026-10-23T15:06:43.713Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:05:29.378Z",
+          "finished_at": "2026-10-23T15:06:43.713Z",
           "error": null
         }
       }
     },
     "slleep91": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:06:43.716Z",
+      "finished_at": "2026-10-23T15:07:22.767Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:06:43.716Z",
+          "finished_at": "2026-10-23T15:07:22.767Z",
           "error": null
         }
       }
     },
     "mugiwaramemez": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:07:22.769Z",
+      "finished_at": "2026-10-23T15:09:20.713Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:07:22.769Z",
+          "finished_at": "2026-10-23T15:09:20.713Z",
           "error": null
         }
       }
     },
     "xkenshutsu": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T15:09:20.718Z",
+      "finished_at": "2026-10-23T15:12:58.667Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T15:09:20.718Z",
+          "finished_at": "2026-10-23T15:12:58.667Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "uz87b": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:12:58.670Z",
+      "finished_at": "2026-10-23T15:13:28.209Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:12:58.670Z",
+          "finished_at": "2026-10-23T15:13:28.209Z",
           "error": null
         }
       }
     },
     "prime_senchui": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-23T15:13:28.211Z",
+      "finished_at": "2026-10-23T15:13:32.793Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-23T15:13:28.211Z",
+          "finished_at": "2026-10-23T15:13:32.793Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "ft.neyz": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:13:32.795Z",
+      "finished_at": "2026-10-23T15:14:01.307Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:13:32.795Z",
+          "finished_at": "2026-10-23T15:14:01.307Z",
           "error": null
         }
       }
     },
     "camilaboucheryamamoto": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:14:01.309Z",
+      "finished_at": "2026-10-23T15:14:48.636Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:14:01.309Z",
+          "finished_at": "2026-10-23T15:14:48.636Z",
           "error": null
         }
       }
     },
     "raffater7": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:14:48.639Z",
+      "finished_at": "2026-10-23T15:15:16.158Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:14:48.639Z",
+          "finished_at": "2026-10-23T15:15:16.158Z",
           "error": null
         }
       }
     },
     "starson.ig": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:15:16.160Z",
+      "finished_at": "2026-10-23T15:18:20.387Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:15:16.160Z",
+          "finished_at": "2026-10-23T15:18:20.387Z",
           "error": null
         }
       }
     },
     "zyr1x1": {
-      "status": "queued",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-10-23T15:18:20.391Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
+          "status": "running",
+          "started_at": "2026-10-23T15:18:20.391Z",
           "finished_at": null,
           "error": null
         }
@@ -2383,31 +2383,72 @@
       }
     }
   },
-  "current": null,
-  "current_stage": null,
-  "started_at": "2026-10-23T10:47:59.598Z",
-  "updated_at": "2026-10-23T14:11:12.372Z",
-  "finished_at": "2026-10-23T14:11:12.372Z",
-  "stop_requested": true,
+  "current": "zyr1x1",
+  "current_stage": "profile",
+  "started_at": "2026-10-23T14:16:12.000Z",
+  "updated_at": "2026-10-23T15:18:20.391Z",
+  "finished_at": null,
+  "stop_requested": false,
   "logs": [
-    "Starting @not.your.ordinary.nga profile",
-    "[16:18:01] Collecting not.your.ordinary.nga profile",
-    "[16:18:05] Scanning post grid",
-    "Error: EPERM: operation not permitted, rename 'D:\\post engg\\dedgram\\collector-v2\\data\\not.your.ordinary.nga\\run.json.887e34c7-289d-4e51-9bbf-1c5182737133.tmp' -> 'D:\\post engg\\dedgram\\collector-v2\\data\\not.your.ordinary.nga\\run.json'",
-    "at async rename (node:internal/fs/promises:784:10)",
-    "at async writeJson (file:///D:/post%20engg/dedgram/collector-v2/src/store.mjs:15:3)",
-    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:199:5)",
-    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:208:35 {",
-    "errno: -4048,",
-    "code: 'EPERM',",
-    "syscall: 'rename',",
-    "path: 'D:\\\\post engg\\\\dedgram\\\\collector-v2\\\\data\\\\not.your.ordinary.nga\\\\run.json.887e34c7-289d-4e51-9bbf-1c5182737133.tmp',",
-    "dest: 'D:\\\\post engg\\\\dedgram\\\\collector-v2\\\\data\\\\not.your.ordinary.nga\\\\run.json'",
-    "}",
-    "Finished @not.your.ordinary.nga profile: failed",
-    "Starting @gzfr profile",
-    "[16:18:13] Collecting gzfr profile",
-    "[16:18:17] Scanning post grid"
-  ],
-  "error": "Collector process ended before the active profile scan finished."
+    "Finished @z4rxk0 profile: complete",
+    "Starting @slleep91 profile",
+    "[20:36:44] Collecting slleep91 profile",
+    "[20:36:48] Scanning reel grid",
+    "[20:37:21] reel: 101 confirmed",
+    "[20:37:21] Done: Instagram posts 101, reels 101. Report: D:\\post engg\\dedgram\\collector-v2\\data\\slleep91\\report.html",
+    "Finished @slleep91 profile: complete",
+    "Starting @mugiwaramemez profile",
+    "[20:37:24] Collecting mugiwaramemez profile",
+    "[20:37:27] Scanning reel grid",
+    "[20:39:17] reel: 365 confirmed",
+    "[20:39:17] Done: Instagram posts 365, reels 365. Report: D:\\post engg\\dedgram\\collector-v2\\data\\mugiwaramemez\\report.html",
+    "Finished @mugiwaramemez profile: complete",
+    "Starting @xkenshutsu profile",
+    "[20:39:22] Collecting xkenshutsu profile",
+    "[20:39:26] Scanning reel grid",
+    "[20:42:57] reel count unavailable: Grid scan ended before confirming the last item.",
+    "[20:42:57] Done: Instagram posts 383, reels error (Grid scan ended before confirming the last item.). Report: D:\\post engg\\dedgram\\collector-v2\\data\\xkenshutsu\\report.html",
+    "Finished @xkenshutsu profile: needs_review",
+    "Starting @uz87b profile",
+    "[20:42:59] Collecting uz87b profile",
+    "[20:43:03] Scanning reel grid",
+    "[20:43:26] reel: 69 confirmed",
+    "[20:43:26] Done: Instagram posts 76, reels 69. Report: D:\\post engg\\dedgram\\collector-v2\\data\\uz87b\\report.html",
+    "Finished @uz87b profile: complete",
+    "Starting @prime_senchui profile",
+    "[20:43:29] Collecting prime_senchui profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at runNextTicks (node:internal/process/task_queues:65:5)",
+    "at process.processImmediate (node:internal/timers:453:9)",
+    "at process.callbackTrampoline (node:internal/async_hooks:130:17)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:131:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:215:35",
+    "Finished @prime_senchui profile: failed",
+    "Starting @ft.neyz profile",
+    "[20:43:33] Collecting ft.neyz profile",
+    "[20:43:38] Scanning reel grid",
+    "[20:44:00] reel: 66 confirmed",
+    "[20:44:00] Done: Instagram posts 66, reels 66. Report: D:\\post engg\\dedgram\\collector-v2\\data\\ft.neyz\\report.html",
+    "Finished @ft.neyz profile: complete",
+    "Starting @camilaboucheryamamoto profile",
+    "[20:44:02] Collecting camilaboucheryamamoto profile",
+    "[20:44:06] Scanning reel grid",
+    "[20:44:47] reel: 127 confirmed",
+    "[20:44:47] Done: Instagram posts 127, reels 127. Report: D:\\post engg\\dedgram\\collector-v2\\data\\camilaboucheryamamoto\\report.html",
+    "Finished @camilaboucheryamamoto profile: complete",
+    "Starting @raffater7 profile",
+    "[20:44:49] Collecting raffater7 profile",
+    "[20:44:53] Scanning reel grid",
+    "[20:45:14] reel: 61 confirmed",
+    "[20:45:14] Done: Instagram posts 61, reels 61. Report: D:\\post engg\\dedgram\\collector-v2\\data\\raffater7\\report.html",
+    "Finished @raffater7 profile: complete",
+    "Starting @starson.ig profile",
+    "[20:45:17] Collecting starson.ig profile",
+    "[20:45:21] Scanning reel grid",
+    "[20:48:18] reel: 595 confirmed",
+    "[20:48:18] Done: Instagram posts 597, reels 595. Report: D:\\post engg\\dedgram\\collector-v2\\data\\starson.ig\\report.html",
+    "Finished @starson.ig profile: complete"
+  ]
 }

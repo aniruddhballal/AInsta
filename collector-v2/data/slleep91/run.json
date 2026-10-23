@@ -1,10 +1,11 @@
 {
-  "started_at": "2026-10-23T10:22:42.933Z",
-  "updated_at": "2026-10-23T10:22:47.415Z",
+  "started_at": "2026-10-23T15:06:44.593Z",
+  "updated_at": "2026-10-23T15:07:21.446Z",
   "status": "complete",
   "phase": "done",
   "scope": [
-    "profile"
+    "profile",
+    "reel_grid"
   ],
   "current_url": null,
   "error": null
