@@ -18,7 +18,29 @@ test('profile-only exports grid counts without item records', async () => {
     assert.match(html, /Discovered posts<\/dt><dd>3/);
     assert.match(html, /Discovered reels<\/dt><dd>2/);
     assert.match(csv, /post_grid_count.*reel_grid_count/);
-    assert.match(csv, /,"3","true","2","true"/);
+    assert.match(csv, /,"3","true","","2","true",""/);
+  } finally {
+    await Promise.all([paths.csv, paths.profileCsv, paths.report].map((file) => unlink(file).catch(() => {})));
+    await rmdir(base);
+  }
+});
+
+test('an incomplete grid exports an error and no numeric count', async () => {
+  const base = await mkdtemp(join(tmpdir(), 'dedgram-report-'));
+  const paths = { base, csv: join(base, 'items.csv'), profileCsv: join(base, 'profile.csv'), report: join(base, 'report.html') };
+  try {
+    await writeReport(paths, { username: 'example' },
+      { post: { items: [{ url: 'one' }, { url: 'two' }], complete: false,
+        error: 'Grid scan ended before confirming the last item.' }, reel: { items: [], complete: true } },
+      [], { status: 'partial' });
+    const html = await readFile(paths.report, 'utf8');
+    const csv = await readFile(paths.profileCsv, 'utf8');
+    assert.match(html, /Discovered posts<\/dt><dd>Error: Grid scan ended before confirming the last item/);
+    assert.match(html, /Discovered reels<\/dt><dd>0/);
+    assert.match(html, /Header posts<\/dt><dd>Error: Exact post count unavailable/);
+    assert.match(csv, /posts_count_displayed","posts_count_error/);
+    assert.match(csv, /Exact post count unavailable in the Instagram profile header/);
+    assert.match(csv, /,"","false","Grid scan ended before confirming the last item\.","0","true",""/);
   } finally {
     await Promise.all([paths.csv, paths.profileCsv, paths.report].map((file) => unlink(file).catch(() => {})));
     await rmdir(base);

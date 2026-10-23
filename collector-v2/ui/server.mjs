@@ -65,7 +65,7 @@ class BatchRunner {
     if (mode === 'reels_only') {
       const missing = (await Promise.all(selected.map(async (name) => ({ name, data: await profileData(name) }))))
         .filter(({ data }) => !profileLevelComplete(data.profile, data.discovery)).map(({ name }) => `@${name}`);
-      if (missing.length) throw Object.assign(new Error(`Finish profile details and grid counts first: ${missing.join(', ')}.`), { status: 400 });
+      if (missing.length) throw Object.assign(new Error(`Finish profile details and reel counts first: ${missing.join(', ')}.`), { status: 400 });
     }
     const steps = stepsFor(selected, mode);
     const time = new Date().toISOString();
@@ -122,7 +122,7 @@ class BatchRunner {
       if (level === 'reels' && (['failed', 'needs_review'].includes(result.stages.profile?.status)
         || !await profileData(username).then((data) => profileLevelComplete(data.profile, data.discovery)))) {
         stage.status = 'skipped';
-        stage.error = 'Profile details or grid counts are incomplete.';
+        stage.error = 'Profile details or the reel count are incomplete.';
         stage.finished_at = new Date().toISOString();
         result.status = resultStatus(result.stages);
         result.error = stage.error;

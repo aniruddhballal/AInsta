@@ -1,4 +1,4 @@
-import { badge, errorBanner, esc, number, profileHref, progress, statusText, time } from './shared.js';
+import { badge, errorBanner, esc, gridLabel, number, profileHref, progress, statusText, time } from './shared.js';
 
 export function filteredCatalog(state) {
   const needle = state.search.trim().toLowerCase();
@@ -14,7 +14,6 @@ export function filteredCatalog(state) {
 }
 
 function card(profile, selected, running) {
-  const count = (grid) => grid.grid_complete ? number(grid.discovered) : grid.discovered ? `${number(grid.discovered)}+` : '-';
   const status = profile.profile_header_complete && !profile.profile_complete && profile.run.status === 'complete'
     ? 'counts_pending' : profile.run.status;
   return `<article class="profile-card ${selected ? 'selected' : ''}">
@@ -22,8 +21,8 @@ function card(profile, selected, running) {
     <div class="card-identity">${profile.profile_picture_url ? `<img class="avatar" src="${esc(profile.profile_picture_url)}" alt="" loading="lazy">` : `<div class="avatar fallback">${esc(profile.username[0].toUpperCase())}</div>`}
       <div><a class="profile-name" href="${profileHref(profile.username)}">@${esc(profile.username)}</a><p>${esc(profile.display_name || profile.category || profile.country || 'Profile ready for collection')}</p></div></div>
     <div class="card-levels"><span>Profile: <b>${profile.profile_complete ? 'Ready' : profile.profile_header_complete ? 'Counts pending' : profile.profile_fetched_at ? 'Needs review' : 'Not collected'}</b></span><span>Items scanned: <b>${profile.reels.processed + profile.posts.processed}</b></span>${profile.reels.review ? `<span>Reels for review: <b>${profile.reels.review}</b></span>` : ''}</div>
-    <div class="card-counts"><div><strong>${count(profile.reels)}</strong><span>REELS ${profile.reels.grid_complete ? 'COUNTED' : 'FOUND SO FAR'}</span></div><div><strong>${count(profile.posts)}</strong><span>POSTS ${profile.posts.grid_complete ? 'COUNTED' : 'FOUND SO FAR'}</span></div></div>
-    ${progress(profile.reels.processed, profile.reels.discovered)}
+    <div class="card-counts"><div title="${esc(profile.reels.grid_error || '')}"><strong>${gridLabel(profile.reels)}</strong><span>REEL GRID COUNT</span></div><div title="${esc(profile.posts_count_error || '')}"><strong>${profile.posts_count === null ? profile.profile_fetched_at ? 'Error' : 'Not collected' : number(profile.posts_count)}</strong><span>INSTAGRAM POSTS</span></div></div>
+    ${profile.reels.grid_complete ? progress(profile.reels.processed, profile.reels.discovered) : ''}
     <div class="card-footer"><span>${profile.profile_fetched_at ? `Updated ${esc(time(profile.run.updated_at || profile.profile_fetched_at))}` : 'Ready to collect'}</span><div><button class="text-button" data-action="run-one" data-username="${esc(profile.username)}" ${running ? 'disabled' : ''}>Run profile + reels</button><a href="${profileHref(profile.username)}">View profile</a></div></div>
   </article>`;
 }
@@ -54,16 +53,14 @@ function batchPanel(state) {
       ${active ? `<button class="button outline small" data-action="stop" ${batch.stop_requested ? 'disabled' : ''}>${batch.stop_requested ? 'Stopping after this stage' : 'Stop after current stage'}</button>` : ''}</div>
     <div class="batch-counts"><div><strong>${finished}<span> / ${batch.profiles.length}</span></strong><small>PROFILES FINISHED</small></div><div><strong>${complete}</strong><small>FULLY COMPLETE</small></div>${profileSteps.length ? `<div><strong>${profileSteps.filter(stepDone).length}<span> / ${profileSteps.length}</span></strong><small>PROFILE STAGES DONE</small></div>` : ''}${reelSteps.length ? `<div><strong>${reelSteps.filter(stepDone).length}<span> / ${reelSteps.length}</span></strong><small>REEL STAGES DONE</small></div>` : ''}</div>
     ${progress(steps.filter(stepDone).length, steps.length)}
-    ${current ? `<div class="current-breakdown"><span>@${esc(current.username)} / ${esc(batch.current_stage || 'collecting')}</span><span>Profile: <b>${current.profile_complete ? 'ready' : 'collecting or review'}</b></span><span>Reel grid: <b>${current.reels.grid_complete ? number(current.reels.discovered) : current.reels.discovered ? `${number(current.reels.discovered)}+ so far` : 'pending'}</b> / ${current.reels.processed} scanned</span><span>Post grid: <b>${current.posts.grid_complete ? number(current.posts.discovered) : current.posts.discovered ? `${number(current.posts.discovered)}+ so far` : 'pending'}</b>${current.posts_reported ? ` / ${esc(current.posts_reported.raw)} in header` : ''}</span></div>` : ''}
-    ${!active && batch.mode === 'profile_only' && countsPending ? `<p class="mode-note">${countsPending} selected profile${countsPending === 1 ? '' : 's'} still need grid counts. Rerun Profile details only to finish them.</p>` : ''}
+    ${current ? `<div class="current-breakdown"><span>@${esc(current.username)} / ${esc(batch.current_stage || 'collecting')}</span><span>Profile: <b>${current.profile_complete ? 'ready' : 'collecting or review'}</b></span><span>Reel grid: <b>${current.run.phase === 'reel discovery' && !current.reels.grid_complete ? 'Counting' : gridLabel(current.reels)}</b></span><span>Instagram posts: <b>${current.posts_count === null ? 'Error' : number(current.posts_count)}</b></span></div>` : ''}
+    ${!active && batch.mode === 'profile_only' && countsPending ? `<p class="mode-note">${countsPending} selected profile${countsPending === 1 ? '' : 's'} still need a verified post or reel count. Rerun Profile details only to finish them.</p>` : ''}
     <div class="batch-list">${batch.profiles.map((name) => {
       const profile = state.batchProfiles.find((item) => item.username === name);
       const stages = batch.results[name]?.stages;
-      const gridCount = (grid, label) => grid.grid_complete ? `${grid.discovered} ${label}`
-        : grid.discovered ? `${grid.discovered}+ ${label}` : `${label} not counted`;
       const profileStatus = stages?.profile?.status === 'complete' && profile?.profile_header_complete && !profile.profile_complete
         ? 'counts_pending' : stages?.profile?.status;
-      return `<div class="batch-row"><a href="${profileHref(name)}">@${esc(name)}</a>${stages ? `<span class="stage-tags">${stages.profile ? `Profile ${badge(profileStatus)}` : ''}${stages.reels ? `Reels ${badge(stages.reels.status)}` : ''}</span>` : badge(batch.results[name]?.status)}<span>${profile ? `${gridCount(profile.posts, 'posts')} / ${gridCount(profile.reels, 'reels')}` : 'Waiting'}</span></div>`;
+      return `<div class="batch-row"><a href="${profileHref(name)}">@${esc(name)}</a>${stages ? `<span class="stage-tags">${stages.profile ? `Profile ${badge(profileStatus)}` : ''}${stages.reels ? `Reels ${badge(stages.reels.status)}` : ''}</span>` : badge(batch.results[name]?.status)}<span>${profile ? `Instagram posts ${profile.posts_count === null ? profile.profile_fetched_at ? 'Error' : 'Not collected' : number(profile.posts_count)} / reel grid ${gridLabel(profile.reels)}` : 'Waiting'}</span></div>`;
     }).join('')}</div>
     ${batch.logs?.length ? `<details class="run-log"><summary>Recent activity</summary><pre>${esc(batch.logs.slice(-18).join('\n'))}</pre></details>` : ''}
   </section>`;
@@ -86,11 +83,11 @@ export function renderQueue(state) {
     <div class="hero-orbit"><div class="orbit-center">V2<span>REELS FIRST</span></div><i class="orb one"></i><i class="orb two"></i><i class="orb three"></i></div></section>
     ${batchPanel(state)}
     <section class="mode-section"><div class="section-heading"><div><span class="eyebrow">COLLECTION STRATEGY</span><h2>Choose what to collect</h2><p>Each stage saves its result, so you can run reels later.</p></div></div>
-      <div class="mode-grid">${modeOption(state, 'profile_only', 'Profile details only', 'Collect account fields and count post and reel grids. Item details wait.')}
+      <div class="mode-grid">${modeOption(state, 'profile_only', 'Profile details only', 'Collect account fields, the exact Instagram post count, and count the reel grid. Item details wait.')}
         ${modeOption(state, 'depth_first', 'Profile + reels, depth first', 'Finish each account before moving to the next.')}
         ${modeOption(state, 'breadth_first', 'Profile + reels, breadth first', 'Collect every profile first, then every account\'s reels.')}
         ${modeOption(state, 'reels_only', 'Reels only', 'Use saved profile details; collect and retry reels.')}</div>
-      <p class="mode-note">Post counts are collected now; individual post details will be added later.${state.mode === 'reels_only' && unavailable.length ? ` First finish profile details and grid counts for ${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'}.` : ''}</p></section>
+      <p class="mode-note">Individual post details will be added later.${state.mode === 'reels_only' && unavailable.length ? ` First finish profile details and reel counts for ${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'}.` : ''}</p></section>
     <section class="catalog-section"><div class="section-heading"><div><span class="eyebrow">PROFILE CATALOG</span><h2>Pick a collection set</h2><p>Accounts come from the existing bot profile index.</p></div>
       <div class="selection-actions"><button class="button subtle" data-action="select-visible">Select visible</button><button class="button subtle" data-action="clear">Clear</button>
         <button class="button primary" data-action="start" ${!state.selected.size || !ready || running || state.busy ? 'disabled' : ''}>${state.busy ? 'Starting...' : `Run ${state.selected.size ? `${state.selected.size} selected` : 'selection'}`}</button></div></div>

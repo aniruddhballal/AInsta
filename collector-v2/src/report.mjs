@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import { exactPostCount, gridCount, gridCountError, postCountError } from './model.mjs';
 
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const csv = (value) => {
@@ -28,21 +29,23 @@ export async function writeReport(paths, profile, discovery, items, run) {
   await writeFile(paths.csv, rows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
   const profileRows = [
     ['username', 'url', 'fetched_at', 'display_name', 'bio', 'category', 'ai_generated_profile',
-      'posts_count', 'followers_count', 'following_count', 'followers_header', 'followers_metadata',
+      'posts_count', 'posts_count_displayed', 'posts_count_error', 'followers_count', 'following_count', 'followers_header', 'followers_metadata',
       'following_header', 'following_metadata', 'following_conflict', 'date_joined', 'account_based_in', 'former_usernames_count',
-      'post_grid_count', 'post_grid_complete', 'reel_grid_count', 'reel_grid_complete'],
+      'post_grid_count', 'post_grid_complete', 'post_grid_error', 'reel_grid_count', 'reel_grid_complete', 'reel_grid_error'],
     [profile?.username, profile?.url, profile?.fetched_at, profile?.display_name, profile?.bio, profile?.category,
-      profile?.ai_generated_profile, profile?.posts_count?.value, profile?.followers_count?.value,
+      profile?.ai_generated_profile, exactPostCount(profile), profile?.posts_count?.raw, postCountError(profile), profile?.followers_count?.value,
       profile?.following_count?.value, profile?.count_evidence?.followers?.header?.raw,
       profile?.count_evidence?.followers?.metadata?.raw, profile?.count_evidence?.following?.header?.raw,
       profile?.count_evidence?.following?.metadata?.raw, profile?.count_evidence?.following?.conflict,
       profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value,
-      discovery?.post?.items?.length, discovery?.post?.complete,
-      discovery?.reel?.items?.length, discovery?.reel?.complete]
+      gridCount(discovery?.post), gridCount(discovery?.post) !== null, gridCountError(discovery?.post),
+      gridCount(discovery?.reel), gridCount(discovery?.reel) !== null, gridCountError(discovery?.reel)]
   ];
   await writeFile(paths.profileCsv, profileRows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
-  const metric = (field) => profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
-  const count = (kind) => discovery?.[kind]?.items?.length ?? 'Not counted';
+  const metric = (field) => field === 'posts_count' ? exactPostCount(profile) ?? `Error: ${postCountError(profile)}`
+    : profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
+  const count = (kind) => esc(kind === 'post' && !discovery?.post ? 'Not scanned (post-level collection later)'
+    : gridCount(discovery?.[kind]) ?? `Error: ${gridCountError(discovery?.[kind])}`);
   const complete = items.filter((item) => item.status === 'complete').length;
   const reviewItems = items.filter((item) => reviewText(item));
   const manualReview = reviewItems.length ? `<section class="card review"><h2>Needs manual review (${reviewItems.length})</h2><ul>${reviewItems.map((item) => `<li><a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.shortcode)}</a>: ${esc(reviewText(item))}</li>`).join('')}</ul></section>` : '';

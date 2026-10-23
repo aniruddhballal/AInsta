@@ -1,7 +1,7 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { paths, readJson } from '../src/store.mjs';
-import { profileHeaderComplete, profileLevelComplete } from '../src/model.mjs';
+import { exactPostCount, gridCount, gridCountError, postCountError, profileHeaderComplete, profileLevelComplete } from '../src/model.mjs';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const catalogPath = resolve(root, '..', 'bot-info', 'database', 'profiles', 'index.json');
@@ -30,11 +30,12 @@ export function profileSummary(data) {
   const content = (kind) => {
     const records = items.filter((item) => item.kind === kind);
     return {
-      discovered: discovery[kind]?.items?.length || 0,
+      discovered: gridCount(discovery[kind]),
       processed: records.filter((item) => !!item.fetched_at).length,
       complete: records.filter((item) => item.status === 'complete' && !item.last_error).length,
       review: records.filter((item) => item.status === 'partial' || item.status === 'failed' || !!item.last_error).length,
-      grid_complete: !!discovery[kind]?.complete
+      grid_complete: gridCount(discovery[kind]) !== null,
+      grid_error: gridCountError(discovery[kind])
     };
   };
   return {
@@ -49,6 +50,8 @@ export function profileSummary(data) {
     followers: profile?.followers_count || null,
     following: profile?.following_count || null,
     posts_reported: profile?.posts_count || null,
+    posts_count: exactPostCount(profile),
+    posts_count_error: postCountError(profile),
     profile_fetched_at: profile?.fetched_at || null,
     profile_header_complete: profileHeaderComplete(profile),
     profile_complete: profileLevelComplete(profile, discovery),
@@ -93,12 +96,14 @@ export async function summary() {
     catalog_profiles: profiles.length,
     collected_profiles: profiles.filter((profile) => !!profile.profile_fetched_at).length,
     profiles_counted: profiles.filter((profile) => profile.profile_complete).length,
-    reels_discovered: profiles.reduce((sum, profile) => sum + profile.reels.discovered, 0),
+    reels_discovered: profiles.every((profile) => profile.reels.grid_complete)
+      ? profiles.reduce((sum, profile) => sum + profile.reels.discovered, 0) : null,
     reel_grids_complete: profiles.filter((profile) => profile.reels.grid_complete).length,
     reels_processed: reels.filter((reel) => reel.status === 'complete' || reel.status === 'partial').length,
     reels_complete: reels.filter((reel) => reel.status === 'complete').length,
     reels_review: reels.filter((reel) => reel.status === 'partial' || reel.status === 'failed').length,
-    posts_discovered: profiles.reduce((sum, profile) => sum + profile.posts.discovered, 0),
+    instagram_posts_total: profiles.every((profile) => profile.posts_count !== null)
+      ? profiles.reduce((sum, profile) => sum + profile.posts_count, 0) : null,
     post_grids_complete: profiles.filter((profile) => profile.posts.grid_complete).length,
     engagement: {
       views: { total: total('views'), covered: measured('views').length,

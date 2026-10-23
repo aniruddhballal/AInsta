@@ -1,12 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { count, profileFromSnapshot, profileHeaderComplete, profileLevelComplete, canonicalItemUrl, itemFromSnapshot } from '../src/model.mjs';
+import { count, exactPostCount, gridCount, gridCountError, postCountError, profileFromSnapshot, profileHeaderComplete, profileLevelComplete, canonicalItemUrl, itemFromSnapshot } from '../src/model.mjs';
 import { mergeDiscoveryItems, mergeItem, mergeProfile, syncGridViews } from '../src/store.mjs';
 
 test('counts retain whether the source displayed a rounded value', () => {
   assert.deepEqual(count('20.7K'), { value: 20700, raw: '20.7K', approximate: true });
   assert.deepEqual(count('1,234'), { value: 1234, raw: '1,234', approximate: false });
   assert.equal(count('Not shown'), null);
+});
+
+test('an unfinished grid has an error instead of a published count', () => {
+  const incomplete = { items: [{ url: 'one' }, { url: 'two' }], complete: false,
+    error: 'Grid scan ended before confirming the last item.' };
+  assert.equal(gridCount(incomplete), null);
+  assert.equal(gridCountError(incomplete), incomplete.error);
+  assert.equal(gridCount({ items: [], complete: true }), 0);
+  assert.equal(gridCountError({ items: [], complete: true }), null);
+  assert.equal(gridCountError({ items: [], complete: false }), 'Grid scan did not finish.');
 });
 
 test('profile extracts the sample account fields', () => {
@@ -24,8 +34,16 @@ test('profile extracts the sample account fields', () => {
   assert.equal(result.ai_generated_profile, true);
   assert.equal(profileHeaderComplete(result), true);
   assert.equal(profileLevelComplete(result), false);
-  assert.equal(profileLevelComplete(result, { post: { complete: true }, reel: { complete: true } }), true);
-  assert.equal(profileLevelComplete(result, { post: { complete: true }, reel: { complete: false } }), false);
+  assert.equal(exactPostCount(result), 0);
+  assert.equal(profileLevelComplete(result, { reel: { items: [], complete: true } }), true);
+  assert.equal(profileLevelComplete(result, { reel: { items: [], complete: false } }), false);
+});
+
+test('a rounded Instagram post label cannot be used as a true count', () => {
+  const profile = profileFromSnapshot('example', { header_text: 'example\n2.9K posts\n10 followers\n0 following' });
+  assert.equal(exactPostCount(profile), null);
+  assert.match(postCountError(profile), /rounded value/);
+  assert.equal(profileLevelComplete(profile, { reel: { items: [], complete: true } }), false);
 });
 
 test('a profile with missing header counts needs review before a reels-only run', () => {
@@ -38,6 +56,7 @@ test('profile reads post count from page metadata when the public header omits i
   const result = profileFromSnapshot('edlt.shox', { header_text: 'edlt.shox\n22.2K followers\n0 following',
     description: '20K Followers, 49 Following, 0 Posts - account on Instagram' });
   assert.equal(result.posts_count.value, 0);
+  assert.equal(exactPostCount(result), null);
   assert.equal(result.following_count.value, 0);
   assert.equal(result.following_count.source, 'header_text');
   assert.equal(result.count_evidence.following.header.value, 0);

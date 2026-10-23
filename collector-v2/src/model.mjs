@@ -84,8 +84,34 @@ export function profileHeaderComplete(profile) {
     && profile.posts_count && profile.followers_count && profile.following_count);
 }
 
+export function exactPostCount(profile) {
+  const evidence = profile?.count_evidence?.posts;
+  const metric = evidence ? evidence.header : profile?.raw?.header_text ? profile?.posts_count : null;
+  return metric && !metric.approximate && Number.isSafeInteger(metric.value) && metric.value >= 0
+    ? metric.value : null;
+}
+
+export function postCountError(profile) {
+  if (exactPostCount(profile) !== null) return null;
+  const displayed = profile?.count_evidence?.posts?.header || profile?.posts_count;
+  return displayed?.approximate
+    ? `Instagram displays ${displayed.raw} posts, a rounded value; the exact count is unavailable.`
+    : 'Exact post count unavailable in the Instagram profile header.';
+}
+
 export function profileLevelComplete(profile, discovery) {
-  return profileHeaderComplete(profile) && ['post', 'reel'].every((kind) => discovery?.[kind]?.complete);
+  return profileHeaderComplete(profile) && exactPostCount(profile) !== null
+    && gridCount(discovery?.reel) !== null;
+}
+
+export function gridCount(grid) {
+  return grid?.complete === true && Array.isArray(grid.items) ? grid.items.length : null;
+}
+
+export function gridCountError(grid) {
+  if (gridCount(grid) !== null) return null;
+  if (!grid) return 'Grid has not been scanned.';
+  return grid.error || (grid.complete ? 'The scan ended without a saved item list.' : 'Grid scan did not finish.');
 }
 
 export function canonicalItemUrl(href) {

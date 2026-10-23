@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { launch, captureProfile, discover, captureItem } from './browser.mjs';
-import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot, profileHeaderComplete, profileLevelComplete } from './model.mjs';
+import { dayFromDescription, exactPostCount, gridCount, gridCountError, itemFromSnapshot, now, postCountError, profileFromSnapshot, profileHeaderComplete, profileLevelComplete } from './model.mjs';
 import { paths, readJson, writeJson, mergeDiscoveryItems, mergeItem, mergeProfile, syncGridViews } from './store.mjs';
 import { writeReport } from './report.mjs';
 
@@ -44,8 +44,9 @@ async function status() {
     username,
     profile_fetched_at: profile?.fetched_at || null,
     profile_issues: profile?.issues || [],
-    posts: { discovered: discovery.post?.items?.length || 0, complete: !!discovery.post?.complete },
-    reels: { discovered: discovery.reel?.items?.length || 0, complete: !!discovery.reel?.complete },
+    posts: { count: exactPostCount(profile), error: postCountError(profile) },
+    post_grid: { count: gridCount(discovery.post), error: gridCountError(discovery.post) },
+    reels: { count: gridCount(discovery.reel), error: gridCountError(discovery.reel) },
     item_records: items.length,
     complete_item_records: items.filter((item) => item.status === 'complete').length,
     run
@@ -94,12 +95,12 @@ async function collect() {
   if (profileOnly && (flags.has('--reels-only') || skipProfile)) throw new Error('--profile-only cannot be combined with reel flags.');
   if (skipProfile && !flags.has('--reels-only')) throw new Error('--skip-profile requires --reels-only.');
   const kinds = profileOnly ? [] : flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
-  const discoveryKinds = profileOnly ? ['post', 'reel'] : kinds;
+  const discoveryKinds = profileOnly ? ['reel'] : kinds;
   const limitArg = process.argv.find((arg) => arg.startsWith('--limit='));
   const limit = limitArg ? Number(limitArg.slice(8)) : Infinity;
   if (!Number.isInteger(limit) && limit !== Infinity || limit < 0) throw new Error('--limit must be a nonnegative integer.');
   let { profile, discovery, items, run } = await files();
-  if (skipProfile && !profileLevelComplete(profile, discovery)) throw new Error(`Collect complete @${username} profile details and grid counts before running reels only.`);
+  if (skipProfile && !profileLevelComplete(profile, discovery)) throw new Error(`Collect an exact @${username} post count and a complete reel count before running reels only.`);
   let corrected = false;
   items = items.map((item) => {
     const day = item.date_precision === 'day' ? dayFromDescription(item.raw?.description) : null;
@@ -116,7 +117,7 @@ async function collect() {
   if (corrected) await writeJson(path.items, items);
   run = { ...run, started_at: now(), updated_at: now(), status: 'running',
     phase: skipProfile ? 'reel discovery' : 'profile',
-    scope: profileOnly ? ['profile', 'post_grid', 'reel_grid'] : skipProfile ? kinds : ['profile', ...kinds],
+    scope: profileOnly ? ['profile', 'reel_grid'] : skipProfile ? kinds : ['profile', ...kinds],
     current_url: null, error: null };
   await writeJson(path.run, run);
   let context;
@@ -129,15 +130,15 @@ async function collect() {
       log(`Collecting ${username} profile`);
       const snapshot = await captureProfile(page, username);
       const current = profileFromSnapshot(username, snapshot);
-      profileStageComplete = profileHeaderComplete(current);
+      profileStageComplete = profileHeaderComplete(current) && exactPostCount(current) !== null;
       profile = mergeProfile(profile, current);
       await writeJson(path.profile, profile);
-      if (!profileStageComplete) log('Profile details are incomplete; missing header counts need review');
+      if (!profileStageComplete) log(`Profile details are incomplete: ${postCountError(current)}`);
     } else log(`Using saved ${username} profile details`);
     for (const kind of discoveryKinds) {
       run = { ...run, phase: `${kind} discovery`, updated_at: now() };
       await writeJson(path.run, run);
-      if (discovery[kind]?.complete && !refresh) { log(`Using saved ${kind} grid`); continue; }
+      if (gridCount(discovery[kind]) !== null && !refresh) { log(`Using saved ${kind} grid`); continue; }
       if (kind === 'post' && profile.posts_count?.value === 0 && !profile.posts_count?.approximate) {
         discovery.post = { items: [], complete: true, error: '', attempted_at: now(), source: 'profile_post_count' };
         await writeJson(path.discovery, discovery);
@@ -150,7 +151,7 @@ async function collect() {
           complete, error, attempted_at: now() };
         await writeJson(path.discovery, discovery);
       });
-      log(`${kind}: ${result.items.length} found, ${result.complete ? 'complete' : result.error}`);
+      log(result.complete ? `${kind}: ${result.items.length} confirmed` : `${kind} count unavailable: ${result.error}`);
     }
     const queued = new Map();
     for (const kind of kinds) for (const item of discovery[kind]?.items || []) queued.set(item.url, item);
@@ -187,12 +188,16 @@ async function collect() {
       await writeJson(path.items, items);
       await new Promise((done) => setTimeout(done, 1600));
     }
-    const complete = profileStageComplete && discoveryKinds.every((kind) => discovery[kind]?.complete)
+    const complete = profileStageComplete && discoveryKinds.every((kind) => gridCount(discovery[kind]) !== null)
       && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete' && !existing.get(url)?.last_error);
-    run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial' };
+    const gridErrors = discoveryKinds.filter((kind) => gridCount(discovery[kind]) === null)
+      .map((kind) => `${kind} grid: ${gridCountError(discovery[kind])}`);
+    run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial',
+      error: gridErrors.join(' | ') || (!profileStageComplete
+        ? postCountError(profile) || 'Profile header counts are incomplete.' : null) };
     await writeJson(path.run, run);
     await writeReport(path, profile, discovery, items, run);
-    log(profileOnly ? `Done: ${discovery.post?.items?.length || 0} posts and ${discovery.reel?.items?.length || 0} reels counted. Report: ${path.report}`
+    log(profileOnly ? `Done: Instagram posts ${exactPostCount(profile) ?? `error (${postCountError(profile)})`}, reels ${gridCount(discovery.reel) ?? `error (${gridCountError(discovery.reel)})`}. Report: ${path.report}`
       : `Done: ${items.length} items. Report: ${path.report}`);
   } catch (error) {
     run = { ...run, status: 'blocked', updated_at: now(), error: error instanceof Error ? error.message : String(error) };
