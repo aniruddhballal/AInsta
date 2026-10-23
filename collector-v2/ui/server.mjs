@@ -58,8 +58,8 @@ class BatchRunner {
     this.batch = { id: randomUUID(), status: 'running', profiles: selected,
       results: Object.fromEntries(selected.map((name) => [name, { status: 'queued', started_at: null, finished_at: null, error: null }])),
       current: null, started_at: time, updated_at: time, finished_at: null, stop_requested: false, logs: [] };
-    this.active = true;
     await this.save();
+    this.active = true;
     void this.run().catch(async (error) => {
       this.batch.status = 'failed';
       this.batch.error = error.message;
@@ -140,6 +140,10 @@ await runner.load();
 
 const assets = new Map([
   ['/app.js', ['app.js', 'text/javascript; charset=utf-8']],
+  ['/shared.js', ['shared.js', 'text/javascript; charset=utf-8']],
+  ['/queue.js', ['queue.js', 'text/javascript; charset=utf-8']],
+  ['/profile.js', ['profile.js', 'text/javascript; charset=utf-8']],
+  ['/overview.js', ['overview.js', 'text/javascript; charset=utf-8']],
   ['/style.css', ['style.css', 'text/css; charset=utf-8']],
   ['/favicon.svg', ['favicon.svg', 'image/svg+xml']]
 ]);

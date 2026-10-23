@@ -1,4 +1,4 @@
-# Isolated Instagram collector prototype
+# Instagram collector and local workspace
 
 This is an independent collector. `targets.json` supplies `edlt.shox` as the default candidate. Pass `--username=NAME` to collect another account from `../bot-info/database/profiles/index.json`. It never writes to the existing dashboard database or Firefox extension.
 
@@ -24,6 +24,18 @@ This reads **only Instagram cookies** from the single Firefox `default-release` 
 Alternatively, use `npm run login`, sign in in the opened Chromium window, and close it. Session files in `.auth/` contain credentials and are gitignored.
 
 ## Collect and review
+
+To use the new local workspace, start it from this folder:
+
+```powershell
+npm run ui
+```
+
+Open `http://127.0.0.1:5174/`. The Collection page lists every account in the existing profile index. Search, filter, or switch between grid and list, select accounts, then start a reel scan. Profiles run one at a time in the background; the page shows the selected profile count, current account, reel progress, review count, and recent activity. **Stop after current profile** lets the current account finish before the queue stops. A later run resumes saved work and retries incomplete items. Keep this terminal open while a batch is running.
+
+Open `http://127.0.0.1:5174/profiles/edlt.shox` for a profile report with its fields, reel inventory, missing-field reasons, and a link to the original standalone HTML report. Open `http://127.0.0.1:5174/summary` for totals and rankings across collected accounts. Aggregate totals based on Instagram's `K` and `M` labels are estimates; per-reel values keep the displayed labels. The workspace scans **reels only** for now and shows posts as a later stage. It writes only inside ignored `collector-v2/data/` and leaves the older web dashboard unchanged.
+
+The command-line collector is also available:
 
 ```powershell
 npm run collect
