@@ -65,6 +65,7 @@ async function loadData() {
       country: 'Not shown',
       date_joined: 'Not shown',
       posts_count: 'Not shown',
+      reels_count: 'Not shown',
       post_dates: [],
       status: 'Pending',
       ignored: false,
@@ -113,7 +114,7 @@ function finishJob(data, status = 'completed') {
 
 function advance(job) {
   job.index += 1;
-  job.stage = job.kind === 'surface' ? 'surface' : job.kind === 'post_count' ? 'post_count' : 'deep_profile';
+  job.stage = job.kind === 'surface' ? 'surface' : job.kind === 'post_count' ? 'post_count' : job.kind === 'reels_count' ? 'reels_count' : 'deep_profile';
   job.post_urls = [];
   job.post_index = 0;
   job.updated_at = now();
@@ -154,7 +155,7 @@ async function route(request, response) {
     if (request.method === 'POST' && pathname === '/api/jobs') {
       const body = await jsonBody(request);
       const kind = body.kind;
-      if (!['surface', 'deep', 'post_count'].includes(kind)) return send(response, 400, { error: 'Choose surface, deep, or post count analysis.' });
+      if (!['surface', 'deep', 'post_count', 'reels_count'].includes(kind)) return send(response, 400, { error: 'Choose surface, deep, post count, or reel count analysis.' });
       const data = await loadData();
       if (data.workflow.active_job) return send(response, 409, { error: 'A collection job is already running.' });
       const selected = [...new Set((body.profile_keys || []).map((value) => String(value).toLocaleLowerCase()))];
@@ -169,7 +170,7 @@ async function route(request, response) {
       }
       const job = {
         id: randomUUID(), kind, status: 'running', profile_keys: profiles.map(keyOf),
-        index: 0, stage: kind === 'surface' ? 'surface' : kind === 'post_count' ? 'post_count' : 'deep_profile', post_urls: [], post_index: 0,
+        index: 0, stage: kind === 'surface' ? 'surface' : kind === 'post_count' ? 'post_count' : kind === 'reels_count' ? 'reels_count' : 'deep_profile', post_urls: [], post_index: 0,
         started_at: now(), updated_at: now(), completed_at: null, last_activity_at: null
       };
       data.workflow.active_job = job;
@@ -220,6 +221,8 @@ async function route(request, response) {
         step.stage = 'surface';
       } else if (job.kind === 'post_count') {
         step.stage = 'post_count';
+      } else if (job.kind === 'reels_count') {
+        step.stage = 'reels_count';
       } else if (job.stage === 'deep_profile') {
         step.stage = 'deep_profile';
       } else if (job.stage === 'deep_post') {
@@ -281,6 +284,23 @@ async function route(request, response) {
         } else {
           addIssue(data, profile, 'POST_COUNT_UNAVAILABLE', result.error || 'Could not identify the post count in the profile header.', {
             recommended_action: 'Retry the post count refresh when the profile is available.'
+          });
+        }
+        advance(job);
+      } else if (job.kind === 'reels_count' && body.stage === 'reels_count' && job.stage === 'reels_count') {
+        const result = body.result || {};
+        const count = result.reels_count;
+        profile.reels_count_last_attempt_at = now();
+        if (Number.isSafeInteger(count) && count >= 0 && result.complete === true) {
+          profile.reels_count = count;
+          profile.reels_count_status = 'Complete';
+          const isReelCountIssue = (issue) => issue.code === 'REELS_COUNT_SCAN_INCOMPLETE' && keyOf({ username: issue.username || issue.profile_key }) === keyOf(profile);
+          profile.collection_issues = (profile.collection_issues || []).filter((issue) => !isReelCountIssue(issue));
+          data.issues = data.issues.filter((issue) => !isReelCountIssue(issue));
+        } else {
+          profile.reels_count_status = 'Incomplete';
+          addIssue(data, profile, 'REELS_COUNT_SCAN_INCOMPLETE', result.error || 'The Reels tab did not reach a confirmed end; the partial count was not saved.', {
+            recommended_action: 'Review the Reels tab for loading or access errors, then retry the reel count scan.'
           });
         }
         advance(job);

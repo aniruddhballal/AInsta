@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "dedgram Dashboard Collector",
   "version": "3.0.0",
-  "description": "Collects Instagram profile and post information only for jobs started in the local dedgram dashboard.",
+  "description": "Collects Instagram profile, post, and reel information only for jobs started in the local dedgram dashboard.",
   "permissions": [
     "tabs",
     "http://127.0.0.1:4317/*"

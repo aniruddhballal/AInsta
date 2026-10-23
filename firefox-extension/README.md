@@ -8,13 +8,14 @@ The Firefox add-on is the Instagram DOM adapter for the local web dashboard. It 
 2. Sign in to Instagram in Firefox.
 3. Open `about:debugging#/runtime/this-firefox`.
 4. Choose **Load Temporary Add-on...** and select this folder's `manifest.json`.
-5. In the dedgram dashboard, select the profiles and start surface or deep analysis.
+5. In the dedgram dashboard, select the profiles and start surface, post-count, reel-count, or deep analysis.
 
 The background script polls `http://127.0.0.1:4317` while idle. It navigates one reusable Instagram tab only after the dashboard has queued a profile. Results and collection issues are written by the API to `bot-info/bot-account-info.json`.
 
 ## Analysis stages
 
 - **Surface analysis** reads the profile header, displayed post count, bio, and About this account details. It does not scroll the post grid or visit posts.
+- **Reel count scan** opens the profile's Reels tab, scrolls while accumulating unique reel links, and saves a count only after repeated end-of-list checks. If access fails or the list never settles, it preserves any prior count and records an issue.
 - **Deep analysis** is available for profiles with completed surface results. It scrolls the profile grid to collect post URLs, visits each post, and saves its timestamp when Instagram exposes one.
 - Missing counts, account dates, post dates, inaccessible profiles, and collection errors appear in the dashboard's Issues tab and the JSON file.
 

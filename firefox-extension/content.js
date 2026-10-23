@@ -139,6 +139,86 @@
     };
   }
 
+  function reelUrls() {
+    const urls = new Set();
+    for (const anchor of document.querySelectorAll('main a[href]')) {
+      try {
+        const url = new URL(anchor.href, location.origin);
+        const match = url.pathname.match(/^\/reel\/([^/]+)\/?$/);
+        if (match) urls.add(match[1]);
+      } catch (_error) { /* Ignore invalid links. */ }
+    }
+    return urls;
+  }
+
+  function reelScanBlockReason() {
+    const alertText = [...document.querySelectorAll('[role="alert"], [role="dialog"]')]
+      .map((element) => element.innerText || '').join(' ').toLocaleLowerCase();
+    const mainText = String(document.querySelector('main')?.innerText || '').toLocaleLowerCase();
+    if (/\/accounts\/login|\/challenge\//.test(location.pathname)) {
+      return 'Instagram redirected to login or a security checkpoint.';
+    }
+    if (/challenge_required|checkpoint_required|please wait a few minutes|try again later/.test(alertText)) {
+      return 'Instagram showed a checkpoint, rate limit, or temporary error during the Reels scan.';
+    }
+    if (/sorry, this page isn't available|page may have been removed/.test(mainText)) {
+      return 'The profile or its Reels page is unavailable.';
+    }
+    return '';
+  }
+
+  async function collectReelCount() {
+    const main = await waitFor(() => document.querySelector('main'));
+    if (!main) return { reels_count: null, complete: false, error: 'Instagram Reels page content did not load.' };
+    if (!/^\/[^/]+\/reels\/?$/.test(location.pathname)) {
+      return { reels_count: null, complete: false, error: 'Instagram did not stay on the profile Reels tab.' };
+    }
+
+    const ids = new Set();
+    const maxPasses = 1200;
+    const stablePassesRequired = 5;
+    let stablePasses = 0;
+    let reachedEnd = false;
+    let error = '';
+
+    for (let pass = 0; pass < maxPasses; pass += 1) {
+      error = reelScanBlockReason();
+      if (error) break;
+      reelUrls().forEach((id) => ids.add(id));
+      const previousCount = ids.size;
+      const scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      window.scrollBy(0, Math.max(500, Math.floor(window.innerHeight * 0.75)));
+      await sleep(900);
+      reelUrls().forEach((id) => ids.add(id));
+      error = reelScanBlockReason();
+      if (error) break;
+
+      const atBottom = window.scrollY + window.innerHeight >= Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - 8;
+      const loading = [...document.querySelectorAll('[role="progressbar"], svg[aria-label*="Loading" i]')].some(visible);
+      if (atBottom && ids.size === previousCount && !loading) stablePasses += 1;
+      else stablePasses = 0;
+      if (stablePasses >= stablePassesRequired) {
+        reachedEnd = true;
+        break;
+      }
+
+      const newHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      if (newHeight <= scrollHeight && ids.size === previousCount && !atBottom) await sleep(600);
+    }
+
+    window.scrollTo(0, 0);
+    const emptyState = /no reels|hasn't posted any reels|no content to show/i.test(main.innerText || '');
+    const complete = !error && reachedEnd && (ids.size > 0 || emptyState);
+    return {
+      reels_count: complete ? ids.size : null,
+      partial_count: ids.size,
+      complete,
+      error: error || (!complete ? ids.size === 0
+        ? 'No reel links loaded and Instagram did not show a clear empty state.'
+        : 'Scrolling stopped without confirming that the Reels tab reached its end.' : '')
+    };
+  }
+
   function failedSurface(step, capturedProfile, message) {
     return {
       bio: bioFrom(capturedProfile, step.username), country: NOT_SHOWN, date_joined: NOT_SHOWN,
@@ -195,6 +275,7 @@
     const { step } = message;
     if (step.stage === 'surface') return collectSurface(step);
     if (step.stage === 'post_count') return collectPostCount();
+    if (step.stage === 'reels_count') return collectReelCount();
     if (step.stage === 'deep_profile') return collectDeepProfile();
     if (step.stage === 'deep_post') return collectPostDate();
     return { error: 'Unknown collection stage.' };

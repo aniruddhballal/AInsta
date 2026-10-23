@@ -18,6 +18,7 @@ The Android app saves captures on the phone to `Documents/dedgram/profiles.json`
 - **Master list** merges the phone catalog in `../bot-info/dedgram-catalog.json` into `../bot-info/bot-account-info.json` and lets you search/select profiles for surface analysis.
 - **Surface analysis** shows collected profile fields and lets you select successfully fetched profiles for deep analysis.
 - **Post counts** filters profiles with missing post totals and runs a targeted refresh that updates only `posts_count`; failed attempts are recorded under Issues.
+- **Reel counts** scans each selected account’s Reels tab, counts unique reel links, and saves `reels_count` only after the scan reaches a stable end. Incomplete scans leave any previous count intact and create an Issue.
 - **Insights** summarizes country, status, post-count, join-year, and repeated-bio patterns across fetched profiles.
 - **Deep analysis** shows saved post dates.
 - **Issues** lists unavailable fields, posts, or profiles that should be reviewed; profiles can be ignored and restored from this tab or the master list.
@@ -26,7 +27,7 @@ The dashboard API is the only writer for dashboard data. It stores profile recor
 
 ## Browse all collected data
 
-Use the dashboard at `http://127.0.0.1:5173` for the full catalog and analysis results. The Master list, Surface analysis, Insights, Post counts, Deep analysis, and Issues tabs together show profile data, summaries, post dates, statuses, and collection problems stored in `../bot-info/bot-account-info.json`.
+Use the dashboard at `http://127.0.0.1:5173` for the full catalog and analysis results. The Master list, Surface analysis, Insights, Post counts, Reel counts, Deep analysis, and Issues tabs together show profile data, summaries, post dates, statuses, and collection problems stored in `../bot-info/bot-account-info.json`.
 
 ## Repair an older text export
 

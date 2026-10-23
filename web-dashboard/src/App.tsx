@@ -5,15 +5,16 @@ type PostDate = { url: string; date: string };
 type Issue = { id?: string; username?: string; profile_url?: string; post_url?: string; code?: string; message?: string; occurred_at?: string; recommended_action?: string };
 type Profile = {
   url: string; username: string; bio?: string; country?: string; date_joined?: string;
-  posts_count?: string | number; post_dates?: PostDate[]; status?: string; last_error?: string;
+  posts_count?: string | number; reels_count?: string | number; reels_count_status?: string; reels_count_last_attempt_at?: string;
+  post_dates?: PostDate[]; status?: string; last_error?: string;
   added_at?: string; last_fetched_at?: string | null; profile_text?: string; about_text?: string;
   collection_issues?: Issue[];
   deep_status?: string;
   ignored?: boolean;
 };
-type Job = { id: string; kind: 'surface' | 'deep' | 'post_count'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
+type Job = { id: string; kind: 'surface' | 'deep' | 'post_count' | 'reels_count'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
-type Tab = 'master' | 'surface' | 'insights' | 'post_counts' | 'deep' | 'issues';
+type Tab = 'master' | 'surface' | 'insights' | 'post_counts' | 'reel_counts' | 'deep' | 'issues';
 type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
 
 const API = '/api';
@@ -27,6 +28,8 @@ const numericPostCount = (value: unknown): number | null => {
   return Math.round(amount * multiplier);
 };
 const hasPostCount = (profile: Profile) => numericPostCount(profile.posts_count) != null;
+const hasReelCount = (profile: Profile) => numericPostCount(profile.reels_count) != null;
+const needsReelCount = (profile: Profile) => !hasReelCount(profile) || profile.reels_count_status === 'Incomplete';
 function joinedDateRange(profile: Profile): { from: string; to: string } | null {
   const value = String(profile.date_joined || '').trim();
   if (!value) return null;
@@ -76,6 +79,8 @@ function App() {
   const [deepSelection, setDeepSelection] = useState<Set<string>>(new Set());
   const [postCountSelection, setPostCountSelection] = useState<Set<string>>(new Set());
   const [postCountFilter, setPostCountFilter] = useState<'missing' | 'all'>('missing');
+  const [reelCountSelection, setReelCountSelection] = useState<Set<string>>(new Set());
+  const [reelCountFilter, setReelCountFilter] = useState<'missing' | 'all'>('missing');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -85,6 +90,8 @@ function App() {
       setData(next);
       const missingKeys = new Set(next.profiles.filter((profile) => !hasPostCount(profile) && !profile.ignored).map(key));
       setPostCountSelection((current) => new Set([...current].filter((profileKey) => missingKeys.has(profileKey))));
+      const validReelKeys = new Set(next.profiles.filter((profile) => !profile.ignored).map(key));
+      setReelCountSelection((current) => new Set([...current].filter((profileKey) => validReelKeys.has(profileKey))));
       setError('');
     }
     catch (caught) { setError(caught instanceof Error ? caught.message : 'Unable to load account data.'); }
@@ -111,6 +118,7 @@ function App() {
   }), [visibleProfiles, surfaceFilter, issues]);
   const postCountProfiles = visibleProfiles.filter((profile) => !profile.ignored && (postCountFilter === 'all' || !hasPostCount(profile)));
   const postCountSelectable = postCountProfiles.filter((profile) => !hasPostCount(profile));
+  const reelCountProfiles = visibleProfiles.filter((profile) => !profile.ignored && (reelCountFilter === 'all' || needsReelCount(profile)));
   const surfaceBaseProfiles = visibleProfiles.filter((profile) => Boolean(profile.last_fetched_at));
   const surfaceCountries = [...new Set(surfaceBaseProfiles.map((profile) => String(profile.country || '').trim()).filter(Boolean))]
     .sort((a, b) => a.localeCompare(b));
@@ -143,13 +151,14 @@ function App() {
     for (const profile of candidates) allSelected ? next.delete(key(profile)) : next.add(key(profile));
     setter(next);
   }
-  async function startJob(kind: 'surface' | 'deep' | 'post_count', selected: Set<string>) {
+  async function startJob(kind: 'surface' | 'deep' | 'post_count' | 'reels_count', selected: Set<string>) {
     setBusy(true); setError('');
     try {
       await api('/jobs', { method: 'POST', body: JSON.stringify({ kind, profile_keys: [...selected] }) });
       if (kind === 'surface') setSurfaceSelection(new Set());
       else if (kind === 'deep') setDeepSelection(new Set());
-      else setPostCountSelection(new Set());
+      else if (kind === 'post_count') setPostCountSelection(new Set());
+      else setReelCountSelection(new Set());
       await refresh();
     } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not start collection.'); }
     finally { setBusy(false); }
@@ -177,6 +186,7 @@ function App() {
     { id: 'surface', label: 'Surface analysis', count: profiles.filter((p) => Boolean(p.last_fetched_at)).length },
     { id: 'insights', label: 'Insights', count: profiles.filter((p) => Boolean(p.last_fetched_at)).length },
     { id: 'post_counts', label: 'Post counts', count: profiles.filter((p) => !p.ignored && !hasPostCount(p)).length },
+    { id: 'reel_counts', label: 'Reel counts', count: profiles.filter((p) => !p.ignored && needsReelCount(p)).length },
     { id: 'deep', label: 'Deep analysis', count: profiles.filter((p) => p.deep_status === 'Collected').length },
     { id: 'issues', label: 'Issues', count: issues.length }
   ];
@@ -185,7 +195,7 @@ function App() {
     <header className="topbar"><a className="brand" href="#master" onClick={() => setTab('master')} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
     <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
-    {activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
+    {activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
     <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => { setTab(item.id); setSearch(''); }}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
     {!data ? <section className="empty">Connecting to the local account data…</section> : <>
       {tab === 'master' && <section>
@@ -212,6 +222,12 @@ function App() {
         <p className="helper post-count-help">On success, this updates only <code>posts_count</code>. Failed attempts are recorded in Issues; other surface fields and post-date data stay untouched.</p>
         <PostCountTable profiles={postCountProfiles} selection={postCountSelection} onToggle={(username) => toggle(postCountSelection, setPostCountSelection, username)} />
       </section>}
+      {tab === 'reel_counts' && <section>
+        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username or bio" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><select value={reelCountFilter} onChange={(event) => setReelCountFilter(event.target.value as 'missing' | 'all')} aria-label="Filter reel counts"><option value="missing">Missing reel count</option><option value="all">All profiles</option></select></label><button className="button secondary" disabled={!reelCountProfiles.length} onClick={() => selectVisible(reelCountSelection, setReelCountSelection, reelCountProfiles)}>{reelCountProfiles.length > 0 && reelCountProfiles.every((profile) => reelCountSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
+        <div className="selection-bar"><span><strong>{reelCountProfiles.length}</strong> visible · <strong>{reelCountSelection.size}</strong> selected for reel count scan</span><button className="button primary" disabled={!reelCountSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('reels_count', reelCountSelection)}>Fetch reel counts <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
+        <p className="helper post-count-help">The add-on scrolls the Reels tab and counts unique reel links. If it can’t confirm the end, it records an issue and doesn’t save the partial count. Existing counts can be rescanned from “All profiles.”</p>
+        <ReelCountTable profiles={reelCountProfiles} selection={reelCountSelection} onToggle={(username) => toggle(reelCountSelection, setReelCountSelection, username)} />
+      </section>}
       {tab === 'deep' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label><span className="helper">Post dates are collected only after surface analysis succeeds.</span></div>
         <ProfileTable profiles={visibleProfiles.filter(successful)} mode="deep" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
@@ -224,11 +240,11 @@ function App() {
 
 function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profiles: Profile[]; mode: 'master' | 'surface' | 'deep'; selection: Set<string>; onToggle: (username: string) => void; onIgnore?: (username: string, ignored: boolean) => void }) {
   if (!profiles.length) return <div className="empty">{mode === 'surface' ? 'No surface results match the current search and filters.' : mode === 'deep' ? 'No post date records yet.' : 'No profiles in the catalog.'}</div>;
-  return <div className="table-wrap"><table><thead><tr>{mode !== 'deep' && <th className="check-col"><span className="sr-only">Select</span></th>}<th>PROFILE</th>{mode === 'master' && <><th>PHONE CATALOG ADDED</th><th>SURFACE STATUS</th><th>REVIEW</th></>}{mode === 'surface' && <><th>BIO / PROFILE TEXT / ABOUT TEXT</th><th>COUNTRY</th><th>DATE JOINED</th><th>POSTS</th><th>STATUS</th><th>ADDED AT</th><th>LAST FETCHED</th><th>LAST ERROR</th></>}{mode === 'deep' && <><th>POST DATES</th><th>STATUS</th><th>LAST FETCHED</th></>}</tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}>
+  return <div className="table-wrap"><table><thead><tr>{mode !== 'deep' && <th className="check-col"><span className="sr-only">Select</span></th>}<th>PROFILE</th>{mode === 'master' && <><th>PHONE CATALOG ADDED</th><th>SURFACE STATUS</th><th>REVIEW</th></>}{mode === 'surface' && <><th>BIO / PROFILE TEXT / ABOUT TEXT</th><th>COUNTRY</th><th>DATE JOINED</th><th>POSTS</th><th>REELS</th><th>STATUS</th><th>ADDED AT</th><th>LAST FETCHED</th><th>LAST ERROR</th></>}{mode === 'deep' && <><th>POST DATES</th><th>STATUS</th><th>LAST FETCHED</th></>}</tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}>
     {mode !== 'deep' && <td><input aria-label={`Select @${profile.username}`} type="checkbox" checked={selection.has(key(profile))} disabled={profile.ignored || (mode === 'surface' && !successful(profile))} onChange={() => onToggle(key(profile))} /></td>}
     <td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td>
     {mode === 'master' && <><td>{fmt(profile.added_at)}</td><td><Status value={profile.ignored ? 'Ignored' : profile.last_fetched_at ? profile.status || 'Fetched' : 'Pending'} /></td><td><button className="link-button" onClick={() => onIgnore?.(profile.username, !profile.ignored)}>{profile.ignored ? 'Restore' : 'Ignore'}</button></td></>}
-    {mode === 'surface' && <><td className="bio-cell"><details><summary>{text(profile.bio).slice(0, 70)}{String(profile.bio || '').length > 70 ? '…' : ''}</summary><pre>{text(profile.bio)}{'\n\nProfile text\n'}{text(profile.profile_text)}{'\n\nAbout text\n'}{text(profile.about_text)}</pre></details></td><td>{text(profile.country)}</td><td>{text(profile.date_joined)}</td><td>{text(profile.posts_count)}</td><td><Status value={profile.status} /></td><td>{fmt(profile.added_at)}</td><td>{fmt(profile.last_fetched_at)}</td><td className="error-text">{text(profile.last_error)}</td></>}
+    {mode === 'surface' && <><td className="bio-cell"><details><summary>{text(profile.bio).slice(0, 70)}{String(profile.bio || '').length > 70 ? '…' : ''}</summary><pre>{text(profile.bio)}{'\n\nProfile text\n'}{text(profile.profile_text)}{'\n\nAbout text\n'}{text(profile.about_text)}</pre></details></td><td>{text(profile.country)}</td><td>{text(profile.date_joined)}</td><td>{text(profile.posts_count)}</td><td>{text(profile.reels_count)}</td><td><Status value={profile.status} /></td><td>{fmt(profile.added_at)}</td><td>{fmt(profile.last_fetched_at)}</td><td className="error-text">{text(profile.last_error)}</td></>}
     {mode === 'deep' && <><td><details><summary>{profile.post_dates?.length || 0} dates collected</summary><ul className="post-list">{(profile.post_dates || []).map((post) => <li key={post.url}><a href={post.url} target="_blank" rel="noreferrer">{post.date || 'Date unavailable'} <ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a></li>)}</ul></details></td><td><Status value={profile.deep_status || 'Pending'} /></td><td>{fmt(profile.last_fetched_at)}</td></>}
   </tr>)}</tbody></table></div>;
 }
@@ -238,9 +254,14 @@ function PostCountTable({ profiles, selection, onToggle }: { profiles: Profile[]
   return <div className="table-wrap"><table className="post-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>POST COUNT</th><th>SURFACE STATUS</th><th>LAST FETCHED</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for post count refresh`} type="checkbox" checked={selection.has(key(profile))} disabled={hasPostCount(profile)} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasPostCount(profile) ? '' : 'missing-post-count'}>{text(profile.posts_count)}</span></td><td><Status value={profile.status || 'Not analyzed'} /></td><td>{fmt(profile.last_fetched_at)}</td></tr>)}</tbody></table></div>;
 }
 
+function ReelCountTable({ profiles, selection, onToggle }: { profiles: Profile[]; selection: Set<string>; onToggle: (username: string) => void }) {
+  if (!profiles.length) return <div className="empty"><h3>No matching profiles</h3><p>Profiles without a saved reel count will appear here.</p></div>;
+  return <div className="table-wrap"><table className="reel-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>REEL COUNT</th><th>SCAN STATUS</th><th>LAST ATTEMPT</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for reel count scan`} type="checkbox" checked={selection.has(key(profile))} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasReelCount(profile) ? '' : 'missing-post-count'}>{hasReelCount(profile) ? text(profile.reels_count) : 'Not collected'}</span></td><td><Status value={profile.reels_count_status || 'Pending'} /></td><td>{fmt(profile.reels_count_last_attempt_at)}</td></tr>)}</tbody></table></div>;
+}
+
 function Status({ value }: { value?: string }) {
   const lower = String(value || 'Pending').toLocaleLowerCase();
-  const type = lower.includes('collect') ? 'good' : lower.includes('fail') || lower.includes('deleted') || lower.includes('error') ? 'bad' : 'pending';
+  const type = lower.includes('incomplete') || lower.includes('fail') || lower.includes('deleted') || lower.includes('error') ? 'bad' : lower.includes('collect') || lower === 'complete' ? 'good' : 'pending';
   return <span className={`status ${type}`}><Circle aria-hidden="true" />{value || 'Pending'}</span>;
 }
 
