@@ -1165,224 +1165,224 @@
       }
     },
     "zyr1x1": {
-      "status": "running",
+      "status": "complete",
       "started_at": "2026-10-23T15:18:20.391Z",
-      "finished_at": null,
+      "finished_at": "2026-10-23T15:21:17.698Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "running",
+          "status": "complete",
           "started_at": "2026-10-23T15:18:20.391Z",
-          "finished_at": null,
+          "finished_at": "2026-10-23T15:21:17.698Z",
           "error": null
         }
       }
     },
     "1sntreal": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:21:17.705Z",
+      "finished_at": "2026-10-23T15:24:27.924Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:21:17.705Z",
+          "finished_at": "2026-10-23T15:24:27.924Z",
           "error": null
         }
       }
     },
     "777.psps": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:24:27.930Z",
+      "finished_at": "2026-10-23T15:25:16.492Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:24:27.930Z",
+          "finished_at": "2026-10-23T15:25:16.492Z",
           "error": null
         }
       }
     },
     "hammergag": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-23T15:25:16.494Z",
+      "finished_at": "2026-10-23T15:25:52.101Z",
+      "error": "Instagram did not show the profile header.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-23T15:25:16.494Z",
+          "finished_at": "2026-10-23T15:25:52.101Z",
+          "error": "Instagram did not show the profile header."
         }
       }
     },
     "reellbuddy": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:25:52.104Z",
+      "finished_at": "2026-10-23T15:28:40.543Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:25:52.104Z",
+          "finished_at": "2026-10-23T15:28:40.543Z",
           "error": null
         }
       }
     },
     "futureshock3272": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "needs_review",
+      "started_at": "2026-10-23T15:28:40.547Z",
+      "finished_at": "2026-10-23T15:32:18.833Z",
+      "error": "reel grid: Grid scan ended before confirming the last item.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "needs_review",
+          "started_at": "2026-10-23T15:28:40.547Z",
+          "finished_at": "2026-10-23T15:32:18.833Z",
+          "error": "reel grid: Grid scan ended before confirming the last item."
         }
       }
     },
     "not.yourtyppee": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:32:18.836Z",
+      "finished_at": "2026-10-23T15:32:35.366Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:32:18.836Z",
+          "finished_at": "2026-10-23T15:32:35.366Z",
           "error": null
         }
       }
     },
     "caodogsfofo": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-23T15:32:35.369Z",
+      "finished_at": "2026-10-23T15:33:10.727Z",
+      "error": "Instagram did not show the profile header.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-23T15:32:35.369Z",
+          "finished_at": "2026-10-23T15:33:10.727Z",
+          "error": "Instagram did not show the profile header."
         }
       }
     },
     "illmisguideyou": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-23T15:33:10.730Z",
+      "finished_at": "2026-10-23T15:33:15.186Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-23T15:33:10.730Z",
+          "finished_at": "2026-10-23T15:33:15.186Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "positive.mpire": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:33:15.188Z",
+      "finished_at": "2026-10-23T15:33:40.072Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:33:15.188Z",
+          "finished_at": "2026-10-23T15:33:40.072Z",
           "error": null
         }
       }
     },
     "pastwillhunt666": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:33:40.075Z",
+      "finished_at": "2026-10-23T15:37:03.919Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:33:40.075Z",
+          "finished_at": "2026-10-23T15:37:03.919Z",
           "error": null
         }
       }
     },
     "renee30287": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:37:03.922Z",
+      "finished_at": "2026-10-23T15:37:17.718Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:37:03.922Z",
+          "finished_at": "2026-10-23T15:37:17.718Z",
           "error": null
         }
       }
     },
     "internetdamage8": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:37:17.721Z",
+      "finished_at": "2026-10-23T15:38:22.406Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:37:17.721Z",
+          "finished_at": "2026-10-23T15:38:22.406Z",
           "error": null
         }
       }
     },
     "its_thanos.battle": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:38:22.409Z",
+      "finished_at": "2026-10-23T15:39:31.345Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:38:22.409Z",
+          "finished_at": "2026-10-23T15:39:31.345Z",
           "error": null
         }
       }
     },
     "doomscroll.dumpling": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-23T15:39:31.348Z",
+      "finished_at": "2026-10-23T15:40:04.733Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-23T15:39:31.348Z",
+          "finished_at": "2026-10-23T15:40:04.733Z",
           "error": null
         }
       }
     },
     "ijuggminors": {
-      "status": "queued",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-10-23T15:40:04.735Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
+          "status": "running",
+          "started_at": "2026-10-23T15:40:04.735Z",
           "finished_at": null,
           "error": null
         }
@@ -2383,72 +2383,72 @@
       }
     }
   },
-  "current": "zyr1x1",
+  "current": "ijuggminors",
   "current_stage": "profile",
   "started_at": "2026-10-23T14:16:12.000Z",
-  "updated_at": "2026-10-23T15:18:20.391Z",
+  "updated_at": "2026-10-23T15:40:04.735Z",
   "finished_at": null,
   "stop_requested": false,
   "logs": [
-    "Finished @z4rxk0 profile: complete",
-    "Starting @slleep91 profile",
-    "[20:36:44] Collecting slleep91 profile",
-    "[20:36:48] Scanning reel grid",
-    "[20:37:21] reel: 101 confirmed",
-    "[20:37:21] Done: Instagram posts 101, reels 101. Report: D:\\post engg\\dedgram\\collector-v2\\data\\slleep91\\report.html",
-    "Finished @slleep91 profile: complete",
-    "Starting @mugiwaramemez profile",
-    "[20:37:24] Collecting mugiwaramemez profile",
-    "[20:37:27] Scanning reel grid",
-    "[20:39:17] reel: 365 confirmed",
-    "[20:39:17] Done: Instagram posts 365, reels 365. Report: D:\\post engg\\dedgram\\collector-v2\\data\\mugiwaramemez\\report.html",
-    "Finished @mugiwaramemez profile: complete",
-    "Starting @xkenshutsu profile",
-    "[20:39:22] Collecting xkenshutsu profile",
-    "[20:39:26] Scanning reel grid",
-    "[20:42:57] reel count unavailable: Grid scan ended before confirming the last item.",
-    "[20:42:57] Done: Instagram posts 383, reels error (Grid scan ended before confirming the last item.). Report: D:\\post engg\\dedgram\\collector-v2\\data\\xkenshutsu\\report.html",
-    "Finished @xkenshutsu profile: needs_review",
-    "Starting @uz87b profile",
-    "[20:42:59] Collecting uz87b profile",
-    "[20:43:03] Scanning reel grid",
-    "[20:43:26] reel: 69 confirmed",
-    "[20:43:26] Done: Instagram posts 76, reels 69. Report: D:\\post engg\\dedgram\\collector-v2\\data\\uz87b\\report.html",
-    "Finished @uz87b profile: complete",
-    "Starting @prime_senchui profile",
-    "[20:43:29] Collecting prime_senchui profile",
+    "[21:02:17] reel count unavailable: Grid scan ended before confirming the last item.",
+    "[21:02:17] Done: Instagram posts 1463, reels error (Grid scan ended before confirming the last item.). Report: D:\\post engg\\dedgram\\collector-v2\\data\\futureshock3272\\report.html",
+    "Finished @futureshock3272 profile: needs_review",
+    "Starting @not.yourtyppee profile",
+    "[21:02:20] Collecting not.yourtyppee profile",
+    "[21:02:23] Scanning reel grid",
+    "[21:02:34] reel: 23 confirmed",
+    "[21:02:34] Done: Instagram posts 318, reels 23. Report: D:\\post engg\\dedgram\\collector-v2\\data\\not.yourtyppee\\report.html",
+    "Finished @not.yourtyppee profile: complete",
+    "Starting @caodogsfofo profile",
+    "[21:02:36] Collecting caodogsfofo profile",
+    "Error: Instagram did not show the profile header.",
+    "at captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:76:33)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:131:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:215:35",
+    "Finished @caodogsfofo profile: failed",
+    "Starting @illmisguideyou profile",
+    "[21:03:11] Collecting illmisguideyou profile",
     "Error: Instagram reports this page is unavailable.",
     "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
-    "at runNextTicks (node:internal/process/task_queues:65:5)",
-    "at process.processImmediate (node:internal/timers:453:9)",
-    "at process.callbackTrampoline (node:internal/async_hooks:130:17)",
     "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
     "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:131:24)",
     "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:215:35",
-    "Finished @prime_senchui profile: failed",
-    "Starting @ft.neyz profile",
-    "[20:43:33] Collecting ft.neyz profile",
-    "[20:43:38] Scanning reel grid",
-    "[20:44:00] reel: 66 confirmed",
-    "[20:44:00] Done: Instagram posts 66, reels 66. Report: D:\\post engg\\dedgram\\collector-v2\\data\\ft.neyz\\report.html",
-    "Finished @ft.neyz profile: complete",
-    "Starting @camilaboucheryamamoto profile",
-    "[20:44:02] Collecting camilaboucheryamamoto profile",
-    "[20:44:06] Scanning reel grid",
-    "[20:44:47] reel: 127 confirmed",
-    "[20:44:47] Done: Instagram posts 127, reels 127. Report: D:\\post engg\\dedgram\\collector-v2\\data\\camilaboucheryamamoto\\report.html",
-    "Finished @camilaboucheryamamoto profile: complete",
-    "Starting @raffater7 profile",
-    "[20:44:49] Collecting raffater7 profile",
-    "[20:44:53] Scanning reel grid",
-    "[20:45:14] reel: 61 confirmed",
-    "[20:45:14] Done: Instagram posts 61, reels 61. Report: D:\\post engg\\dedgram\\collector-v2\\data\\raffater7\\report.html",
-    "Finished @raffater7 profile: complete",
-    "Starting @starson.ig profile",
-    "[20:45:17] Collecting starson.ig profile",
-    "[20:45:21] Scanning reel grid",
-    "[20:48:18] reel: 595 confirmed",
-    "[20:48:18] Done: Instagram posts 597, reels 595. Report: D:\\post engg\\dedgram\\collector-v2\\data\\starson.ig\\report.html",
-    "Finished @starson.ig profile: complete"
+    "Finished @illmisguideyou profile: failed",
+    "Starting @positive.mpire profile",
+    "[21:03:16] Collecting positive.mpire profile",
+    "[21:03:20] Scanning reel grid",
+    "[21:03:38] reel: 46 confirmed",
+    "[21:03:38] Done: Instagram posts 106, reels 46. Report: D:\\post engg\\dedgram\\collector-v2\\data\\positive.mpire\\report.html",
+    "Finished @positive.mpire profile: complete",
+    "Starting @pastwillhunt666 profile",
+    "[21:03:41] Collecting pastwillhunt666 profile",
+    "[21:03:45] Scanning reel grid",
+    "[21:07:02] reel: 586 confirmed",
+    "[21:07:02] Done: Instagram posts 754, reels 586. Report: D:\\post engg\\dedgram\\collector-v2\\data\\pastwillhunt666\\report.html",
+    "Finished @pastwillhunt666 profile: complete",
+    "Starting @renee30287 profile",
+    "[21:07:05] Collecting renee30287 profile",
+    "[21:07:09] Scanning reel grid",
+    "[21:07:16] reel: 5 confirmed",
+    "[21:07:16] Done: Instagram posts 5, reels 5. Report: D:\\post engg\\dedgram\\collector-v2\\data\\renee30287\\report.html",
+    "Finished @renee30287 profile: complete",
+    "Starting @internetdamage8 profile",
+    "[21:07:18] Collecting internetdamage8 profile",
+    "[21:07:22] Scanning reel grid",
+    "[21:08:21] reel: 186 confirmed",
+    "[21:08:21] Done: Instagram posts 186, reels 186. Report: D:\\post engg\\dedgram\\collector-v2\\data\\internetdamage8\\report.html",
+    "Finished @internetdamage8 profile: complete",
+    "Starting @its_thanos.battle profile",
+    "[21:08:23] Collecting its_thanos.battle profile",
+    "[21:08:27] Scanning reel grid",
+    "[21:09:30] reel: 203 confirmed",
+    "[21:09:30] Done: Instagram posts 203, reels 203. Report: D:\\post engg\\dedgram\\collector-v2\\data\\its_thanos.battle\\report.html",
+    "Finished @its_thanos.battle profile: complete",
+    "Starting @doomscroll.dumpling profile",
+    "[21:09:32] Collecting doomscroll.dumpling profile",
+    "[21:09:36] Scanning reel grid",
+    "[21:10:03] reel: 79 confirmed",
+    "[21:10:03] Done: Instagram posts 79, reels 79. Report: D:\\post engg\\dedgram\\collector-v2\\data\\doomscroll.dumpling\\report.html",
+    "Finished @doomscroll.dumpling profile: complete"
   ]
 }

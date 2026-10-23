@@ -1,10 +1,11 @@
 {
-  "started_at": "2026-10-23T10:24:54.038Z",
-  "updated_at": "2026-10-23T10:25:26.849Z",
+  "started_at": "2026-10-23T15:32:36.230Z",
+  "updated_at": "2026-10-23T15:33:09.444Z",
   "status": "blocked",
   "phase": "profile",
   "scope": [
-    "profile"
+    "profile",
+    "reel_grid"
   ],
   "current_url": null,
   "error": "Instagram did not show the profile header."

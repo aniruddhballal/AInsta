@@ -1,7 +1,7 @@
 {
   "username": "not.yourtyppee",
   "url": "https://www.instagram.com/not.yourtyppee/",
-  "fetched_at": "2026-10-23T10:24:51.990Z",
+  "fetched_at": "2026-10-23T15:32:23.608Z",
   "display_name": null,
   "bio": "TVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房...\nmore",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 48348,
-    "raw": "48,348",
+    "value": 48402,
+    "raw": "48,402",
     "approximate": false,
     "source": "header_title"
   },
@@ -24,13 +24,13 @@
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 48300,
-        "raw": "48.3K",
+        "value": 48400,
+        "raw": "48.4K",
         "approximate": true
       },
       "exact_title": {
-        "value": 48348,
-        "raw": "48,348",
+        "value": 48402,
+        "raw": "48,402",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/742998638_18099845354010713_1184378917998273204_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=Hm33YOr1sIQQ7kNvwFulC97&_nc_oc=AdobaxxMYJCPdtFI2LZk85GMRfwGGYNnVGjMPCW4iC4uLSzyeR7WTKfcfnC1U3cqx5zhrhnXIBvwhvMHOBvIhb7t&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=7X_2nXXhhOYsQDzZBlo4cQ&_nc_ss=7f6a8&oh=00_AQNjmPfyTx1JqFVYmG8tIufNGcqeHM6ZiLfJkBalbWw3Nw&oe=6AE105D6",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/742998638_18099845354010713_1184378917998273204_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=Hm33YOr1sIQQ7kNvwFZhcxy&_nc_oc=Adpob8hiQ92DH7vsDT6S5ox-MyRRCxNZWBaXHtMDH82elK13xDy1jdGMZlViJmnS8YlD1i5m-tJ7mwvdz5_8iW7W&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=DnuNfG9cZ90efQ3VDWB73w&_nc_ss=7f6a8&oh=00_AQPMMW2P5ognjNBTt-esFfIeym4eoCXjEAiv96NVXrHU1g&oe=6AE13E16",
   "date_joined": "May 2026",
   "account_based_in": "United States",
   "former_usernames_count": {
@@ -76,7 +76,7 @@
     "approximate": false
   },
   "raw": {
-    "header_text": "not.yourtyppee\n318 posts\n48.3K followers\n0 following\nTVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房... \nmore\nFollow\nMessage",
+    "header_text": "not.yourtyppee\n318 posts\n48.4K followers\n0 following\nTVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房... \nmore\nFollow\nMessage",
     "about_text": "About this account\nnot.yourtyppee\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMay 2026\nAccount based in\nUnited States\nFormer usernames\n2\nClose",
     "description": "48K Followers, 0 Following, 318 Posts - @not.yourtyppee on Instagram: \"TVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房\n新作アニメ\n拡散希望\n猫\"",
     "stat_evidence": {
@@ -85,8 +85,8 @@
         "exact_title": ""
       },
       "followers": {
-        "label": "48.3K followers",
-        "exact_title": "48,348"
+        "label": "48.4K followers",
+        "exact_title": "48,402"
       },
       "following": {
         "label": "0 following",
