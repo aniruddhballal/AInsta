@@ -45,7 +45,7 @@ Outputs are under ignored `data/edlt.shox/`:
 | `profile.csv` | One row of account level fields for analysis. |
 | `report.html` | Standalone local review page. Open it directly in a browser. |
 
-Counts shown in Instagram as `K` or `M` are marked `approximate` and retain the original label. The HTML report shows the Instagram view label verbatim; `items.csv` keeps its numeric estimate in `views` and the original label in `views_displayed`. A grid refresh updates that label in existing reel records and records when it was observed. A missing field is `null` and listed in `missing`; it is not turned into zero. A preview limited by a login wall is marked incomplete. Existing values survive a retry that temporarily cannot read the same field.
+Counts shown in Instagram as `K` or `M` are marked `approximate` and retain the original label. The HTML report shows the supplied view and like labels, including `K` or `M` when Instagram used them. `items.csv` keeps numeric estimates in `views` and `likes` and the supplied labels in `views_displayed` and `likes_displayed`. A grid refresh updates view labels in existing reel records and records when they were observed. A missing field is `null` and listed in `missing`; it is not turned into zero. A preview limited by a login wall is marked incomplete. Existing values survive a retry that temporarily cannot read the same field.
 
 For follower counts, the collector uses an exact number from the profile header's `title` attribute when Instagram provides one. It also records the displayed header and page metadata counts as evidence. When following counts disagree, it uses the current visible profile header and retains the metadata value in `count_evidence` for review.
 
