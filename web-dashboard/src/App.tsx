@@ -26,6 +26,15 @@ function tabFromPath(pathname: string): Tab {
   const path = pathname.replace(/\/+$/, '') || '/';
   return (Object.entries(TAB_ROUTES).find(([, route]) => route === path)?.[0] as Tab | undefined) || 'master';
 }
+function profileFromPath(pathname: string): string | null {
+  const path = pathname.replace(/^\/+|\/+$/g, '');
+  if (!path || Object.values(TAB_ROUTES).includes(`/${path}`)) return null;
+  try {
+    const username = decodeURIComponent(path);
+    return /^[A-Za-z0-9._]+$/.test(username) ? username : null;
+  } catch { return null; }
+}
+const profilePath = (username: string) => `/${encodeURIComponent(username)}`;
 const isSurfaceFilter = (value: string | null): value is SurfaceFilter => ['all', 'needs_surface', 'collected', 'collection_failed', 'deleted_account', 'issues', 'ignored'].includes(value || '');
 const isDateValue = (value: string | null) => Boolean(value && /^\d{4}-\d{2}-\d{2}$/.test(value));
 const numericPostCount = (value: unknown): number | null => {
@@ -79,6 +88,7 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
 function App() {
   const [data, setData] = useState<Data | null>(null);
   const [tab, setTab] = useState<Tab>(() => tabFromPath(window.location.pathname));
+  const [profileUsername, setProfileUsername] = useState<string | null>(() => profileFromPath(window.location.pathname));
   const [search, setSearch] = useState(() => new URLSearchParams(window.location.search).get('q') || '');
   const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>(() => {
     const value = new URLSearchParams(window.location.search).get('status');
@@ -117,6 +127,7 @@ function App() {
   useEffect(() => {
     const syncFromUrl = () => {
       setTab(tabFromPath(window.location.pathname));
+      setProfileUsername(profileFromPath(window.location.pathname));
       const params = new URLSearchParams(window.location.search);
       setSearch(params.get('q') || '');
       const status = params.get('status');
@@ -132,27 +143,29 @@ function App() {
       setReelCountFilter(params.get('reel-counts') === 'all' ? 'all' : 'missing');
     };
     const currentTab = tabFromPath(window.location.pathname);
-    if (window.location.pathname !== TAB_ROUTES[currentTab]) window.history.replaceState(null, '', `${TAB_ROUTES[currentTab]}${window.location.search}`);
+    if (!profileFromPath(window.location.pathname) && window.location.pathname !== TAB_ROUTES[currentTab]) window.history.replaceState(null, '', `${TAB_ROUTES[currentTab]}${window.location.search}`);
     window.addEventListener('popstate', syncFromUrl);
     return () => window.removeEventListener('popstate', syncFromUrl);
   }, []);
 
   useEffect(() => {
     const url = new URL(window.location.href);
-    url.pathname = TAB_ROUTES[tab];
+    url.pathname = profileUsername ? profilePath(profileUsername) : TAB_ROUTES[tab];
     url.search = '';
     const params = url.searchParams;
-    if (search) params.set('q', search);
-    if (surfaceFilter !== 'all') params.set('status', surfaceFilter);
-    if (surfaceCountry !== 'all') params.set('country', surfaceCountry);
-    if (joinedFrom) params.set('from', joinedFrom);
-    if (joinedTo) params.set('to', joinedTo);
-    if (postSort !== 'none') params.set('posts', postSort);
-    if (postCountFilter !== 'missing') params.set('post-counts', postCountFilter);
-    if (reelCountFilter !== 'missing') params.set('reel-counts', reelCountFilter);
+    if (!profileUsername) {
+      if (search) params.set('q', search);
+      if (surfaceFilter !== 'all') params.set('status', surfaceFilter);
+      if (surfaceCountry !== 'all') params.set('country', surfaceCountry);
+      if (joinedFrom) params.set('from', joinedFrom);
+      if (joinedTo) params.set('to', joinedTo);
+      if (postSort !== 'none') params.set('posts', postSort);
+      if (postCountFilter !== 'missing') params.set('post-counts', postCountFilter);
+      if (reelCountFilter !== 'missing') params.set('reel-counts', reelCountFilter);
+    }
     const nextUrl = `${url.pathname}${url.search}`;
     if (`${window.location.pathname}${window.location.search}` !== nextUrl) window.history.replaceState({ tab }, '', nextUrl);
-  }, [tab, search, surfaceFilter, surfaceCountry, joinedFrom, joinedTo, postSort, postCountFilter, reelCountFilter]);
+  }, [tab, profileUsername, search, surfaceFilter, surfaceCountry, joinedFrom, joinedTo, postSort, postCountFilter, reelCountFilter]);
 
   const profiles = data?.profiles || [];
   const visibleProfiles = useMemo(() => {
@@ -208,6 +221,7 @@ function App() {
   }
   function navigateTab(nextTab: Tab) {
     setTab(nextTab);
+    setProfileUsername(null);
     const path = TAB_ROUTES[nextTab];
     if (window.location.pathname !== path) window.history.pushState({ tab: nextTab }, '', path);
   }
@@ -251,13 +265,15 @@ function App() {
     { id: 'issues', label: 'Issues', count: issues.length }
   ];
 
-  return <main className="shell">
+  const selectedProfile = profileUsername ? profiles.find((profile) => key(profile) === profileUsername.toLocaleLowerCase()) : undefined;
+
+  return <main className={`shell${profileUsername ? ' profile-shell' : ''}`}>
     <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
-    <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>
+    {!profileUsername && <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>}
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
-    {activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
-    <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => navigateTab(item.id)}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
-    {!data ? <section className="empty">Connecting to the local account data…</section> : <>
+    {!profileUsername && activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
+    {!profileUsername && <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => navigateTab(item.id)}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>}
+    {!data ? <section className="empty">Connecting to the local account data…</section> : profileUsername ? (selectedProfile ? <ProfileDetail profile={selectedProfile} onBack={() => navigateTab('master')} /> : <section className="empty profile-not-found"><h3>Profile not found</h3><p>No local profile data exists for @{profileUsername}.</p><button className="button secondary" onClick={() => navigateTab('master')}>Back to profiles</button></section>) : <>
       {tab === 'master' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="collection_failed">Collection failed</option><option value="deleted_account">Deleted account</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
         <div className="selection-bar"><span><strong>{masterProfiles.length}</strong> visible <span className="count-separator" aria-hidden="true">·</span> <strong>{surfaceSelection.size}</strong> selected for surface analysis</span><button className="button primary" disabled={!surfaceSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('surface', surfaceSelection)}>Run surface analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
@@ -298,11 +314,48 @@ function App() {
   </main>;
 }
 
+function ProfileDetail({ profile, onBack }: { profile: Profile; onBack: () => void }) {
+  const dates = profile.post_dates || [];
+  return <section className="profile-detail">
+    <button className="profile-back" onClick={onBack}><ArrowRight className="ui-icon back-arrow" size={16} aria-hidden="true" /> All profiles</button>
+    <div className="profile-heading">
+      <div className="profile-avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</div>
+      <div className="profile-heading-main">
+        <div className="profile-title-row"><h1>{profile.username}</h1><Status value={profile.status || 'Pending'} /><a className="button secondary profile-instagram-link" href={profile.url} target="_blank" rel="noreferrer">Instagram <ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a></div>
+        <div className="profile-counts"><div><strong>{text(profile.posts_count)}</strong><span>posts</span></div><div><strong>{text(profile.reels_count)}</strong><span>reels</span></div><div><strong>{dates.length.toLocaleString()}</strong><span>post dates</span></div></div>
+        <div className="profile-bio"><strong>@{profile.username}</strong><p>{profile.bio || 'No bio collected.'}</p></div>
+      </div>
+    </div>
+
+    <div className="profile-metadata">
+      <ProfileField label="Country" value={profile.country} />
+      <ProfileField label="Date joined" value={profile.date_joined} />
+      <ProfileField label="Added at" value={fmt(profile.added_at)} />
+      <ProfileField label="Last fetched" value={fmt(profile.last_fetched_at)} />
+      <ProfileField label="Deep analysis" value={profile.deep_status || 'Not collected'} />
+      <ProfileField label="Reel scan" value={profile.reels_count_status || 'Not collected'} />
+    </div>
+    {profile.last_error && <div className="profile-error"><strong>Last error</strong><p>{profile.last_error}</p></div>}
+
+    <div className="profile-text-panels">
+      <details><summary>Collected profile text</summary><pre>{profile.profile_text || 'No profile text collected.'}</pre></details>
+      <details><summary>About text</summary><pre>{profile.about_text || 'No about text collected.'}</pre></details>
+    </div>
+
+    <div className="profile-posts-heading"><h2>Collected post dates</h2><span>{dates.length.toLocaleString()} posts</span></div>
+    {dates.length ? <div className="profile-post-grid">{dates.map((post, index) => <a className="profile-post-tile" href={post.url} target="_blank" rel="noreferrer" key={`${post.url}-${index}`}><span>POST {String(index + 1).padStart(2, '0')}</span><strong>{post.date || 'Date unavailable'}</strong><ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a>)}</div> : <div className="empty profile-post-empty"><h3>No post dates collected</h3><p>Run deep analysis on this profile to collect post dates.</p></div>}
+  </section>;
+}
+
+function ProfileField({ label, value }: { label: string; value?: string | number | null }) {
+  return <div className="profile-field"><span>{label}</span><strong>{text(value)}</strong></div>;
+}
+
 function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profiles: Profile[]; mode: 'master' | 'surface' | 'deep'; selection: Set<string>; onToggle: (username: string) => void; onIgnore?: (username: string, ignored: boolean) => void }) {
   if (!profiles.length) return <div className="empty">{mode === 'surface' ? 'No surface results match the current search and filters.' : mode === 'deep' ? 'No post date records yet.' : 'No profiles in the catalog.'}</div>;
   return <div className="table-wrap"><table><thead><tr>{mode !== 'deep' && <th className="check-col"><span className="sr-only">Select</span></th>}<th>PROFILE</th>{mode === 'master' && <><th>PHONE CATALOG ADDED</th><th>SURFACE STATUS</th><th>REVIEW</th></>}{mode === 'surface' && <><th>BIO / PROFILE TEXT / ABOUT TEXT</th><th>COUNTRY</th><th>DATE JOINED</th><th>POSTS</th><th>REELS</th><th>STATUS</th><th>ADDED AT</th><th>LAST FETCHED</th><th>LAST ERROR</th></>}{mode === 'deep' && <><th>POST DATES</th><th>STATUS</th><th>LAST FETCHED</th></>}</tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}>
     {mode !== 'deep' && <td><input aria-label={`Select @${profile.username}`} type="checkbox" checked={selection.has(key(profile))} disabled={profile.ignored || (mode === 'surface' && !successful(profile))} onChange={() => onToggle(key(profile))} /></td>}
-    <td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td>
+    <td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profilePath(profile.username)}>@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td>
     {mode === 'master' && <><td>{fmt(profile.added_at)}</td><td><Status value={profile.ignored ? 'Ignored' : profile.last_fetched_at ? profile.status || 'Fetched' : 'Pending'} /></td><td><button className="link-button" onClick={() => onIgnore?.(profile.username, !profile.ignored)}>{profile.ignored ? 'Restore' : 'Ignore'}</button></td></>}
     {mode === 'surface' && <><td className="bio-cell"><details><summary>{text(profile.bio).slice(0, 70)}{String(profile.bio || '').length > 70 ? '…' : ''}</summary><pre>{text(profile.bio)}{'\n\nProfile text\n'}{text(profile.profile_text)}{'\n\nAbout text\n'}{text(profile.about_text)}</pre></details></td><td>{text(profile.country)}</td><td>{text(profile.date_joined)}</td><td>{text(profile.posts_count)}</td><td>{text(profile.reels_count)}</td><td><Status value={profile.status} /></td><td>{fmt(profile.added_at)}</td><td>{fmt(profile.last_fetched_at)}</td><td className="error-text">{text(profile.last_error)}</td></>}
     {mode === 'deep' && <><td><details><summary>{profile.post_dates?.length || 0} dates collected</summary><ul className="post-list">{(profile.post_dates || []).map((post) => <li key={post.url}><a href={post.url} target="_blank" rel="noreferrer">{post.date || 'Date unavailable'} <ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a></li>)}</ul></details></td><td><Status value={profile.deep_status || 'Pending'} /></td><td>{fmt(profile.last_fetched_at)}</td></>}
@@ -311,12 +364,12 @@ function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profi
 
 function PostCountTable({ profiles, selection, onToggle }: { profiles: Profile[]; selection: Set<string>; onToggle: (username: string) => void }) {
   if (!profiles.length) return <div className="empty"><h3>No matching profiles</h3><p>Profiles with missing post counts will appear here.</p></div>;
-  return <div className="table-wrap"><table className="post-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>POST COUNT</th><th>SURFACE STATUS</th><th>LAST FETCHED</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for post count refresh`} type="checkbox" checked={selection.has(key(profile))} disabled={hasPostCount(profile)} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasPostCount(profile) ? '' : 'missing-post-count'}>{text(profile.posts_count)}</span></td><td><Status value={profile.status || 'Not analyzed'} /></td><td>{fmt(profile.last_fetched_at)}</td></tr>)}</tbody></table></div>;
+  return <div className="table-wrap"><table className="post-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>POST COUNT</th><th>SURFACE STATUS</th><th>LAST FETCHED</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for post count refresh`} type="checkbox" checked={selection.has(key(profile))} disabled={hasPostCount(profile)} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profilePath(profile.username)}>@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasPostCount(profile) ? '' : 'missing-post-count'}>{text(profile.posts_count)}</span></td><td><Status value={profile.status || 'Not analyzed'} /></td><td>{fmt(profile.last_fetched_at)}</td></tr>)}</tbody></table></div>;
 }
 
 function ReelCountTable({ profiles, selection, onToggle }: { profiles: Profile[]; selection: Set<string>; onToggle: (username: string) => void }) {
   if (!profiles.length) return <div className="empty"><h3>No matching profiles</h3><p>Profiles without a saved reel count will appear here.</p></div>;
-  return <div className="table-wrap"><table className="reel-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>REEL COUNT</th><th>SCAN STATUS</th><th>LAST ATTEMPT</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for reel count scan`} type="checkbox" checked={selection.has(key(profile))} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasReelCount(profile) ? '' : 'missing-post-count'}>{hasReelCount(profile) ? text(profile.reels_count) : 'Not collected'}</span></td><td><Status value={profile.reels_count_status || 'Pending'} /></td><td>{fmt(profile.reels_count_last_attempt_at)}</td></tr>)}</tbody></table></div>;
+  return <div className="table-wrap"><table className="reel-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>REEL COUNT</th><th>SCAN STATUS</th><th>LAST ATTEMPT</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for reel count scan`} type="checkbox" checked={selection.has(key(profile))} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profilePath(profile.username)}>@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasReelCount(profile) ? '' : 'missing-post-count'}>{hasReelCount(profile) ? text(profile.reels_count) : 'Not collected'}</span></td><td><Status value={profile.reels_count_status || 'Pending'} /></td><td>{fmt(profile.reels_count_last_attempt_at)}</td></tr>)}</tbody></table></div>;
 }
 
 function Status({ value }: { value?: string }) {
@@ -410,7 +463,7 @@ function InsightsView({ profiles }: { profiles: Profile[] }) {
           {joinYearRows.length ? <div className="insight-bars">{joinYearRows.map(([year, count]) => <InsightBar key={year} label={year} count={count} total={scanned.length} max={maxJoinYear} />)}</div> : <p className="insight-note">No join years could be read from the scanned profiles.</p>}
         </InsightPanel>
         <InsightPanel className="wide" icon={<MessageSquareText />} title="Repeated bios" meta={`${bioGroups.size} distinct non-empty bios`}>
-          {repeatedBios.length ? <div className="repeated-bios">{repeatedBios.map((group) => <article className="repeated-bio" key={group.bio.toLocaleLowerCase()}><div className="repeat-count">{group.profiles.length}<small>accounts</small></div><div className="repeat-copy"><p>{group.bio}</p><div className="repeat-profiles">{group.profiles.slice(0, 8).map((profile) => <a key={key(profile)} href={profile.url} target="_blank" rel="noreferrer">@{profile.username}</a>)}{group.profiles.length > 8 && <span>+{group.profiles.length - 8} more</span>}</div></div></article>)}</div> : <div className="no-repeats"><span>Each non-empty bio is unique across these scanned profiles.</span><strong>{bioGroups.size.toLocaleString()} distinct bios</strong></div>}
+          {repeatedBios.length ? <div className="repeated-bios">{repeatedBios.map((group) => <article className="repeated-bio" key={group.bio.toLocaleLowerCase()}><div className="repeat-count">{group.profiles.length}<small>accounts</small></div><div className="repeat-copy"><p>{group.bio}</p><div className="repeat-profiles">{group.profiles.slice(0, 8).map((profile) => <a key={key(profile)} href={profilePath(profile.username)}>@{profile.username}</a>)}{group.profiles.length > 8 && <span>+{group.profiles.length - 8} more</span>}</div></div></article>)}</div> : <div className="no-repeats"><span>Each non-empty bio is unique across these scanned profiles.</span><strong>{bioGroups.size.toLocaleString()} distinct bios</strong></div>}
         </InsightPanel>
       </div>
       <p className="insights-footnote">Country and join-year summaries exclude values that weren’t shared or could not be read. Post statistics use numeric counts where available, including counts visible in the collected profile text. Bio matches ignore capitalization and whitespace only.</p>
