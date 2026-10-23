@@ -20,6 +20,8 @@ test('profile extracts the sample account fields', () => {
   assert.equal(result.date_joined, 'September 2026');
   assert.equal(result.account_based_in, 'Tajikistan');
   assert.equal(result.former_usernames_count.value, 13);
+  assert.equal(result.category, 'Reel creator');
+  assert.equal(result.ai_generated_profile, true);
 });
 
 test('profile reads post count from page metadata when the public header omits it', () => {
@@ -52,6 +54,15 @@ test('item parses published date, caption, engagement and source', () => {
   assert.equal(result.views.value, 9200);
   assert.deepEqual(result.hashtags, ['#world']);
   assert.deepEqual(result.mentions, ['@friend']);
+  assert.equal(result.date_precision, 'timestamp');
+});
+
+test('item keeps date-only evidence at day precision', () => {
+  const result = itemFromSnapshot({ kind: 'reel' }, { og_description: '5 likes, 2 comments - edlt.shox on October 22, 2026: "Caption"',
+    grid_views_raw: '1.2K', article_text: 'No timestamp shown' });
+  assert.equal(result.date, '2026-10-22');
+  assert.equal(result.date_precision, 'day');
+  assert.equal(result.status, 'complete');
 });
 
 test('a grid view estimate keeps its original rounded notation', () => {

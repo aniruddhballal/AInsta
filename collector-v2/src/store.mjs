@@ -23,7 +23,8 @@ export function paths(root, username) {
     items: join(base, 'items.json'),
     run: join(base, 'run.json'),
     report: join(base, 'report.html'),
-    csv: join(base, 'items.csv')
+    csv: join(base, 'items.csv'),
+    profileCsv: join(base, 'profile.csv')
   };
 }
 
@@ -33,6 +34,10 @@ export function mergeItem(previous, current) {
   for (const field of ['date', 'caption', 'likes', 'comments', 'views', 'thumbnail_url', 'media_url']) {
     if (result[field] == null && previous[field] != null) result[field] = previous[field];
   }
+  if (previous.date_precision === 'timestamp' && current.date_precision !== 'timestamp') {
+    result.date = previous.date;
+    result.date_precision = 'timestamp';
+  }
   result.status = ['date', 'likes', 'comments', 'views'].every((field) => result[field] != null) ? 'complete' : 'partial';
   result.missing = ['date', 'likes', 'comments', 'views'].filter((field) => result[field] == null);
   return result;
@@ -41,7 +46,7 @@ export function mergeItem(previous, current) {
 export function mergeProfile(previous, current) {
   if (!previous) return current;
   const result = { ...previous, ...current };
-  for (const field of ['display_name', 'bio', 'posts_count', 'followers_count', 'following_count', 'category',
+  for (const field of ['display_name', 'bio', 'posts_count', 'followers_count', 'following_count', 'category', 'ai_generated_profile',
     'profile_picture_url', 'date_joined', 'account_based_in', 'former_usernames_count']) {
     if (result[field] == null && previous[field] != null) result[field] = previous[field];
   }

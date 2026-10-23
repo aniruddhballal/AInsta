@@ -32,6 +32,7 @@ export function profileFromSnapshot(username, snapshot) {
   const bioStart = lines.findIndex((line) => /\bfollowing\b/i.test(line));
   const bioStop = lines.findIndex((line, i) => i > bioStart && /^(follow|following|message|edit profile|share profile|posts|reels|tagged)$/i.test(line));
   const bioLines = bioStart >= 0 ? lines.slice(bioStart + 1, bioStop >= 0 ? bioStop : undefined) : [];
+  const category = snapshot.category || bioLines.find((line) => /^(reel creator|digital creator|video creator|blogger|editor|artist|public figure|entrepreneur|personal blog)\s*•?$/i.test(line))?.replace(/\s*•$/, '') || null;
   const about = snapshot.about_text || '';
   const former = afterLabel(about, 'Former usernames');
   return {
@@ -43,7 +44,8 @@ export function profileFromSnapshot(username, snapshot) {
     posts_count: metric(header, ['posts?']) || metric(snapshot.description || '', ['posts?']),
     followers_count: metric(header, ['followers?']),
     following_count: metric(header, ['following']),
-    category: snapshot.category || null,
+    category,
+    ai_generated_profile: lines.some((line) => /^AI-generated profile$/i.test(line)),
     profile_picture_url: snapshot.profile_picture_url || null,
     date_joined: afterLabel(about, 'Date joined'),
     account_based_in: afterLabel(about, 'Account based in'),
@@ -65,6 +67,13 @@ export function canonicalItemUrl(href) {
     const kind = match[1] === 'p' ? 'post' : 'reel';
     return { kind, shortcode: match[2], url: `https://www.instagram.com/${kind === 'post' ? 'p' : 'reel'}/${match[2]}/` };
   } catch { return null; }
+}
+
+export function dayFromDescription(description) {
+  const match = String(description || '').match(/\bon\s+([A-Za-z]+\s+\d{1,2},\s+\d{4})\s*:/);
+  if (!match) return null;
+  const parsed = new Date(`${match[1]} 00:00:00 GMT`);
+  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString().slice(0, 10);
 }
 
 function jsonLdData(scripts) {
@@ -103,7 +112,10 @@ export function itemFromSnapshot(item, snapshot) {
   const views = findMetric(['views?', 'plays?']) || (snapshot.grid_views_raw
     ? { ...count(snapshot.grid_views_raw), source: 'profile_grid' } : null);
   const dateRaw = snapshot.datetime || structured.uploadDate || structured.datePublished || null;
-  const date = dateRaw && !Number.isNaN(Date.parse(dateRaw)) ? new Date(dateRaw).toISOString() : null;
+  const calendarDay = dayFromDescription(description);
+  const date = dateRaw && !Number.isNaN(Date.parse(dateRaw)) ? new Date(dateRaw).toISOString()
+    : calendarDay;
+  const date_precision = dateRaw && date ? 'timestamp' : date ? 'day' : null;
   const ogCaption = description.match(/:\s*[“"']([\s\S]*)[”"']\.?\s*$/)?.[1]
     || description.match(/:\s*([\s\S]+)$/)?.[1]?.trim();
   const caption = snapshot.caption || structured.caption || structured.description || ogCaption || null;
@@ -115,6 +127,7 @@ export function itemFromSnapshot(item, snapshot) {
     fetched_at: now(),
     status: missing.length ? 'partial' : 'complete',
     date,
+    date_precision,
     caption,
     hashtags,
     mentions,

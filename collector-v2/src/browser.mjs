@@ -36,22 +36,35 @@ async function open(page, url) {
 
 async function aboutText(page) {
   const selectors = [
-    page.getByRole('button', { name: /^(options|more options|profile options)$/i }).first(),
-    page.locator('main header button').filter({ has: page.locator('svg[aria-label*="options" i]') }).first()
+    page.locator('main header [role="button"]').filter({ has: page.locator('svg[aria-label*="options" i]') }).first(),
+    page.locator('main header button').filter({ has: page.locator('svg[aria-label*="options" i]') }).first(),
+    page.getByRole('button', { name: /^(options|more options|profile options)$/i }).first()
   ];
   let opened = false;
   for (const button of selectors) {
     try { if (await button.isVisible({ timeout: 1200 })) { await button.click(); opened = true; break; } }
-    catch { /* Instagram can rename the control. */ }
+    catch (error) { if (process.env.DEDGRAM_DEBUG) console.warn('Options click:', error.message); }
   }
-  if (!opened) return '';
+  if (!opened) {
+    if (process.env.DEDGRAM_DEBUG) console.warn('No visible profile options control');
+    return '';
+  }
   try {
     const about = page.getByText(/about this (account|profile)/i).last();
     await about.click({ timeout: 5000 });
     const dialog = page.getByRole('dialog').last();
     await dialog.waitFor({ timeout: 8000 });
-    return await dialog.innerText();
-  } catch { return ''; }
+    let value = '';
+    for (let attempt = 0; attempt < 30; attempt++) {
+      value = await dialog.innerText();
+      if (/About this account/i.test(value) && value.length > 40) break;
+      await pause(200);
+    }
+    return value;
+  } catch (error) {
+    if (process.env.DEDGRAM_DEBUG) console.warn('About dialog extraction:', error.message);
+    return '';
+  }
   finally { await page.keyboard.press('Escape').catch(() => {}); }
 }
 

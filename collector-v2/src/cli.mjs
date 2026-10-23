@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { launch, captureProfile, discover, captureItem } from './browser.mjs';
-import { itemFromSnapshot, now, profileFromSnapshot } from './model.mjs';
+import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot } from './model.mjs';
 import { paths, readJson, writeJson, mergeItem, mergeProfile } from './store.mjs';
 import { writeReport } from './report.mjs';
 
@@ -92,6 +92,14 @@ async function collect() {
   const limit = limitArg ? Number(limitArg.slice(8)) : Infinity;
   if (!Number.isInteger(limit) && limit !== Infinity || limit < 0) throw new Error('--limit must be a nonnegative integer.');
   let { profile, discovery, items, run } = await files();
+  let corrected = false;
+  items = items.map((item) => {
+    const day = item.date_precision === 'day' ? dayFromDescription(item.raw?.description) : null;
+    if (!day || day === item.date) return item;
+    corrected = true;
+    return { ...item, date: day };
+  });
+  if (corrected) await writeJson(path.items, items);
   run = { ...run, started_at: now(), updated_at: now(), status: 'running', phase: 'profile', error: null };
   await writeJson(path.run, run);
   let context;
