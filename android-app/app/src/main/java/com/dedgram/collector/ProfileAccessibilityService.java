@@ -21,7 +21,7 @@ import android.widget.Toast;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class DedgramAccessibilityService extends AccessibilityService {
+public final class ProfileAccessibilityService extends AccessibilityService {
     private static final String INSTAGRAM_PACKAGE = "com.instagram.android";
     private static final String BUBBLE_POSITION_PREFS = "capture_bubble_position";
     private static final String BUBBLE_X = "x";
@@ -88,7 +88,7 @@ public final class DedgramAccessibilityService extends AccessibilityService {
         view.setTextSize(16);
         view.setGravity(Gravity.CENTER);
         view.setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD);
-        view.setContentDescription("Dedgram capture profile");
+        view.setContentDescription("dedgram capture profile");
         view.setBackground(new CaptureBubbleDrawable(this));
         view.setElevation(dp(4));
         view.setOnClickListener(ignored -> captureCurrentProfile(view));
@@ -103,9 +103,9 @@ public final class DedgramAccessibilityService extends AccessibilityService {
         params.gravity = Gravity.TOP | Gravity.START;
         params.x = clampPosition(savedBubblePosition(BUBBLE_X, dp(16)), maxBubbleX(params));
         params.y = clampPosition(savedBubblePosition(BUBBLE_Y, dp(220)), maxBubbleY(params));
-        params.setTitle("Dedgram capture bubble");
+        params.setTitle("dedgram capture bubble");
         view.setOnTouchListener(new View.OnTouchListener() {
-            private final int touchSlop = ViewConfiguration.get(DedgramAccessibilityService.this).getScaledTouchSlop();
+            private final int touchSlop = ViewConfiguration.get(ProfileAccessibilityService.this).getScaledTouchSlop();
             private float downRawX;
             private float downRawY;
             private int startX;

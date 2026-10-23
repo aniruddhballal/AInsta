@@ -31,7 +31,7 @@ public final class ProfileStoreTest {
 
     @Test
     public void normalizedValueIsStableForDuplicateChecks() {
-        String first = ProfileStore.normalizeUsername("Dedgram.Creator");
+        String first = ProfileStore.normalizeUsername("dedgram.Creator");
         String second = ProfileStore.normalizeUsername("@dedgram.creator");
         assertTrue(!first.isEmpty());
         assertEquals(first, second);

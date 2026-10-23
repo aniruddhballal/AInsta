@@ -180,7 +180,7 @@
   }
 
   browser.runtime.onMessage.addListener((message) => {
-    if (message?.type !== 'DEDGRAM_COLLECT') return undefined;
+    if (message?.type !== 'dedgram_collect') return undefined;
     const { step } = message;
     if (step.stage === 'surface') return collectSurface(step);
     if (step.stage === 'deep_profile') return collectDeepProfile();

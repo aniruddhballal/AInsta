@@ -1,4 +1,4 @@
-# Dedgram local dashboard
+# dedgram local dashboard
 
 ## Start
 
@@ -11,7 +11,7 @@ npm run dev
 
 Open `http://127.0.0.1:5173`. The command starts the React/Vite UI and a Node API at `http://127.0.0.1:4317`. Both bind to loopback only. Load `../firefox-extension/manifest.json` as a temporary add-on in Firefox and sign in to Instagram before starting a collection job; see the [Firefox add-on README](../firefox-extension/README.md) for the exact steps.
 
-The Android app saves captures on the phone to `Documents/Dedgram/profiles.json`. There is no automatic phone-to-dashboard sync. To analyze new phone captures, copy and merge their `profiles` entries into `../bot-info/dedgram-catalog.json` by `normalized_username`. On startup, the dashboard imports catalog entries into `../bot-info/bot-account-info.json` without replacing existing profile results.
+The Android app saves captures on the phone to `Documents/dedgram/profiles.json`. There is no automatic phone-to-dashboard sync. To analyze new phone captures, copy and merge their `profiles` entries into `../bot-info/dedgram-catalog.json` by `normalized_username`. On startup, the dashboard imports catalog entries into `../bot-info/bot-account-info.json` without replacing existing profile results.
 
 ## Workflow
 
@@ -35,7 +35,7 @@ node scripts/repair-profile-text-encoding.mjs
 node scripts/repair-profile-text-encoding.mjs --apply
 ```
 
-Optional: set `DEDGRAM_DATA_FILE` to point the API at another JSON file, or `DEDGRAM_API_PORT` to change its port. If the API port changes, update the Vite proxy and extension manifest host permission to match.
+Optional: set `dedgram_data_file` to point the API at another JSON file, or `dedgram_api_port` to change its port. If the API port changes, update the Vite proxy and extension manifest host permission to match.
 
 ## Build
 

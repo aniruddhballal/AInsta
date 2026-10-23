@@ -7,9 +7,9 @@ import { mkdir } from 'node:fs/promises';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '..');
-const dataFile = resolve(process.env.DEDGRAM_DATA_FILE || resolve(repoRoot, 'bot-info/bot-account-info.json'));
+const dataFile = resolve(process.env.dedgram_data_file || resolve(repoRoot, 'bot-info/bot-account-info.json'));
 const catalogFile = resolve(repoRoot, 'bot-info/dedgram-catalog.json');
-const port = Number(process.env.DEDGRAM_API_PORT || 4317);
+const port = Number(process.env.dedgram_api_port || 4317);
 const host = '127.0.0.1';
 
 const now = () => new Date().toISOString();
@@ -136,7 +136,7 @@ async function route(request, response) {
   const origin = request.headers.origin;
   if (origin) {
     const allowed = origin === 'http://127.0.0.1:5173' || origin === 'http://localhost:5173' || /^moz-extension:\/\/[a-z0-9-]+$/i.test(origin);
-    if (!allowed) return send(response, 403, { error: 'This local API only accepts requests from the Dedgram dashboard or Firefox add-on.' });
+    if (!allowed) return send(response, 403, { error: 'This local API only accepts requests from the dedgram dashboard or Firefox add-on.' });
     response.setHeader('Access-Control-Allow-Origin', origin);
     response.setHeader('Vary', 'Origin');
   }
@@ -302,6 +302,6 @@ async function route(request, response) {
 }
 
 createServer((request, response) => { void route(request, response); }).listen(port, host, () => {
-  console.log(`Dedgram API ready at http://${host}:${port}`);
+  console.log(`dedgram API ready at http://${host}:${port}`);
   console.log(`Data file: ${dataFile}`);
 });

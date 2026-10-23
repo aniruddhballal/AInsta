@@ -1,1 +1,1 @@
-# Dedgram currently uses no third-party runtime libraries that need custom rules.
+# dedgram currently uses no third-party runtime libraries that need custom rules.
