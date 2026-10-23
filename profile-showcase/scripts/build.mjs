@@ -68,9 +68,7 @@ const catalogHtml = shell({ title: 'Profiles · Dedgram Atlas', description: 'Ex
 
 const avatarFile = await localImage('avatar.jpg');
 const avatar = avatarFile ? `<img src="../../media/avatar.jpg" alt="Profile picture of @${published}" width="92" height="92">` : `<span aria-hidden="true">@</span>`;
-const profileIssues = (profile.issues || [])
-  .filter((issue) => !/^Page metadata says \S+ following; current profile header says \S+, which is used for the count\.$/.test(issue))
-  .map((issue) => `<li>${esc(issue)}</li>`).join('');
+const profileIssues = (profile.issues || []).map((issue) => `<li>${esc(issue)}</li>`).join('');
 const reelCards = await Promise.all(reels.map(async (item, index) => {
   const thumb = await localImage(`${item.shortcode}.jpg`);
   const dateLabel = date(item.date, item.date_precision);

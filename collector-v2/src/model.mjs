@@ -73,8 +73,7 @@ export function profileFromSnapshot(username, snapshot) {
       ...(!about ? ['About this account unavailable'] : []),
       ...(!headerPosts && !metadataPosts ? ['Post count unavailable in the profile header and page metadata.'] : []),
       ...(!exactFollowers && !headerFollowers ? ['Follower count unavailable in the profile header.'] : []),
-      ...(!headerFollowing && !metadataFollowing ? ['Following count unavailable in the profile header and page metadata.'] : []),
-      ...(followingConflict ? [`Page metadata says ${metadataFollowing.raw} following; current profile header says ${headerFollowing.raw}, which is used for the count.`] : [])
+      ...(!headerFollowing && !metadataFollowing ? ['Following count unavailable in the profile header and page metadata.'] : [])
     ]
   };
 }

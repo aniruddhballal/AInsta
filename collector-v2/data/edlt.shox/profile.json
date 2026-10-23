@@ -49,9 +49,7 @@
       }
     }
   },
-  "issues": [
-    "Page metadata says 49 following; current profile header says 0, which is used for the count."
-  ],
+  "issues": [],
   "ai_generated_profile": true,
   "count_evidence": {
     "followers": {

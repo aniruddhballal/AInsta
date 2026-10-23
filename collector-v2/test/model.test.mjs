@@ -61,6 +61,8 @@ test('profile reads post count from page metadata when the public header omits i
   assert.equal(result.following_count.source, 'header_text');
   assert.equal(result.count_evidence.following.header.value, 0);
   assert.equal(result.count_evidence.following.metadata.value, 49);
+  assert.equal(result.count_evidence.following.conflict, true);
+  assert.doesNotMatch(result.issues.join(' '), /Page metadata says/);
   assert.equal(mergeProfile({ date_joined: 'September 2026' }, result).date_joined, 'September 2026');
 });
 
