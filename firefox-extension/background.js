@@ -40,10 +40,13 @@
 
   async function loadStep(step) {
     const url = step.stage === 'deep_post' ? step.post_url
-      : step.stage === 'content_item' ? step.content_url
+      : step.stage === 'content_item' && step.content_kind === 'reel' ? reelsUrl(step.url)
+        : step.stage === 'content_item' ? step.content_url
         : step.stage === 'reels_count' || step.stage === 'reel_content_profile' ? reelsUrl(step.url) : step.url;
     const tab = await getCollectorTab();
-    if (tab.url !== url) {
+    const keepReelGridOpen = step.stage === 'content_item' && step.content_kind === 'reel'
+      && tab.url.startsWith(url);
+    if (tab.url !== url && !keepReelGridOpen) {
       const loaded = new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
           browser.tabs.onUpdated.removeListener(listener);

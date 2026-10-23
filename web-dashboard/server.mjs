@@ -127,6 +127,7 @@ function advance(job) {
   job.post_urls = [];
   job.post_index = 0;
   job.content_urls = [];
+  job.content_grid_views = {};
   job.content_index = 0;
   job.content_scan_complete = false;
   job.content_has_errors = false;
@@ -184,7 +185,7 @@ async function route(request, response) {
       const job = {
         id: randomUUID(), kind, status: 'running', profile_keys: profiles.map(keyOf),
         index: 0, stage: kind === 'surface' ? 'surface' : kind === 'post_count' ? 'post_count' : kind === 'reels_count' ? 'reels_count' : kind === 'post_content' ? 'post_content_profile' : kind === 'reel_content' ? 'reel_content_profile' : 'deep_profile', post_urls: [], post_index: 0,
-        content_urls: [], content_index: 0, content_scan_complete: false, content_has_errors: false,
+        content_urls: [], content_grid_views: {}, content_index: 0, content_scan_complete: false, content_has_errors: false,
         started_at: now(), updated_at: now(), completed_at: null, last_activity_at: null
       };
       data.workflow.active_job = job;
@@ -264,6 +265,7 @@ async function route(request, response) {
         step.stage = 'content_item';
         step.content_kind = job.kind === 'post_content' ? 'post' : 'reel';
         step.content_url = job.content_urls[job.content_index];
+        step.grid_views_count = job.content_grid_views?.[step.content_url];
       } else if (job.stage === 'deep_profile') {
         step.stage = 'deep_profile';
       } else if (job.stage === 'deep_post') {
@@ -362,6 +364,10 @@ async function route(request, response) {
         profile[fetchedField] = now();
         profile[statusField] = result.complete === true ? (urls.length ? 'Collecting' : 'Complete') : 'Incomplete';
         job.content_urls = urls;
+        const gridViews = result.grid_views_counts && typeof result.grid_views_counts === 'object' ? result.grid_views_counts : {};
+        job.content_grid_views = Object.fromEntries(urls
+          .filter((url) => Number.isSafeInteger(gridViews[url]) && gridViews[url] >= 0)
+          .map((url) => [url, gridViews[url]]));
         job.content_index = 0;
         job.content_scan_complete = result.complete === true;
         job.content_has_errors = result.complete !== true;
@@ -397,11 +403,20 @@ async function route(request, response) {
         const errors = [];
         const numericFields = new Set(['likes_count', 'comments_count', 'views_count']);
         for (const field of metricFields) {
-          const value = result[field];
+          let value = result[field];
+          let viewsSource = result.views_count_source || 'item_page';
+          if (field === 'views_count' && !(Number.isSafeInteger(value) && value >= 0)
+            && Number.isSafeInteger(job.content_grid_views?.[url]) && job.content_grid_views[url] >= 0) {
+            value = job.content_grid_views[url];
+            viewsSource = 'profile_grid';
+          }
           const valid = numericFields.has(field)
             ? Number.isSafeInteger(value) && value >= 0
             : typeof value === 'string' && !Number.isNaN(Date.parse(value));
-          if (valid) record[field] = numericFields.has(field) ? value : new Date(value).toISOString();
+          if (valid) {
+            record[field] = numericFields.has(field) ? value : new Date(value).toISOString();
+            if (field === 'views_count') record.views_count_source = viewsSource;
+          }
           else {
             const error = providedErrors.find((item) => item.field === field)?.message || `Could not read the ${labels[field]} for this ${isPostScan ? 'post' : 'reel'}.`;
             errors.push({ field, message: error });

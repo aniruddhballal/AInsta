@@ -243,23 +243,74 @@
     return [...urls];
   }
 
-  function contentItemUrls(kind) {
-    const urls = new Set();
+  function contentItemEntries(kind) {
+    const items = new Map();
     for (const anchor of document.querySelectorAll('main a[href], a[href]')) {
       try {
         const url = new URL(anchor.href, location.origin);
         if (url.origin !== location.origin) continue;
+        let itemUrl = '';
         if (kind === 'post' && /^\/(?:p|tv)\/[^/]+\/?$/.test(url.pathname)) {
-          urls.add(`https://www.instagram.com${url.pathname}`);
+          itemUrl = `https://www.instagram.com${url.pathname}`;
         } else if (kind === 'reel') {
           // Instagram exposes reel tiles as both /reel/<id>/ and
           // /<username>/reel/<id>/ (the latter was missed by the old matcher).
           const match = url.pathname.match(/^\/(?:[^/]+\/reels?\/|reel\/)([^/]+)\/?$/);
-          if (match) urls.add(`https://www.instagram.com/reel/${encodeURIComponent(decodeURIComponent(match[1]))}/`);
+          if (match) itemUrl = `https://www.instagram.com/reel/${encodeURIComponent(decodeURIComponent(match[1]))}/`;
         }
+        if (!itemUrl) continue;
+        const item = items.get(itemUrl) || { url: itemUrl };
+        if (kind === 'reel') {
+          const tileText = [anchor.getAttribute('aria-label'), anchor.getAttribute('title'), anchor.innerText, anchor.textContent].filter(Boolean).join(' ');
+          const views = metricFrom([tileText], [/([\d,.]+\s*[KMB]?)\s*(?:views?|plays?)\b/i]);
+          const standaloneCount = views === null ? compactCount(clean(anchor.innerText || anchor.textContent)) : null;
+          if (views !== null || standaloneCount !== null) item.views_count = views ?? standaloneCount;
+        }
+        items.set(itemUrl, item);
       } catch (_error) { /* Ignore invalid links. */ }
     }
-    return [...urls];
+    return [...items.values()];
+  }
+
+  function reelCode(value) {
+    try {
+      const pathname = new URL(value, location.origin).pathname;
+      const match = pathname.match(/^\/(?:[^/]+\/reels?\/|reel\/)([^/]+)\/?$/);
+      return match ? decodeURIComponent(match[1]) : '';
+    } catch (_error) { return ''; }
+  }
+
+  async function openReelFromGrid(contentUrl) {
+    const targetCode = reelCode(contentUrl);
+    if (!targetCode) return 'The queued reel URL could not be identified.';
+    const basePath = `/${decodeURIComponent(location.pathname.split('/')[1] || '')}/reels/`;
+    const currentPath = decodeURIComponent(location.pathname);
+    if (currentPath.startsWith(basePath) && reelCode(location.href) === targetCode) return '';
+
+    if (currentPath.startsWith(basePath) && currentPath !== basePath) {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+      await waitFor(() => decodeURIComponent(location.pathname) === basePath, 5000);
+    }
+
+    for (let pass = 0; pass < 240; pass += 1) {
+      const anchor = [...document.querySelectorAll('main a[href], a[href]')]
+        .find((item) => reelCode(item.href) === targetCode);
+      if (anchor) {
+        anchor.scrollIntoView({ block: 'center' });
+        await sleep(200);
+        anchor.click();
+        const opened = await waitFor(() => {
+          const path = decodeURIComponent(location.pathname);
+          return path.startsWith(basePath) && path !== basePath && reelCode(location.href) === targetCode;
+        }, 10000);
+        if (opened) return '';
+        return 'Clicking the reel tile did not open its Instagram detail view.';
+      }
+      if (window.scrollY <= 0) break;
+      window.scrollBy(0, -Math.max(400, Math.floor(window.innerHeight * 0.7)));
+      await sleep(250);
+    }
+    return 'The reel tile was not found in the profile grid.';
   }
 
   function contentScanBlockReason() {
@@ -278,34 +329,44 @@
     if (kind === 'reel' && !/^\/[^/]+\/reels\/?$/.test(location.pathname)) {
       return { content_urls: [], complete: false, error: 'Instagram did not stay on the profile Reels tab.' };
     }
-    const urls = new Set(contentItemUrls(kind));
+    const items = new Map();
+    const addItems = (entries) => entries.forEach((entry) => {
+      const item = items.get(entry.url) || { url: entry.url };
+      if (Number.isSafeInteger(entry.views_count) && entry.views_count >= 0) item.views_count = entry.views_count;
+      items.set(entry.url, item);
+    });
+    addItems(contentItemEntries(kind));
     let stablePasses = 0;
     let reachedEnd = false;
     let error = '';
     const emptyPattern = kind === 'reel' ? /no reels|hasn't posted any reels|no content to show/i : /no posts yet|hasn't posted/i;
     const emptyState = emptyPattern.test(main.innerText || '');
-    if (!urls.size && emptyState) return { content_urls: [], complete: true, error: '' };
+    if (!items.size && emptyState) return { content_urls: [], grid_views_counts: {}, complete: true, error: '' };
 
     for (let pass = 0; pass < 1200; pass += 1) {
       error = contentScanBlockReason();
       if (error) break;
-      contentItemUrls(kind).forEach((url) => urls.add(url));
-      const previousCount = urls.size;
+      addItems(contentItemEntries(kind));
+      const previousCount = items.size;
       window.scrollBy(0, Math.max(500, Math.floor(window.innerHeight * 0.75)));
       await sleep(800);
-      contentItemUrls(kind).forEach((url) => urls.add(url));
+      addItems(contentItemEntries(kind));
       const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
       const atBottom = window.scrollY + window.innerHeight >= height - 8;
       const loading = [...document.querySelectorAll('[role="progressbar"], svg[aria-label*="Loading" i]')].some(visible);
-      if (atBottom && urls.size === previousCount && !loading) stablePasses += 1;
+      if (atBottom && items.size === previousCount && !loading) stablePasses += 1;
       else stablePasses = 0;
       if (stablePasses >= 5) { reachedEnd = true; break; }
     }
     // Reaching the bottom with zero links is not proof of an empty account:
     // a changed Instagram URL shape or failed grid render can also cause it.
-    const complete = !error && ((reachedEnd && urls.size > 0) || emptyState);
+    const complete = !error && ((reachedEnd && items.size > 0) || emptyState);
+    const orderedItems = [...items.values()];
+    if (kind === 'reel') orderedItems.reverse();
     return {
-      content_urls: [...urls], complete,
+      content_urls: orderedItems.map((item) => item.url),
+      grid_views_counts: Object.fromEntries(orderedItems.filter((item) => Number.isSafeInteger(item.views_count)).map((item) => [item.url, item.views_count])),
+      complete,
       error: error || (!complete ? 'Scrolling stopped before Instagram confirmed the end of the content list.' : '')
     };
   }
@@ -363,10 +424,15 @@
   }
 
   async function collectContentDetails(step) {
+    if (step.content_kind === 'reel') {
+      const openError = await openReelFromGrid(step.content_url);
+      if (openError) return { error: openError, errors: [] };
+    }
     const main = await waitFor(() => document.querySelector('main, [role="main"]'));
     if (!main) return { error: 'Instagram content did not load.', errors: [] };
     await sleep(700);
-    const article = document.querySelector('main article, [role="main"] article, article') || main;
+    const dialog = document.querySelector('[role="dialog"]');
+    const article = dialog?.querySelector('article') || dialog || document.querySelector('main article, [role="main"] article, article') || main;
     const visibleText = clean(article.innerText || main.innerText || '');
     const description = document.querySelector('meta[property="og:description"]')?.content || '';
     const ariaText = [...article.querySelectorAll('[aria-label], [title]')]
@@ -374,7 +440,7 @@
     const contexts = [description, ariaText, visibleText];
     const time = [...article.querySelectorAll('time[datetime]')]
       .find((item) => !Number.isNaN(Date.parse(item.dateTime || item.getAttribute('datetime'))))
-      || [...document.querySelectorAll('time[datetime]')].find((item) => !Number.isNaN(Date.parse(item.dateTime || item.getAttribute('datetime'))));
+      || [...document.querySelectorAll('[role="dialog"] time[datetime], time[datetime]')].find((item) => !Number.isNaN(Date.parse(item.dateTime || item.getAttribute('datetime'))));
     const date = time ? new Date(time.dateTime || time.getAttribute('datetime')).toISOString() : null;
     let likesCount = metricFrom(contexts, [/(\d[\d,.]*\s*[KMB]?)\s+likes?\b/i]);
     if (likesCount === null) {
@@ -382,13 +448,18 @@
       if (others !== null) likesCount = others + 1;
     }
     const commentsCount = metricFrom(contexts, [/(?:view|see)\s+all\s+(\d[\d,.]*\s*[KMB]?)\s+comments?\b/i, /(\d[\d,.]*\s*[KMB]?)\s+comments?\b/i]);
-    const viewsCount = metricFrom(contexts, [/(\d[\d,.]*\s*[KMB]?)\s+(?:views?|plays?)\b/i]);
+    let viewsCount = metricFrom(contexts, [/(\d[\d,.]*\s*[KMB]?)\s+(?:views?|plays?)\b/i]);
+    let viewsCountSource = viewsCount === null ? '' : 'item_page';
+    if (viewsCount === null && Number.isSafeInteger(step.grid_views_count) && step.grid_views_count >= 0) {
+      viewsCount = step.grid_views_count;
+      viewsCountSource = 'profile_grid';
+    }
     const errors = [];
     if (!date) errors.push({ field: 'date', message: 'No post timestamp was found on this content page.' });
     if (likesCount === null) errors.push({ field: 'likes_count', message: 'Instagram did not expose a readable like count on this content page.' });
     if (commentsCount === null) errors.push({ field: 'comments_count', message: 'Instagram did not expose a readable comment count on this content page.' });
     if (viewsCount === null) errors.push({ field: 'views_count', message: 'Instagram did not expose a readable view count on this content page.' });
-    return { date, likes_count: likesCount, comments_count: commentsCount, views_count: viewsCount, errors };
+    return { date, likes_count: likesCount, comments_count: commentsCount, views_count: viewsCount, views_count_source: viewsCountSource, errors };
   }
 
   browser.runtime.onMessage.addListener((message) => {
