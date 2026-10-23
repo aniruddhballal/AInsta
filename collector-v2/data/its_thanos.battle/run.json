@@ -1,0 +1,11 @@
+{
+  "started_at": "2026-10-23T10:26:00.407Z",
+  "updated_at": "2026-10-23T10:26:00.407Z",
+  "status": "running",
+  "phase": "profile",
+  "scope": [
+    "profile"
+  ],
+  "current_url": null,
+  "error": null
+}

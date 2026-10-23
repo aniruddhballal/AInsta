@@ -1,0 +1,98 @@
+{
+  "username": "popcornparade",
+  "url": "https://www.instagram.com/popcornparade/",
+  "fetched_at": "2026-10-23T10:28:15.022Z",
+  "display_name": "popcornparade",
+  "bio": "#TVアニメ\n・『世界に隠された驚異の深海生物』＆知られざる深海生物の秘密を一挙公開！深海に潜む不思議な生き物や想像を超える驚きの能力も明らかに！最後まで見逃すな！！♪●♪",
+  "posts_count": {
+    "value": 728,
+    "raw": "728",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 5008,
+    "raw": "5,008",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 5008,
+        "raw": "5,008",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 5008,
+        "raw": "5,008",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4747,
+        "raw": "4,747",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 728,
+        "raw": "728",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 728,
+        "raw": "728",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Blogger",
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/842344061_18148838956500122_7716730657840075300_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=O1FrZdW-noAQ7kNvwFR3HeS&_nc_oc=AdpxozoOYbqiqrJeoIbjfMzbXoVyMBLd-AN-u-87fhXIv2O2tbmF6nnZsSi-VIVNwEQPXBEf1cEtSfu0wn2RgBrN&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=XkICsmGaKaX6eUQfyEuFpQ&_nc_ss=7f6a8&oh=00_AQMPnMFTxA2xVgMCaviX4LZeGja0rQYFNQIRjOSBzNA5Sg&oe=6AE0EF60",
+  "date_joined": "October 2026",
+  "account_based_in": "Georgia",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "popcornparade\npopcornparade\n728 posts\n5,008 followers\n0 following\nBlogger\n#TVアニメ\n・『世界に隠された驚異の深海生物』＆知られざる深海生物の秘密を一挙公開！深海に潜む不思議な生き物や想像を超える驚きの能力も明らかに！最後まで見逃すな！！♪●♪\nFollow\nMessage",
+    "about_text": "About this account\npopcornparade\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nGeorgia\nFormer usernames\n1\nClose",
+    "description": "4,747 Followers, 0 Following, 728 Posts - @popcornparade on Instagram: \"#TVアニメ\n・『世界に隠された驚異の深海生物』＆知られざる深海生物の秘密を一挙公開！深海に潜む不思議な生き物や想像を超える驚きの能力も明らかに！最後まで見逃すな！！♪●♪\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "5,008 followers",
+        "exact_title": "5,008"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

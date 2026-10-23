@@ -1,0 +1,94 @@
+{
+  "username": "doomscroll.dumpling",
+  "url": "https://www.instagram.com/doomscroll.dumpling/",
+  "fetched_at": "2026-10-23T10:26:11.279Z",
+  "display_name": "Yuki Brandt",
+  "bio": "スリル満点の追跡劇が満載! こちらは「Jokrori」の公式 Instagramアカウントです! カートゥーン ネットワークで 『Jokrori」をチェックしよう!「Jokrori」は現在、デジタ ル配信...\nmore",
+  "posts_count": {
+    "value": 79,
+    "raw": "79",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 86,
+    "raw": "86",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 86,
+        "raw": "86",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 86,
+        "raw": "86",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 87,
+        "raw": "87",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 79,
+        "raw": "79",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 79,
+        "raw": "79",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr24-3.fna.fbcdn.net/v/t51.82787-19/849752986_18126387685761826_6842991770519723366_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=dKc4An40U_UQ7kNvwFP8OWL&_nc_oc=AdpY_qqq5np1AL4bmL2_iCJfujJuGkwR2Ba_8fiAx8ifPXewJqrdogq6_9PoMKdV_oFIwHNb17nuta-mHgh_8cdw&_nc_zt=24&_nc_ht=instagram.fblr24-3.fna&_nc_gid=3hcXbyZCX6VcNH7drKJhuQ&_nc_ss=7f6a8&oh=00_AQPHwZsT-qcfgxNC23ZDExY7AoqVrxXd5Ps-0ZDzbmfJKA&oe=6AE0F802",
+  "date_joined": "October 2026",
+  "account_based_in": "United States",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "doomscroll.dumpling\nYuki Brandt\n79 posts\n86 followers\n0 following\nスリル満点の追跡劇が満載! こちらは「Jokrori」の公式 Instagramアカウントです! カートゥーン ネットワークで 『Jokrori」をチェックしよう!「Jokrori」は現在、デジタ ル配信... \nmore\nFollow",
+    "about_text": "About this account\ndoomscroll.dumpling\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nUnited States\nClose",
+    "description": "87 Followers, 0 Following, 79 Posts - Yuki Brandt (@doomscroll.dumpling) on Instagram: \"スリル満点の追跡劇が満載! こちらは「Jokrori」の公式 Instagramアカウントです! カートゥーン ネットワークで 『Jokrori」をチェックしよう!「Jokrori」は現在、デジタ ル配信 およびブルーレイ&DVDで発売・配信中! TEC (24)\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "86 followers",
+        "exact_title": "86"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

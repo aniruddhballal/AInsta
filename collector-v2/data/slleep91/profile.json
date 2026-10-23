@@ -1,0 +1,94 @@
+{
+  "username": "slleep91",
+  "url": "https://www.instagram.com/slleep91/",
+  "fetched_at": "2026-10-23T10:22:47.400Z",
+  "display_name": "🥀",
+  "bio": "#TVアニメ『CURIOSIDADES』\n話題の世界の不思議な事実がついに公開!!\n誰もが驚く知られざる情報を一挙にお届け! さらに、予想を超える意外な発見や、想像を絶する驚きの事実に 加え、\n思わず目を疑ってしまうような「衝撃の瞬間」まで",
+  "posts_count": {
+    "value": 100,
+    "raw": "100",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 24248,
+    "raw": "24,248",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 4,
+    "raw": "4",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 24200,
+        "raw": "24.2K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 24248,
+        "raw": "24,248",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 23000,
+        "raw": "23K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 4,
+        "raw": "4",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4,
+        "raw": "4",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 100,
+        "raw": "100",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 100,
+        "raw": "100",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/840881794_18141541402542960_3106571480931264111_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MzYuQzMifQ%3D%3D&_nc_ohc=qUvG948raFgQ7kNvwFcBYiA&_nc_oc=AdqZRSDmq4y2pmFJUHgiT6LOERFGSUxYmjRlQFv_t1XITNFc1dpC90CxkqjjXSxxLX7IEDUnxm6Svs3XVyGaGHZ9&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=k7wYxv260K35vZpTEjcSaQ&_nc_ss=7f6a8&oh=00_AQN_kKlIH1XzEMK7keTCrJ3f7vJ1fuN_dYzRjsBSJSmJKQ&oe=6AE1090E",
+  "date_joined": "October 2026",
+  "account_based_in": "Brazil",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "slleep91\n🥀\n100 posts\n24.2K followers\n4 following\n#TVアニメ『CURIOSIDADES』\n話題の世界の不思議な事実がついに公開!!\n誰もが驚く知られざる情報を一挙にお届け! さらに、予想を超える意外な発見や、想像を絶する驚きの事実に 加え、\n思わず目を疑ってしまうような「衝撃の瞬間」まで\nFollow",
+    "about_text": "About this account\nslleep91\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nBrazil\nClose",
+    "description": "23K Followers, 4 Following, 100 Posts - 🥀 (@slleep91) on Instagram: \"#TVアニメ『CURIOSIDADES』\n話題の世界の不思議な事実がついに公開!!\n誰もが驚く知られざる情報を一挙にお届け! さらに、予想を超える意外な発見や、想像を絶する驚きの事実に 加え、\n思わず目を疑ってしまうような「衝撃の瞬間」まで\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "24.2K followers",
+        "exact_title": "24,248"
+      },
+      "following": {
+        "label": "4 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

@@ -1,0 +1,96 @@
+{
+  "username": "blogger",
+  "url": "https://www.instagram.com/blogger/",
+  "fetched_at": "2026-10-23T10:21:35.372Z",
+  "display_name": "Travel/Fashion/Life Blogger",
+  "bio": "Curating a Life of Style, Travel & Coffee\nElevated living through digital innovation & refined experiences\nblogger",
+  "posts_count": {
+    "value": 673,
+    "raw": "673",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 130374,
+    "raw": "130,374",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 209,
+    "raw": "209",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 130000,
+        "raw": "130K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 130374,
+        "raw": "130,374",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 130000,
+        "raw": "130K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 209,
+        "raw": "209",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 250,
+        "raw": "250",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 673,
+        "raw": "673",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 673,
+        "raw": "673",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Digital creator",
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-5.fna.fbcdn.net/v/t51.2885-19/431141008_726033036392431_2149116517410144042_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=3y4n9EP789AQ7kNvwGyYZux&_nc_oc=Adral_vUf-n6InmL9FatXhmw9XYFFZlf8TyHFu43oP8huYsD9IpJaMuSaxpC52w6Hz9RvvoQmMX8wiOt98qSggcW&_nc_zt=24&_nc_ht=instagram.fblr1-5.fna&_nc_ss=7f6a8&oh=00_AQMn_n4YVBJJ9DTeBBtLPalDhuVDmx3juFgQztJh_uMTwg&oe=6AE10D3A",
+  "date_joined": "May 2015",
+  "account_based_in": "United Kingdom",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "blogger\nTravel/Fashion/Life Blogger\n673 posts\n130K followers\n209 following\nDigital creator\nCurating a Life of Style, Travel & Coffee\nElevated living through digital innovation & refined experiences\nblogger\nFollow\nMessage\nPakistan\nTabuk\nDubai\nKSA 🇸🇦\nIstanbul 🇹🇷\nMarrakech 2\nSantorini\nMarrakech\nHD CLINIC 🇹🇷\nDubai 🇦🇪\nSantorini\nFinland 🇫🇮\nD & G x Blogger\nDubai 2.0",
+    "about_text": "About this account\nblogger\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMay 2015\nAccount based in\nUnited Kingdom\nVerified\nAugust 2020\nThe verified badge means an account has been verified based on their activity across our products and information or documents they provide. Some verified accounts are owned by a notable person, brand or entity, while others subscribe to Meta Verified.\n \nWith a Meta Verified subscription, you get a verified badge, proactive account protection, access to direct account support and more. Learn more\nGet a verified badge\nClose",
+    "description": "130K Followers, 250 Following, 673 Posts - Travel/Fashion/Life Blogger (@blogger) on Instagram: \"Curating a Life of Style, Travel & Coffee\nElevated living through digital innovation & refined experiences\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "130K followers",
+        "exact_title": "130,374"
+      },
+      "following": {
+        "label": "209 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 250 following; current profile header says 209, which is used for the count."
+  ]
+}

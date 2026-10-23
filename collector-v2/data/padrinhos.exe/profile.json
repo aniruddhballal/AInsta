@@ -1,0 +1,98 @@
+{
+  "username": "padrinhos.exe",
+  "url": "https://www.instagram.com/padrinhos.exe/",
+  "fetched_at": "2026-10-23T10:30:14.766Z",
+  "display_name": "Padrinhos Mágicos",
+  "bio": "#TVアニメ 『爆笑タイム』\n話題の新エピソードがいよいよ登場!!😂\n思わず笑えるハプニング映像をお届け!\nさらに、クセ強めのリアクション & まさかの珍展開に加\n...\nmore",
+  "posts_count": {
+    "value": 223,
+    "raw": "223",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 4904,
+    "raw": "4,904",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 6,
+    "raw": "6",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 4904,
+        "raw": "4,904",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 4904,
+        "raw": "4,904",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4694,
+        "raw": "4,694",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 223,
+        "raw": "223",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 223,
+        "raw": "223",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Reel creator",
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/828525233_18115129015901750_8953385555587076989_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=ZOwV1efm50EQ7kNvwFLoErn&_nc_oc=AdruZtdB3ghxeDgxIqeBvANh32cCFcg5_J635kFF1k1xQuUaXe9A5M-eRF5u3NqPJq33ur1wlvfP9ZBhBEPJ-mhz&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=s3YHPxHXVd_Uojv9nntZlA&_nc_ss=7f6a8&oh=00_AQPjaReDR-RtOfi0IGh3BvbR1Pfsy2mN5zIxSy2llt5tSQ&oe=6AE0EF51",
+  "date_joined": "October 2026",
+  "account_based_in": "Brazil",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "padrinhos.exe\nPadrinhos Mágicos\n223 posts\n4,904 followers\n6 following\nReel creator • \nAI-generated profile\n#TVアニメ 『爆笑タイム』\n話題の新エピソードがいよいよ登場!!😂\n思わず笑えるハプニング映像をお届け!\nさらに、クセ強めのリアクション & まさかの珍展開に加\n... \nmore\nFollow\nMessage",
+    "about_text": "About this account\npadrinhos.exe\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nBrazil\nFormer usernames\n1\nClose",
+    "description": "4,694 Followers, 6 Following, 223 Posts - Padrinhos Mágicos (@padrinhos.exe) on Instagram: \"#TVアニメ 『爆笑タイム』\n話題の新エピソードがいよいよ登場!!😂\n思わず笑えるハプニング映像をお届け!\nさらに、クセ強めのリアクション & まさかの珍展開に加\nえて、\n最後には想像を超える衝撃の「オチ」まで待っていまし\nた!!\n◆今回の爆笑ポイント:\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "4,904 followers",
+        "exact_title": "4,904"
+      },
+      "following": {
+        "label": "6 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

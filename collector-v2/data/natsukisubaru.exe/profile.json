@@ -1,0 +1,94 @@
+{
+  "username": "natsukisubaru.exe",
+  "url": "https://www.instagram.com/natsukisubaru.exe/",
+  "fetched_at": "2026-10-23T10:32:00.191Z",
+  "display_name": "Natsuki subaru",
+  "bio": "#TVアニメ『HULK』\n王都魔法祭編の最新情報がついに解禁!!\n👊⚡️\n待望の最新キービジュアルを公開!\n...\nmore",
+  "posts_count": {
+    "value": 53,
+    "raw": "53",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 326,
+    "raw": "326",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 326,
+        "raw": "326",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 326,
+        "raw": "326",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 133,
+        "raw": "133",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 53,
+        "raw": "53",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 53,
+        "raw": "53",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/849771785_17973395450960188_7856476019753047947_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDc5LkMzIn0%3D&_nc_ohc=9nxNDDpKGCoQ7kNvwHtf-BA&_nc_oc=AdqXECscA5TeDr2MFOjN5DTcO-KRQJuKvEs92qVJWTqrojJ1_K5i-55Sj4olcek4nCeJfWWX3gsfqnYoblVQDaTm&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=f2BaNtyyAu8-uAVAU3t4AA&_nc_ss=7f6a8&oh=00_AQNc1oYj0wBdUC2XFZ9_9mPcWSCuBg0FB7H0Xv_rCJmwHQ&oe=6AE0EE61",
+  "date_joined": "October 2026",
+  "account_based_in": "Not shared",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "natsukisubaru.exe\nNatsuki subaru\n53 posts\n326 followers\n0 following\n#TVアニメ『HULK』\n王都魔法祭編の最新情報がついに解禁!!\n👊⚡️\n待望の最新キービジュアルを公開!\n... \nmore\nFollow\nMessage",
+    "about_text": "About this account\nnatsukisubaru.exe\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nNot shared\nClose",
+    "description": "133 Followers, 0 Following, 53 Posts - Natsuki subaru (@natsukisubaru.exe) on Instagram: \"#TVアニメ『HULK』\n王都魔法祭編の最新情報がついに解禁!!\n👊⚡️\n待望の最新キービジュアルを公開!\nさらに、新キャラクター&新たな魔法の情報 に加え、王都魔法祭編の物語を大きく動かす 重要人物「ルミナ」の登場も決定しまし\nた!!\n◆新キャラクター\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "326 followers",
+        "exact_title": "326"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

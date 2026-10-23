@@ -1,3 +1,5 @@
 node_modules/
 .auth/
-data/
+data/**/*.png
+data/ui-*.mjs
+data/**/*.tmp

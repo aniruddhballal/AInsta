@@ -1,0 +1,98 @@
+{
+  "username": "cliprotter67",
+  "url": "https://www.instagram.com/cliprotter67/",
+  "fetched_at": "2026-10-23T10:28:34.820Z",
+  "display_name": "ClipVault",
+  "bio": "ついに解禁...！！！\nTVアニメ『SPY FAMILY』フォージャー家の\"ありえない日常\"が再び動き出す。\nアーニャのあの顔、ロイドの変装、ヨルの強すぎる愛...\n最新PVに詰まってる全てが尊すぎる。...\nmore",
+  "posts_count": {
+    "value": 140,
+    "raw": "140",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 3319,
+    "raw": "3,319",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 6,
+    "raw": "6",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 3319,
+        "raw": "3,319",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 3319,
+        "raw": "3,319",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 3340,
+        "raw": "3,340",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 140,
+        "raw": "140",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 140,
+        "raw": "140",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Reel creator",
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-10.fna.fbcdn.net/v/t51.82787-19/758426917_17895850512560289_8024189026061828086_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy42NzcuQzMifQ%3D%3D&_nc_ohc=X3egGxFvsZMQ7kNvwE90byv&_nc_oc=AdqkFjKLYSXrSqMPv9uMDc3sEbFSzX6N3KIRndw3QcE1IkcMbIaINKkuJ9RaJqBkBhgTNMh4njEEUuy7rM3xHLv2&_nc_zt=24&_nc_ht=instagram.fblr1-10.fna&_nc_gid=Tf2OaEsl8fFrl63XXyKfTA&_nc_ss=7f6a8&oh=00_AQOCxAMKhSh2G89F_a0seJg2DsPz1YZd2O-_yHj_2Mqe9w&oe=6AE0F483",
+  "date_joined": "August 2025",
+  "account_based_in": "United Kingdom",
+  "former_usernames_count": {
+    "value": 6,
+    "raw": "6",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "cliprotter67\nClipVault\n140 posts\n3,319 followers\n6 following\nReel creator\nついに解禁...！！！\nTVアニメ『SPY FAMILY』フォージャー家の\"ありえない日常\"が再び動き出す。\nアーニャのあの顔、ロイドの変装、ヨルの強すぎる愛...\n最新PVに詰まってる全てが尊すぎる。... \nmore\nFollow\nMessage\n.",
+    "about_text": "About this account\ncliprotter67\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nAugust 2025\nAccount based in\nUnited Kingdom\nFormer usernames\n6\nVerified\nSeptember 2026\nThe verified badge means an account has been verified based on their activity across our products and information or documents they provide. Some verified accounts are owned by a notable person, brand or entity, while others subscribe to Meta Verified.\n \nWith a Meta Verified subscription, you get a verified badge, proactive account protection, access to direct account support and more. Learn more\nGet a verified badge\nClose",
+    "description": "3,340 Followers, 6 Following, 140 Posts - ClipVault (@cliprotter67) on Instagram: \"ついに解禁...！！！\nTVアニメ『SPY FAMILY』フォージャー家の\"ありえない日常\"が再び動き出す。\nアーニャのあの顔、ロイドの変装、ヨルの強すぎる愛...\n最新PVに詰まってる全てが尊すぎる。\nSNSでは既に100万再生突破。あなたはまだ見てないの？\n#SPY_FAMILY\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "3,319 followers",
+        "exact_title": "3,319"
+      },
+      "following": {
+        "label": "6 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

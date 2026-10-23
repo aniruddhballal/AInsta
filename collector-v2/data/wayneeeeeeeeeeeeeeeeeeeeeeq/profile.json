@@ -1,0 +1,100 @@
+{
+  "username": "wayneeeeeeeeeeeeeeeeeeeeeeq",
+  "url": "https://www.instagram.com/wayneeeeeeeeeeeeeeeeeeeeeeq/",
+  "fetched_at": "2026-10-23T10:30:52.420Z",
+  "display_name": "wayne",
+  "bio": "⠤⣤⣤⣤⣤⣤⠀⠀⣄⣠⠀⠀⣠⣤⣤⣤⣤⠤\n⠀⠈⣿⣿⣿⣿⣷⣶⣿⣿⣶⣾⣿⣿⣿⣿⠁⠀\n⠀⠀⠈⠉⠉⠛⠻⢿⣿⣿⡿⠟⠛⠉⠉⠁⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠙⠋⠀⠀⠀⠀⠀⠀⠀⠀",
+  "posts_count": {
+    "value": 235,
+    "raw": "235",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 282,
+    "raw": "282",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 2,
+    "raw": "2",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 282,
+        "raw": "282",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 282,
+        "raw": "282",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 283,
+        "raw": "283",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 2,
+        "raw": "2",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 18,
+        "raw": "18",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 235,
+        "raw": "235",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 235,
+        "raw": "235",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr24-2.fna.fbcdn.net/v/t51.82787-19/789300757_18094575497123124_1530619222128631207_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=0UKFmrpWgDsQ7kNvwECVPKq&_nc_oc=AdrI3QZY8lpQ2V2rKk_hkn18hEzq2pm6wrqiHsItPvpMka3M1UIi8j05f_tLwv4NSxMDN_YphOWrPJ_B-aFYGTv_&_nc_zt=24&_nc_ht=instagram.fblr24-2.fna&_nc_gid=VVfCllcVsW2XQksVwOWcRg&_nc_ss=7f6a8&oh=00_AQOWwdzlmKsBKuaXNBhC_awCFVV3Ro-WZpQqcaj9D5XIsQ&oe=6AE0FCED",
+  "date_joined": "August 2026",
+  "account_based_in": "Netherlands",
+  "former_usernames_count": {
+    "value": 2,
+    "raw": "2",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "wayneeeeeeeeeeeeeeeeeeeeeeq\nwayne\n235 posts\n282 followers\n2 following\n⠤⣤⣤⣤⣤⣤⠀⠀⣄⣠⠀⠀⣠⣤⣤⣤⣤⠤\n⠀⠈⣿⣿⣿⣿⣷⣶⣿⣿⣶⣾⣿⣿⣿⣿⠁⠀\n⠀⠀⠈⠉⠉⠛⠻⢿⣿⣿⡿⠟⠛⠉⠉⠁⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠙⠋⠀⠀⠀⠀⠀⠀⠀⠀\nFollow\nMessage\nK\nI\nR\nK\nY",
+    "about_text": "About this account\nwayneeeeeeeeeeeeeeeeeeeeeeq\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nAugust 2026\nAccount based in\nNetherlands\nFormer usernames\n2\nClose",
+    "description": "283 Followers, 18 Following, 235 Posts - wayne (@wayneeeeeeeeeeeeeeeeeeeeeeq) on Instagram: \"⠤⣤⣤⣤⣤⣤⠀⠀⣄⣠⠀⠀⣠⣤⣤⣤⣤⠤\n⠀⠈⣿⣿⣿⣿⣷⣶⣿⣿⣶⣾⣿⣿⣿⣿⠁⠀\n⠀⠀⠈⠉⠉⠛⠻⢿⣿⣿⡿⠟⠛⠉⠉⠁⠀⠀\n⠀⠀⠀⠀⠀⠀⠀⠀⠙⠋⠀⠀⠀⠀⠀⠀⠀⠀\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "282 followers",
+        "exact_title": "282"
+      },
+      "following": {
+        "label": "2 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 18 following; current profile header says 2, which is used for the count."
+  ]
+}

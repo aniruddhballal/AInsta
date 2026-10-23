@@ -1,0 +1,96 @@
+{
+  "username": "thoughtsby.div",
+  "url": "https://www.instagram.com/thoughtsby.div/",
+  "fetched_at": "2026-10-23T10:29:06.767Z",
+  "display_name": "🦢 its/o/ver",
+  "bio": "TVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房...\nmore",
+  "posts_count": {
+    "value": 1551,
+    "raw": "1,551",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 164312,
+    "raw": "164,312",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 8,
+    "raw": "8",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 164000,
+        "raw": "164K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 164312,
+        "raw": "164,312",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 162000,
+        "raw": "162K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 8,
+        "raw": "8",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 10,
+        "raw": "10",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 1551,
+        "raw": "1,551",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1551,
+        "raw": "1,551",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/788384241_17930056602390232_8992780461887221057_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44NjIuQzMifQ%3D%3D&_nc_ohc=B-9XRkBOKkMQ7kNvwG_Xn4g&_nc_oc=Adon-V7XYBA4OCgYf-s5Wmp_un_4maNqVAmBhILKvql2FzpGrwRkiEO0N-xdxJ4rnNKDmqYfRB3L7Qs0URG7x9d_&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=u2jzCRyHYIj3_AJ1iLCRlA&_nc_ss=7f6a8&oh=00_AQPP8nhgG0c5vIYn_tefJ9gjl1KRDxV06bH4a9qgbOwP8g&oe=6AE0FC5B",
+  "date_joined": "January 2025",
+  "account_based_in": "Not shared",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "thoughtsby.div\n🦢\nits/o/ver\n1,551 posts\n164K followers\n8 following\nTVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房... \nmore\nFollow\nMessage\n🦢",
+    "about_text": "About this account\nthoughtsby.div\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJanuary 2025\nAccount based in\nNot shared\nClose",
+    "description": "162K Followers, 10 Following, 1,551 Posts - 🦢 (@thoughtsby.div) on Instagram: \"TVアニメ『紫禁・御猫房』10月10日放送開始！宮廷に隠された秘密とは？みんなは観たい？コメントで教えてね！\n#紫禁御猫房#新作アニメ#拡散希望#猫\n《紫禁•御猫房》\n#紫禁御猫房\n新作アニメ\n拡散希望\n猫\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "164K followers",
+        "exact_title": "164,312"
+      },
+      "following": {
+        "label": "8 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 10 following; current profile header says 8, which is used for the count."
+  ]
+}

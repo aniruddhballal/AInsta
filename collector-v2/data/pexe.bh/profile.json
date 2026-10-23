@@ -1,0 +1,94 @@
+{
+  "username": "pexe.bh",
+  "url": "https://www.instagram.com/pexe.bh/",
+  "fetched_at": "2026-10-23T10:20:37.764Z",
+  "display_name": "memesi",
+  "bio": "#アニメ 『ANIME』\n話題の最新作がついに解禁!! ⚡\n待望の最新情報を公開!\nさらに、注目を集める新キャラクターの情報に加え、...\nmore",
+  "posts_count": {
+    "value": 61,
+    "raw": "61",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 6912,
+    "raw": "6,912",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 6912,
+        "raw": "6,912",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 6912,
+        "raw": "6,912",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6648,
+        "raw": "6,648",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 61,
+        "raw": "61",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 61,
+        "raw": "61",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/825351957_18113511029089437_5183727744974366784_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MDYuQzMifQ%3D%3D&_nc_ohc=L4n1EYuqhZ8Q7kNvwEuc0UA&_nc_oc=AdrZLpnsfG0YN5gYE8OyaM-7-ROtQMjFno-Cm2aldg2YHL4uw0feIgkpaefiKMgYcSv85uHOhs32D7UEr_SpT0PV&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=3EVgjC0CeYORMFpaPIQuhw&_nc_ss=7f6a8&oh=00_AQN7SKSTEp67j65bHUVq5dWODzO8wg9XhJ0TahGYr6SHqQ&oe=6AE0F4CB",
+  "date_joined": "April 2026",
+  "account_based_in": "Brazil",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "pexe.bh\nmemesi\n61 posts\n6,912 followers\n0 following\n#アニメ 『ANIME』\n話題の最新作がついに解禁!! ⚡\n待望の最新情報を公開!\nさらに、注目を集める新キャラクターの情報に加え、... \nmore\nFollow\nMessage",
+    "about_text": "About this account\npexe.bh\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nApril 2026\nAccount based in\nBrazil\nClose",
+    "description": "6,648 Followers, 0 Following, 61 Posts - memesi (@pexe.bh) on Instagram: \"#アニメ 『ANIME』\n話題の最新作がついに解禁!! ⚡\n待望の最新情報を公開!\nさらに、注目を集める新キャラクターの情報に加え、\n物語を大きく動かす重要人物「主人公」の詳細も明らかに\nな\nりました!!\n◆新キャラクター情報:\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "6,912 followers",
+        "exact_title": "6,912"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

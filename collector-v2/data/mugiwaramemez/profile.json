@@ -1,0 +1,98 @@
+{
+  "username": "mugiwaramemez",
+  "url": "https://www.instagram.com/mugiwaramemez/",
+  "fetched_at": "2026-10-23T10:22:53.750Z",
+  "display_name": "MugiwaraMeme",
+  "bio": "#TVアニメ 『TONE PIECE』\nワノ国編の最新情報がついに解禁!! ⚡\n待望の最新PVを公開!\nさらに、オープニング＆エンディング主題歌の情報に加え、ワノ国編の重要人物「ヤマト」のキャストも決定しました！！\n◆オープニング主題歌\ns.shopee.com.br/1gJO3aaLWU",
+  "posts_count": {
+    "value": 363,
+    "raw": "363",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 15244,
+    "raw": "15,244",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 15200,
+        "raw": "15.2K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 15244,
+        "raw": "15,244",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 15000,
+        "raw": "15K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 363,
+        "raw": "363",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 363,
+        "raw": "363",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Digital creator",
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/830594403_18092793503374681_4548617968469235012_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=R7Fcp90lwBAQ7kNvwHHGVR4&_nc_oc=AdqT6zXRxxxUVLqhIeaV4Sr_vUG3SSAnmct3PG6_YevxoUwMxW53ShbrbpTjRwZJeUXMcL1Ec-FeDWOz_F2U00Ti&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=Z_wCbMg6SaWiUXzKxvs94w&_nc_ss=7f6a8&oh=00_AQMjzCDwuWWKlf0xWWnzPUOkj5fsskp6aeoEyI2P0zqW3A&oe=6AE10E08",
+  "date_joined": "August 2026",
+  "account_based_in": "Brazil",
+  "former_usernames_count": {
+    "value": 2,
+    "raw": "2",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "mugiwaramemez\nMugiwaraMeme\n363 posts\n15.2K followers\n1 following\nDigital creator\n#TVアニメ 『TONE PIECE』\nワノ国編の最新情報がついに解禁!! ⚡\n待望の最新PVを公開!\nさらに、オープニング＆エンディング主題歌の情報に加え、ワノ国編の重要人物「ヤマト」のキャストも決定しました！！\n◆オープニング主題歌\ns.shopee.com.br/1gJO3aaLWU\nFollow\nMessage\n⚠️",
+    "about_text": "About this account\nmugiwaramemez\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nAugust 2026\nAccount based in\nBrazil\nFormer usernames\n2\nClose",
+    "description": "15K Followers, 1 Following, 363 Posts - MugiwaraMeme (@mugiwaramemez) on Instagram: \"#TVアニメ 『TONE PIECE』\nワノ国編の最新情報がついに解禁!! ⚡\n待望の最新PVを公開!\nさらに、オープニング＆エンディング主題歌の情報に加え、ワノ国編の重要人物「ヤマト」のキャストも決定しました！！\n◆オープニング主題歌\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "15.2K followers",
+        "exact_title": "15,244"
+      },
+      "following": {
+        "label": "1 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

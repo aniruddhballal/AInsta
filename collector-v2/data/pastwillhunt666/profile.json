@@ -1,0 +1,100 @@
+{
+  "username": "pastwillhunt666",
+  "url": "https://www.instagram.com/pastwillhunt666/",
+  "fetched_at": "2026-10-23T10:25:44.574Z",
+  "display_name": "Karma For real",
+  "bio": "あらゆる追いかけっこを繰り広げる! 「オギー＆コックローチ」公式Instagramです! Cartoon Network にて『オギー＆コックローチ』放送中! 『オギー＆コックローチ』デジタル配信中/ブルーレイ＆DVD発売中TEC...\nmore\npastwillhunt666",
+  "posts_count": {
+    "value": 754,
+    "raw": "754",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 31840,
+    "raw": "31,840",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 10,
+    "raw": "10",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 31800,
+        "raw": "31.8K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 31840,
+        "raw": "31,840",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 31000,
+        "raw": "31K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 10,
+        "raw": "10",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 17,
+        "raw": "17",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 754,
+        "raw": "754",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 754,
+        "raw": "754",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/835216304_17966785143189900_5414697151038909423_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=58WLUrApUJMQ7kNvwGUORue&_nc_oc=AdrD7ucOuZvnso2AfCFgmq49KSeemHnLTslsWSOBu8uh0nZfTWePDy9NLVK3Rbp4n1jLfRYUh21bCuup-_vc-ldC&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=qsHtsKt39ergqVwWyOeMSQ&_nc_ss=7f6a8&oh=00_AQOFiQtBE34lrOfYJXjUSvmzOSivOXInnB_FLWVSEwcZMg&oe=6AE0F25E",
+  "date_joined": "March 2024",
+  "account_based_in": "India",
+  "former_usernames_count": {
+    "value": 5,
+    "raw": "5",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "pastwillhunt666\nKarma For real\n754 posts\n31.8K followers\n10 following\nあらゆる追いかけっこを繰り広げる! 「オギー＆コックローチ」公式Instagramです! Cartoon Network にて『オギー＆コックローチ』放送中! 『オギー＆コックローチ』デジタル配信中/ブルーレイ＆DVD発売中TEC... \nmore\npastwillhunt666\nFollow\nMessage\nMy Buddy 💝💝💝\n😎😎\nGrowth 📈\nI want money",
+    "about_text": "About this account\npastwillhunt666\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMarch 2024\nAccount based in\nIndia\nFormer usernames\n5\nClose",
+    "description": "31K Followers, 17 Following, 754 Posts - Karma For real (@pastwillhunt666) on Instagram: \"あらゆる追いかけっこを繰り広げる! 「オギー＆コックローチ」公式Instagramです! Cartoon Network にて『オギー＆コックローチ』放送中! 『オギー＆コックローチ』デジタル配信中/ブルーレイ＆DVD発売中TEC (s26)\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "31.8K followers",
+        "exact_title": "31,840"
+      },
+      "following": {
+        "label": "10 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 17 following; current profile header says 10, which is used for the count."
+  ]
+}

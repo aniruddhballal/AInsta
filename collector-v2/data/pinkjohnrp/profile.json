@@ -1,0 +1,100 @@
+{
+  "username": "pinkjohnrp",
+  "url": "https://www.instagram.com/pinkjohnrp/",
+  "fetched_at": "2026-10-23T10:30:39.945Z",
+  "display_name": "pinkjohn",
+  "bio": "あなたの親愛なる隣人とアクショ ン満載の冒険を繰り広げる! 「ス パイダーマン」公式Instagramで す! Disney+にてアニメシリーズ 配信中! 最新映画デジタル配信中/ ブルーレイ&DVD発売中!",
+  "posts_count": {
+    "value": 482,
+    "raw": "482",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 19111,
+    "raw": "19,111",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 6,
+    "raw": "6",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 19100,
+        "raw": "19.1K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 19111,
+        "raw": "19,111",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 17000,
+        "raw": "17K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 7,
+        "raw": "7",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 482,
+        "raw": "482",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 482,
+        "raw": "482",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/792748706_18094989668182626_2437072447460149365_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=Vgk-pJ83xRYQ7kNvwE0bFus&_nc_oc=AdoG2gTBkXfLsOFPcyqFRnY3IYvNMTA9zMETTsOyX_JoP597DkP0kfSuwhyHA79TYkbVpo9b6gHwt5pgifNbzPLM&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=5X97AkvYAvHM4fDzEagLMQ&_nc_ss=7f6a8&oh=00_AQOsEEZE73EQPTQiT4N_4_d2dlhwwPD2ziB27iWOtayG2A&oe=6AE0EE32",
+  "date_joined": "September 2026",
+  "account_based_in": "Turkey",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "pinkjohnrp\npinkjohn\n482 posts\n19.1K followers\n6 following\nあなたの親愛なる隣人とアクショ ン満載の冒険を繰り広げる! 「ス パイダーマン」公式Instagramで す! Disney+にてアニメシリーズ 配信中! 最新映画デジタル配信中/ ブルーレイ&DVD発売中!\nFollow",
+    "about_text": "About this account\npinkjohnrp\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nTurkey\nFormer usernames\n1\nClose",
+    "description": "17K Followers, 7 Following, 482 Posts - pinkjohn (@pinkjohnrp) on Instagram: \"あなたの親愛なる隣人とアクショ ン満載の冒険を繰り広げる! 「ス パイダーマン」公式Instagramで す! Disney+にてアニメシリーズ 配信中! 最新映画デジタル配信中/ ブルーレイ&DVD発売中!\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "19.1K followers",
+        "exact_title": "19,111"
+      },
+      "following": {
+        "label": "6 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 7 following; current profile header says 6, which is used for the count."
+  ]
+}

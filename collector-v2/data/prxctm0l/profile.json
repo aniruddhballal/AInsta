@@ -1,0 +1,100 @@
+{
+  "username": "prxctm0l",
+  "url": "https://www.instagram.com/prxctm0l/",
+  "fetched_at": "2026-10-23T10:31:53.480Z",
+  "display_name": null,
+  "bio": "Community\nこれは『オギー&コックローチ』の公式Instagramです! あらゆ るチェイスを繰り広げよう! カートゥーンネットワークで『オ ギー&コックローチ』を毎日放送中! 『オギー&コックロー チ』 デジタル版、ブルーレイ&DVDが絶賛発売中!",
+  "posts_count": {
+    "value": 33,
+    "raw": "33",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 2471,
+    "raw": "2,471",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 90,
+    "raw": "90",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 2471,
+        "raw": "2,471",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 2471,
+        "raw": "2,471",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 2385,
+        "raw": "2,385",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 90,
+        "raw": "90",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 104,
+        "raw": "104",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 33,
+        "raw": "33",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 33,
+        "raw": "33",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-3.fna.fbcdn.net/v/t51.82787-19/850521338_18023484563868502_9046809071758680403_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=juDq5IpBBlQQ7kNvwHR6nXY&_nc_oc=AdpTAjo3hfpbyM06lOJp3Y8PmKDM2Zl2ursUV50Pp5lMXoJHxAyl9vcfb0WiNWqysv_H16pG9erzVYOg6ZcZyJXf&_nc_zt=24&_nc_ht=instagram.fblr1-3.fna&_nc_gid=0P2XxtyDW5kfkrFETjG3LA&_nc_ss=7f6a8&oh=00_AQNf2uibzaf8v3vuPZ_6jcU-6e_HKqBo1XthEdUXAEV01w&oe=6AE10F61",
+  "date_joined": "October 2022",
+  "account_based_in": "India",
+  "former_usernames_count": {
+    "value": 10,
+    "raw": "10",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "prxctm0l\n33 posts\n2,471 followers\n90 following\nCommunity\nこれは『オギー&コックローチ』の公式Instagramです! あらゆ るチェイスを繰り広げよう! カートゥーンネットワークで『オ ギー&コックローチ』を毎日放送中! 『オギー&コックロー チ』 デジタル版、ブルーレイ&DVDが絶賛発売中!\nFollow",
+    "about_text": "About this account\nprxctm0l\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2022\nAccount based in\nIndia\nFormer usernames\n10\nClose",
+    "description": "2,385 Followers, 104 Following, 33 Posts - @prxctm0l on Instagram: \"これは『オギー&コックローチ』の公式Instagramです! あらゆ るチェイスを繰り広げよう! カートゥーンネットワークで『オ ギー&コックローチ』を毎日放送中! 『オギー&コックロー チ』 デジタル版、ブルーレイ&DVDが絶賛発売中!\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "2,471 followers",
+        "exact_title": "2,471"
+      },
+      "following": {
+        "label": "90 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 104 following; current profile header says 90, which is used for the count."
+  ]
+}

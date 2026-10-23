@@ -1,0 +1,96 @@
+{
+  "username": "memesupreme.tv",
+  "url": "https://www.instagram.com/memesupreme.tv/",
+  "fetched_at": "2026-10-23T10:33:42.128Z",
+  "display_name": "MEME SUPREME TV",
+  "bio": "Community •\nTVアニメ『佐々木とピーちゃん Season2』 第1話は1時間スペシャル! 新キャラクタ\nーのキャストが解禁! さらにOP主題歌&メインPVも公開!",
+  "posts_count": {
+    "value": 53,
+    "raw": "53",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 8096,
+    "raw": "8,096",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 5,
+    "raw": "5",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 8096,
+        "raw": "8,096",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 8096,
+        "raw": "8,096",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4855,
+        "raw": "4,855",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 5,
+        "raw": "5",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 53,
+        "raw": "53",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 53,
+        "raw": "53",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/851059245_18118705351792206_4061433983775494765_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MzYuQzMifQ%3D%3D&_nc_ohc=wfDGt1WNfL4Q7kNvwFDYvCQ&_nc_oc=Adptir4tIOprPgz9yAljdv8PsFfaKqPc51YzK3X2GkChb2cTrUwzoHNbUoJisMkHCq6lNC6P5Os3OQyJ1GZW7qm5&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=mqfksbLGfbbZsHUqJ3PD_w&_nc_ss=7f6a8&oh=00_AQPwoaQEEbNA6FAWqU6aVb5_GGJJQypvk7Yw__Ge_my7sA&oe=6AE120DB",
+  "date_joined": "October 2026",
+  "account_based_in": "Nigeria",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "memesupreme.tv\nMEME SUPREME TV\n53 posts\n8,096 followers\n5 following\nCommunity • \nAI-generated profile\nTVアニメ『佐々木とピーちゃん Season2』 第1話は1時間スペシャル! 新キャラクタ\nーのキャストが解禁! さらにOP主題歌&メインPVも公開!\nFollow",
+    "about_text": "About this account\nmemesupreme.tv\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nNigeria\nClose",
+    "description": "4,855 Followers, 6 Following, 53 Posts - MEME SUPREME TV (@memesupreme.tv) on Instagram: \"TVアニメ『佐々木とピーちゃん Season2』 第1話は1時間スペシャル! 新キャラクタ\nーのキャストが解禁! さらにOP主題歌&メインPVも公開!\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "8,096 followers",
+        "exact_title": "8,096"
+      },
+      "following": {
+        "label": "5 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 6 following; current profile header says 5, which is used for the count."
+  ]
+}

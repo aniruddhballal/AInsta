@@ -1,0 +1,100 @@
+{
+  "username": "reelrestock",
+  "url": "https://www.instagram.com/reelrestock/",
+  "fetched_at": "2026-10-23T10:27:00.555Z",
+  "display_name": null,
+  "bio": "Grocery Store\nRestocking daily reels for your entertainment",
+  "posts_count": {
+    "value": 693,
+    "raw": "693",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 164220,
+    "raw": "164,220",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 164000,
+        "raw": "164K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 164220,
+        "raw": "164,220",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 164000,
+        "raw": "164K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 27,
+        "raw": "27",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 693,
+        "raw": "693",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 693,
+        "raw": "693",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/810421347_18392557012204817_4038213315978544041_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=9GLWcIjJA90Q7kNvwFbHakg&_nc_oc=AdoccMUDbOmWeIoXhHn2r1TxFVJJAwAjvqa73awgeV9ZRmiiPqdsdS4LZmVm0TNiuaNTliCoNVpeyHjbyoVVr6AQ&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=I7hZf1q4qUExPxZiJMflbQ&_nc_ss=7f6a8&oh=00_AQM5WAH3miHh36VN43UuvMO1H7rcH_bjmMkjJqGWZ3-PsQ&oe=6AE0F183",
+  "date_joined": "September 2017",
+  "account_based_in": "United Kingdom",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "reelrestock\n693 posts\n164K followers\n1 following\nGrocery Store\nRestocking daily reels for your entertainment\nFollow\nMessage",
+    "about_text": "About this account\nreelrestock\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2017\nAccount based in\nUnited Kingdom\nFormer usernames\n1\nClose",
+    "description": "164K Followers, 27 Following, 693 Posts - @reelrestock on Instagram: \"Restocking daily reels for your entertainment\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "164K followers",
+        "exact_title": "164,220"
+      },
+      "following": {
+        "label": "1 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 27 following; current profile header says 1, which is used for the count."
+  ]
+}

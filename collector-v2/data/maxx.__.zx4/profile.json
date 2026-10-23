@@ -1,0 +1,100 @@
+{
+  "username": "maxx.__.zx4",
+  "url": "https://www.instagram.com/maxx.__.zx4/",
+  "fetched_at": "2026-10-23T10:32:58.485Z",
+  "display_name": "Someone:",
+  "bio": "#TVアニメ「ONE PIECE」 エルバフ編 最新情報を発表&最新 PV公開 オープニング主題歌&エンディング主題歌、さらにエルバフ編の重要キャラクター 「ロキ」のキャストが決定しました!!\nオープニング主題歌: アイナ・ジ・エンド",
+  "posts_count": {
+    "value": 129,
+    "raw": "129",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 10169,
+    "raw": "10,169",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 7,
+    "raw": "7",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 10100,
+        "raw": "10.1K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 10169,
+        "raw": "10,169",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 10000,
+        "raw": "10K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 7,
+        "raw": "7",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 8,
+        "raw": "8",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 129,
+        "raw": "129",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 129,
+        "raw": "129",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr24-4.fna.fbcdn.net/v/t51.82787-19/732637451_18062517698502674_2111544620315256212_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MzYuQzMifQ%3D%3D&_nc_ohc=KRru4aoqPRkQ7kNvwF1JbHY&_nc_oc=Adpl8n5PuaASOpR2cPdZ-bkRTWOJxE5Mb5cCWGvrXsY3CwxfqQHnbVyxQegFqK6_7ZySutiPE80Iud6DA0xjRRyx&_nc_zt=24&_nc_ht=instagram.fblr24-4.fna&_nc_gid=oVSwgc0uOTgz8fhYA4yc6Q&_nc_ss=7f6a8&oh=00_AQOS_P0XAa2WRIYiru9jCNIZClGuHpgVl7q9sfbh9VAyzw&oe=6AE0F012",
+  "date_joined": "July 2026",
+  "account_based_in": "Pakistan",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "maxx.__.zx4\nSomeone:\n129 posts\n10.1K followers\n7 following\n#TVアニメ「ONE PIECE」 エルバフ編 最新情報を発表&最新 PV公開 オープニング主題歌&エンディング主題歌、さらにエルバフ編の重要キャラクター 「ロキ」のキャストが決定しました!!\nオープニング主題歌: アイナ・ジ・エンド\nFollow\nMessage\nAchievements",
+    "about_text": "About this account\nmaxx.__.zx4\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJuly 2026\nAccount based in\nPakistan\nFormer usernames\n1\nClose",
+    "description": "10K Followers, 8 Following, 129 Posts - Someone: (@maxx.__.zx4) on Instagram: \"#TVアニメ「ONE PIECE」 エルバフ編 最新情報を発表&最新 PV公開 オープニング主題歌&エンディング主題歌、さらにエルバフ編の重要キャラクター 「ロキ」のキャストが決定しました!!\nオープニング主題歌: アイナ・ジ・エンド\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "10.1K followers",
+        "exact_title": "10,169"
+      },
+      "following": {
+        "label": "7 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 8 following; current profile header says 7, which is used for the count."
+  ]
+}

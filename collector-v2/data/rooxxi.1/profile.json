@@ -1,0 +1,100 @@
+{
+  "username": "rooxxi.1",
+  "url": "https://www.instagram.com/rooxxi.1/",
+  "fetched_at": "2026-10-23T10:28:53.712Z",
+  "display_name": "sʟɪᴍᴀɴᴇ",
+  "bio": "あらゆる追いかけっこを繰り広げる！「トムとジェリー」\n公式Instagramです！Cartoon Networkにて『まいにちト\nムとジェリー』放送中！『映画 トムとジェリー』デジタル\n配信中／ブルーレイ＆DVD発売中 TEC（s23）",
+  "posts_count": {
+    "value": 429,
+    "raw": "429",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 24641,
+    "raw": "24,641",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 124,
+    "raw": "124",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 24600,
+        "raw": "24.6K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 24641,
+        "raw": "24,641",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 25000,
+        "raw": "25K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 124,
+        "raw": "124",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 149,
+        "raw": "149",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 429,
+        "raw": "429",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 429,
+        "raw": "429",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Reel creator",
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr24-4.fna.fbcdn.net/v/t51.82787-19/851411151_17978299248129758_7802676440778822102_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=bYs-OSykIMsQ7kNvwE9MGkl&_nc_oc=AdrYbEsC9cRssFPoejiUUZHbPr-lGUXAXH92_GAqPD31ujoXEZjHBtuNxK--uFEfFq4n64Y9YIYwe3Z2oevMeZel&_nc_zt=24&_nc_ht=instagram.fblr24-4.fna&_nc_gid=L3-jQhtskZfodB2xsghEOQ&_nc_ss=7f6a8&oh=00_AQN4IrH4HlPRSldSSD8YXUS1D2I8sY0dZfF5veySRRD2Bw&oe=6AE11449",
+  "date_joined": "December 2023",
+  "account_based_in": "Algeria",
+  "former_usernames_count": {
+    "value": 5,
+    "raw": "5",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "rooxxi.1\nsʟɪᴍᴀɴᴇ\n429 posts\n24.6K followers\n124 following\nReel creator\nあらゆる追いかけっこを繰り広げる！「トムとジェリー」\n公式Instagramです！Cartoon Networkにて『まいにちト\nムとジェリー』放送中！『映画 トムとジェリー』デジタル\n配信中／ブルーレイ＆DVD発売中 TEC（s23）\nFollow\nMessage",
+    "about_text": "About this account\nrooxxi.1\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nDecember 2023\nAccount based in\nAlgeria\nFormer usernames\n5\nClose",
+    "description": "25K Followers, 149 Following, 429 Posts - sʟɪᴍᴀɴᴇ (@rooxxi.1) on Instagram: \"あらゆる追いかけっこを繰り広げる！「トムとジェリー」\n公式Instagramです！Cartoon Networkにて『まいにちト\nムとジェリー』放送中！『映画 トムとジェリー』デジタル\n配信中／ブルーレイ＆DVD発売中 TEC（s23）\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "24.6K followers",
+        "exact_title": "24,641"
+      },
+      "following": {
+        "label": "124 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 149 following; current profile header says 124, which is used for the count."
+  ]
+}

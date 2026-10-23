@@ -1,0 +1,96 @@
+{
+  "username": "kanyeglazerwest",
+  "url": "https://www.instagram.com/kanyeglazerwest/",
+  "fetched_at": "2026-10-23T10:21:28.462Z",
+  "display_name": "kanyeglazerwest",
+  "bio": "あらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)",
+  "posts_count": {
+    "value": 1145,
+    "raw": "1,145",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 67792,
+    "raw": "67,792",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 480,
+    "raw": "480",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 67700,
+        "raw": "67.7K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 67792,
+        "raw": "67,792",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 68000,
+        "raw": "68K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 480,
+        "raw": "480",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 553,
+        "raw": "553",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 1145,
+        "raw": "1,145",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1145,
+        "raw": "1,145",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/839670836_17923565070428270_8525634183755701075_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45MTQuQzMifQ%3D%3D&_nc_ohc=SLttdP1Yi_wQ7kNvwGfUVtQ&_nc_oc=AdraAHaylb8-G9fuDx-QmWMypARJV70BIgUS-9SvM5FnE51l_2pR4ugx4WPFSEBeIqpYP6nTRgfdfCwWWr1Zkkl-&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=4g2Ya_MOJI_cRrAIyub_4A&_nc_ss=7f2a8&oh=00_AQOAz5y3pxXn0dy0VdP6B1HoggMCtNg9wbMqgQrc-l9BuQ&oe=6AE11605",
+  "date_joined": "March 2025",
+  "account_based_in": "United States",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "kanyeglazerwest\nkanyeglazerwest\n1,145 posts\n67.7K followers\n480 following\nあらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)\nFollow\nMessage\nCREDITS\nPROMO",
+    "about_text": "About this account\nkanyeglazerwest\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMarch 2025\nAccount based in\nUnited States\nAccounts with shared followers\n1\nClose",
+    "description": "68K Followers, 553 Following, 1,145 Posts - @kanyeglazerwest on Instagram: \"あらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "67.7K followers",
+        "exact_title": "67,792"
+      },
+      "following": {
+        "label": "480 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 553 following; current profile header says 480, which is used for the count."
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "username": "hezciv",
+  "url": "https://www.instagram.com/hezciv/",
+  "fetched_at": "2026-10-23T10:22:33.734Z",
+  "display_name": "hezciv",
+  "bio": "『トムとジェリー』&『オギー＆コックローチ』公式\nInstagram!\nあらゆるワクワクする追いかけっこをお届けします！\n『トムとジェリー』＆『オギー＆コックローチ』は、...\nmore",
+  "posts_count": {
+    "value": 68,
+    "raw": "68",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 9836,
+    "raw": "9,836",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 9836,
+        "raw": "9,836",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 9836,
+        "raw": "9,836",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 9883,
+        "raw": "9,883",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 68,
+        "raw": "68",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 68,
+        "raw": "68",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-7.fna.fbcdn.net/v/t51.82787-19/851829808_18032870675674129_7953116413839693089_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=YEO4JwQvRh4Q7kNvwHMimvp&_nc_oc=AdqKcZNA9s1254T7UMpM1wFulJFc5UvorU5w2FxJUFPDSo9Mn98nAFgmJITsobN2QDT22qFTcqBIx6cSpM1Y0r5-&_nc_zt=24&_nc_ht=instagram.fblr1-7.fna&_nc_gid=SBzfLgBFn8TCFCyWjd5hgQ&_nc_ss=7f6a8&oh=00_AQNrgJg_CEK7_j26h9J0_j6tVEWpjbEIY_mPsyC4z1Rlug&oe=6AE0F8A9",
+  "date_joined": "October 2026",
+  "account_based_in": "Pakistan",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "hezciv\nhezciv\n68 posts\n9,836 followers\n0 following\n『トムとジェリー』&『オギー＆コックローチ』公式\nInstagram!\nあらゆるワクワクする追いかけっこをお届けします！\n『トムとジェリー』＆『オギー＆コックローチ』は、... \nmore\nFollow\nMessage",
+    "about_text": "About this account\nhezciv\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nPakistan\nClose",
+    "description": "9,883 Followers, 0 Following, 68 Posts - @hezciv on Instagram: \"『トムとジェリー』&『オギー＆コックローチ』公式\nInstagram!\nあらゆるワクワクする追いかけっこをお届けします！\n『トムとジェリー』＆『オギー＆コックローチ』は、\nCartoon Network C+!\n『トムとジェリー』＆『オギー＆コックローチ』はデジタル配信でもお楽しみいただけます！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "9,836 followers",
+        "exact_title": "9,836"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

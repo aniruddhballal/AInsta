@@ -1,0 +1,98 @@
+{
+  "username": "zkyus_",
+  "url": "https://www.instagram.com/zkyus_/",
+  "fetched_at": "2026-10-23T10:27:06.825Z",
+  "display_name": "toxic_zkyus_ 🧿",
+  "bio": "TVアニメ 『ONE PIECE』 エルバフ編 最新情報を発表&最新PV公開 オープニング主題歌&エンディング主題歌、さらにエルバフ編の重要キャラクター 「ロキ」のキャストが決定しました!! ◆オープニング主題歌: アイナ・ジ・エンド...\nmore\nzkyus_",
+  "posts_count": {
+    "value": 1258,
+    "raw": "1,258",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 69925,
+    "raw": "69,925",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 69900,
+        "raw": "69.9K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 69925,
+        "raw": "69,925",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 69000,
+        "raw": "69K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 1258,
+        "raw": "1,258",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1258,
+        "raw": "1,258",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Editor",
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/825324702_18069848660773694_8464800415181002684_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=oGqKJLbz2pQQ7kNvwHmmStL&_nc_oc=AdqtBfSkJzUu-qAgm1aTYD4SR0t6xHbkv-ve7Kmgx-IiIvbPptud81S6bQhTtp3vD9XdWCuVBBgDH8st-ozC01YK&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=HPWGL2vol2U4ng4J5jgnLA&_nc_ss=7f6a8&oh=00_AQMp3VuK4EReJhDYQMzwqqsgBTBV3TGqhFMNLJ-crKs3jg&oe=6AE10EBA",
+  "date_joined": "May 2022",
+  "account_based_in": "India",
+  "former_usernames_count": {
+    "value": 8,
+    "raw": "8",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "zkyus_\ntoxic_zkyus_ 🧿\n1,258 posts\n69.9K followers\n1 following\nEditor\nTVアニメ 『ONE PIECE』 エルバフ編 最新情報を発表&最新PV公開 オープニング主題歌&エンディング主題歌、さらにエルバフ編の重要キャラクター 「ロキ」のキャストが決定しました!! ◆オープニング主題歌: アイナ・ジ・エンド... \nmore\nzkyus_\nFollow\nMessage",
+    "about_text": "About this account\nzkyus_\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMay 2022\nAccount based in\nIndia\nFormer usernames\n8\nClose",
+    "description": "69K Followers, 1 Following, 1,258 Posts - toxic_zkyus_                                🧿 (@zkyus_) on Instagram: \"TVアニメ 『ONE PIECE』 エルバフ編 最新情報を発表&最新PV公開 オープニング主題歌&エンディング主題歌、さらにエルバフ編の重要キャラクター 「ロキ」のキャストが決定しました!! ◆オープニング主題歌: アイナ・ジ・エンド\n「ルミナス - ZKYUS\n◆エンディング主題歌:\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "69.9K followers",
+        "exact_title": "69,925"
+      },
+      "following": {
+        "label": "1 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

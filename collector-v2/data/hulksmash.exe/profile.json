@@ -1,0 +1,94 @@
+{
+  "username": "hulksmash.exe",
+  "url": "https://www.instagram.com/hulksmash.exe/",
+  "fetched_at": "2026-10-23T10:21:03.660Z",
+  "display_name": "HulkSmash",
+  "bio": "#TVアニメ『HULK』\n王都魔法祭編の最新情報がついに解禁！！ 👊🏻⚡️\n待望の最新キービジュアルを公開！\nさらに、新キャラクター&新たな魔法の情報に加え、王都魔法祭編の物語を大きく動かす重要人物「ルミナ」の登場も決定しました！！...\nmore",
+  "posts_count": {
+    "value": 43,
+    "raw": "43",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 1394,
+    "raw": "1,394",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 8,
+    "raw": "8",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 1394,
+        "raw": "1,394",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 1394,
+        "raw": "1,394",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1295,
+        "raw": "1,295",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 8,
+        "raw": "8",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 8,
+        "raw": "8",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 43,
+        "raw": "43",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 43,
+        "raw": "43",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/848119403_18109229425970699_3831490633390943486_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4zMjAuQzMifQ%3D%3D&_nc_ohc=TjIzwpyqT38Q7kNvwEMEUcx&_nc_oc=AdqXSq1pxVb5-SaShoCvkkExGctmr7iaerXh-tBs9aEdOlHkLSO0OL2uLKRpRitFx4ChlBanU2FOkVj9YFrrkuoj&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=3zjgG30AXwjFQKeRVtRJGQ&_nc_ss=7f6a8&oh=00_AQNcR6nCIqTb3qsrxX3xVj15VMZqild4L5-qsFiVAaSfYQ&oe=6AE117E9",
+  "date_joined": "October 2026",
+  "account_based_in": "Philippines",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "hulksmash.exe\nHulkSmash\n43 posts\n1,394 followers\n8 following\n#TVアニメ『HULK』\n王都魔法祭編の最新情報がついに解禁！！ 👊🏻⚡️\n待望の最新キービジュアルを公開！\nさらに、新キャラクター&新たな魔法の情報に加え、王都魔法祭編の物語を大きく動かす重要人物「ルミナ」の登場も決定しました！！... \nmore\nFollow\nMessage",
+    "about_text": "About this account\nhulksmash.exe\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nPhilippines\nClose",
+    "description": "1,295 Followers, 8 Following, 43 Posts - HulkSmash (@hulksmash.exe) on Instagram: \"#TVアニメ『HULK』\n王都魔法祭編の最新情報がついに解禁！！ 👊🏻⚡️\n待望の最新キービジュアルを公開！\nさらに、新キャラクター&新たな魔法の情報に加え、王都魔法祭編の物語を大きく動かす重要人物「ルミナ」の登場も決定しました！！\n◆新キャラクター\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "1,394 followers",
+        "exact_title": "1,394"
+      },
+      "following": {
+        "label": "8 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

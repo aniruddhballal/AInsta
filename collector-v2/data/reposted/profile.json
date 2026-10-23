@@ -1,0 +1,100 @@
+{
+  "username": "reposted",
+  "url": "https://www.instagram.com/reposted/",
+  "fetched_at": "2026-10-23T10:19:59.721Z",
+  "display_name": "Reposted",
+  "bio": "Get your content reposted @clippingculture",
+  "posts_count": {
+    "value": 11,
+    "raw": "11",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 77,
+    "raw": "77",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 77,
+        "raw": "77",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 77,
+        "raw": "77",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 77,
+        "raw": "77",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 11,
+        "raw": "11",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 11,
+        "raw": "11",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-10.fna.fbcdn.net/v/t51.82787-19/582300162_17843319219617510_3546338302582516684_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDEwLkMzIn0%3D&_nc_ohc=42LJ64ISy5gQ7kNvwFGje6Q&_nc_oc=AdqaVorWMCJ1Oj_dAlAJpnAzQqAvJ5zZlQpJ4csYa7Myyb8la0tNzLnM5h7C8xGdvl-HS5ErVgsgF4akE4HNWXcE&_nc_zt=24&_nc_ht=instagram.fblr1-10.fna&_nc_gid=wmYwjD2sJWOZn1lYP7dV-g&_nc_ss=7f6a8&oh=00_AQMjhMNFR3z9jUGAxL7lV4JUMEc0yMGLBjubJo5DoLM8OA&oe=6AE104FE",
+  "date_joined": "November 2025",
+  "account_based_in": "Not shared",
+  "former_usernames_count": {
+    "value": 28,
+    "raw": "28",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "reposted\nReposted\n11 posts\n77 followers\n0 following\nGet your content reposted @clippingculture\nFollow",
+    "about_text": "About this account\nreposted\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nNovember 2025\nAccount based in\nNot shared\nFormer usernames\n28\nClose",
+    "description": "77 Followers, 1 Following, 11 Posts - Reposted (@reposted) on Instagram: \"Get your content reposted @clippingculture\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "77 followers",
+        "exact_title": "77"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 1 following; current profile header says 0, which is used for the count."
+  ]
+}

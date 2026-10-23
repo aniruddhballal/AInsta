@@ -1,0 +1,100 @@
+{
+  "username": "starson.ig",
+  "url": "https://www.instagram.com/starson.ig/",
+  "fetched_at": "2026-10-23T10:23:37.829Z",
+  "display_name": "STARSON⭐️",
+  "bio": "あらゆる追いかけっこを繰り広げる! 「トムとジェリ - 公式Instagramです! Cartoon Networkにて『まいにちトムとジェリー』放送中! 『映画トムとジェリー』デジタル配信中/ブルーレイ&D VD発売中TEC (s23)",
+  "posts_count": {
+    "value": 597,
+    "raw": "597",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 18027,
+    "raw": "18,027",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 178,
+    "raw": "178",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 18000,
+        "raw": "18K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 18027,
+        "raw": "18,027",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 18000,
+        "raw": "18K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 178,
+        "raw": "178",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 206,
+        "raw": "206",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 597,
+        "raw": "597",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 597,
+        "raw": "597",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/778882259_18087094904657875_4087066786831920189_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=3kjB28V3Ub4Q7kNvwGUMCby&_nc_oc=Ado_fb1GxBVbZU5BJiXBxnDcmPLoxvqyQc4x3lzJX-oPa6kc-bItRT-zVBcLjTpzQ6FT2YKg0H7Dvuv-uZZZWzlp&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=VKVz8Pa6GaUj7jKnn3xN2g&_nc_ss=7f6a8&oh=00_AQO_7QCuHV6CaZtf_K15zAg0kDt4FxV0W2tpJh4RrN97hg&oe=6AE0FEB9",
+  "date_joined": "September 2021",
+  "account_based_in": "Not shared",
+  "former_usernames_count": {
+    "value": 11,
+    "raw": "11",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "starson.ig\nSTARSON⭐️\n597 posts\n18K followers\n178 following\nAI-generated profile\nあらゆる追いかけっこを繰り広げる! 「トムとジェリ - 公式Instagramです! Cartoon Networkにて『まいにちトムとジェリー』放送中! 『映画トムとジェリー』デジタル配信中/ブルーレイ&D VD発売中TEC (s23)\nFollow\nMessage\n⭐️\nfollow me gng",
+    "about_text": "About this account\nstarson.ig\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2021\nAccount based in\nNot shared\nFormer usernames\n11\nClose",
+    "description": "18K Followers, 206 Following, 597 Posts - STARSON⭐️ (@starson.ig) on Instagram: \"あらゆる追いかけっこを繰り広げる! 「トムとジェリ - 公式Instagramです! Cartoon Networkにて『まいにちトムとジェリー』放送中! 『映画トムとジェリー』デジタル配信中/ブルーレイ&D VD発売中TEC (s23)\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "18K followers",
+        "exact_title": "18,027"
+      },
+      "following": {
+        "label": "178 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 206 following; current profile header says 178, which is used for the count."
+  ]
+}

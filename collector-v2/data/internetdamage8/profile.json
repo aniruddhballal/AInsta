@@ -1,0 +1,96 @@
+{
+  "username": "internetdamage8",
+  "url": "https://www.instagram.com/internetdamage8/",
+  "fetched_at": "2026-10-23T10:25:58.157Z",
+  "display_name": "Internet Damage",
+  "bio": "スリル満点の追跡劇が満載! こちらは「Jokrori』の公式 Instagramアカウントです! カートゥーンネットワークで 『Jokrori」をチェックしよう! 『Jokrori」は現在、デジタル配信お...\nmore",
+  "posts_count": {
+    "value": 186,
+    "raw": "186",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 1140,
+    "raw": "1,140",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 5,
+    "raw": "5",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 1140,
+        "raw": "1,140",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 1140,
+        "raw": "1,140",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1141,
+        "raw": "1,141",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 5,
+        "raw": "5",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 186,
+        "raw": "186",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 186,
+        "raw": "186",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-6.fna.fbcdn.net/v/t51.82787-19/848641243_18140627941575103_5048197752461207647_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=zegS3F3SkJcQ7kNvwGbssPk&_nc_oc=Adq3xgzaLQgbJa9fINfra2-nyKusXDdepM1jKtiohBZAdJDNOXU3fjfcy8SqXsC-Q24FIdPGJfHde_AXD07cPRhW&_nc_zt=24&_nc_ht=instagram.fblr1-6.fna&_nc_gid=1fDWkZhTPOi16ssZ0Tk6lw&_nc_ss=7f6a8&oh=00_AQOWT7qPYdf_mIGQE7NcrrckROD0iqJgukEX6M03YIvfMw&oe=6AE11076",
+  "date_joined": "October 2026",
+  "account_based_in": "India",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "internetdamage8\nInternet Damage\n186 posts\n1,140 followers\n5 following\nスリル満点の追跡劇が満載! こちらは「Jokrori』の公式 Instagramアカウントです! カートゥーンネットワークで 『Jokrori」をチェックしよう! 『Jokrori」は現在、デジタル配信お... \nmore\nFollow",
+    "about_text": "About this account\ninternetdamage8\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nIndia\nClose",
+    "description": "1,141 Followers, 6 Following, 186 Posts - Internet Damage (@internetdamage8) on Instagram: \"スリル満点の追跡劇が満載! こちらは「Jokrori』の公式 Instagramアカウントです! カートゥーンネットワークで 『Jokrori」をチェックしよう! 『Jokrori」は現在、デジタル配信お よびブルーレイ&DVDで発売・配信中!\nTFC(24)\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "1,140 followers",
+        "exact_title": "1,140"
+      },
+      "following": {
+        "label": "5 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 6 following; current profile header says 5, which is used for the count."
+  ]
+}

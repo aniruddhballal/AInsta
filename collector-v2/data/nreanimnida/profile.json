@@ -1,0 +1,100 @@
+{
+  "username": "nreanimnida",
+  "url": "https://www.instagram.com/nreanimnida/",
+  "fetched_at": "2026-10-23T10:33:11.321Z",
+  "display_name": "zalyrics",
+  "bio": "#TVアニメ 『NOSTALGIA』\n懐かしさに包まれる、あの頃の思い出がついに蘇る!! 🥹✨\n思わず昔を思い出してしまう、懐かしい瞬間を一挙公開！\n心に残る名シーンや、忘れられない思い出、...\nmore",
+  "posts_count": {
+    "value": 68,
+    "raw": "68",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 6587,
+    "raw": "6,587",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 560,
+    "raw": "560",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 6587,
+        "raw": "6,587",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 6587,
+        "raw": "6,587",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4836,
+        "raw": "4,836",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 560,
+        "raw": "560",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 586,
+        "raw": "586",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 68,
+        "raw": "68",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 68,
+        "raw": "68",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/845923751_17906692989591266_8083015445411166548_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=RGy54em7UPEQ7kNvwHFqcON&_nc_oc=AdoDLMhmMr4q8Wl632widT43V6DcRTakWeD9ZnAoFKB63wD_ayg90VM3KOH-Sw1LuY28nKlNNlO8KB-auNeLBfXj&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=EpNn1wmVvRbbOcHILhWaPA&_nc_ss=7f6a8&oh=00_AQPE5h39Qx02GxOIGtHDdynmmGZNsjffB7m_TLQldpvwCw&oe=6AE11445",
+  "date_joined": "October 2025",
+  "account_based_in": "Philippines",
+  "former_usernames_count": {
+    "value": 6,
+    "raw": "6",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "nreanimnida\nzalyrics\n68 posts\n6,587 followers\n560 following\n#TVアニメ 『NOSTALGIA』\n懐かしさに包まれる、あの頃の思い出がついに蘇る!! 🥹✨\n思わず昔を思い出してしまう、懐かしい瞬間を一挙公開！\n心に残る名シーンや、忘れられない思い出、... \nmore\nFollow\nMessage\ndms",
+    "about_text": "About this account\nnreanimnida\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2025\nAccount based in\nPhilippines\nFormer usernames\n6\nClose",
+    "description": "4,836 Followers, 586 Following, 68 Posts - zalyrics (@nreanimnida) on Instagram: \"#TVアニメ 『NOSTALGIA』\n懐かしさに包まれる、あの頃の思い出がついに蘇る!! 🥹✨\n思わず昔を思い出してしまう、懐かしい瞬間を一挙公開！\n心に残る名シーンや、忘れられない思い出、\nそして「あの頃に戻りたい」と感じるような瞬間まで登場しました!!\n◆今回のNOSTALGIAポイント:\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "6,587 followers",
+        "exact_title": "6,587"
+      },
+      "following": {
+        "label": "560 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 586 following; current profile header says 560, which is used for the count."
+  ]
+}

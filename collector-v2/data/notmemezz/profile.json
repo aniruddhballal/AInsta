@@ -1,0 +1,100 @@
+{
+  "username": "notmemezz",
+  "url": "https://www.instagram.com/notmemezz/",
+  "fetched_at": "2026-10-23T10:22:01.803Z",
+  "display_name": "NoTwinz",
+  "bio": "Medical Lab\n『グランド・セフト・オートVI』発売記念！\nありがとうございました！🌟\n初の次世代オープンワールド・ヴァイスシティ！\n初めましての方とも出会えて最高に嬉しかったよ〜！！🌴💖\n全国...\nmore",
+  "posts_count": {
+    "value": 1386,
+    "raw": "1,386",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 4062,
+    "raw": "4,062",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 98,
+    "raw": "98",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 4062,
+        "raw": "4,062",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 4062,
+        "raw": "4,062",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 3854,
+        "raw": "3,854",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 98,
+        "raw": "98",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 108,
+        "raw": "108",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 1386,
+        "raw": "1,386",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1386,
+        "raw": "1,386",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/831254235_18625853077024005_6264849616430531168_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=jX7IO8gT3xAQ7kNvwGIjETQ&_nc_oc=AdqWRjAQk5wSWeVnr8AsuAsFsPqtwxJq2kqH7VTRMvT2zC9BnY5e8wmS7ws8uIZV18lEtM3c97A-Svz_GZBAyrZ8&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=fS039s9lZ1iK2aP6o-lQyQ&_nc_ss=7f6a8&oh=00_AQPWCe9MryNjbmXEyTnaq1mWQiVM7dcQpHbfHFYUvZxDAw&oe=6AE0F66C",
+  "date_joined": "November 2014",
+  "account_based_in": "Not shared",
+  "former_usernames_count": {
+    "value": 4,
+    "raw": "4",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "notmemezz\nNoTwinz\n1,386 posts\n4,062 followers\n98 following\nMedical Lab\n『グランド・セフト・オートVI』発売記念！\nありがとうございました！🌟\n初の次世代オープンワールド・ヴァイスシティ！\n初めましての方とも出会えて最高に嬉しかったよ〜！！🌴💖\n全国... \nmore\nFollow\nMessage\nPrØgrezz",
+    "about_text": "About this account\nnotmemezz\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nNovember 2014\nAccount based in\nNot shared\nFormer usernames\n4\nVerified\nSeptember 2026\nThe verified badge means an account has been verified based on their activity across our products and information or documents they provide. Some verified accounts are owned by a notable person, brand or entity, while others subscribe to Meta Verified.\n \nWith a Meta Verified subscription, you get a verified badge, proactive account protection, access to direct account support and more. Learn more\nGet a verified badge\nClose",
+    "description": "3,854 Followers, 108 Following, 1,386 Posts - NoTwinz (@notmemezz) on Instagram: \"『グランド・セフト・オートVI』発売記念！\nありがとうございました！🌟\n初の次世代オープンワールド・ヴァイスシティ！\n初めましての方とも出会えて最高に嬉しかったよ〜！！🌴💖\n全国のみんなに会えますように！\nお待ちしてます🚗✨\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "4,062 followers",
+        "exact_title": "4,062"
+      },
+      "following": {
+        "label": "98 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 108 following; current profile header says 98, which is used for the count."
+  ]
+}

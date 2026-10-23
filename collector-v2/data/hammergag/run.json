@@ -1,0 +1,11 @@
+{
+  "started_at": "2026-10-23T10:23:58.536Z",
+  "updated_at": "2026-10-23T10:24:31.351Z",
+  "status": "blocked",
+  "phase": "profile",
+  "scope": [
+    "profile"
+  ],
+  "current_url": null,
+  "error": "Instagram did not show the profile header."
+}

@@ -1,0 +1,98 @@
+{
+  "username": "ubncu",
+  "url": "https://www.instagram.com/ubncu/",
+  "fetched_at": "2026-10-23T10:32:12.744Z",
+  "display_name": "rusty",
+  "bio": "TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌&メインPVも公開！\nt.me/coolmocoupdates",
+  "posts_count": {
+    "value": 77,
+    "raw": "77",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 8138,
+    "raw": "8,138",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 8138,
+        "raw": "8,138",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 8138,
+        "raw": "8,138",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4173,
+        "raw": "4,173",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 77,
+        "raw": "77",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 77,
+        "raw": "77",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/854734260_17902214748396331_6207249937604734071_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=YTgS749fb-gQ7kNvwGFl3xj&_nc_oc=Adr9rdj8t_gr600WlNJT2Dmj2UmUoj2Kd7BBRFTDBi1rS-uIG5j2mUkS3vKl7Eho9z-cmTCsCAYnry7QftCd234b&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=Yc_zVK7_UNMN59sG1CsDIw&_nc_ss=7f6a8&oh=00_AQPlmb_vT5UcVFmjTU0ill4eoxKxeP2AWG_p_-i8o0_ycA&oe=6AE0F599",
+  "date_joined": "October 2026",
+  "account_based_in": "Not shared",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "ubncu\nrusty\n77 posts\n8,138 followers\n1 following\nAI-generated profile\nTVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌&メインPVも公開！\nt.me/coolmocoupdates\nFollow\nMessage",
+    "about_text": "About this account\nubncu\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nNot shared\nFormer usernames\n1\nVerified\nOctober 2026\nThe verified badge means an account has been verified based on their activity across our products and information or documents they provide. Some verified accounts are owned by a notable person, brand or entity, while others subscribe to Meta Verified.\n \nWith a Meta Verified subscription, you get a verified badge, proactive account protection, access to direct account support and more. Learn more\nGet a verified badge\nClose",
+    "description": "4,173 Followers, 1 Following, 77 Posts - rusty (@ubncu) on Instagram: \"TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌&メインPVも公開！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "8,138 followers",
+        "exact_title": "8,138"
+      },
+      "following": {
+        "label": "1 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

@@ -1,0 +1,96 @@
+{
+  "username": "thragg_grand_regentnumber1",
+  "url": "https://www.instagram.com/thragg_grand_regentnumber1/",
+  "fetched_at": "2026-10-23T10:21:54.963Z",
+  "display_name": "THRAGG",
+  "bio": "TV アニメ\n『紫禁城・御猫房」最新PV公開！ 紫禁城で猫\nたちが巻き起こす新たな物語。宮廷に隠された秘密とはーー？10月10日放送開始TVアニメ『紫禁・御猫房』最新PV公開！紫禁城で猫たちが巻き起こす新たな物語。...\nmore",
+  "posts_count": {
+    "value": 297,
+    "raw": "297",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 21888,
+    "raw": "21,888",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 50,
+    "raw": "50",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 21800,
+        "raw": "21.8K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 21888,
+        "raw": "21,888",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 22000,
+        "raw": "22K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 50,
+        "raw": "50",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 52,
+        "raw": "52",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 297,
+        "raw": "297",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 297,
+        "raw": "297",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-7.fna.fbcdn.net/v/t51.82787-19/825276697_18134566342572417_2736838731273773283_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=_PWg8HNujUkQ7kNvwE7KcLJ&_nc_oc=AdqS4tdRqI7oI-BzYcRRJOuFwtwH2KsTKs_dtMLe8REuXVCMV7sRagAWzZLjdIXZUf3wRkaSZGNop8yvlkkLoXPQ&_nc_zt=24&_nc_ht=instagram.fblr1-7.fna&_nc_gid=4Twkff3y5poFnthHzMJXMA&_nc_ss=7f6a8&oh=00_AQMbzqhYsE6FreulFCY7hfuKdDZCQwlUtnHgWfYL4wPK4w&oe=6AE12192",
+  "date_joined": "September 2026",
+  "account_based_in": "Egypt",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "thragg_grand_regentnumber1\nTHRAGG\n297 posts\n21.8K followers\n50 following\nTV アニメ\n『紫禁城・御猫房」最新PV公開！ 紫禁城で猫\nたちが巻き起こす新たな物語。宮廷に隠された秘密とはーー？10月10日放送開始TVアニメ『紫禁・御猫房』最新PV公開！紫禁城で猫たちが巻き起こす新たな物語。... \nmore\nFollow\ntiktok\njoin my channel",
+    "about_text": "About this account\nthragg_grand_regentnumber1\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nEgypt\nClose",
+    "description": "22K Followers, 52 Following, 297 Posts - THRAGG (@thragg_grand_regentnumber1) on Instagram: \"TV アニメ\n『紫禁城・御猫房」最新PV公開！ 紫禁城で猫\nたちが巻き起こす新たな物語。宮廷に隠された秘密とはーー？10月10日放送開始TVアニメ『紫禁・御猫房』最新PV公開！紫禁城で猫たちが巻き起こす新たな物語。\n宮廷に隠された秘密とはーー？10月10日放送開始！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "21.8K followers",
+        "exact_title": "21,888"
+      },
+      "following": {
+        "label": "50 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 52 following; current profile header says 50, which is used for the count."
+  ]
+}

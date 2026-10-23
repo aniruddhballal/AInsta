@@ -1,0 +1,98 @@
+{
+  "username": "777.psps",
+  "url": "https://www.instagram.com/777.psps/",
+  "fetched_at": "2026-10-23T10:23:56.461Z",
+  "display_name": "꧁༒𝕭༒꧂",
+  "bio": "‏ 公式Instagram！\n‏あらゆるワクワクする追いかけっこをお届けします！\n‏『トムとジェリー』＆『オギー＆コックローチ』は、Cartoon Networkで毎日放送中！...\nmore",
+  "posts_count": {
+    "value": 156,
+    "raw": "156",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 97362,
+    "raw": "97,362",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 97300,
+        "raw": "97.3K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 97362,
+        "raw": "97,362",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 97000,
+        "raw": "97K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 156,
+        "raw": "156",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 156,
+        "raw": "156",
+        "approximate": false
+      }
+    }
+  },
+  "category": "Blogger",
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/825320803_18090391094440765_1370678135608956320_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=--XCgUQguLUQ7kNvwH2THsB&_nc_oc=Adoprm9Q-Osu2u9db1w89PAm8qwnqOSWOK4WOZthurfy2zyi-1l_csYSqvCDTFVHnqvXaEbgLqXv_pkd4XzpVcic&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=rG9lkHNHmyQ-Byw6Cs8dZg&_nc_ss=7f6a8&oh=00_AQO03j9dETer1aVTRWVXnzBDpRUSA_PWhPs5DTIDPwhuKw&oe=6AE11329",
+  "date_joined": "July 2026",
+  "account_based_in": "Tajikistan",
+  "former_usernames_count": {
+    "value": 2,
+    "raw": "2",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "777.psps\n꧁༒𝕭༒꧂\n156 posts\n97.3K followers\n0 following\nBlogger • \nAI-generated profile\n‏ 公式Instagram！\n‏あらゆるワクワクする追いかけっこをお届けします！\n‏『トムとジェリー』＆『オギー＆コックローチ』は、Cartoon Networkで毎日放送中！... \nmore\nFollow\nMessage\n90k 😻\n80k 😻\n70k 😻\n60k 😻\n50k 😻\n40k 😻\n30k 😻\n20k. 😻\n10k 😻",
+    "about_text": "About this account\n777.psps\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJuly 2026\nAccount based in\nTajikistan\nFormer usernames\n2\nClose",
+    "description": "97K Followers, 0 Following, 156 Posts - ꧁༒𝕭༒꧂ (@777.psps) on Instagram: \"‎‏ 公式Instagram！\n‏あらゆるワクワクする追いかけっこをお届けします！\n‏『トムとジェリー』＆『オギー＆コックローチ』は、Cartoon Networkで毎日放送中！\n‏『トムとジェリー』＆『オギー＆コックローチ』はデジタル配信でもお楽しみいただけます‎\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "97.3K followers",
+        "exact_title": "97,362"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

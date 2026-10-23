@@ -1,0 +1,96 @@
+{
+  "username": "futureshock3272",
+  "url": "https://www.instagram.com/futureshock3272/",
+  "fetched_at": "2026-10-23T10:24:45.387Z",
+  "display_name": "future shock",
+  "bio": "『METAL GEAR SOLID Δ: SNAKE EATER』発売記念！ ありがとうございました！♡初のフルリメイクでのジャングルサバイバル！ 初めての方とも出会えてとっても嬉しかったよ〜！！🎃♡全国のみんなに会えますように！...\nmore",
+  "posts_count": {
+    "value": 1457,
+    "raw": "1,457",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 5032,
+    "raw": "5,032",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 406,
+    "raw": "406",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 5032,
+        "raw": "5,032",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 5032,
+        "raw": "5,032",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 4802,
+        "raw": "4,802",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 406,
+        "raw": "406",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 420,
+        "raw": "420",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 1457,
+        "raw": "1,457",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1457,
+        "raw": "1,457",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/863421831_18112378397576691_6188020103687640291_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=M1OpVI2G5E8Q7kNvwGAoIa1&_nc_oc=AdpZ1BlzeV6R1D0dVWGg3ZI0xKbZywxVFm22UFhsD6M3QRBba4dr2PaSvuSq2xsPtIz7Kmq9Q5qABBb6G6_M3jDY&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=Q47jZeMBUbvM-Ym3DMEK2w&_nc_ss=7f6a8&oh=00_AQM5dCaKOJer1kdtHDpZZWCIae6iagbE3sR40hKO1kPwBw&oe=6AE10661",
+  "date_joined": "April 2021",
+  "account_based_in": "Not shared",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "futureshock3272\nfuture shock\n1,457 posts\n5,032 followers\n406 following\n『METAL GEAR SOLID Δ: SNAKE EATER』発売記念！ ありがとうございました！♡初のフルリメイクでのジャングルサバイバル！ 初めての方とも出会えてとっても嬉しかったよ〜！！🎃♡全国のみんなに会えますように！... \nmore\nFollow\nMessage\nsounð\nMilƏ StoneZ",
+    "about_text": "About this account\nfutureshock3272\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nApril 2021\nAccount based in\nNot shared\nClose",
+    "description": "4,802 Followers, 420 Following, 1,457 Posts - future shock (@futureshock3272) on Instagram: \"『METAL GEAR SOLID Δ: SNAKE EATER』発売記念！ ありがとうございました！♡初のフルリメイクでのジャングルサバイバル！ 初めての方とも出会えてとっても嬉しかったよ〜！！🎃♡全国のみんなに会えますように！ お待ちしてます 💣\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "5,032 followers",
+        "exact_title": "5,032"
+      },
+      "following": {
+        "label": "406 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 420 following; current profile header says 406, which is used for the count."
+  ]
+}

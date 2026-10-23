@@ -1,0 +1,98 @@
+{
+  "username": "oggy675908",
+  "url": "https://www.instagram.com/oggy675908/",
+  "fetched_at": "2026-10-23T10:31:02.976Z",
+  "display_name": "oggy bhai",
+  "bio": "1998年から2018年まで放送された、テレビシリーズ 『オギー&コックローチ』の公式チャンネルです!...\nmore",
+  "posts_count": {
+    "value": 57,
+    "raw": "57",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 22089,
+    "raw": "22,089",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 10,
+    "raw": "10",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 22000,
+        "raw": "22K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 22089,
+        "raw": "22,089",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 20000,
+        "raw": "20K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 10,
+        "raw": "10",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 10,
+        "raw": "10",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 57,
+        "raw": "57",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 57,
+        "raw": "57",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr24-1.fna.fbcdn.net/v/t51.82787-19/848751996_17995474413013733_5218259336715755039_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=r-Fb3J0B11sQ7kNvwH1lycz&_nc_oc=Adr2YwZ6sD4fEx_-nKFjrs45dc8DrmRa_2y7QfvefmNqaNnGB4jYvooYUGr9bXnFPr2Tgar91oQcTQahHzBYW0NH&_nc_zt=24&_nc_ht=instagram.fblr24-1.fna&_nc_gid=FU7yP2mGrZ4Eo4GWlFQa4g&_nc_ss=7f6a8&oh=00_AQPAPBVdhUJzm_GT1ifs3cSX4cHw8ZX1esFMHEnL_Yy-hw&oe=6AE116B5",
+  "date_joined": "June 2023",
+  "account_based_in": "India",
+  "former_usernames_count": {
+    "value": 4,
+    "raw": "4",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "oggy675908\noggy bhai\n57 posts\n22K followers\n10 following\n1998年から2018年まで放送された、テレビシリーズ 『オギー&コックローチ』の公式チャンネルです!... \nmore\nFollow\nMessage",
+    "about_text": "About this account\noggy675908\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJune 2023\nAccount based in\nIndia\nFormer usernames\n4\nClose",
+    "description": "20K Followers, 10 Following, 57 Posts - oggy bhai (@oggy675908) on Instagram: \"1998年から2018年まで放送された、テレビシリーズ 『オギー&コックローチ』の公式チャンネルです! 終わりのないドタバタの追いかけっこを、ぜひご覧ください!現在、『オギー&コックローチ』はカートゥーンネットワークのほか、デジタル配信やブルーレイ・DVDでもお楽しみいただけます。\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "22K followers",
+        "exact_title": "22,089"
+      },
+      "following": {
+        "label": "10 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

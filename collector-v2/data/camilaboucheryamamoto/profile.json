@@ -1,0 +1,94 @@
+{
+  "username": "camilaboucheryamamoto",
+  "url": "https://www.instagram.com/camilaboucheryamamoto/",
+  "fetched_at": "2026-10-23T10:23:24.706Z",
+  "display_name": "Camila Boucher Yamamoto",
+  "bio": "さまざまな冒険と友情を描く！ 「星空アドベンチャー」公式Instagramです！ 人気アニメシリーズ配信中！ 新たなエピソードや個性豊かなキャラクターたちの活躍にも注目！ 最新映像や関連グッズ情報も随時公開中✨",
+  "posts_count": {
+    "value": 127,
+    "raw": "127",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 9968,
+    "raw": "9,968",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 2,
+    "raw": "2",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 9968,
+        "raw": "9,968",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 9968,
+        "raw": "9,968",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 9962,
+        "raw": "9,962",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 2,
+        "raw": "2",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 2,
+        "raw": "2",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 127,
+        "raw": "127",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 127,
+        "raw": "127",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-7.fna.fbcdn.net/v/t51.82787-19/841753951_18138799756564848_5750342422992229810_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=106&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=cQLpvkVYOcwQ7kNvwE-xm7g&_nc_oc=AdrchL_KqcFrMw1M27NOmYsFP1_Y4gKWit4KrNP-jL_w2IVzDeDhQR4GyiK76cAXvrQLGurGrD68tAIk-3eWXar7&_nc_zt=24&_nc_ht=instagram.fblr1-7.fna&_nc_gid=mvsEYTqnweymulBM9JITNg&_nc_ss=7f6a8&oh=00_AQPLp8-1nTXPRauINSKTRk8MGa-efInPlKuG2Yg13LzF6w&oe=6AE0F7FA",
+  "date_joined": "October 2026",
+  "account_based_in": "Brazil",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "camilaboucheryamamoto\nCamila Boucher Yamamoto\n127 posts\n9,968 followers\n2 following\nさまざまな冒険と友情を描く！ 「星空アドベンチャー」公式Instagramです！ 人気アニメシリーズ配信中！ 新たなエピソードや個性豊かなキャラクターたちの活躍にも注目！ 最新映像や関連グッズ情報も随時公開中✨\nFollow\n🌍\nSECRET🔥🍑",
+    "about_text": "About this account\ncamilaboucheryamamoto\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nBrazil\nClose",
+    "description": "9,962 Followers, 2 Following, 127 Posts - Camila Boucher Yamamoto (@camilaboucheryamamoto) on Instagram: \"さまざまな冒険と友情を描く！ 「星空アドベンチャー」公式Instagramです！ 人気アニメシリーズ配信中！ 新たなエピソードや個性豊かなキャラクターたちの活躍にも注目！ 最新映像や関連グッズ情報も随時公開中✨\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "9,968 followers",
+        "exact_title": "9,968"
+      },
+      "following": {
+        "label": "2 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

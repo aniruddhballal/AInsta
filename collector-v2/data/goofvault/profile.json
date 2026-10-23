@@ -1,0 +1,96 @@
+{
+  "username": "goofvault",
+  "url": "https://www.instagram.com/goofvault/",
+  "fetched_at": "2026-10-23T10:20:11.937Z",
+  "display_name": null,
+  "bio": "TV アニメ『佐々木とピーちゃん Season2』第１話は１時間スペシャル！新キャラクターのキャストが解禁！さらに OP 主題歌＆メイン PV も公開！\nFollowed by 7m0d1.13",
+  "posts_count": {
+    "value": 2150,
+    "raw": "2,150",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 157769,
+    "raw": "157,769",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 13,
+    "raw": "13",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 157000,
+        "raw": "157K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 157769,
+        "raw": "157,769",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 157000,
+        "raw": "157K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 13,
+        "raw": "13",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 14,
+        "raw": "14",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 2150,
+        "raw": "2,150",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 2150,
+        "raw": "2,150",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/849146692_18098507525386151_3133772773298755411_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDYzLkMzIn0%3D&_nc_ohc=uxLLZfu-JpkQ7kNvwHX-DZb&_nc_oc=AdpvtjeeWPd9kkoDIJ6ojJ_T6R-08OS_799PRqJR-UZwmRl-zOdg9bJ5WkSe7sHb-sUlVX-6IH38qfr6j4Tk75Ho&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=l39pPuJfMl19PswzA3Rg_Q&_nc_ss=7f6a8&oh=00_AQNo--7_cKh48idCEMfv-_kiwrCEhNt4PJpVWTJ3q7S-Kg&oe=6AE0F97B",
+  "date_joined": "March 2026",
+  "account_based_in": "United States",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "goofvault\n2,150 posts\n157K followers\n13 following\nTV アニメ『佐々木とピーちゃん Season2』第１話は１時間スペシャル！新キャラクターのキャストが解禁！さらに OP 主題歌＆メイン PV も公開！\nFollowed by 7m0d1.13\nFollow\nMessage\ngrowth🔝\nyoutube",
+    "about_text": "About this account\ngoofvault\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMarch 2026\nAccount based in\nUnited States\nClose",
+    "description": "157K Followers, 14 Following, 2,150 Posts - @goofvault on Instagram: \"TV アニメ『佐々木とピーちゃん Season2』第１話は１時間スペシャル！新キャラクターのキャストが解禁！さらに OP 主題歌＆メイン PV も公開！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "157K followers",
+        "exact_title": "157,769"
+      },
+      "following": {
+        "label": "13 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 14 following; current profile header says 13, which is used for the count."
+  ]
+}

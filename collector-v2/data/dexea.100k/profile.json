@@ -1,0 +1,94 @@
+{
+  "username": "dexea.100k",
+  "url": "https://www.instagram.com/dexea.100k/",
+  "fetched_at": "2026-10-23T10:29:31.427Z",
+  "display_name": null,
+  "bio": "TVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！",
+  "posts_count": {
+    "value": 26,
+    "raw": "26",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 1643,
+    "raw": "1,643",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 1643,
+        "raw": "1,643",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 1643,
+        "raw": "1,643",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1614,
+        "raw": "1,614",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 26,
+        "raw": "26",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 26,
+        "raw": "26",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-6.fna.fbcdn.net/v/t51.82787-19/854735087_17909759196331570_7809376733411895709_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=103&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MzYuQzMifQ%3D%3D&_nc_ohc=U9W3Gy03mT4Q7kNvwGIGv16&_nc_oc=Adq-m9YEYqc5yw34-Q_wBon0uV5O13nc9LJWY7jOKLuGJ-eQQhFO7FnzKS7e6mWFmYBHO73Hr-qCWA4pyNT_ktF9&_nc_zt=24&_nc_ht=instagram.fblr1-6.fna&_nc_gid=y1SmPubWovf-atKesoBfJg&_nc_ss=7f6a8&oh=00_AQODC7E0NT9EZxNanXE7RVnegsLj9NHrdqqErys2pM2y1A&oe=6AE11212",
+  "date_joined": "October 2026",
+  "account_based_in": "Uzbekistan",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "dexea.100k\n26 posts\n1,643 followers\n1 following\nTVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！\nFollow",
+    "about_text": "About this account\ndexea.100k\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nUzbekistan\nClose",
+    "description": "1,614 Followers, 1 Following, 26 Posts - @dexea.100k on Instagram: \"TVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "1,643 followers",
+        "exact_title": "1,643"
+      },
+      "following": {
+        "label": "1 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

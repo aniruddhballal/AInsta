@@ -1,0 +1,100 @@
+{
+  "username": "gzfr",
+  "url": "https://www.instagram.com/gzfr/",
+  "fetched_at": "2026-10-23T10:19:46.317Z",
+  "display_name": null,
+  "bio": "holly",
+  "posts_count": {
+    "value": 1536,
+    "raw": "1,536",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 578067,
+    "raw": "578,067",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 578000,
+        "raw": "578K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 578067,
+        "raw": "578,067",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 579000,
+        "raw": "579K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 1,
+        "raw": "1",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 29,
+        "raw": "29",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 1536,
+        "raw": "1,536",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 1536,
+        "raw": "1,536",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=hlgdxoADaGUQ7kNvwET6kB_&_nc_oc=AdobMqomQ2N2d91gV_yKUOLv71iy4owjtY3p1iDNWNMfEFqPh8O4B2nD3_sam1w_oK7awWQQhWt-hQcU2nZDJVcg&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=aeO9Qj1scKnt7sQyo-34IQ&_nc_ss=7f6a8&oh=00_AQPrZfzGVBQtoM5uh0pm2xEQa9eIoRFdJQashKXMegWp0A&oe=6AE11D30",
+  "date_joined": "June 2022",
+  "account_based_in": "Not shared",
+  "former_usernames_count": {
+    "value": 3,
+    "raw": "3",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "gzfr\n1,536 posts\n578K followers\n1 following\nholly\nFollow\nMessage",
+    "about_text": "About this account\ngzfr\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJune 2022\nAccount based in\nNot shared\nFormer usernames\n3\nClose",
+    "description": "579K Followers, 29 Following, 1,536 Posts - @gzfr on Instagram: \"holly\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "578K followers",
+        "exact_title": "578,067"
+      },
+      "following": {
+        "label": "1 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 29 following; current profile header says 1, which is used for the count."
+  ]
+}

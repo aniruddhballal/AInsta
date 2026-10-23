@@ -1,0 +1,94 @@
+{
+  "username": "circflix",
+  "url": "https://www.instagram.com/circflix/",
+  "fetched_at": "2026-10-23T10:32:18.956Z",
+  "display_name": "circflix",
+  "bio": "TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌＆メインPVも公開！",
+  "posts_count": {
+    "value": 46,
+    "raw": "46",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 9375,
+    "raw": "9,375",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 3,
+    "raw": "3",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 9375,
+        "raw": "9,375",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 9375,
+        "raw": "9,375",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6009,
+        "raw": "6,009",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 3,
+        "raw": "3",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 3,
+        "raw": "3",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 46,
+        "raw": "46",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 46,
+        "raw": "46",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/858293642_17876622795593626_7124238586074620614_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=_goUH1ZflAwQ7kNvwGntAud&_nc_oc=AdpHKDVKCqQXuKvWFuKC0CClxGiLQxG6Tz358G0b0JDEdIDQAvdFVaEq7Z3yM5GRiJ4aO-NZbuH1j8PCk-PBx7vK&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=UObjA0SApAPTGMklqErKYw&_nc_ss=7f6a8&oh=00_AQNcjwCYZOxNZ8Jdw2inS4aYSM29sPAzcrrWgq01p6mx_w&oe=6AE0F5B7",
+  "date_joined": "October 2026",
+  "account_based_in": "Philippines",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "circflix\ncircflix\n46 posts\n9,375 followers\n3 following\nAI-generated profile\nTVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌＆メインPVも公開！\nFollow\nMessage\nProgress",
+    "about_text": "About this account\ncircflix\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nPhilippines\nClose",
+    "description": "6,009 Followers, 3 Following, 46 Posts - @circflix on Instagram: \"TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌＆メインPVも公開！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "9,375 followers",
+        "exact_title": "9,375"
+      },
+      "following": {
+        "label": "3 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

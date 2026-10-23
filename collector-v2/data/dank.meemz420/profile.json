@@ -1,0 +1,94 @@
+{
+  "username": "dank.meemz420",
+  "url": "https://www.instagram.com/dank.meemz420/",
+  "fetched_at": "2026-10-23T10:31:27.715Z",
+  "display_name": "dank",
+  "bio": "TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらに OP主題歌&メインPVも公開！",
+  "posts_count": {
+    "value": 13,
+    "raw": "13",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 291,
+    "raw": "291",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 3,
+    "raw": "3",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 291,
+        "raw": "291",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 291,
+        "raw": "291",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 292,
+        "raw": "292",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 3,
+        "raw": "3",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 3,
+        "raw": "3",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 13,
+        "raw": "13",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 13,
+        "raw": "13",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-3.fna.fbcdn.net/v/t51.82787-19/857011411_18128386912753140_3882479712132804839_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=101&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy40ODAuQzMifQ%3D%3D&_nc_ohc=dS_efUm1wVoQ7kNvwHd_I20&_nc_oc=AdpprwYb40iFLRgCdiy-ccwqNAI70TtSS7u8pZXU-Txp34DA_3qcNFy0iAc9xN-kSvCHRA1HQo2yM7F3bOrgCRj7&_nc_zt=24&_nc_ht=instagram.fblr1-3.fna&_nc_gid=zwOHK7wFfcOyl-Iv0AQ0VA&_nc_ss=7f6a8&oh=00_AQPKJW7pSSNcnZbm3jrPULWoVsrTaiXwiSbocWiS_G2lmA&oe=6AE124B9",
+  "date_joined": "October 2026",
+  "account_based_in": "United Kingdom",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "dank.meemz420\ndank\n13 posts\n291 followers\n3 following\nTVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらに OP主題歌&メインPVも公開！\nFollow",
+    "about_text": "About this account\ndank.meemz420\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nUnited Kingdom\nClose",
+    "description": "292 Followers, 3 Following, 13 Posts - dank (@dank.meemz420) on Instagram: \"TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらに OP主題歌&メインPVも公開！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "291 followers",
+        "exact_title": "291"
+      },
+      "following": {
+        "label": "3 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

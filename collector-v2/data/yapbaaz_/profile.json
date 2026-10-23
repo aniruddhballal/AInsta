@@ -1,0 +1,98 @@
+{
+  "username": "yapbaaz_",
+  "url": "https://www.instagram.com/yapbaaz_/",
+  "fetched_at": "2026-10-23T10:26:29.840Z",
+  "display_name": "yapbaaz",
+  "bio": "#TVアニメ『夜明けの物語』最新情報\n待望の新情報がついに解禁!!\n最新ビジュアルを公開!\nさらに、物語を彩る新キャラクターや今後の展開に関する情報も続々解禁します!!...\nmore",
+  "posts_count": {
+    "value": 385,
+    "raw": "385",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 15145,
+    "raw": "15,145",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 15100,
+        "raw": "15.1K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 15145,
+        "raw": "15,145",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 12000,
+        "raw": "12K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 385,
+        "raw": "385",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 385,
+        "raw": "385",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/840034314_18124547785761826_4030955685914136900_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=G37xy9g0VyoQ7kNvwFY_w5l&_nc_oc=AdpPhMWKPHewkf2gP7NDA1GBxBsaA4wJDnL5d4zL5QUyVu9_j2gw5TrbG4ilTgIrY2VDy4LyT0M1dcKQu96S6juB&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=l5GK7IeIo5Fw-HQDtAdqqg&_nc_ss=7f6a8&oh=00_AQMbvdFFCTxFwbMlr0sZ0fhs4bQrMN2c_p_nwqag5N01MA&oe=6AE0FD65",
+  "date_joined": "October 2026",
+  "account_based_in": "India",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "yapbaaz_\nyapbaaz\n385 posts\n15.1K followers\n0 following\nAI-generated profile\n#TVアニメ『夜明けの物語』最新情報\n待望の新情報がついに解禁!!\n最新ビジュアルを公開!\nさらに、物語を彩る新キャラクターや今後の展開に関する情報も続々解禁します!!... \nmore\nFollow",
+    "about_text": "About this account\nyapbaaz_\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nIndia\nFormer usernames\n1\nClose",
+    "description": "12K Followers, 0 Following, 385 Posts - yapbaaz (@yapbaaz_) on Instagram: \"#TVアニメ『夜明けの物語』最新情報\n待望の新情報がついに解禁!!\n最新ビジュアルを公開!\nさらに、物語を彩る新キャラクターや今後の展開に関する情報も続々解禁します!!\n◆最新情報\n▶新キャラクター紹介\n◆スペシャル映像公開\n◆今後の展開に注目!\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "15.1K followers",
+        "exact_title": "15,145"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

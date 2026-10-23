@@ -1,0 +1,94 @@
+{
+  "username": "bingomovie_",
+  "url": "https://www.instagram.com/bingomovie_/",
+  "fetched_at": "2026-10-23T10:32:25.317Z",
+  "display_name": "bingomovie",
+  "bio": "TVアニメ『佐々木とピーちゃん Season2』第1話は 1時間スペシャル! 新キャラクターのキャストが解 禁! さらにOP主題歌&メインPVも公開!",
+  "posts_count": {
+    "value": 81,
+    "raw": "81",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 4376,
+    "raw": "4,376",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 4376,
+        "raw": "4,376",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 4376,
+        "raw": "4,376",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 952,
+        "raw": "952",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 81,
+        "raw": "81",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 81,
+        "raw": "81",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/848751506_17869379145661775_4919751564330885750_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=AWFRqRn-k2cQ7kNvwGX36fj&_nc_oc=AdrltddSgo9K96OrzKdwCUoHLkrp2vEAq3nLMF9rmRlCHGR_JOTBHhJ6AHnFH2Z6Fi_XTG67oB5V5HVSy_I-71sh&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=rlowElUrZUULznQ3sILUKg&_nc_ss=7f2a8&oh=00_AQMX5QxI8yo4rv8JO-nuVroxURiOCjIh8-PSHC4mc0EMqw&oe=6AE10545",
+  "date_joined": "October 2026",
+  "account_based_in": "Not shared",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "bingomovie_\nbingomovie\n81 posts\n4,376 followers\n0 following\nTVアニメ『佐々木とピーちゃん Season2』第1話は 1時間スペシャル! 新キャラクターのキャストが解 禁! さらにOP主題歌&メインPVも公開!\nFollow",
+    "about_text": "About this account\nbingomovie_\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nNot shared\nClose",
+    "description": "952 Followers, 0 Following, 81 Posts - bingomovie (@bingomovie_) on Instagram: \"TVアニメ『佐々木とピーちゃん Season2』第1話は 1時間スペシャル! 新キャラクターのキャストが解 禁! さらにOP主題歌&メインPVも公開!\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "4,376 followers",
+        "exact_title": "4,376"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

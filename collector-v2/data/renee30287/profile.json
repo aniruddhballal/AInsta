@@ -1,0 +1,94 @@
+{
+  "username": "renee30287",
+  "url": "https://www.instagram.com/renee30287/",
+  "fetched_at": "2026-10-23T10:25:51.407Z",
+  "display_name": "Renee Moore",
+  "bio": "異ひしめく帝都で死闘を繰り広げる! 「和風怪奇アニメ公式Instagramです! AnimeHubにて『物の怪奇譚」放送中!『劇場総集編」 デジタル配信中/ブルーレイ&DVD発売中",
+  "posts_count": {
+    "value": 5,
+    "raw": "5",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 80,
+    "raw": "80",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 80,
+        "raw": "80",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 80,
+        "raw": "80",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 81,
+        "raw": "81",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 5,
+        "raw": "5",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 5,
+        "raw": "5",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-5.fna.fbcdn.net/v/t51.82787-19/852111647_18126561379787503_1411214787455097964_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=108&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=AIbGyX0H80oQ7kNvwGMJhRS&_nc_oc=Adp2mCZm5xo2hoqtlpsfJTR7YPXkJUn6qp67iMcZ9whqkTQqyl21wcISE1csY9I2E70PEmtKQzhJ46aKRE_fvF9a&_nc_zt=24&_nc_ht=instagram.fblr1-5.fna&_nc_gid=3oq_5e8kD8xYx7RO_LLhCw&_nc_ss=7f6a8&oh=00_AQNT6rR5E721Vv_DjQVZay3NoSQPjsUHWLbzL8CuSOsatQ&oe=6AE122EC",
+  "date_joined": "October 2026",
+  "account_based_in": "Iran",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "renee30287\nRenee Moore\n5 posts\n80 followers\n0 following\n異ひしめく帝都で死闘を繰り広げる! 「和風怪奇アニメ公式Instagramです! AnimeHubにて『物の怪奇譚」放送中!『劇場総集編」 デジタル配信中/ブルーレイ&DVD発売中\nFollow\nFor You✔️",
+    "about_text": "About this account\nrenee30287\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nIran\nClose",
+    "description": "81 Followers, 0 Following, 5 Posts - Renee Moore (@renee30287) on Instagram: \"異ひしめく帝都で死闘を繰り広げる! 「和風怪奇アニメ公式Instagramです! AnimeHubにて『物の怪奇譚」放送中!『劇場総集編」 デジタル配信中/ブルーレイ&DVD発売中\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "80 followers",
+        "exact_title": "80"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

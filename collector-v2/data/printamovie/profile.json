@@ -1,0 +1,94 @@
+{
+  "username": "printamovie",
+  "url": "https://www.instagram.com/printamovie/",
+  "fetched_at": "2026-10-23T10:20:51.105Z",
+  "display_name": "printamovie",
+  "bio": "TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌＆メインPVも公開！\nwww.wrizz.app",
+  "posts_count": {
+    "value": 79,
+    "raw": "79",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 6828,
+    "raw": "6,828",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 11,
+    "raw": "11",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 6828,
+        "raw": "6,828",
+        "approximate": false
+      },
+      "exact_title": {
+        "value": 6828,
+        "raw": "6,828",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 5624,
+        "raw": "5,624",
+        "approximate": false
+      }
+    },
+    "following": {
+      "header": {
+        "value": 11,
+        "raw": "11",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 11,
+        "raw": "11",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 79,
+        "raw": "79",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 79,
+        "raw": "79",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/849588809_17925725109203735_3904882356044318760_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=5ZpT4DQup9cQ7kNvwER0Ehm&_nc_oc=Adqk8pD-UoeEKB2lLuxrjwH8ptro3YojEF43Px84LMc2n7b-rqpzz5vQDL-WJJ1Kn-cuvuqkvLbN0Ib9wN-XdVzQ&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=XXAYcNcuAla6bry6B47FPg&_nc_ss=7f6a8&oh=00_AQMxYV33oZ3Jn_9s1ZkOH12dwVMJmN0F3B7g5ygs0agXuA&oe=6AE12135",
+  "date_joined": "October 2026",
+  "account_based_in": "Not shared",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "printamovie\nprintamovie\n79 posts\n6,828 followers\n11 following\nAI-generated profile\nTVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌＆メインPVも公開！\nwww.wrizz.app\nFollow\nGrowthh",
+    "about_text": "About this account\nprintamovie\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nOctober 2026\nAccount based in\nNot shared\nClose",
+    "description": "5,624 Followers, 11 Following, 79 Posts - @printamovie on Instagram: \"TVアニメ『佐々木とピーちゃん Season2』第1話は1時間スペシャル！新キャラクターのキャストが解禁！さらにOP主題歌＆メインPVも公開！\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "6,828 followers",
+        "exact_title": "6,828"
+      },
+      "following": {
+        "label": "11 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

@@ -1,0 +1,94 @@
+{
+  "username": "onlyhi_story_",
+  "url": "https://www.instagram.com/onlyhi_story_/",
+  "fetched_at": "2026-10-23T10:26:47.845Z",
+  "display_name": "Only History",
+  "bio": "Education •\n📚 History • Geopolitics • Memes • News\n📈 13.9M+ Views in the Last 15 Days\n🧠 Research-Driven Content\n🤝 Open for...\nmore\nyoutube.com/@onlyhi_story1?si=a9m3C2abKKF6Qre9",
+  "posts_count": {
+    "value": 64,
+    "raw": "64",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 12396,
+    "raw": "12,396",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 12300,
+        "raw": "12.3K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 12396,
+        "raw": "12,396",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 12000,
+        "raw": "12K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 64,
+        "raw": "64",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 64,
+        "raw": "64",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": true,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/689538531_18060280340517809_5723144589253175189_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=7ZuOQ_tPQyoQ7kNvwGM9HF4&_nc_oc=Adrul0OOnUV_jjKS7UvW3PTlQfoOratNmuPDXU4NIjG4k7OF6ZTwwVVgWaEwSLXNmMvItl1vhDuVSurSQhpinfNT&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=9wCYEqENa0zLGv9IXU9qVw&_nc_ss=7f6a8&oh=00_AQON07Gn4z1eh3Ghz2hkLOTmDDZ7njkULL84k2ZVeQlgqg&oe=6AE1217C",
+  "date_joined": "March 2026",
+  "account_based_in": "Not shared",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "onlyhi_story_\nOnly History\n64 posts\n12.3K followers\n0 following\nEducation • \nAI-generated profile\n📚 History • Geopolitics • Memes • News\n📈 13.9M+ Views in the Last 15 Days\n🧠 Research-Driven Content\n🤝 Open for... \nmore\nyoutube.com/@onlyhi_story1?si=a9m3C2abKKF6Qre9\nFollow\nMessage\n10k\n5K Completed 🎉\n1st giveaway 😉\n1k Completed 🫡",
+    "about_text": "About this account\nonlyhi_story_\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMarch 2026\nAccount based in\nNot shared\nClose",
+    "description": "12K Followers, 0 Following, 64 Posts - Only History (@onlyhi_story_) on Instagram: \"📚 History • Geopolitics • Memes • News\n📈 13.9M+ Views in the Last 15 Days\n🧠 Research-Driven Content\n🤝 Open for Collaborations\n🗣️ Paid promotion\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "12.3K followers",
+        "exact_title": "12,396"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

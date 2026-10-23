@@ -1,0 +1,96 @@
+{
+  "username": "woe_almighty",
+  "url": "https://www.instagram.com/woe_almighty/",
+  "fetched_at": "2026-10-23T10:31:46.900Z",
+  "display_name": "Woe Almighty",
+  "bio": "あらゆる追いかけっこを繰り広げる！「トムとジェリー公式\nInstagramです！ Cartoon Network にて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配中/ブルーレイ&DVD発売中TEC （S23）",
+  "posts_count": {
+    "value": 979,
+    "raw": "979",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 45387,
+    "raw": "45,387",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 63,
+    "raw": "63",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 45300,
+        "raw": "45.3K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 45387,
+        "raw": "45,387",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 45000,
+        "raw": "45K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 63,
+        "raw": "63",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 67,
+        "raw": "67",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 979,
+        "raw": "979",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 979,
+        "raw": "979",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.2885-19/271413129_1058539284990960_6263548322741623520_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MTQuQzMifQ%3D%3D&_nc_ohc=fNrNqBq9aUIQ7kNvwH_Yp4l&_nc_oc=AdrWTOVkxpYNFITCSerjndZ1BqF4nfOHa1RvhgjFyOI8sfXS4GhIscPwBHUT8eALEl6POeCyqbR33IiOc8i_PJPU&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_ss=7f6a8&oh=00_AQNz6TOSTx0RlD7CB6S44bC0yNWSnWWEHCpbP5_vveQgaw&oe=6AE0FD38",
+  "date_joined": "January 2022",
+  "account_based_in": "United States",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "woe_almighty\nWoe Almighty\n979 posts\n45.3K followers\n63 following\nあらゆる追いかけっこを繰り広げる！「トムとジェリー公式\nInstagramです！ Cartoon Network にて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配中/ブルーレイ&DVD発売中TEC （S23）\nFollow",
+    "about_text": "About this account\nwoe_almighty\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJanuary 2022\nAccount based in\nUnited States\nClose",
+    "description": "45K Followers, 67 Following, 979 Posts - Woe Almighty (@woe_almighty) on Instagram: \"あらゆる追いかけっこを繰り広げる！「トムとジェリー公式\nInstagramです！ Cartoon Network にて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配中/ブルーレイ&DVD発売中TEC （S23）\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "45.3K followers",
+        "exact_title": "45,387"
+      },
+      "following": {
+        "label": "63 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 67 following; current profile header says 63, which is used for the count."
+  ]
+}

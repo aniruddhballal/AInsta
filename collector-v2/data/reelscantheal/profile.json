@@ -1,0 +1,100 @@
+{
+  "username": "reelscantheal",
+  "url": "https://www.instagram.com/reelscantheal/",
+  "fetched_at": "2026-10-23T10:26:41.171Z",
+  "display_name": "⃟",
+  "bio": "TVアニメ『ONE PIECE』 エルバフ編 最新情報を発表\n&最新PV公開\nオープニング主題歌&エンディング主題歌、さらにエルバフ 編の重要キャラクター「ロキ」のキャストが決定しました!! ◆オープニング主題歌:...\nmore",
+  "posts_count": {
+    "value": 374,
+    "raw": "374",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 21877,
+    "raw": "21,877",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 5,
+    "raw": "5",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 21800,
+        "raw": "21.8K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 21877,
+        "raw": "21,877",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 22000,
+        "raw": "22K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 5,
+        "raw": "5",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 6,
+        "raw": "6",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 374,
+        "raw": "374",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 374,
+        "raw": "374",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/793221350_18132128590721313_4520187180397715790_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=Vwb8NFE3mFgQ7kNvwFM0eNf&_nc_oc=Adopyg6CovSksrJ7r2StlOLskqA1IStBHiUdFZo0arn-oz1swB1gYeEFlp184SkGHdHCt374gZ6uD_oDKdbt1rXx&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=jZ89RR3fW6L8mrPwTXVogQ&_nc_ss=7f6a8&oh=00_AQPyuzPqpcYKZsG1iIUdc7lQe14qi3LCF0gWKFJ7emjDOw&oe=6AE119A1",
+  "date_joined": "June 2026",
+  "account_based_in": "Not shared",
+  "former_usernames_count": {
+    "value": 1,
+    "raw": "1",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "reelscantheal\n⃟\n374 posts\n21.8K followers\n5 following\nTVアニメ『ONE PIECE』 エルバフ編 最新情報を発表\n&最新PV公開\nオープニング主題歌&エンディング主題歌、さらにエルバフ 編の重要キャラクター「ロキ」のキャストが決定しました!! ◆オープニング主題歌:... \nmore\nFollow\nMessage",
+    "about_text": "About this account\nreelscantheal\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJune 2026\nAccount based in\nNot shared\nFormer usernames\n1\nClose",
+    "description": "22K Followers, 6 Following, 374 Posts - ⃟ (@reelscantheal) on Instagram: \"TVアニメ『ONE PIECE』 エルバフ編 最新情報を発表\n&最新PV公開\nオープニング主題歌&エンディング主題歌、さらにエルバフ 編の重要キャラクター「ロキ」のキャストが決定しました!! ◆オープニング主題歌: アイナ・ジ・エンド「ルミナス\nLuminous\n◆エンディング主題歌:\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "21.8K followers",
+        "exact_title": "21,877"
+      },
+      "following": {
+        "label": "5 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 6 following; current profile header says 5, which is used for the count."
+  ]
+}

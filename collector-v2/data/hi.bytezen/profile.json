@@ -1,0 +1,94 @@
+{
+  "username": "hi.bytezen",
+  "url": "https://www.instagram.com/hi.bytezen/",
+  "fetched_at": "2026-10-23T10:29:55.788Z",
+  "display_name": "Bytezen",
+  "bio": "kya be bc 🫩",
+  "posts_count": {
+    "value": 259,
+    "raw": "259",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 42490,
+    "raw": "42,490",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 42400,
+        "raw": "42.4K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 42490,
+        "raw": "42,490",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 42000,
+        "raw": "42K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 259,
+        "raw": "259",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 259,
+        "raw": "259",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr24-1.fna.fbcdn.net/v/t51.82787-19/831340044_18103820630184922_4201656253983072298_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=hELBUr13jrIQ7kNvwFur62c&_nc_oc=AdolGXETFEuq_Sy0OWDnN3keaLtkJWJgbnbUEznzs0ArY2naUdEs4UjeIbjQ15uMkm4quK63P_xorl20_raReXaJ&_nc_zt=24&_nc_ht=instagram.fblr24-1.fna&_nc_gid=HrgSy8jtkmQ64E8PU7sBIg&_nc_ss=7f6a8&oh=00_AQOQt_ixJ06UQ64rwzyHAkl8cS9oKtsECCZXr03SAEI0XQ&oe=6AE113E6",
+  "date_joined": "August 2026",
+  "account_based_in": "India",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "hi.bytezen\nBytezen\n259 posts\n42.4K followers\n0 following\nkya be bc 🫩\nFollow\nMessage",
+    "about_text": "About this account\nhi.bytezen\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nAugust 2026\nAccount based in\nIndia\nClose",
+    "description": "42K Followers, 0 Following, 259 Posts - Bytezen (@hi.bytezen) on Instagram: \"kya be bc 🫩\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "42.4K followers",
+        "exact_title": "42,490"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}

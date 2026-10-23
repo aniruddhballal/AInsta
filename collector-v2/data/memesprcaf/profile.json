@@ -1,0 +1,94 @@
+{
+  "username": "memesprcaf",
+  "url": "https://www.instagram.com/memesprcaf/",
+  "fetched_at": "2026-10-23T10:22:13.663Z",
+  "display_name": null,
+  "bio": "Quer o segredo pra crescer no Instagram? Clica no link 👇🏻\ngo.hotmart.com/N108014452C",
+  "posts_count": {
+    "value": 3,
+    "raw": "3",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 116418,
+    "raw": "116,418",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 8,
+    "raw": "8",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 116000,
+        "raw": "116K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 116418,
+        "raw": "116,418",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 116000,
+        "raw": "116K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 8,
+        "raw": "8",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 8,
+        "raw": "8",
+        "approximate": false
+      },
+      "conflict": false
+    },
+    "posts": {
+      "header": {
+        "value": 3,
+        "raw": "3",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 3,
+        "raw": "3",
+        "approximate": false
+      }
+    }
+  },
+  "category": null,
+  "ai_generated_profile": false,
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/851718553_18117959206938921_9135334379675540253_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy41MTAuQzMifQ%3D%3D&_nc_ohc=dVnKxYqVnm0Q7kNvwFe_wCv&_nc_oc=AdqQeQk7ViiiDOETwZ4j6hQjlRYIkXLSwTJagqiZaBfpprSqlc4Gz0eeNQ9EG6aOjqK_l_w3ZvshgoGm9leth9dd&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=jQHZZpCcfU3hQOJSO5wvUg&_nc_ss=7f6a8&oh=00_AQOriqEbYGM7am30Frn_8keqcx5MlwXsZVhEsKkCfu4bDA&oe=6AE11CFE",
+  "date_joined": "September 2026",
+  "account_based_in": "Brazil",
+  "former_usernames_count": null,
+  "raw": {
+    "header_text": "memesprcaf\n3 posts\n116K followers\n8 following\nQuer o segredo pra crescer no Instagram? Clica no link 👇🏻\ngo.hotmart.com/N108014452C\nFollow\nMessage\nVIRAIS 1.0\nMÉTODO 🔥\nResultados\nDestaques",
+    "about_text": "About this account\nmemesprcaf\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nBrazil\nClose",
+    "description": "116K Followers, 8 Following, 3 Posts - @memesprcaf on Instagram: \"Quer o segredo pra crescer no Instagram? Clica no link 👇🏻\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "116K followers",
+        "exact_title": "116,418"
+      },
+      "following": {
+        "label": "8 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": []
+}
