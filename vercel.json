@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm --prefix profile-showcase run build",
+  "outputDirectory": "profile-showcase/dist"
+}
