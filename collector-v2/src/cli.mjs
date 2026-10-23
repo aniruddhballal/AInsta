@@ -5,7 +5,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { launch, captureProfile, discover, captureItem } from './browser.mjs';
 import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot } from './model.mjs';
-import { paths, readJson, writeJson, mergeItem, mergeProfile } from './store.mjs';
+import { paths, readJson, writeJson, mergeItem, mergeProfile, syncGridViews } from './store.mjs';
 import { writeReport } from './report.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -140,7 +140,11 @@ async function collect() {
     const queued = new Map();
     for (const kind of ['post', 'reel']) for (const item of discovery[kind]?.items || []) queued.set(item.url, item);
     const existing = new Map(items.map((item) => [item.url, item]));
-    for (const item of queued.values()) if (!existing.has(item.url)) existing.set(item.url, { ...item, status: 'pending' });
+    for (const item of queued.values()) {
+      const old = existing.get(item.url);
+      if (old) existing.set(item.url, syncGridViews(old, item, discovery[item.kind]?.attempted_at || now()));
+      else existing.set(item.url, { ...item, status: 'pending' });
+    }
     items = [...existing.values()];
     await writeJson(path.items, items);
     let attempted = 0;

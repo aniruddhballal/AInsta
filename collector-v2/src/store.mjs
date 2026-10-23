@@ -1,6 +1,7 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { count } from './model.mjs';
 
 export async function readJson(path, fallback = null) {
   try { return JSON.parse(await readFile(path, 'utf8')); }
@@ -41,6 +42,19 @@ export function mergeItem(previous, current) {
   }
   result.status = ['date', 'likes', 'comments', 'views'].every((field) => result[field] != null) ? 'complete' : 'partial';
   result.missing = ['date', 'likes', 'comments', 'views'].filter((field) => result[field] == null);
+  return result;
+}
+
+export function syncGridViews(previous, discovered, observedAt) {
+  const raw = discovered.grid_views_raw;
+  if (!raw) return { ...previous, grid_views_raw: previous.grid_views_raw || null };
+  const parsed = count(raw);
+  const result = { ...previous, grid_views_raw: raw };
+  if (parsed && (!previous.views || previous.views.source === 'profile_grid')) {
+    result.views = { ...parsed, source: 'profile_grid', observed_at: observedAt };
+    result.status = ['date', 'likes', 'comments', 'views'].every((field) => result[field] != null) ? 'complete' : 'partial';
+    result.missing = ['date', 'likes', 'comments', 'views'].filter((field) => result[field] == null);
+  }
   return result;
 }
 

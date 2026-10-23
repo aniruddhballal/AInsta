@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { count, profileFromSnapshot, canonicalItemUrl, itemFromSnapshot } from '../src/model.mjs';
-import { mergeItem, mergeProfile } from '../src/store.mjs';
+import { mergeItem, mergeProfile, syncGridViews } from '../src/store.mjs';
 
 test('counts retain whether the source displayed a rounded value', () => {
   assert.deepEqual(count('20.7K'), { value: 20700, raw: '20.7K', approximate: true });
@@ -94,4 +94,13 @@ test('a date-only retry cannot replace an exact timestamp', () => {
   const merged = mergeItem({ date: '2026-10-23T02:00:00.000Z' }, { date: '2026-10-23', date_precision: 'day' });
   assert.equal(merged.date, '2026-10-23T02:00:00.000Z');
   assert.equal(merged.date_precision, 'timestamp');
+});
+
+test('a refreshed grid label replaces a stale rounded view count', () => {
+  const result = syncGridViews({ grid_views_raw: '35.9K', views: { value: 35900, raw: '35.9K', source: 'profile_grid' },
+    date: '2026-10-23', likes: { value: 1 }, comments: { value: 2 }, status: 'complete' },
+  { grid_views_raw: '38.3K' }, '2026-10-23T09:00:00.000Z');
+  assert.deepEqual(result.views, { value: 38300, raw: '38.3K', approximate: true,
+    source: 'profile_grid', observed_at: '2026-10-23T09:00:00.000Z' });
+  assert.equal(result.status, 'complete');
 });
