@@ -1,7 +1,7 @@
 {
   "username": "memesprcaf",
   "url": "https://www.instagram.com/memesprcaf/",
-  "fetched_at": "2026-10-23T14:55:30.987Z",
+  "fetched_at": "2026-10-23T15:57:22.483Z",
   "display_name": null,
   "bio": "Quer o segredo pra crescer no Instagram? Clica no link 👇🏻\ngo.hotmart.com/N108014452C",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 116332,
-    "raw": "116,332",
+    "value": 116351,
+    "raw": "116,351",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 116332,
-        "raw": "116,332",
+        "value": 116351,
+        "raw": "116,351",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/851718553_18117959206938921_9135334379675540253_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy41MTAuQzMifQ%3D%3D&_nc_ohc=dVnKxYqVnm0Q7kNvwEbrwji&_nc_oc=Adps9QYeoCgm9vjzCb_99nnSTktMzbuaX8EcidD1-KqeuX1UxQhSatKLX3Mw-7Y21f2caFQoeOYv0qv1vDqYNhhP&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=dr4lPSxezu90g057tehUKQ&_nc_ss=7f6a8&oh=00_AQNEmsW-fR6qCgCp-fvztxHV7sRQHg7YG76e6zDvhPD2yg&oe=6AE1553E",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/851718553_18117959206938921_9135334379675540253_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy41MTAuQzMifQ%3D%3D&_nc_ohc=dVnKxYqVnm0Q7kNvwEbrwji&_nc_oc=Adps9QYeoCgm9vjzCb_99nnSTktMzbuaX8EcidD1-KqeuX1UxQhSatKLX3Mw-7Y21f2caFQoeOYv0qv1vDqYNhhP&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=U_DKFKgkSdcl2LclBEzjhg&_nc_ss=7f6a8&oh=00_AQPmFYnxRv-tUAMqAcJVhCMLFDCFB31H9P1OY_iBtq3jXQ&oe=6AE1553E",
   "date_joined": "September 2026",
   "account_based_in": "Brazil",
   "former_usernames_count": null,
@@ -82,7 +82,7 @@
       },
       "followers": {
         "label": "116K followers",
-        "exact_title": "116,332"
+        "exact_title": "116,351"
       },
       "following": {
         "label": "8 following",

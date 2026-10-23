@@ -1,91 +1,91 @@
 {
   "username": "pophistoryhub",
   "url": "https://www.instagram.com/pophistoryhub/",
-  "fetched_at": "2026-10-23T10:30:33.705Z",
+  "fetched_at": "2026-10-23T17:08:41.129Z",
   "display_name": "Pop History Hub",
   "bio": "🪩 Pop History.\n📺 Icons • Trends • Nostalgia.\n✨ Daily posts that take you back.",
   "posts_count": {
-    "value": 515,
-    "raw": "515",
+    "value": 522,
+    "raw": "522",
     "approximate": false
   },
   "followers_count": {
-    "value": 23740,
-    "raw": "23,740",
+    "value": 23860,
+    "raw": "23,860",
     "approximate": false,
     "source": "header_title"
   },
   "following_count": {
-    "value": 22,
-    "raw": "22",
+    "value": 20,
+    "raw": "20",
     "approximate": false,
     "source": "header_text"
   },
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 23700,
-        "raw": "23.7K",
+        "value": 23800,
+        "raw": "23.8K",
         "approximate": true
       },
       "exact_title": {
-        "value": 23740,
-        "raw": "23,740",
+        "value": 23860,
+        "raw": "23,860",
         "approximate": false
       },
       "metadata": {
-        "value": 23000,
-        "raw": "23K",
+        "value": 24000,
+        "raw": "24K",
         "approximate": true
       }
     },
     "following": {
       "header": {
-        "value": 22,
-        "raw": "22",
+        "value": 20,
+        "raw": "20",
         "approximate": false
       },
       "metadata": {
-        "value": 22,
-        "raw": "22",
+        "value": 21,
+        "raw": "21",
         "approximate": false
       },
-      "conflict": false
+      "conflict": true
     },
     "posts": {
       "header": {
-        "value": 515,
-        "raw": "515",
+        "value": 522,
+        "raw": "522",
         "approximate": false
       },
       "metadata": {
-        "value": 515,
-        "raw": "515",
+        "value": 522,
+        "raw": "522",
         "approximate": false
       }
     }
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/735088523_18142428022493421_6226058742343611442_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=NR2_wi7sPPQQ7kNvwGbpkqh&_nc_oc=Adr3QcWm24-4n5HhPW0Fm8J10hin7Cef0WD6lSX35jo41A05KQLCowqHA1EMY3XGRThN_teBLoinAjh3Qqib-cpb&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=zVkcWA7fhwM2NxmGCxjFlg&_nc_ss=7f6a8&oh=00_AQMpcwftG_N6v1JOxiEpn8e2ZSuXEDvQDExrII3KHYa-eg&oe=6AE1107D",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/735088523_18142428022493421_6226058742343611442_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=NR2_wi7sPPQQ7kNvwHMOgxh&_nc_oc=AdoWM6AhCpZxLhess02O8I__mfjNaACZn0Z54nCsmuxtK1QgKFluJfoGm9Dd_NlKZ6wS10qwjpwM0jNRMn7BfC1o&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=roWNWtIGtcs4w-TOiKttoA&_nc_ss=7f6a8&oh=00_AQN0qdZ7lGNY5-qBwOqLIt2c6j7ShsO2kjjXhtS-6Bt0yQ&oe=6AE180FD",
   "date_joined": "July 2026",
   "account_based_in": "India",
   "former_usernames_count": null,
   "raw": {
-    "header_text": "pophistoryhub\nPop History Hub\n515 posts\n23.7K followers\n22 following\n🪩 Pop History.\n📺 Icons • Trends • Nostalgia.\n✨ Daily posts that take you back.\nFollow\nMessage",
+    "header_text": "pophistoryhub\nPop History Hub\n522 posts\n23.8K followers\n20 following\n🪩 Pop History.\n📺 Icons • Trends • Nostalgia.\n✨ Daily posts that take you back.\nFollow\nMessage",
     "about_text": "About this account\npophistoryhub\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJuly 2026\nAccount based in\nIndia\nClose",
-    "description": "23K Followers, 22 Following, 515 Posts - Pop History Hub (@pophistoryhub) on Instagram: \"🪩 Pop History.\n📺 Icons • Trends • Nostalgia.\n✨ Daily posts that take you back.\"",
+    "description": "24K Followers, 21 Following, 522 Posts - Pop History Hub (@pophistoryhub) on Instagram: \"🪩 Pop History.\n📺 Icons • Trends • Nostalgia.\n✨ Daily posts that take you back.\"",
     "stat_evidence": {
       "posts": {
         "label": "",
         "exact_title": ""
       },
       "followers": {
-        "label": "23.7K followers",
-        "exact_title": "23,740"
+        "label": "23.8K followers",
+        "exact_title": "23,860"
       },
       "following": {
-        "label": "22 following",
+        "label": "20 following",
         "exact_title": ""
       }
     }

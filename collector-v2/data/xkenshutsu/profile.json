@@ -1,7 +1,7 @@
 {
   "username": "xkenshutsu",
   "url": "https://www.instagram.com/xkenshutsu/",
-  "fetched_at": "2026-10-23T15:09:26.619Z",
+  "fetched_at": "2026-10-23T16:45:13.380Z",
   "display_name": null,
   "bio": "あらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 84390,
-    "raw": "84,390",
+    "value": 84446,
+    "raw": "84,446",
     "approximate": false,
     "source": "header_title"
   },
@@ -24,13 +24,13 @@
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 84300,
-        "raw": "84.3K",
+        "value": 84400,
+        "raw": "84.4K",
         "approximate": true
       },
       "exact_title": {
-        "value": 84390,
-        "raw": "84,390",
+        "value": 84446,
+        "raw": "84,446",
         "approximate": false
       },
       "metadata": {
@@ -67,12 +67,12 @@
   },
   "category": "Reel creator",
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/847550012_18132106516733260_1739221835962346330_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43NDIuQzMifQ%3D%3D&_nc_ohc=HqrIjY-hjf0Q7kNvwHMS7fA&_nc_oc=AdqowjoZB-dg7D1PFUIO1yi72Ug66vv6CTwB1tmpOymfIHbvBs0UkHN6vRdGne3LLC3cvp4OsE3i7NWSvjHDQ-Oz&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=D4_nN3sihff4escnTeyzoA&_nc_ss=7f6a8&oh=00_AQNTS6kz9tlHsfumD0SUxAB7Jr-2G6qhn8HTRAbnr7gsww&oe=6AE138B3",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/847550012_18132106516733260_1739221835962346330_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43NDIuQzMifQ%3D%3D&_nc_ohc=HqrIjY-hjf0Q7kNvwHMS7fA&_nc_oc=AdqowjoZB-dg7D1PFUIO1yi72Ug66vv6CTwB1tmpOymfIHbvBs0UkHN6vRdGne3LLC3cvp4OsE3i7NWSvjHDQ-Oz&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=IVxHNRyO7gnDFV5qbDCTKg&_nc_ss=7c6a8&oh=00_AQM-D7IqS5Ii_B6bLzbu5nq5dRq3MkRJZf7-zN0QKgrjCg&oe=6AE170F3",
   "date_joined": "May 2026",
   "account_based_in": "United States",
   "former_usernames_count": null,
   "raw": {
-    "header_text": "xkenshutsu\n383 posts\n84.3K followers\n8 following\nReel creator\nあらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)\nFollow\nMessage",
+    "header_text": "xkenshutsu\n383 posts\n84.4K followers\n8 following\nReel creator\nあらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)\nFollow\nMessage",
     "about_text": "About this account\nxkenshutsu\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMay 2026\nAccount based in\nUnited States\nClose",
     "description": "84K Followers, 10 Following, 383 Posts - @xkenshutsu on Instagram: \"あらゆる追いかけっこを繰り広げる！「トムとジェリー公式Instagramです！Cartoon Networkにて『まいにちトムとジェリー』放送中！『映画トムとジェリー』デジタル配信中/ブルーレイ&DVD発売中 TEC (S23)\"",
     "stat_evidence": {
@@ -81,8 +81,8 @@
         "exact_title": ""
       },
       "followers": {
-        "label": "84.3K followers",
-        "exact_title": "84,390"
+        "label": "84.4K followers",
+        "exact_title": "84,446"
       },
       "following": {
         "label": "8 following",
@@ -90,7 +90,5 @@
       }
     }
   },
-  "issues": [
-    "Page metadata says 10 following; current profile header says 8, which is used for the count."
-  ]
+  "issues": []
 }

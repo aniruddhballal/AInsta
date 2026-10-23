@@ -1,0 +1,23 @@
+{
+  "reel": {
+    "items": [
+      {
+        "kind": "reel",
+        "shortcode": "De19Z73O_ol",
+        "url": "https://www.instagram.com/reel/De19Z73O_ol/",
+        "grid_views_raw": "9",
+        "grid_views_issue": null
+      },
+      {
+        "kind": "reel",
+        "shortcode": "De1ay0qOEJX",
+        "url": "https://www.instagram.com/reel/De1ay0qOEJX/",
+        "grid_views_raw": "2,741",
+        "grid_views_issue": null
+      }
+    ],
+    "complete": true,
+    "error": "",
+    "attempted_at": "2026-10-23T16:18:48.052Z"
+  }
+}

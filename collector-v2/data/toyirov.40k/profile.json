@@ -1,7 +1,7 @@
 {
   "username": "toyirov.40k",
   "url": "https://www.instagram.com/toyirov.40k/",
-  "fetched_at": "2026-10-23T10:29:37.501Z",
+  "fetched_at": "2026-10-23T16:15:16.776Z",
   "display_name": "yaxyo",
   "bio": "TVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 36300,
-    "raw": "36,300",
+    "value": 36290,
+    "raw": "36,290",
     "approximate": false,
     "source": "header_title"
   },
@@ -24,13 +24,13 @@
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 36300,
-        "raw": "36.3K",
+        "value": 36200,
+        "raw": "36.2K",
         "approximate": true
       },
       "exact_title": {
-        "value": 36300,
-        "raw": "36,300",
+        "value": 36290,
+        "raw": "36,290",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": "Blogger",
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/858641884_18109852250108280_1083305652175211165_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=x53GuBd74WEQ7kNvwG6Pij9&_nc_oc=AdojUn1pQG-eIpqgbemdNbOoPAjcTZhFR8huE_s_BMa7PKy6ldoSyoAy-6DaUF57m1Ved14TToFJGVJ_VkE_Z5td&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=As1hqyFbT8LyyJjzqcS1FA&_nc_ss=7f6a8&oh=00_AQO6gPcxl_C208tqk1I-30COMKo8MscWKHR755MAU09pqg&oe=6AE1171E",
+  "profile_picture_url": "https://instagram.fblr24-4.fna.fbcdn.net/v/t51.82787-19/858641884_18109852250108280_1083305652175211165_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=107&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=x53GuBd74WEQ7kNvwFmjWTS&_nc_oc=AdoZqvF-pmrBnTwhjwomcNK-CgbP45G1vSmZyoCeq9FWRB75LsfehGVdxBRVCN9P-xVxceTRY1wkQ13YIW4QNaUQ&_nc_zt=24&_nc_ht=instagram.fblr24-4.fna&_nc_gid=hbWJQFg_w7Eie2comvj2hQ&_nc_ss=7f6a8&oh=00_AQPU7QYTY2GZ2C1wtzLmsRUFDvKYukzl9V_jGwEcGpc2Uw&oe=6AE14F5E",
   "date_joined": "August 2026",
   "account_based_in": "Uzbekistan",
   "former_usernames_count": {
@@ -76,7 +76,7 @@
     "approximate": false
   },
   "raw": {
-    "header_text": "toyirov.40k\nyaxyo\n16 posts\n36.3K followers\n12 following\nBlogger\nTVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！\nFollow\n100k📈\ntelegram kanal",
+    "header_text": "toyirov.40k\nyaxyo\n16 posts\n36.2K followers\n12 following\nBlogger\nTVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！\nFollow\n100k📈\ntelegram kanal",
     "about_text": "About this account\ntoyirov.40k\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nAugust 2026\nAccount based in\nUzbekistan\nFormer usernames\n21\nClose",
     "description": "36K Followers, 19 Following, 16 Posts - yaxyo (@toyirov.40k) on Instagram: \"TVアニメ × 『紫禁・御猫房』10月10日放送開始！\n宮廷に隠された秘密とは？ みんなは観たい？ コメントで教えてね！\"",
     "stat_evidence": {
@@ -85,8 +85,8 @@
         "exact_title": ""
       },
       "followers": {
-        "label": "36.3K followers",
-        "exact_title": "36,300"
+        "label": "36.2K followers",
+        "exact_title": "36,290"
       },
       "following": {
         "label": "12 following",

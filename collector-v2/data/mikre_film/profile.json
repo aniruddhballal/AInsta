@@ -1,7 +1,7 @@
 {
   "username": "mikre_film",
   "url": "https://www.instagram.com/mikre_film/",
-  "fetched_at": "2026-10-23T10:32:39.006Z",
+  "fetched_at": "2026-10-23T16:14:45.709Z",
   "display_name": "mikre",
   "bio": "𝗼𝗿𝗶𝗴𝗶𝗻𝗮𝗹 𝗳𝗶𝗹𝗺𝘀 | オリジナル映画\n🎬new short film: kids in the tape\nmikre_film",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 531,
-    "raw": "531",
+    "value": 528,
+    "raw": "528",
     "approximate": false,
     "source": "header_title"
   },
@@ -24,18 +24,18 @@
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 531,
-        "raw": "531",
+        "value": 528,
+        "raw": "528",
         "approximate": false
       },
       "exact_title": {
-        "value": 531,
-        "raw": "531",
+        "value": 528,
+        "raw": "528",
         "approximate": false
       },
       "metadata": {
-        "value": 468,
-        "raw": "468",
+        "value": 529,
+        "raw": "529",
         "approximate": false
       }
     },
@@ -67,22 +67,22 @@
   },
   "category": null,
   "ai_generated_profile": true,
-  "profile_picture_url": "https://instagram.fblr1-7.fna.fbcdn.net/v/t51.82787-19/796745848_18106714070032493_843042906671827511_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=WWEkoy4fIkwQ7kNvwG5RJy_&_nc_oc=AdookniwhFO82veSUshrDPS1_HoqdVKdfwdjxaI71ud13GP-55XOFlRKHZy5HoUUVskU8IBQo61eTef7V78qaSuu&_nc_zt=24&_nc_ht=instagram.fblr1-7.fna&_nc_gid=vUnkymcSeVAaFrj0ZRYE8w&_nc_ss=7f6a8&oh=00_AQPvZaOyO0HsEnwKrBzNw2IKvnS0IfrDScyGm4ecRP625g&oe=6AE118CE",
+  "profile_picture_url": "https://instagram.fblr1-7.fna.fbcdn.net/v/t51.82787-19/796745848_18106714070032493_843042906671827511_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=WWEkoy4fIkwQ7kNvwEo20vS&_nc_oc=AdqFLRuJLRFuJrgJXlzk5iv0E4ij4kQyYgalhemM_p4B1cAHEyuNXDYcEIpxU0Ca7yx9oko7FA3T0a4wISdyr89p&_nc_zt=24&_nc_ht=instagram.fblr1-7.fna&_nc_gid=KWNEf0uNXUJR-kH1YeRvIQ&_nc_ss=7f6a8&oh=00_AQPrOL4dXEJFlfPvdD3J55YGRIsWvy60FUAS9OPXR8Gj7A&oe=6AE1510E",
   "date_joined": "September 2026",
   "account_based_in": "Japan",
   "former_usernames_count": null,
   "raw": {
-    "header_text": "mikre_film\nmikre\n8 posts\n531 followers\n38 following\nAI-generated profile\n𝗼𝗿𝗶𝗴𝗶𝗻𝗮𝗹 𝗳𝗶𝗹𝗺𝘀 | オリジナル映画\n🎬new short film: kids in the tape\nmikre_film\nFollow\nMessage",
+    "header_text": "mikre_film\nmikre\n8 posts\n528 followers\n38 following\nAI-generated profile\n𝗼𝗿𝗶𝗴𝗶𝗻𝗮𝗹 𝗳𝗶𝗹𝗺𝘀 | オリジナル映画\n🎬new short film: kids in the tape\nmikre_film\nFollow\nMessage",
     "about_text": "About this account\nmikre_film\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nJapan\nActive ads\nSee mikre_film's ads in the Meta Ad Library.\nClose",
-    "description": "468 Followers, 38 Following, 8 Posts - mikre (@mikre_film) on Instagram: \"𝗼𝗿𝗶𝗴𝗶𝗻𝗮𝗹 𝗳𝗶𝗹𝗺𝘀 | オリジナル映画\n🎬new short film: kids in the tape\"",
+    "description": "529 Followers, 38 Following, 8 Posts - mikre (@mikre_film) on Instagram: \"𝗼𝗿𝗶𝗴𝗶𝗻𝗮𝗹 𝗳𝗶𝗹𝗺𝘀 | オリジナル映画\n🎬new short film: kids in the tape\"",
     "stat_evidence": {
       "posts": {
         "label": "",
         "exact_title": ""
       },
       "followers": {
-        "label": "531 followers",
-        "exact_title": "531"
+        "label": "528 followers",
+        "exact_title": "528"
       },
       "following": {
         "label": "38 following",

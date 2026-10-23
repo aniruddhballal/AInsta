@@ -1,7 +1,7 @@
 {
   "username": "james_basas",
   "url": "https://www.instagram.com/james_basas/",
-  "fetched_at": "2026-10-23T10:30:08.547Z",
+  "fetched_at": "2026-10-23T16:14:17.298Z",
   "display_name": "BEMBEM",
   "bio": null,
   "posts_count": {
@@ -10,39 +10,39 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 557,
-    "raw": "557",
+    "value": 569,
+    "raw": "569",
     "approximate": false,
     "source": "header_title"
   },
   "following_count": {
-    "value": 159,
-    "raw": "159",
+    "value": 158,
+    "raw": "158",
     "approximate": false,
     "source": "header_text"
   },
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 557,
-        "raw": "557",
+        "value": 569,
+        "raw": "569",
         "approximate": false
       },
       "exact_title": {
-        "value": 557,
-        "raw": "557",
+        "value": 569,
+        "raw": "569",
         "approximate": false
       },
       "metadata": {
-        "value": 490,
-        "raw": "490",
+        "value": 551,
+        "raw": "551",
         "approximate": false
       }
     },
     "following": {
       "header": {
-        "value": 159,
-        "raw": "159",
+        "value": 158,
+        "raw": "158",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": true,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/805027624_17897410587669076_2698405188218746907_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=B8pGOavyYnwQ7kNvwHaj4uw&_nc_oc=AdrDoeh4SMrc8vASfPHMIzfj4L1A8BnNFIxBXIq5BGFc_1zhcFP0Q1ftMugQN7NT1QvUdx7qGv3dCo4Vqjy8Xgia&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=BG_hHRevWIdHfntkmbI6iw&_nc_ss=7f6a8&oh=00_AQM4agngqfxGI6i92l3KTUG-6tNTrb3Z0e--WgIbVBvZ6Q&oe=6AE125BD",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/805027624_17897410587669076_2698405188218746907_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=104&_nc_map=urlgen_bucketless&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=o13hKKwBEm0Q7kNvwHr8PF3&_nc_oc=Adr85Dh5tmwjur0f8RgE12kVms1NoW6Mx_bEd8y6JQkofhB7m83jamFP6YoOzZqYPl6w6L2kx-rPaMdf5dMqk4b6&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=gYcAu0nvlvzRLgirhfbV5A&_nc_ss=7f6a8&oh=00_AQM8lhPK-thS3IvlANcpFAGqzLwW5liRs4H_Jwk55q940w&oe=6AE15DFD",
   "date_joined": "January 2026",
   "account_based_in": "Philippines",
   "former_usernames_count": {
@@ -76,25 +76,25 @@
     "approximate": false
   },
   "raw": {
-    "header_text": "james_basas\nBEMBEM\n3 posts\n557 followers\n159 following\nAI-generated profile\nFollow\nbading\nbefore and after\nmga Taran tado\nHighlights\nty pree lab u\nHighlights\nHighlights",
+    "header_text": "james_basas\nBEMBEM\n3 posts\n569 followers\n158 following\nAI-generated profile\nFollow\nbading\nbefore and after\nmga Taran tado\nHighlights\nty pree lab u\nHighlights\nHighlights",
     "about_text": "About this account\njames_basas\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nJanuary 2026\nAccount based in\nPhilippines\nFormer usernames\n3\nClose",
-    "description": "490 Followers, 186 Following, 3 Posts - BEMBEM (@james_basas) on Instagram: \"\"",
+    "description": "551 Followers, 186 Following, 3 Posts - BEMBEM (@james_basas) on Instagram: \"\"",
     "stat_evidence": {
       "posts": {
         "label": "",
         "exact_title": ""
       },
       "followers": {
-        "label": "557 followers",
-        "exact_title": "557"
+        "label": "569 followers",
+        "exact_title": "569"
       },
       "following": {
-        "label": "159 following",
+        "label": "158 following",
         "exact_title": ""
       }
     }
   },
   "issues": [
-    "Page metadata says 186 following; current profile header says 159, which is used for the count."
+    "Page metadata says 186 following; current profile header says 158, which is used for the count."
   ]
 }
