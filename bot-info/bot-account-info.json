@@ -1,7 +1,7 @@
 {
   "format": "dedgram-bot-account-info",
   "version": 1,
-  "generated_at": "2026-10-23T07:06:05.372Z",
+  "generated_at": "2026-10-23T07:25:14.217Z",
   "profiles": [
     {
       "url": "https://www.instagram.com/not.your.ordinary.nga/",
@@ -1002,46 +1002,6 @@
           "post_url": "https://www.instagram.com/reel/DezFUucuZHy/"
         },
         {
-          "id": "4069dc88-4a54-438a-bf34-0908f754804e",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T06:59:58.921Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-        },
-        {
-          "id": "95abf334-6638-42cd-a96d-d10b8cba9b90",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T06:59:58.921Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-        },
-        {
-          "id": "92c87429-55b9-4024-925d-61e4c4927b4e",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T06:59:58.921Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-        },
-        {
-          "id": "ff6ed697-b3ce-43d0-ba89-149517023c79",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T06:59:58.921Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-        },
-        {
           "id": "06342665-156f-4cdc-bb12-748eb971ac55",
           "username": "edlt.shox",
           "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -1049,56 +1009,6 @@
           "occurred_at": "2026-10-23T06:59:58.921Z",
           "recommended_action": "Retry the reel details scan for this profile.",
           "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-        },
-        {
-          "id": "b62eb5d3-c1a5-4770-a590-ddcee9fc4fe8",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T06:59:58.921Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-        },
-        {
-          "id": "0b677faa-52dc-4c8c-b9a9-e131a367d5d8",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:02.087Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-        },
-        {
-          "id": "41660016-803a-486c-a9c4-0836f7845f7b",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:02.087Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-        },
-        {
-          "id": "6c9a6d08-5b05-48d6-aee2-7fd49b69400e",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:02.087Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-        },
-        {
-          "id": "fff66a1a-c992-4d44-95db-931939e35ad5",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:02.087Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
         },
         {
           "id": "37ba3597-5595-47e2-9985-7a4e24d9538f",
@@ -1110,56 +1020,6 @@
           "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
         },
         {
-          "id": "3df0f612-b87c-4dd5-a939-390f4ff86ec2",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:02.087Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-        },
-        {
-          "id": "642bf811-3cd2-4f72-939e-8e72e18adca6",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:05.102Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-        },
-        {
-          "id": "f30f3709-731f-475d-a9a6-5fe42988ade2",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:05.102Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-        },
-        {
-          "id": "ba4d5abc-e379-405f-b00e-8b63127329b3",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:05.102Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-        },
-        {
-          "id": "9314840a-b42d-4714-837d-0d5884ff3401",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:05.102Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-        },
-        {
           "id": "218970b6-5536-4257-9c00-3425c7796b5f",
           "username": "edlt.shox",
           "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -1167,56 +1027,6 @@
           "occurred_at": "2026-10-23T07:00:05.102Z",
           "recommended_action": "Retry the reel details scan for this profile.",
           "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-        },
-        {
-          "id": "a8c8d762-d213-44c4-b866-b4f12b114e70",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:05.102Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-        },
-        {
-          "id": "9beddb28-bd5b-46b5-8fa8-d6d0a0ec7a8f",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:08.701Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-        },
-        {
-          "id": "67bc57d0-d547-401e-aeeb-88358f5a2eb5",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:08.701Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-        },
-        {
-          "id": "00091036-a08f-46da-9619-3f39d00624e6",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:08.701Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-        },
-        {
-          "id": "44238fca-f454-46cf-8ad0-b90e4b0e40c8",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:08.701Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
         },
         {
           "id": "44c90920-4251-4e4e-be61-fb35d9458b6a",
@@ -1228,56 +1038,6 @@
           "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
         },
         {
-          "id": "facc4af1-0038-492c-af9e-cd4263b475fd",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:08.701Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-        },
-        {
-          "id": "13f41c9a-1697-4ed6-8fb8-22110d3989ff",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:12.412Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-        },
-        {
-          "id": "25884fd6-f8ba-43b2-8543-38ed93bdab85",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:12.412Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-        },
-        {
-          "id": "b4b21c3b-cd9e-492e-b086-ceec1c76ece6",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:12.412Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-        },
-        {
-          "id": "65897d4b-cdaf-4b74-8fc0-21baf737c27b",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:12.412Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-        },
-        {
           "id": "69b472b0-163a-4af5-95b5-3f96dc995ce6",
           "username": "edlt.shox",
           "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -1285,56 +1045,6 @@
           "occurred_at": "2026-10-23T07:00:12.412Z",
           "recommended_action": "Retry the reel details scan for this profile.",
           "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-        },
-        {
-          "id": "8655e6e2-d75a-4ec2-ab16-60bd5e837a0d",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:12.412Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-        },
-        {
-          "id": "ad2b8d49-abfd-49a5-ba82-be96a45e8e44",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:15.733Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-        },
-        {
-          "id": "e7cf6827-b32d-4fa8-a05b-a525a698347b",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:15.733Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-        },
-        {
-          "id": "9869552d-b0da-4158-8465-106cd0d62c8c",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:15.733Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-        },
-        {
-          "id": "bfb48845-2fb1-4b61-9bcc-61f212f26641",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:15.733Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
         },
         {
           "id": "9bd12fe2-dd23-4871-b3da-a98bd340c867",
@@ -1346,56 +1056,6 @@
           "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
         },
         {
-          "id": "50bdf7af-044b-4e5c-8bdc-85b43fe327d4",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:15.733Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-        },
-        {
-          "id": "2ce92296-f6ec-4365-801a-69e026d8a455",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:19.351Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-        },
-        {
-          "id": "1912f48b-0e0b-46f6-b626-06ddb6fb6f21",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:19.351Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-        },
-        {
-          "id": "ba9e217f-958a-4f82-94f8-c7b49261c6ec",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:19.351Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-        },
-        {
-          "id": "94181a70-45d1-451d-b04d-394de1e1437b",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:19.351Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-        },
-        {
           "id": "895866b2-b190-41e9-b34a-2419909ef971",
           "username": "edlt.shox",
           "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -1405,69 +1065,9 @@
           "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
         },
         {
-          "id": "af54b571-e882-4a6d-81e5-87df36dc2472",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:19.351Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-        },
-        {
-          "id": "19b012e2-8243-4070-b3c0-5433adc82893",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DATE_UNAVAILABLE",
-          "message": "Could not read the date for this reel.",
-          "occurred_at": "2026-10-23T07:00:22.955Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-        },
-        {
-          "id": "c50808ce-2f3a-4d33-ba7e-a8541ba5108d",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_LIKES_UNAVAILABLE",
-          "message": "Could not read the like count for this reel.",
-          "occurred_at": "2026-10-23T07:00:22.955Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-        },
-        {
-          "id": "8fd13d8f-9a3a-473f-8997-8ceaeb61375e",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_COMMENTS_UNAVAILABLE",
-          "message": "Could not read the comment count for this reel.",
-          "occurred_at": "2026-10-23T07:00:22.955Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-        },
-        {
-          "id": "d8973e31-629e-4217-9136-29b87b0475c9",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_VIEWS_UNAVAILABLE",
-          "message": "Could not read the view count for this reel.",
-          "occurred_at": "2026-10-23T07:00:22.955Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-        },
-        {
           "id": "93566b51-3dce-404a-ac26-752529789ed1",
           "username": "edlt.shox",
           "profile_url": "https://www.instagram.com/edlt.shox/",
-          "message": "The reel tile was not found in the profile grid.",
-          "occurred_at": "2026-10-23T07:00:22.955Z",
-          "recommended_action": "Retry the reel details scan for this profile.",
-          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-        },
-        {
-          "id": "321e0853-656f-4f92-adcf-054a9c3bdccf",
-          "username": "edlt.shox",
-          "profile_url": "https://www.instagram.com/edlt.shox/",
-          "code": "REEL_DETAILS_FETCH_FAILED",
           "message": "The reel tile was not found in the profile grid.",
           "occurred_at": "2026-10-23T07:00:22.955Z",
           "recommended_action": "Retry the reel details scan for this profile.",
@@ -5484,6 +5084,398 @@
           "occurred_at": "2026-10-23T07:06:03.837Z",
           "recommended_action": "Retry the reel details scan for this profile.",
           "post_url": "https://www.instagram.com/reel/De0hYZIoecD/"
+        },
+        {
+          "id": "30c23ca7-249b-4ddf-8600-f44dec51ecb9",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:24:10.384Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+        },
+        {
+          "id": "a439d000-5ae8-4b15-b7d8-c22cefb55649",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:24:10.384Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+        },
+        {
+          "id": "8ac6c884-9d34-4b73-b250-b0e4b390c67e",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:24:10.384Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+        },
+        {
+          "id": "10bb3d68-401c-486d-a44b-f64b6f5e5b47",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "Clicking the reel tile did not open its Instagram detail view.",
+          "occurred_at": "2026-10-23T07:24:10.384Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+        },
+        {
+          "id": "eb32b06a-a799-437e-87b6-35bddb31c918",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "Clicking the reel tile did not open its Instagram detail view.",
+          "occurred_at": "2026-10-23T07:24:10.384Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+        },
+        {
+          "id": "937785cc-91a7-4c1c-aef3-d556842cc01e",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:24:13.431Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+        },
+        {
+          "id": "e430b51f-89ba-407d-a097-3e0e59d9aabc",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:24:13.431Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+        },
+        {
+          "id": "7621890e-e1a8-467d-aab1-4eea18d3105f",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:24:13.431Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+        },
+        {
+          "id": "05262cf3-db05-41c4-90ba-28ce73a3731d",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:13.431Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+        },
+        {
+          "id": "fb665fa3-98f3-4316-a68b-dc91247dbc2a",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:13.431Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+        },
+        {
+          "id": "e4462e53-ca4a-411e-a0f2-7cdce5bad3a2",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:24:23.239Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+        },
+        {
+          "id": "fec1933d-d4f0-4217-a986-4ed2cb69829a",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:24:23.239Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+        },
+        {
+          "id": "f5b71320-82c7-4221-bcfc-0e31779d62d8",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:24:23.239Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+        },
+        {
+          "id": "809e2abe-c733-4e60-8164-ee66df890d23",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:23.239Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+        },
+        {
+          "id": "c76c19e3-1f34-4cde-8968-e0a1bce2119f",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:23.239Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+        },
+        {
+          "id": "40efbb38-f77f-4891-8bc5-354adca2843f",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:24:41.416Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+        },
+        {
+          "id": "61565389-f9ef-4f54-a59a-5b5e270219f1",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:24:41.416Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+        },
+        {
+          "id": "9c46d694-3e6c-4e6c-832a-f33f516fca81",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:24:41.416Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+        },
+        {
+          "id": "21727c6b-3c82-4511-9f11-67fe708473ec",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "Clicking the reel tile did not open its Instagram detail view.",
+          "occurred_at": "2026-10-23T07:24:41.416Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+        },
+        {
+          "id": "c021fbcd-1bf6-49d5-833c-5da4481dc282",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "Clicking the reel tile did not open its Instagram detail view.",
+          "occurred_at": "2026-10-23T07:24:41.416Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+        },
+        {
+          "id": "d8c7b184-a1fd-4618-b30e-6dfa74b22134",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:24:44.507Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+        },
+        {
+          "id": "878985c7-12fc-4737-8252-b4852e0c49c2",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:24:44.507Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+        },
+        {
+          "id": "debd9a4c-3052-4f7a-909e-cb2d01f29a71",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:24:44.507Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+        },
+        {
+          "id": "4215c953-4fbf-4db2-ace2-0f3f5566087d",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:44.507Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+        },
+        {
+          "id": "1b8f2b68-473f-408d-a426-3c18cb05aaab",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:44.507Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+        },
+        {
+          "id": "86aaf124-e84a-4e3c-902c-0580cc7ea7e5",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:24:50.860Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+        },
+        {
+          "id": "0474facb-a5be-4ec0-afe7-005aa923b377",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:24:50.860Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+        },
+        {
+          "id": "5e6d9a22-dfaf-4710-95e9-4c3440cc7dd3",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:24:50.860Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+        },
+        {
+          "id": "38fce7aa-3deb-4ac3-b808-0271b5f9081b",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:50.860Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+        },
+        {
+          "id": "cdd99ef3-2f89-40c6-9ae4-cf11d8165c18",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:24:50.860Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+        },
+        {
+          "id": "58439313-019a-492d-a568-2fa6e256abea",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:25:09.688Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+        },
+        {
+          "id": "77a66e64-7cf8-4736-928c-ae2336a82f56",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:25:09.688Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+        },
+        {
+          "id": "2d2f3fe1-ca1e-43ad-bb41-e09815f3cdb7",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:25:09.688Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+        },
+        {
+          "id": "036cece0-b737-4cd2-a5ed-5b7c82dfe6d4",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "Clicking the reel tile did not open its Instagram detail view.",
+          "occurred_at": "2026-10-23T07:25:09.688Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+        },
+        {
+          "id": "71b02bde-b212-4f02-9170-c4c9e0c47e72",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "Clicking the reel tile did not open its Instagram detail view.",
+          "occurred_at": "2026-10-23T07:25:09.688Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+        },
+        {
+          "id": "2b7fcc12-94e1-4066-8780-6c679f11dc3c",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DATE_UNAVAILABLE",
+          "message": "Could not read the date for this reel.",
+          "occurred_at": "2026-10-23T07:25:12.690Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+        },
+        {
+          "id": "767d9957-4974-45f4-a401-bf82ec2b38b5",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_LIKES_UNAVAILABLE",
+          "message": "Could not read the like count for this reel.",
+          "occurred_at": "2026-10-23T07:25:12.690Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+        },
+        {
+          "id": "25537527-4d58-490b-a7c9-57cbf032e3cf",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_COMMENTS_UNAVAILABLE",
+          "message": "Could not read the comment count for this reel.",
+          "occurred_at": "2026-10-23T07:25:12.690Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+        },
+        {
+          "id": "2a763b6b-003e-422e-ab8b-b12c235f835c",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:25:12.690Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+        },
+        {
+          "id": "92374a49-82e9-4797-8b54-24d55bef7448",
+          "username": "edlt.shox",
+          "profile_url": "https://www.instagram.com/edlt.shox/",
+          "code": "REEL_DETAILS_FETCH_FAILED",
+          "message": "The reel tile was not found in the profile grid.",
+          "occurred_at": "2026-10-23T07:25:12.690Z",
+          "recommended_action": "Retry the reel details scan for this profile.",
+          "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
         }
       ],
       "catalog_first_seen_at": "2026-10-18T01:41:00.223Z",
@@ -7534,7 +7526,7 @@
           "likes_count": 106000,
           "comments_count": 328,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:22.954Z",
+          "last_fetched_at": "2026-10-23T07:25:12.690Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7550,21 +7542,19 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
               "message": "The reel tile was not found in the profile grid."
             }
-          ]
+          ],
+          "views_count": 328,
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeavhmwIGd4/",
           "likes_count": 584000,
           "comments_count": 2310,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:19.351Z",
+          "last_fetched_at": "2026-10-23T07:25:09.688Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7580,21 +7570,19 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
-              "message": "The reel tile was not found in the profile grid."
+              "message": "Clicking the reel tile did not open its Instagram detail view."
             }
-          ]
+          ],
+          "views_count": 2311,
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeauY1wIB3O/",
           "likes_count": 6003,
           "comments_count": 0,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:15.732Z",
+          "last_fetched_at": "2026-10-23T07:24:50.860Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7610,21 +7598,19 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
               "message": "The reel tile was not found in the profile grid."
             }
-          ]
+          ],
+          "views_count": 60180,
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeZ5d_suDdH/",
           "likes_count": 3022,
           "comments_count": 9,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:12.412Z",
+          "last_fetched_at": "2026-10-23T07:24:44.507Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7640,22 +7626,20 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
               "message": "The reel tile was not found in the profile grid."
             }
-          ]
+          ],
+          "views_count": 30259,
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeZi5DwuiZa/",
           "likes_count": 13000,
           "comments_count": 154,
-          "views_count": 1,
+          "views_count": 154,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:08.700Z",
+          "last_fetched_at": "2026-10-23T07:24:41.415Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7671,21 +7655,18 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
-              "message": "The reel tile was not found in the profile grid."
+              "message": "Clicking the reel tile did not open its Instagram detail view."
             }
-          ]
+          ],
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeY1_8HupKf/",
           "likes_count": 378,
           "comments_count": 3,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:05.101Z",
+          "last_fetched_at": "2026-10-23T07:24:23.239Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7701,21 +7682,19 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
               "message": "The reel tile was not found in the profile grid."
             }
-          ]
+          ],
+          "views_count": 3783,
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeY0U51u04r/",
           "likes_count": 638000,
           "comments_count": 1729,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T07:00:02.086Z",
+          "last_fetched_at": "2026-10-23T07:24:13.431Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7731,21 +7710,19 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
               "message": "The reel tile was not found in the profile grid."
             }
-          ]
+          ],
+          "views_count": 1729,
+          "views_count_source": "profile_grid"
         },
         {
           "url": "https://www.instagram.com/reel/DeYH4uEIqYK/",
           "likes_count": 438,
           "comments_count": 19,
           "kind": "reel",
-          "last_fetched_at": "2026-10-23T06:59:58.921Z",
+          "last_fetched_at": "2026-10-23T07:24:10.382Z",
           "fetch_status": "Incomplete",
           "fetch_errors": [
             {
@@ -7761,18 +7738,16 @@
               "message": "Could not read the comment count for this reel."
             },
             {
-              "field": "views_count",
-              "message": "Could not read the view count for this reel."
-            },
-            {
               "field": "page",
-              "message": "The reel tile was not found in the profile grid."
+              "message": "Clicking the reel tile did not open its Instagram detail view."
             }
-          ]
+          ],
+          "views_count": 43819,
+          "views_count_source": "profile_grid"
         }
       ],
-      "reels_data_last_fetched_at": "2026-10-23T07:06:03.836Z",
-      "reels_data_status": "Incomplete"
+      "reels_data_last_fetched_at": "2026-10-23T07:25:12.690Z",
+      "reels_data_status": "Collecting"
     },
     {
       "url": "https://www.instagram.com/anngry_birrds/",
@@ -9510,46 +9485,6 @@
       "post_url": "https://www.instagram.com/reel/DezFUucuZHy/"
     },
     {
-      "id": "4069dc88-4a54-438a-bf34-0908f754804e",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T06:59:58.921Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-    },
-    {
-      "id": "95abf334-6638-42cd-a96d-d10b8cba9b90",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T06:59:58.921Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-    },
-    {
-      "id": "92c87429-55b9-4024-925d-61e4c4927b4e",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T06:59:58.921Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-    },
-    {
-      "id": "ff6ed697-b3ce-43d0-ba89-149517023c79",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T06:59:58.921Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-    },
-    {
       "id": "06342665-156f-4cdc-bb12-748eb971ac55",
       "username": "edlt.shox",
       "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -9557,56 +9492,6 @@
       "occurred_at": "2026-10-23T06:59:58.921Z",
       "recommended_action": "Retry the reel details scan for this profile.",
       "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-    },
-    {
-      "id": "b62eb5d3-c1a5-4770-a590-ddcee9fc4fe8",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T06:59:58.921Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
-    },
-    {
-      "id": "0b677faa-52dc-4c8c-b9a9-e131a367d5d8",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:02.087Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-    },
-    {
-      "id": "41660016-803a-486c-a9c4-0836f7845f7b",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:02.087Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-    },
-    {
-      "id": "6c9a6d08-5b05-48d6-aee2-7fd49b69400e",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:02.087Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-    },
-    {
-      "id": "fff66a1a-c992-4d44-95db-931939e35ad5",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:02.087Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
     },
     {
       "id": "37ba3597-5595-47e2-9985-7a4e24d9538f",
@@ -9618,56 +9503,6 @@
       "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
     },
     {
-      "id": "3df0f612-b87c-4dd5-a939-390f4ff86ec2",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:02.087Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
-    },
-    {
-      "id": "642bf811-3cd2-4f72-939e-8e72e18adca6",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:05.102Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-    },
-    {
-      "id": "f30f3709-731f-475d-a9a6-5fe42988ade2",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:05.102Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-    },
-    {
-      "id": "ba4d5abc-e379-405f-b00e-8b63127329b3",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:05.102Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-    },
-    {
-      "id": "9314840a-b42d-4714-837d-0d5884ff3401",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:05.102Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-    },
-    {
       "id": "218970b6-5536-4257-9c00-3425c7796b5f",
       "username": "edlt.shox",
       "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -9675,56 +9510,6 @@
       "occurred_at": "2026-10-23T07:00:05.102Z",
       "recommended_action": "Retry the reel details scan for this profile.",
       "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-    },
-    {
-      "id": "a8c8d762-d213-44c4-b866-b4f12b114e70",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:05.102Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
-    },
-    {
-      "id": "9beddb28-bd5b-46b5-8fa8-d6d0a0ec7a8f",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:08.701Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-    },
-    {
-      "id": "67bc57d0-d547-401e-aeeb-88358f5a2eb5",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:08.701Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-    },
-    {
-      "id": "00091036-a08f-46da-9619-3f39d00624e6",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:08.701Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-    },
-    {
-      "id": "44238fca-f454-46cf-8ad0-b90e4b0e40c8",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:08.701Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
     },
     {
       "id": "44c90920-4251-4e4e-be61-fb35d9458b6a",
@@ -9736,56 +9521,6 @@
       "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
     },
     {
-      "id": "facc4af1-0038-492c-af9e-cd4263b475fd",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:08.701Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
-    },
-    {
-      "id": "13f41c9a-1697-4ed6-8fb8-22110d3989ff",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:12.412Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-    },
-    {
-      "id": "25884fd6-f8ba-43b2-8543-38ed93bdab85",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:12.412Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-    },
-    {
-      "id": "b4b21c3b-cd9e-492e-b086-ceec1c76ece6",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:12.412Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-    },
-    {
-      "id": "65897d4b-cdaf-4b74-8fc0-21baf737c27b",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:12.412Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-    },
-    {
       "id": "69b472b0-163a-4af5-95b5-3f96dc995ce6",
       "username": "edlt.shox",
       "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -9793,56 +9528,6 @@
       "occurred_at": "2026-10-23T07:00:12.412Z",
       "recommended_action": "Retry the reel details scan for this profile.",
       "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-    },
-    {
-      "id": "8655e6e2-d75a-4ec2-ab16-60bd5e837a0d",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:12.412Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
-    },
-    {
-      "id": "ad2b8d49-abfd-49a5-ba82-be96a45e8e44",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:15.733Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-    },
-    {
-      "id": "e7cf6827-b32d-4fa8-a05b-a525a698347b",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:15.733Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-    },
-    {
-      "id": "9869552d-b0da-4158-8465-106cd0d62c8c",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:15.733Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-    },
-    {
-      "id": "bfb48845-2fb1-4b61-9bcc-61f212f26641",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:15.733Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
     },
     {
       "id": "9bd12fe2-dd23-4871-b3da-a98bd340c867",
@@ -9854,56 +9539,6 @@
       "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
     },
     {
-      "id": "50bdf7af-044b-4e5c-8bdc-85b43fe327d4",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:15.733Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
-    },
-    {
-      "id": "2ce92296-f6ec-4365-801a-69e026d8a455",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:19.351Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-    },
-    {
-      "id": "1912f48b-0e0b-46f6-b626-06ddb6fb6f21",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:19.351Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-    },
-    {
-      "id": "ba9e217f-958a-4f82-94f8-c7b49261c6ec",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:19.351Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-    },
-    {
-      "id": "94181a70-45d1-451d-b04d-394de1e1437b",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:19.351Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-    },
-    {
       "id": "895866b2-b190-41e9-b34a-2419909ef971",
       "username": "edlt.shox",
       "profile_url": "https://www.instagram.com/edlt.shox/",
@@ -9913,69 +9548,9 @@
       "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
     },
     {
-      "id": "af54b571-e882-4a6d-81e5-87df36dc2472",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:19.351Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
-    },
-    {
-      "id": "19b012e2-8243-4070-b3c0-5433adc82893",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DATE_UNAVAILABLE",
-      "message": "Could not read the date for this reel.",
-      "occurred_at": "2026-10-23T07:00:22.955Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-    },
-    {
-      "id": "c50808ce-2f3a-4d33-ba7e-a8541ba5108d",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_LIKES_UNAVAILABLE",
-      "message": "Could not read the like count for this reel.",
-      "occurred_at": "2026-10-23T07:00:22.955Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-    },
-    {
-      "id": "8fd13d8f-9a3a-473f-8997-8ceaeb61375e",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_COMMENTS_UNAVAILABLE",
-      "message": "Could not read the comment count for this reel.",
-      "occurred_at": "2026-10-23T07:00:22.955Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-    },
-    {
-      "id": "d8973e31-629e-4217-9136-29b87b0475c9",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_VIEWS_UNAVAILABLE",
-      "message": "Could not read the view count for this reel.",
-      "occurred_at": "2026-10-23T07:00:22.955Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-    },
-    {
       "id": "93566b51-3dce-404a-ac26-752529789ed1",
       "username": "edlt.shox",
       "profile_url": "https://www.instagram.com/edlt.shox/",
-      "message": "The reel tile was not found in the profile grid.",
-      "occurred_at": "2026-10-23T07:00:22.955Z",
-      "recommended_action": "Retry the reel details scan for this profile.",
-      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
-    },
-    {
-      "id": "321e0853-656f-4f92-adcf-054a9c3bdccf",
-      "username": "edlt.shox",
-      "profile_url": "https://www.instagram.com/edlt.shox/",
-      "code": "REEL_DETAILS_FETCH_FAILED",
       "message": "The reel tile was not found in the profile grid.",
       "occurred_at": "2026-10-23T07:00:22.955Z",
       "recommended_action": "Retry the reel details scan for this profile.",
@@ -13992,10 +13567,575 @@
       "occurred_at": "2026-10-23T07:06:03.837Z",
       "recommended_action": "Retry the reel details scan for this profile.",
       "post_url": "https://www.instagram.com/reel/De0hYZIoecD/"
+    },
+    {
+      "id": "30c23ca7-249b-4ddf-8600-f44dec51ecb9",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:24:10.384Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+    },
+    {
+      "id": "a439d000-5ae8-4b15-b7d8-c22cefb55649",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:24:10.384Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+    },
+    {
+      "id": "8ac6c884-9d34-4b73-b250-b0e4b390c67e",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:24:10.384Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+    },
+    {
+      "id": "10bb3d68-401c-486d-a44b-f64b6f5e5b47",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "Clicking the reel tile did not open its Instagram detail view.",
+      "occurred_at": "2026-10-23T07:24:10.384Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+    },
+    {
+      "id": "eb32b06a-a799-437e-87b6-35bddb31c918",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "Clicking the reel tile did not open its Instagram detail view.",
+      "occurred_at": "2026-10-23T07:24:10.384Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeYH4uEIqYK/"
+    },
+    {
+      "id": "937785cc-91a7-4c1c-aef3-d556842cc01e",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:24:13.431Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+    },
+    {
+      "id": "e430b51f-89ba-407d-a097-3e0e59d9aabc",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:24:13.431Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+    },
+    {
+      "id": "7621890e-e1a8-467d-aab1-4eea18d3105f",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:24:13.431Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+    },
+    {
+      "id": "05262cf3-db05-41c4-90ba-28ce73a3731d",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:13.431Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+    },
+    {
+      "id": "fb665fa3-98f3-4316-a68b-dc91247dbc2a",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:13.431Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY0U51u04r/"
+    },
+    {
+      "id": "e4462e53-ca4a-411e-a0f2-7cdce5bad3a2",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:24:23.239Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+    },
+    {
+      "id": "fec1933d-d4f0-4217-a986-4ed2cb69829a",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:24:23.239Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+    },
+    {
+      "id": "f5b71320-82c7-4221-bcfc-0e31779d62d8",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:24:23.239Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+    },
+    {
+      "id": "809e2abe-c733-4e60-8164-ee66df890d23",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:23.239Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+    },
+    {
+      "id": "c76c19e3-1f34-4cde-8968-e0a1bce2119f",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:23.239Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeY1_8HupKf/"
+    },
+    {
+      "id": "40efbb38-f77f-4891-8bc5-354adca2843f",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:24:41.416Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+    },
+    {
+      "id": "61565389-f9ef-4f54-a59a-5b5e270219f1",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:24:41.416Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+    },
+    {
+      "id": "9c46d694-3e6c-4e6c-832a-f33f516fca81",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:24:41.416Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+    },
+    {
+      "id": "21727c6b-3c82-4511-9f11-67fe708473ec",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "Clicking the reel tile did not open its Instagram detail view.",
+      "occurred_at": "2026-10-23T07:24:41.416Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+    },
+    {
+      "id": "c021fbcd-1bf6-49d5-833c-5da4481dc282",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "Clicking the reel tile did not open its Instagram detail view.",
+      "occurred_at": "2026-10-23T07:24:41.416Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+    },
+    {
+      "id": "d8c7b184-a1fd-4618-b30e-6dfa74b22134",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:24:44.507Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+    },
+    {
+      "id": "878985c7-12fc-4737-8252-b4852e0c49c2",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:24:44.507Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+    },
+    {
+      "id": "debd9a4c-3052-4f7a-909e-cb2d01f29a71",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:24:44.507Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+    },
+    {
+      "id": "4215c953-4fbf-4db2-ace2-0f3f5566087d",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:44.507Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+    },
+    {
+      "id": "1b8f2b68-473f-408d-a426-3c18cb05aaab",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:44.507Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeZ5d_suDdH/"
+    },
+    {
+      "id": "86aaf124-e84a-4e3c-902c-0580cc7ea7e5",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:24:50.860Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+    },
+    {
+      "id": "0474facb-a5be-4ec0-afe7-005aa923b377",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:24:50.860Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+    },
+    {
+      "id": "5e6d9a22-dfaf-4710-95e9-4c3440cc7dd3",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:24:50.860Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+    },
+    {
+      "id": "38fce7aa-3deb-4ac3-b808-0271b5f9081b",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:50.860Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+    },
+    {
+      "id": "cdd99ef3-2f89-40c6-9ae4-cf11d8165c18",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:24:50.860Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeauY1wIB3O/"
+    },
+    {
+      "id": "58439313-019a-492d-a568-2fa6e256abea",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:25:09.688Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+    },
+    {
+      "id": "77a66e64-7cf8-4736-928c-ae2336a82f56",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:25:09.688Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+    },
+    {
+      "id": "2d2f3fe1-ca1e-43ad-bb41-e09815f3cdb7",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:25:09.688Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+    },
+    {
+      "id": "036cece0-b737-4cd2-a5ed-5b7c82dfe6d4",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "Clicking the reel tile did not open its Instagram detail view.",
+      "occurred_at": "2026-10-23T07:25:09.688Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+    },
+    {
+      "id": "71b02bde-b212-4f02-9170-c4c9e0c47e72",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "Clicking the reel tile did not open its Instagram detail view.",
+      "occurred_at": "2026-10-23T07:25:09.688Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DeavhmwIGd4/"
+    },
+    {
+      "id": "2b7fcc12-94e1-4066-8780-6c679f11dc3c",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DATE_UNAVAILABLE",
+      "message": "Could not read the date for this reel.",
+      "occurred_at": "2026-10-23T07:25:12.690Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+    },
+    {
+      "id": "767d9957-4974-45f4-a401-bf82ec2b38b5",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_LIKES_UNAVAILABLE",
+      "message": "Could not read the like count for this reel.",
+      "occurred_at": "2026-10-23T07:25:12.690Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+    },
+    {
+      "id": "25537527-4d58-490b-a7c9-57cbf032e3cf",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_COMMENTS_UNAVAILABLE",
+      "message": "Could not read the comment count for this reel.",
+      "occurred_at": "2026-10-23T07:25:12.690Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+    },
+    {
+      "id": "2a763b6b-003e-422e-ab8b-b12c235f835c",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:25:12.690Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+    },
+    {
+      "id": "92374a49-82e9-4797-8b54-24d55bef7448",
+      "username": "edlt.shox",
+      "profile_url": "https://www.instagram.com/edlt.shox/",
+      "code": "REEL_DETAILS_FETCH_FAILED",
+      "message": "The reel tile was not found in the profile grid.",
+      "occurred_at": "2026-10-23T07:25:12.690Z",
+      "recommended_action": "Retry the reel details scan for this profile.",
+      "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
     }
   ],
   "workflow": {
-    "active_job": null,
+    "active_job": {
+      "id": "a405324d-119d-4889-b20c-d51f48db94a2",
+      "kind": "reel_content",
+      "status": "running",
+      "profile_keys": [
+        "edlt.shox"
+      ],
+      "index": 0,
+      "stage": "content_item",
+      "post_urls": [],
+      "post_index": 0,
+      "content_urls": [
+        "https://www.instagram.com/reel/DeYH4uEIqYK/",
+        "https://www.instagram.com/reel/DeY0U51u04r/",
+        "https://www.instagram.com/reel/DeY1_8HupKf/",
+        "https://www.instagram.com/reel/DeZi5DwuiZa/",
+        "https://www.instagram.com/reel/DeZ5d_suDdH/",
+        "https://www.instagram.com/reel/DeauY1wIB3O/",
+        "https://www.instagram.com/reel/DeavhmwIGd4/",
+        "https://www.instagram.com/reel/DebWOhlu1r9/",
+        "https://www.instagram.com/reel/Deb3COCOhky/",
+        "https://www.instagram.com/reel/Deb8aayuhJ-/",
+        "https://www.instagram.com/reel/DecG3L_uy0H/",
+        "https://www.instagram.com/reel/DedTcyxoaE2/",
+        "https://www.instagram.com/reel/DedUshAIpKh/",
+        "https://www.instagram.com/reel/Ded7L-3OvEa/",
+        "https://www.instagram.com/reel/Ded7d3xu25R/",
+        "https://www.instagram.com/reel/DeekssJMU3J/",
+        "https://www.instagram.com/reel/Degi8c3uAcR/",
+        "https://www.instagram.com/reel/Degj1VBuARF/",
+        "https://www.instagram.com/reel/DegmNmVuEUx/",
+        "https://www.instagram.com/reel/DehBrAzucz-/",
+        "https://www.instagram.com/reel/DehB9WWOVNG/",
+        "https://www.instagram.com/reel/DehQkaXuZHD/",
+        "https://www.instagram.com/reel/DehWVtxuCWH/",
+        "https://www.instagram.com/reel/DehcM98uu6V/",
+        "https://www.instagram.com/reel/DehjbvxuC4Z/",
+        "https://www.instagram.com/reel/DeieEx9Ix_S/",
+        "https://www.instagram.com/reel/Deieh-son5w/",
+        "https://www.instagram.com/reel/DejK1_VOTk9/",
+        "https://www.instagram.com/reel/DekBD7lufK-/",
+        "https://www.instagram.com/reel/DekG5j7OzQ3/",
+        "https://www.instagram.com/reel/DekLVWVuu2_/",
+        "https://www.instagram.com/reel/DelDQt5ooQd/",
+        "https://www.instagram.com/reel/DelDzJzo1Qh/",
+        "https://www.instagram.com/reel/DelvXC-OG6N/",
+        "https://www.instagram.com/reel/DelwG3kOcxo/",
+        "https://www.instagram.com/reel/Del6ZQxO79K/",
+        "https://www.instagram.com/reel/Del7lFbuMbx/",
+        "https://www.instagram.com/reel/DemNUQLO4Mn/",
+        "https://www.instagram.com/reel/DemOAPjOp3V/",
+        "https://www.instagram.com/reel/DemZKD-unEm/",
+        "https://www.instagram.com/reel/DemdmLDOuy6/",
+        "https://www.instagram.com/reel/DenwUwBI8IM/",
+        "https://www.instagram.com/reel/DenxFsooJ81/",
+        "https://www.instagram.com/reel/DepCYLoOsgR/",
+        "https://www.instagram.com/reel/DepFL91Okng/",
+        "https://www.instagram.com/reel/DepWAQ3uy89/",
+        "https://www.instagram.com/reel/DepXP3QOYka/",
+        "https://www.instagram.com/reel/DepaBJcOltK/",
+        "https://www.instagram.com/reel/DepcBXZOZLP/",
+        "https://www.instagram.com/reel/DeqMGrUobOV/",
+        "https://www.instagram.com/reel/DeqN4l7oCkL/",
+        "https://www.instagram.com/reel/DerxR__ut4Z/",
+        "https://www.instagram.com/reel/DeryuOAuv3T/",
+        "https://www.instagram.com/reel/Der0wnbub5u/",
+        "https://www.instagram.com/reel/Der8whsu6Lr/",
+        "https://www.instagram.com/reel/DesxZHYI3w3/",
+        "https://www.instagram.com/reel/Detg_NMurBl/",
+        "https://www.instagram.com/reel/DeuLtjfOa0T/",
+        "https://www.instagram.com/reel/DeuShvguESB/",
+        "https://www.instagram.com/reel/DeuWw0DuN1g/",
+        "https://www.instagram.com/reel/DewTubLugIS/",
+        "https://www.instagram.com/reel/Dewg5C-ua5M/",
+        "https://www.instagram.com/reel/DewmNRruEj0/",
+        "https://www.instagram.com/reel/Dewun6rOQCF/",
+        "https://www.instagram.com/reel/Dewzx8PunKM/",
+        "https://www.instagram.com/reel/DexALXAOo9i/",
+        "https://www.instagram.com/reel/DeyAQbJI6yD/",
+        "https://www.instagram.com/reel/Deyowj6Ouuq/",
+        "https://www.instagram.com/reel/Dey0T9KO-ZG/",
+        "https://www.instagram.com/reel/Dey86UfOQpK/",
+        "https://www.instagram.com/reel/DezFUucuZHy/",
+        "https://www.instagram.com/reel/DezUU5wOo_E/",
+        "https://www.instagram.com/reel/DezWAw1O8oU/",
+        "https://www.instagram.com/reel/DezWaxVOtkV/",
+        "https://www.instagram.com/reel/De0b3Z9ogUn/",
+        "https://www.instagram.com/reel/De0hYZIoecD/"
+      ],
+      "content_grid_views": {
+        "https://www.instagram.com/reel/DeYH4uEIqYK/": 43819,
+        "https://www.instagram.com/reel/DeY0U51u04r/": 1729,
+        "https://www.instagram.com/reel/DeY1_8HupKf/": 3783,
+        "https://www.instagram.com/reel/DeZi5DwuiZa/": 154,
+        "https://www.instagram.com/reel/DeZ5d_suDdH/": 30259,
+        "https://www.instagram.com/reel/DeauY1wIB3O/": 60180,
+        "https://www.instagram.com/reel/DeavhmwIGd4/": 2311,
+        "https://www.instagram.com/reel/DebWOhlu1r9/": 328,
+        "https://www.instagram.com/reel/Deb3COCOhky/": 2043,
+        "https://www.instagram.com/reel/Deb8aayuhJ-/": 2911,
+        "https://www.instagram.com/reel/DecG3L_uy0H/": 1157,
+        "https://www.instagram.com/reel/DedTcyxoaE2/": 534,
+        "https://www.instagram.com/reel/DedUshAIpKh/": 583,
+        "https://www.instagram.com/reel/Ded7L-3OvEa/": 374217,
+        "https://www.instagram.com/reel/Ded7d3xu25R/": 397240,
+        "https://www.instagram.com/reel/DeekssJMU3J/": 12709,
+        "https://www.instagram.com/reel/Degi8c3uAcR/": 3554,
+        "https://www.instagram.com/reel/Degj1VBuARF/": 3246,
+        "https://www.instagram.com/reel/DegmNmVuEUx/": 197824,
+        "https://www.instagram.com/reel/DehBrAzucz-/": 1690,
+        "https://www.instagram.com/reel/DehB9WWOVNG/": 2366818,
+        "https://www.instagram.com/reel/DehQkaXuZHD/": 2468,
+        "https://www.instagram.com/reel/DehWVtxuCWH/": 707,
+        "https://www.instagram.com/reel/DehcM98uu6V/": 314,
+        "https://www.instagram.com/reel/DehjbvxuC4Z/": 385916,
+        "https://www.instagram.com/reel/DeieEx9Ix_S/": 41765,
+        "https://www.instagram.com/reel/Deieh-son5w/": 2153,
+        "https://www.instagram.com/reel/DejK1_VOTk9/": 550218,
+        "https://www.instagram.com/reel/DekBD7lufK-/": 304,
+        "https://www.instagram.com/reel/DekG5j7OzQ3/": 2069,
+        "https://www.instagram.com/reel/DekLVWVuu2_/": 153,
+        "https://www.instagram.com/reel/DelDQt5ooQd/": 655,
+        "https://www.instagram.com/reel/DelDzJzo1Qh/": 399,
+        "https://www.instagram.com/reel/DelwG3kOcxo/": 9399,
+        "https://www.instagram.com/reel/Del6ZQxO79K/": 51,
+        "https://www.instagram.com/reel/Del7lFbuMbx/": 1722,
+        "https://www.instagram.com/reel/DemNUQLO4Mn/": 587,
+        "https://www.instagram.com/reel/DemOAPjOp3V/": 113315,
+        "https://www.instagram.com/reel/DemZKD-unEm/": 313,
+        "https://www.instagram.com/reel/DemdmLDOuy6/": 76,
+        "https://www.instagram.com/reel/DenwUwBI8IM/": 91613,
+        "https://www.instagram.com/reel/DenxFsooJ81/": 2173,
+        "https://www.instagram.com/reel/DepCYLoOsgR/": 2433,
+        "https://www.instagram.com/reel/DepFL91Okng/": 1517,
+        "https://www.instagram.com/reel/DepWAQ3uy89/": 42,
+        "https://www.instagram.com/reel/DepXP3QOYka/": 320218,
+        "https://www.instagram.com/reel/DepaBJcOltK/": 1327,
+        "https://www.instagram.com/reel/DepcBXZOZLP/": 466337,
+        "https://www.instagram.com/reel/DeqMGrUobOV/": 227033,
+        "https://www.instagram.com/reel/DeqN4l7oCkL/": 582697,
+        "https://www.instagram.com/reel/DerxR__ut4Z/": 51212,
+        "https://www.instagram.com/reel/DeryuOAuv3T/": 296,
+        "https://www.instagram.com/reel/Der0wnbub5u/": 239084,
+        "https://www.instagram.com/reel/Der8whsu6Lr/": 4724,
+        "https://www.instagram.com/reel/DesxZHYI3w3/": 145748,
+        "https://www.instagram.com/reel/Detg_NMurBl/": 5235,
+        "https://www.instagram.com/reel/DeuLtjfOa0T/": 9088,
+        "https://www.instagram.com/reel/DeuShvguESB/": 53,
+        "https://www.instagram.com/reel/DeuWw0DuN1g/": 1427,
+        "https://www.instagram.com/reel/DewTubLugIS/": 3392,
+        "https://www.instagram.com/reel/Dewg5C-ua5M/": 37,
+        "https://www.instagram.com/reel/DewmNRruEj0/": 462,
+        "https://www.instagram.com/reel/Dewun6rOQCF/": 82,
+        "https://www.instagram.com/reel/Dewzx8PunKM/": 1002,
+        "https://www.instagram.com/reel/DexALXAOo9i/": 3630144,
+        "https://www.instagram.com/reel/DeyAQbJI6yD/": 150210,
+        "https://www.instagram.com/reel/Deyowj6Ouuq/": 1763,
+        "https://www.instagram.com/reel/Dey0T9KO-ZG/": 1573,
+        "https://www.instagram.com/reel/Dey86UfOQpK/": 841,
+        "https://www.instagram.com/reel/DezFUucuZHy/": 2601,
+        "https://www.instagram.com/reel/DezUU5wOo_E/": 595787,
+        "https://www.instagram.com/reel/DezWAw1O8oU/": 5237,
+        "https://www.instagram.com/reel/DezWaxVOtkV/": 239613,
+        "https://www.instagram.com/reel/De0b3Z9ogUn/": 7334,
+        "https://www.instagram.com/reel/De0hYZIoecD/": 8148
+      },
+      "content_index": 8,
+      "content_scan_complete": true,
+      "content_has_errors": true,
+      "started_at": "2026-10-23T07:23:36.858Z",
+      "updated_at": "2026-10-23T07:25:12.690Z",
+      "completed_at": null,
+      "last_activity_at": "2026-10-23T07:25:14.217Z"
+    },
     "recent_jobs": [
       {
         "id": "1add0588-b659-470e-b8ad-556d8948b291",
