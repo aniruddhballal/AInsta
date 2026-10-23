@@ -5,9 +5,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { catalog, detail, profileData, profileSummary, resolveUsername, root, summary, usernames } from './data.mjs';
-import { MODES, resultStatus, stepsFor, terminal } from './plan.mjs';
+import { MODES, ORDERS, orderProfiles, resultStatus, stepsFor, terminal } from './plan.mjs';
 import { paths, readJson, writeJson } from '../src/store.mjs';
-import { profileLevelComplete } from '../src/model.mjs';
+import { exactPostCount, profileLevelComplete } from '../src/model.mjs';
 
 const publicDir = join(dirname(fileURLToPath(import.meta.url)), 'public');
 const jobPath = join(root, 'data', 'ui-job.json');
@@ -52,13 +52,14 @@ class BatchRunner {
 
   async save() { await writeJson(jobPath, this.batch); }
 
-  async start(requested, mode = 'depth_first') {
+  async start(requested, mode = 'depth_first', order = 'selection') {
     if (this.active) throw Object.assign(new Error('A batch is already running.'), { status: 409 });
     if (!Array.isArray(requested) || !requested.length) throw Object.assign(new Error('Select at least one profile.'), { status: 400 });
     if (!Object.hasOwn(MODES, mode)) throw Object.assign(new Error('Choose a valid collection mode.'), { status: 400 });
+    if (!Object.hasOwn(ORDERS, order)) throw Object.assign(new Error('Choose a valid profile order.'), { status: 400 });
     const valid = await usernames();
     const lookup = new Map(valid.map((name) => [name.toLowerCase(), name]));
-    const selected = [...new Set(requested.map((name) => typeof name === 'string' ? lookup.get(name.toLowerCase()) : null))];
+    let selected = [...new Set(requested.map((name) => typeof name === 'string' ? lookup.get(name.toLowerCase()) : null))];
     if (selected.includes(undefined) || selected.includes(null) || selected.length > valid.length) {
       throw Object.assign(new Error('Selection contains a profile outside the catalog.'), { status: 400 });
     }
@@ -67,9 +68,14 @@ class BatchRunner {
         .filter(({ data }) => !profileLevelComplete(data.profile, data.discovery)).map(({ name }) => `@${name}`);
       if (missing.length) throw Object.assign(new Error(`Finish profile details and reel counts first: ${missing.join(', ')}.`), { status: 400 });
     }
+    if (order === 'posts_ascending') {
+      const postCounts = new Map(await Promise.all(selected.map(async (name) =>
+        [name, exactPostCount(await readJson(paths(root, name).profile))])));
+      selected = orderProfiles(selected, order, postCounts);
+    }
     const steps = stepsFor(selected, mode);
     const time = new Date().toISOString();
-    this.batch = { id: randomUUID(), mode, status: 'running', profiles: selected, steps,
+    this.batch = { id: randomUUID(), mode, order, status: 'running', profiles: selected, steps,
       results: Object.fromEntries(selected.map((name) => [name, { status: 'queued', started_at: null,
         finished_at: null, error: null, stages: Object.fromEntries(steps.filter((step) => step.username === name)
           .map((step) => [step.stage, { status: 'queued', started_at: null, finished_at: null, error: null }])) }])),
@@ -219,7 +225,7 @@ const server = createServer(async (request, response) => {
       }
       if (pathname === '/api/runs') {
         const input = await body(request);
-        return json(response, 202, await runner.start(input.profiles, input.mode));
+        return json(response, 202, await runner.start(input.profiles, input.mode, input.order));
       }
       if (pathname === '/api/runs/stop') return json(response, 200, await runner.stop());
       return json(response, 404, { error: 'Unknown action.' });

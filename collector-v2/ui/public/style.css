@@ -15,3 +15,4 @@
 @media(max-width:1100px){.mode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1101px){.overview-stats{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:740px){.mode-grid{grid-template-columns:1fr}.mode-option{min-height:0}.card-footer{align-items:flex-start}.card-footer>div{justify-content:flex-end}.batch-counts{gap:12px 24px}.batch-row>span:last-child{margin-left:0}}
+.order-control{display:flex;align-items:center;gap:12px;margin-top:16px;color:#385f45;font-size:12px;font-weight:750}.order-control select{border:1px solid #dbe5dc;background:#fff;color:#19352b;border-radius:10px;padding:10px 34px 10px 12px;font-size:12px}

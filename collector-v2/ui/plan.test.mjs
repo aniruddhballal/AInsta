@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { resultStatus, stepsFor } from './plan.mjs';
+import { orderProfiles, resultStatus, stepsFor } from './plan.mjs';
 
 const selected = ['alpha', 'beta'];
 const labels = (mode) => stepsFor(selected, mode).map(({ username, stage }) => `${username}:${stage}`);
@@ -19,4 +19,13 @@ test('a profile result reflects incomplete and review stages', () => {
   assert.equal(resultStatus({ profile: { status: 'complete' }, reels: { status: 'needs_review' } }), 'needs_review');
   assert.equal(resultStatus({ profile: { status: 'failed' }, reels: { status: 'skipped' } }), 'failed');
   assert.equal(resultStatus({ profile: { status: 'complete' }, reels: { status: 'complete' } }), 'complete');
+});
+
+test('post count order sorts saved exact counts and puts unknown counts last', () => {
+  const selected = ['unknown', 'large', 'zero', 'small', 'tied', 'another_unknown'];
+  const counts = new Map([['large', 500], ['zero', 0], ['small', 10], ['tied', 10]]);
+  assert.deepEqual(orderProfiles(selected, 'posts_ascending', counts),
+    ['zero', 'small', 'tied', 'large', 'unknown', 'another_unknown']);
+  assert.deepEqual(orderProfiles(selected, 'selection', counts), selected);
+  assert.throws(() => orderProfiles(selected, 'other', counts), /valid profile order/);
 });

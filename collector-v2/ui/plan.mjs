@@ -5,6 +5,23 @@ export const MODES = Object.freeze({
   reels_only: 'Reels for saved profiles'
 });
 
+export const ORDERS = Object.freeze({
+  selection: 'Selection order',
+  posts_ascending: 'Fewest posts first'
+});
+
+export function orderProfiles(profiles, order = 'selection', postCounts = new Map()) {
+  if (!Object.hasOwn(ORDERS, order)) throw new Error('Choose a valid profile order.');
+  if (order === 'selection') return [...profiles];
+  return profiles.map((username, index) => ({ username, index, count: postCounts.get(username) }))
+    .sort((a, b) => {
+      const aKnown = Number.isSafeInteger(a.count) && a.count >= 0;
+      const bKnown = Number.isSafeInteger(b.count) && b.count >= 0;
+      if (aKnown !== bKnown) return aKnown ? -1 : 1;
+      return (aKnown ? a.count - b.count : 0) || a.index - b.index;
+    }).map(({ username }) => username);
+}
+
 export const terminal = (status) => ['complete', 'needs_review', 'failed', 'skipped'].includes(status);
 
 export function stepsFor(profiles, mode) {
