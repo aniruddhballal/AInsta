@@ -28,13 +28,7 @@ export async function writeReport(paths, profile, discovery, items, run) {
       profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value]
   ];
   await writeFile(paths.profileCsv, profileRows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
-  const metric = (field) => {
-    if (field === 'following_count' && profile?.count_evidence?.following?.conflict) {
-      const evidence = profile.count_evidence.following;
-      return `Disputed (header ${evidence.header.raw}; metadata ${evidence.metadata.raw})`;
-    }
-    return profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
-  };
+  const metric = (field) => profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
   const count = (kind) => items.filter((item) => item.kind === kind).length;
   const complete = items.filter((item) => item.status === 'complete').length;
   const body = items.map((item) => `<tr><td>${esc(item.kind)}</td><td><a href="${esc(item.url)}">${esc(item.shortcode)}</a></td><td>${esc(item.date || '—')}</td><td>${esc(item.likes?.value ?? '—')}</td><td>${esc(item.comments?.value ?? '—')}</td><td>${esc(item.views?.value ?? '—')}</td><td>${esc(item.status || 'pending')}</td><td>${esc((item.missing || []).join(', ') || item.last_error || '')}</td><td title="${esc(item.caption || '')}">${esc((item.caption || '').slice(0, 130))}</td></tr>`).join('\n');

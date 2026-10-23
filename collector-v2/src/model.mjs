@@ -52,7 +52,8 @@ export function profileFromSnapshot(username, snapshot) {
     posts_count: metric(header, ['posts?']) || metric(description, ['posts?']),
     followers_count: exactFollowers ? { ...exactFollowers, source: 'header_title' }
       : headerFollowers ? { ...headerFollowers, source: 'header_text' } : null,
-    following_count: followingConflict ? null : headerFollowing || metadataFollowing,
+    following_count: headerFollowing ? { ...headerFollowing, source: 'header_text' }
+      : metadataFollowing ? { ...metadataFollowing, source: 'page_metadata' } : null,
     count_evidence: {
       followers: { header: headerFollowers, exact_title: exactFollowers, metadata: metadataFollowers },
       following: { header: headerFollowing, metadata: metadataFollowing, conflict: Boolean(followingConflict) },
@@ -68,7 +69,7 @@ export function profileFromSnapshot(username, snapshot) {
     issues: [
       ...(!header ? ['profile header unavailable'] : []),
       ...(!about ? ['About this account unavailable'] : []),
-      ...(followingConflict ? [`Following count conflicts: header shows ${headerFollowing.raw}, page metadata shows ${metadataFollowing.raw}.`] : [])
+      ...(followingConflict ? [`Page metadata says ${metadataFollowing.raw} following; current profile header says ${headerFollowing.raw}, which is used for the count.`] : [])
     ]
   };
 }

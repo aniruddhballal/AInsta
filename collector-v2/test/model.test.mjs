@@ -28,7 +28,8 @@ test('profile reads post count from page metadata when the public header omits i
   const result = profileFromSnapshot('edlt.shox', { header_text: 'edlt.shox\n22.2K followers\n0 following',
     description: '20K Followers, 49 Following, 0 Posts - account on Instagram' });
   assert.equal(result.posts_count.value, 0);
-  assert.equal(result.following_count, null);
+  assert.equal(result.following_count.value, 0);
+  assert.equal(result.following_count.source, 'header_text');
   assert.equal(result.count_evidence.following.header.value, 0);
   assert.equal(result.count_evidence.following.metadata.value, 49);
   assert.equal(mergeProfile({ date_joined: 'September 2026' }, result).date_joined, 'September 2026');
