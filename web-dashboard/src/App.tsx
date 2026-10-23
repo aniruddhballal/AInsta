@@ -113,6 +113,17 @@ function App() {
   const [reelCountFilter, setReelCountFilter] = useState<'missing' | 'all'>(() => new URLSearchParams(window.location.search).get('reel-counts') === 'all' ? 'all' : 'missing');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [debuggingHint, setDebuggingHint] = useState('');
+
+  const copyFirefoxDebuggingUrl = async () => {
+    const url = 'about:debugging#/runtime/this-firefox';
+    try {
+      await navigator.clipboard.writeText(url);
+      setDebuggingHint("Address copied. Press Ctrl+L, paste it into Firefox's address bar, and press Enter.");
+    } catch {
+      setDebuggingHint(`Firefox blocks websites from opening this browser page. Enter ${url} in the address bar.`);
+    }
+  };
 
   const refresh = useCallback(async () => {
     try {
@@ -274,7 +285,8 @@ function App() {
     .filter((job): job is Job => Boolean(job && selectedProfile && job.profile_keys.some((username) => username.toLocaleLowerCase() === key(selectedProfile))));
 
   return <main className={`shell${profileUsername ? ' profile-shell' : ''}`}>
-    <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="topbar-actions"><a className="button secondary extension-shortcut" href="about:debugging#/runtime/this-firefox" target="_blank" rel="noreferrer" title="Open Firefox add-on debugging"><Puzzle aria-hidden="true" size={15} strokeWidth={1.8} /><span>Firefox add-on</span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span><span className="connection-label">{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</span></div></div></header>
+    <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="topbar-actions"><button className="button secondary extension-shortcut" type="button" onClick={() => void copyFirefoxDebuggingUrl()} title="Copy Firefox add-on debugging address"><Puzzle aria-hidden="true" size={15} strokeWidth={1.8} /><span>Firefox add-on</span></button><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span><span className="connection-label">{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</span></div></div></header>
+    {debuggingHint && <div className="debugging-hint" role="status"><span>{debuggingHint}</span><button className="icon-button" onClick={() => setDebuggingHint('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
     {!profileUsername && <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>}
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
     {!profileUsername && activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : activeJob.kind === 'post_content' ? 'Post details scan' : activeJob.kind === 'reel_content' ? 'Reel details scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
