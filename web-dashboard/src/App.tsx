@@ -7,12 +7,12 @@ type Profile = {
   url: string; username: string; bio?: string; country?: string; date_joined?: string;
   posts_count?: string | number; reels_count?: string | number; reels_count_status?: string; reels_count_last_attempt_at?: string;
   post_dates?: PostDate[]; status?: string; last_error?: string;
-  added_at?: string; last_fetched_at?: string | null; profile_text?: string; about_text?: string;
+  added_at?: string; catalog_first_seen_at?: string; last_fetched_at?: string | null; profile_text?: string; about_text?: string;
   collection_issues?: Issue[];
   deep_status?: string;
   ignored?: boolean;
 };
-type Job = { id: string; kind: 'surface' | 'deep' | 'post_count' | 'reels_count'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
+type Job = { id: string; kind: 'surface' | 'deep' | 'post_count' | 'reels_count'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; updated_at?: string; completed_at?: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
 type Tab = 'master' | 'surface' | 'insights' | 'post_counts' | 'reel_counts' | 'deep' | 'issues';
 type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
@@ -266,6 +266,8 @@ function App() {
   ];
 
   const selectedProfile = profileUsername ? profiles.find((profile) => key(profile) === profileUsername.toLocaleLowerCase()) : undefined;
+  const selectedProfileJobs = [data?.workflow?.active_job, ...(data?.workflow?.recent_jobs || [])]
+    .filter((job): job is Job => Boolean(job && selectedProfile && job.profile_keys.some((username) => username.toLocaleLowerCase() === key(selectedProfile))));
 
   return <main className={`shell${profileUsername ? ' profile-shell' : ''}`}>
     <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
@@ -273,7 +275,7 @@ function App() {
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
     {!profileUsername && activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
     {!profileUsername && <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => navigateTab(item.id)}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>}
-    {!data ? <section className="empty">Connecting to the local account data…</section> : profileUsername ? (selectedProfile ? <ProfileDetail profile={selectedProfile} onBack={() => navigateTab('master')} /> : <section className="empty profile-not-found"><h3>Profile not found</h3><p>No local profile data exists for @{profileUsername}.</p><button className="button secondary" onClick={() => navigateTab('master')}>Back to profiles</button></section>) : <>
+    {!data ? <section className="empty">Connecting to the local account data…</section> : profileUsername ? (selectedProfile ? <ProfileDetail profile={selectedProfile} issues={issues.filter((issue) => issue.username?.toLocaleLowerCase() === key(selectedProfile))} jobs={selectedProfileJobs} onBack={() => navigateTab('master')} /> : <section className="empty profile-not-found"><h3>Profile not found</h3><p>No local profile data exists for @{profileUsername}.</p><button className="button secondary" onClick={() => navigateTab('master')}>Back to profiles</button></section>) : <>
       {tab === 'master' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="collection_failed">Collection failed</option><option value="deleted_account">Deleted account</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
         <div className="selection-bar"><span><strong>{masterProfiles.length}</strong> visible <span className="count-separator" aria-hidden="true">·</span> <strong>{surfaceSelection.size}</strong> selected for surface analysis</span><button className="button primary" disabled={!surfaceSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('surface', surfaceSelection)}>Run surface analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
@@ -314,7 +316,7 @@ function App() {
   </main>;
 }
 
-function ProfileDetail({ profile, onBack }: { profile: Profile; onBack: () => void }) {
+function ProfileDetail({ profile, issues, jobs, onBack }: { profile: Profile; issues: Issue[]; jobs: Job[]; onBack: () => void }) {
   const dates = profile.post_dates || [];
   return <section className="profile-detail">
     <button className="profile-back" onClick={onBack}><ArrowRight className="ui-icon back-arrow" size={16} aria-hidden="true" /> All profiles</button>
@@ -328,19 +330,29 @@ function ProfileDetail({ profile, onBack }: { profile: Profile; onBack: () => vo
     </div>
 
     <div className="profile-metadata">
+      <ProfileField label="Profile URL" value={profile.url} />
       <ProfileField label="Country" value={profile.country} />
       <ProfileField label="Date joined" value={profile.date_joined} />
       <ProfileField label="Added at" value={fmt(profile.added_at)} />
+      <ProfileField label="Catalog first seen" value={fmt(profile.catalog_first_seen_at)} />
       <ProfileField label="Last fetched" value={fmt(profile.last_fetched_at)} />
       <ProfileField label="Deep analysis" value={profile.deep_status || 'Not collected'} />
       <ProfileField label="Reel scan" value={profile.reels_count_status || 'Not collected'} />
+      <ProfileField label="Reel count last attempted" value={fmt(profile.reels_count_last_attempt_at)} />
+      <ProfileField label="Ignored" value={profile.ignored ? 'Yes' : 'No'} />
     </div>
     {profile.last_error && <div className="profile-error"><strong>Last error</strong><p>{profile.last_error}</p></div>}
+
+    <section className="profile-issues"><h2>Collection issues <span>{issues.length}</span></h2>{issues.length ? <div className="profile-issue-list">{issues.map((issue, index) => <article key={issue.id || `${issue.occurred_at}-${index}`}><div><strong>{text(issue.code)}</strong><span>{fmt(issue.occurred_at)}</span></div><p>{text(issue.message)}</p>{issue.recommended_action && <small>{issue.recommended_action}</small>}{issue.post_url && <a href={issue.post_url} target="_blank" rel="noreferrer">Open affected post <ArrowUpRight className="ui-icon" size={13} aria-hidden="true" /></a>}<details className="profile-issue-raw"><summary>Full issue record</summary><pre>{JSON.stringify(issue, null, 2)}</pre></details></article>)}</div> : <p className="profile-no-issues">No collection issues recorded for this profile.</p>}</section>
+
+    <section className="profile-job-history"><h2>Analysis history <span>{jobs.length}</span></h2>{jobs.length ? <div>{jobs.map((job) => <details key={job.id}><summary><strong>{job.kind.replace('_', ' ')} · {job.status}</strong><span>{fmt(job.started_at)}{job.completed_at ? ` – ${fmt(job.completed_at)}` : ''}</span></summary><pre>{JSON.stringify(job, null, 2)}</pre></details>)}</div> : <p className="profile-no-issues">No retained analysis jobs reference this profile.</p>}</section>
 
     <div className="profile-text-panels">
       <details><summary>Collected profile text</summary><pre>{profile.profile_text || 'No profile text collected.'}</pre></details>
       <details><summary>About text</summary><pre>{profile.about_text || 'No about text collected.'}</pre></details>
     </div>
+
+    <details className="profile-raw-record"><summary>Complete stored profile record</summary><pre>{JSON.stringify(profile, null, 2)}</pre></details>
 
     <div className="profile-posts-heading"><h2>Collected post dates</h2><span>{dates.length.toLocaleString()} posts</span></div>
     {dates.length ? <div className="profile-post-grid">{dates.map((post, index) => <a className="profile-post-tile" href={post.url} target="_blank" rel="noreferrer" key={`${post.url}-${index}`}><span>POST {String(index + 1).padStart(2, '0')}</span><strong>{post.date || 'Date unavailable'}</strong><ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a>)}</div> : <div className="empty profile-post-empty"><h3>No post dates collected</h3><p>Run deep analysis on this profile to collect post dates.</p></div>}
