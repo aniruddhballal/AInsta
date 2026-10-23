@@ -1,7 +1,7 @@
 {
   "id": "1bc89610-578b-45ff-9143-3bd4e9ad68f2",
   "mode": "profile_only",
-  "status": "running",
+  "status": "interrupted",
   "profiles": [
     "not.your.ordinary.nga",
     "gzfr",
@@ -1375,13 +1375,13 @@
       }
     },
     "ijuggminors": {
-      "status": "running",
+      "status": "interrupted",
       "started_at": "2026-10-23T15:40:04.735Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "running",
+          "status": "interrupted",
           "started_at": "2026-10-23T15:40:04.735Z",
           "finished_at": null,
           "error": null
@@ -2383,8 +2383,8 @@
       }
     }
   },
-  "current": "ijuggminors",
-  "current_stage": "profile",
+  "current": null,
+  "current_stage": null,
   "started_at": "2026-10-23T14:16:12.000Z",
   "updated_at": "2026-10-23T15:40:04.735Z",
   "finished_at": null,
