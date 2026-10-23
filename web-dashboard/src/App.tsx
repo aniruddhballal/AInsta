@@ -27,6 +27,25 @@ const numericPostCount = (value: unknown): number | null => {
   return Math.round(amount * multiplier);
 };
 const hasPostCount = (profile: Profile) => numericPostCount(profile.posts_count) != null;
+function joinedDateRange(profile: Profile): { from: string; to: string } | null {
+  const value = String(profile.date_joined || '').trim();
+  if (!value) return null;
+  const monthYear = value.match(/^([A-Za-z]+)\s+((?:19|20)\d{2})$/);
+  if (monthYear) {
+    const month = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'].indexOf(monthYear[1].toLocaleLowerCase());
+    if (month < 0) return null;
+    const year = Number(monthYear[2]);
+    const from = `${year}-${String(month + 1).padStart(2, '0')}-01`;
+    const to = `${year}-${String(month + 1).padStart(2, '0')}-${String(new Date(Date.UTC(year, month + 1, 0)).getUTCDate()).padStart(2, '0')}`;
+    return { from, to };
+  }
+  const isoDate = value.match(/^(\d{4}-\d{2}-\d{2})$/);
+  if (isoDate) return { from: isoDate[1], to: isoDate[1] };
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return null;
+  const date = `${parsed.getFullYear()}-${String(parsed.getMonth() + 1).padStart(2, '0')}-${String(parsed.getDate()).padStart(2, '0')}`;
+  return { from: date, to: date };
+}
 const key = (profile: Profile) => profile.username.toLocaleLowerCase();
 const text = (value: unknown) => value == null || value === '' ? '—' : String(value);
 const successful = (profile: Profile) => Boolean(profile.last_fetched_at) && profile.status?.toLocaleLowerCase() === 'collected';
@@ -49,6 +68,10 @@ function App() {
   const [tab, setTab] = useState<Tab>('master');
   const [search, setSearch] = useState('');
   const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>('all');
+  const [surfaceCountry, setSurfaceCountry] = useState('all');
+  const [joinedFrom, setJoinedFrom] = useState('');
+  const [joinedTo, setJoinedTo] = useState('');
+  const [postSort, setPostSort] = useState<'none' | 'asc' | 'desc'>('none');
   const [surfaceSelection, setSurfaceSelection] = useState<Set<string>>(new Set());
   const [deepSelection, setDeepSelection] = useState<Set<string>>(new Set());
   const [postCountSelection, setPostCountSelection] = useState<Set<string>>(new Set());
@@ -88,6 +111,24 @@ function App() {
   }), [visibleProfiles, surfaceFilter, issues]);
   const postCountProfiles = visibleProfiles.filter((profile) => !profile.ignored && (postCountFilter === 'all' || !hasPostCount(profile)));
   const postCountSelectable = postCountProfiles.filter((profile) => !hasPostCount(profile));
+  const surfaceBaseProfiles = visibleProfiles.filter((profile) => Boolean(profile.last_fetched_at));
+  const surfaceCountries = [...new Set(surfaceBaseProfiles.map((profile) => String(profile.country || '').trim()).filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b));
+  const surfaceProfiles = surfaceBaseProfiles
+    .filter((profile) => surfaceCountry === 'all' || String(profile.country || '').trim() === surfaceCountry)
+    .filter((profile) => {
+      if (!joinedFrom && !joinedTo) return true;
+      const joined = joinedDateRange(profile);
+      return Boolean(joined && (!joinedFrom || joined.to >= joinedFrom) && (!joinedTo || joined.from <= joinedTo));
+    })
+    .map((profile, index) => ({ profile, index, posts: postCount(profile) }))
+    .sort((a, b) => {
+      if (postSort === 'none') return a.index - b.index;
+      if (a.posts == null) return b.posts == null ? a.index - b.index : 1;
+      if (b.posts == null) return -1;
+      return (postSort === 'asc' ? a.posts - b.posts : b.posts - a.posts) || a.index - b.index;
+    })
+    .map(({ profile }) => profile);
   const readyForDeep = profiles.filter(successful);
   const doneCount = activeJob ? Math.min(activeJob.index, activeJob.profile_keys.length) : 0;
 
@@ -154,9 +195,15 @@ function App() {
         {!masterProfiles.length && <div className="empty">No profiles match the current search and status filter.</div>}
       </section>}
       {tab === 'surface' && <section>
-        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label><span className="helper">Select completed profiles to collect post dates.</span></div>
-        <div className="selection-bar"><span><strong>{deepSelection.size}</strong> selected · {readyForDeep.length} ready for deep analysis</span><button className="button primary" disabled={!deepSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('deep', deepSelection)}>Run deep analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
-        <ProfileTable profiles={visibleProfiles.filter((profile) => Boolean(profile.last_fetched_at))} mode="surface" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
+        <div className="toolbar surface-toolbar">
+          <label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label>
+          <label className="filter-select"><Globe2 className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter by country</span><select value={surfaceCountry} onChange={(event) => setSurfaceCountry(event.target.value)} aria-label="Filter by country"><option value="all">All countries</option>{surfaceCountries.map((country) => <option key={country} value={country}>{country}</option>)}</select></label>
+          <label className="date-filter"><span>Joined from</span><input type="date" value={joinedFrom} max={joinedTo || undefined} onChange={(event) => setJoinedFrom(event.target.value)} /></label>
+          <label className="date-filter"><span>Joined to</span><input type="date" value={joinedTo} min={joinedFrom || undefined} onChange={(event) => setJoinedTo(event.target.value)} /></label>
+          <label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Sort by post count</span><select value={postSort} onChange={(event) => setPostSort(event.target.value as 'none' | 'asc' | 'desc')} aria-label="Sort by post count"><option value="none">Default order</option><option value="desc">Posts: high to low</option><option value="asc">Posts: low to high</option></select></label>
+        </div>
+        <div className="selection-bar"><span><strong>{surfaceProfiles.length}</strong> visible · <strong>{deepSelection.size}</strong> selected · {readyForDeep.length} ready for deep analysis</span><button className="button primary" disabled={!deepSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('deep', deepSelection)}>Run deep analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
+        <ProfileTable profiles={surfaceProfiles} mode="surface" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
       </section>}
       {tab === 'insights' && <InsightsView profiles={profiles} />}
       {tab === 'post_counts' && <section>
@@ -176,7 +223,7 @@ function App() {
 }
 
 function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profiles: Profile[]; mode: 'master' | 'surface' | 'deep'; selection: Set<string>; onToggle: (username: string) => void; onIgnore?: (username: string, ignored: boolean) => void }) {
-  if (!profiles.length) return <div className="empty">{mode === 'surface' ? 'No surface results yet. Select profiles from the master list to begin.' : mode === 'deep' ? 'No post date records yet.' : 'No profiles in the catalog.'}</div>;
+  if (!profiles.length) return <div className="empty">{mode === 'surface' ? 'No surface results match the current search and filters.' : mode === 'deep' ? 'No post date records yet.' : 'No profiles in the catalog.'}</div>;
   return <div className="table-wrap"><table><thead><tr>{mode !== 'deep' && <th className="check-col"><span className="sr-only">Select</span></th>}<th>PROFILE</th>{mode === 'master' && <><th>PHONE CATALOG ADDED</th><th>SURFACE STATUS</th><th>REVIEW</th></>}{mode === 'surface' && <><th>BIO / PROFILE TEXT / ABOUT TEXT</th><th>COUNTRY</th><th>DATE JOINED</th><th>POSTS</th><th>STATUS</th><th>ADDED AT</th><th>LAST FETCHED</th><th>LAST ERROR</th></>}{mode === 'deep' && <><th>POST DATES</th><th>STATUS</th><th>LAST FETCHED</th></>}</tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}>
     {mode !== 'deep' && <td><input aria-label={`Select @${profile.username}`} type="checkbox" checked={selection.has(key(profile))} disabled={profile.ignored || (mode === 'surface' && !successful(profile))} onChange={() => onToggle(key(profile))} /></td>}
     <td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td>
