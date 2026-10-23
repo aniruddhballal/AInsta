@@ -125,6 +125,12 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    if (!debuggingHint) return;
+    const timer = window.setTimeout(() => setDebuggingHint(''), 5000);
+    return () => window.clearTimeout(timer);
+  }, [debuggingHint]);
+
   const refresh = useCallback(async () => {
     try {
       const next = await api<Data>('/state');
