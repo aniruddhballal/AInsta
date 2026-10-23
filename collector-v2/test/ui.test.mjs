@@ -17,7 +17,11 @@ test('the profile page never displays a partial grid count as a result', () => {
   assert.equal(summary.posts.discovered, null);
   assert.equal(summary.posts.grid_error, 'Grid scan stopped early.');
   assert.equal(gridLabel({ discovered: null, grid_complete: false,
-    grid_error: 'Grid has not been scanned.' }), 'Error');
+    grid_error: 'Grid has not been scanned.' }), 'Not scanned');
+  assert.equal(gridLabel({ discovered: null, grid_complete: false,
+    grid_error: 'Grid scan did not finish.' }, { status: 'running', phase: 'reel discovery' }), 'Counting');
+  assert.equal(gridLabel({ discovered: null, grid_complete: false,
+    grid_error: 'Reel scan stopped early.' }), 'Error');
   const html = renderProfile({ detail: { ...data, summary }, itemSearch: '', itemFilter: 'all',
     itemSort: 'newest', batch: null, error: null });
   assert.match(html, /INSTAGRAM POSTS<\/span><strong>2,894<\/strong>/);
