@@ -1,9 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { launch, captureProfile, discover, captureItem } from './browser.mjs';
-import { count, itemFromSnapshot, now, profileFromSnapshot } from './model.mjs';
-import { paths, readJson, writeJson, mergeItem } from './store.mjs';
+import { itemFromSnapshot, now, profileFromSnapshot } from './model.mjs';
+import { paths, readJson, writeJson, mergeItem, mergeProfile } from './store.mjs';
 import { writeReport } from './report.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -18,6 +20,7 @@ if (targets.length !== 1 || targets[0] !== 'edlt.shox' || !index?.profile_keys?.
 const username = targets[0];
 const path = paths(root, username);
 const log = (value) => console.log(`[${new Date().toLocaleTimeString('en-GB')}] ${value}`);
+const exec = promisify(execFile);
 
 async function files() {
   return {
@@ -55,6 +58,33 @@ async function login() {
   await new Promise((done) => context.once('close', done));
 }
 
+async function importFirefox() {
+  const helper = join(root, 'src', 'firefox-cookies.py');
+  const pathArg = process.argv.find((arg) => arg.startsWith('--profile='))?.slice(10);
+  const candidatePythons = process.env.DEDGRAM_PYTHON ? [process.env.DEDGRAM_PYTHON]
+    : [resolve(root, '..', '.venv', 'Scripts', 'python.exe'), 'python3', 'python'];
+  let output;
+  let lastError;
+  for (const python of candidatePythons) {
+    try { output = (await exec(python, [helper, ...(pathArg ? [pathArg] : [])], { maxBuffer: 1024 * 1024 })).stdout; break; }
+    catch (error) { lastError = error; }
+  }
+  if (!output) throw lastError || new Error('No Firefox Instagram cookies found.');
+  const cookies = JSON.parse(output);
+  if (!cookies.some((cookie) => cookie.name === 'sessionid')) throw new Error('Firefox does not have a usable Instagram session cookie.');
+  const { context, page } = await launch(root, { headless: true });
+  try {
+    await context.addCookies(cookies);
+    await page.goto(`https://www.instagram.com/${username}/`, { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await page.waitForTimeout(1800);
+    const text = (await page.locator('body').innerText()).slice(0, 500);
+    if (/^Log In\s+Sign Up/i.test(text) || /\/accounts\/login/.test(page.url())) {
+      throw new Error('Imported cookies did not produce a signed in page; use npm run login instead.');
+    }
+    log(`Imported ${cookies.length} Instagram cookies into the isolated browser profile. No cookie values were printed.`);
+  } finally { await context.close(); }
+}
+
 async function collect() {
   const refresh = flags.has('--refresh');
   const headless = flags.has('--headless');
@@ -64,17 +94,26 @@ async function collect() {
   let { profile, discovery, items, run } = await files();
   run = { ...run, started_at: now(), updated_at: now(), status: 'running', phase: 'profile', error: null };
   await writeJson(path.run, run);
-  const { context, page } = await launch(root, { headless });
+  let context;
   try {
+    const launched = await launch(root, { headless });
+    context = launched.context;
+    const page = launched.page;
     log(`Collecting ${username} profile`);
     const snapshot = await captureProfile(page, username);
     const current = profileFromSnapshot(username, snapshot);
-    profile = profile ? { ...profile, ...current } : current;
+    profile = mergeProfile(profile, current);
     await writeJson(path.profile, profile);
     for (const kind of ['post', 'reel']) {
       run = { ...run, phase: `${kind} discovery`, updated_at: now() };
       await writeJson(path.run, run);
       if (discovery[kind]?.complete && !refresh) { log(`Using saved ${kind} grid`); continue; }
+      if (kind === 'post' && profile.posts_count?.value === 0 && !profile.posts_count?.approximate) {
+        discovery.post = { items: [], complete: true, error: '', attempted_at: now(), source: 'profile_post_count' };
+        await writeJson(path.discovery, discovery);
+        log('Post count is exactly zero; post grid is empty');
+        continue;
+      }
       log(`Scanning ${kind} grid`);
       const prior = new Map((discovery[kind]?.items || []).map((item) => [item.url, item]));
       const result = await discover(page, username, kind, async (found, complete, error = '') => {
@@ -87,6 +126,9 @@ async function collect() {
     const queued = new Map();
     for (const kind of ['post', 'reel']) for (const item of discovery[kind]?.items || []) queued.set(item.url, item);
     const existing = new Map(items.map((item) => [item.url, item]));
+    for (const item of queued.values()) if (!existing.has(item.url)) existing.set(item.url, { ...item, status: 'pending' });
+    items = [...existing.values()];
+    await writeJson(path.items, items);
     let attempted = 0;
     for (const item of queued.values()) {
       const old = existing.get(item.url);
@@ -97,9 +139,8 @@ async function collect() {
       await writeJson(path.run, run);
       log(`${attempted}: ${item.kind} ${item.shortcode}`);
       try {
-        const gridViews = count(item.grid_views_raw);
         const capture = await captureItem(page, item);
-        const result = itemFromSnapshot(item, { ...capture, grid_views_count: gridViews?.value ?? null });
+        const result = itemFromSnapshot(item, { ...capture, grid_views_raw: item.grid_views_raw });
         existing.set(item.url, mergeItem(old, result));
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
@@ -112,7 +153,9 @@ async function collect() {
       await writeJson(path.items, items);
       await new Promise((done) => setTimeout(done, 1600));
     }
-    run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: 'complete' };
+    const complete = ['post', 'reel'].every((kind) => discovery[kind]?.complete)
+      && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete');
+    run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial' };
     await writeJson(path.run, run);
     await writeReport(path, profile, discovery, items, run);
     log(`Done: ${items.length} items. Report: ${path.report}`);
@@ -121,11 +164,12 @@ async function collect() {
     await writeJson(path.run, run);
     await writeReport(path, profile, discovery, items, run);
     throw error;
-  } finally { await context.close(); }
+  } finally { if (context) await context.close(); }
 }
 
 try {
   if (command === 'login') await login();
+  else if (command === 'import-firefox') await importFirefox();
   else if (command === 'collect') await collect();
   else if (command === 'status') await status();
   else if (command === 'report') await report();

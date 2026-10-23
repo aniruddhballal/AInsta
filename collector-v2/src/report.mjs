@@ -1,9 +1,10 @@
-import { writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const csv = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
 
 export async function writeReport(paths, profile, discovery, items, run) {
+  await mkdir(paths.base, { recursive: true });
   const rows = [['kind', 'shortcode', 'url', 'date', 'caption', 'hashtags', 'likes', 'comments', 'views', 'status', 'missing', 'last_error', 'fetched_at']];
   for (const item of items) rows.push([
     item.kind, item.shortcode, item.url, item.date, item.caption, (item.hashtags || []).join(' '),

@@ -40,7 +40,7 @@ export function profileFromSnapshot(username, snapshot) {
     fetched_at: now(),
     display_name: statIndex > 1 ? lines.slice(1, statIndex).join(' ') : null,
     bio: bioLines.length ? bioLines.join('\n') : null,
-    posts_count: metric(header, ['posts?']),
+    posts_count: metric(header, ['posts?']) || metric(snapshot.description || '', ['posts?']),
     followers_count: metric(header, ['followers?']),
     following_count: metric(header, ['following']),
     category: snapshot.category || null,
@@ -60,7 +60,7 @@ export function canonicalItemUrl(href) {
   try {
     const url = new URL(href, 'https://www.instagram.com');
     if (!['www.instagram.com', 'instagram.com'].includes(url.hostname)) return null;
-    const match = url.pathname.match(/^\/(p|reel|reels)\/([A-Za-z0-9_-]+)\/?$/);
+    const match = url.pathname.match(/^\/(?:[A-Za-z0-9._]+\/)?(p|reel|reels)\/([A-Za-z0-9_-]+)\/?$/);
     if (!match) return null;
     const kind = match[1] === 'p' ? 'post' : 'reel';
     return { kind, shortcode: match[2], url: `https://www.instagram.com/${kind === 'post' ? 'p' : 'reel'}/${match[2]}/` };
@@ -100,12 +100,13 @@ export function itemFromSnapshot(item, snapshot) {
     if (parsed) likes = { ...parsed, value: parsed.value + 1, source: 'others_plus_one' };
   }
   const comments = findMetric(['comments?']);
-  const views = findMetric(['views?', 'plays?']) || (snapshot.grid_views_count != null
-    ? { ...count(String(snapshot.grid_views_count)), source: 'profile_grid' } : null);
+  const views = findMetric(['views?', 'plays?']) || (snapshot.grid_views_raw
+    ? { ...count(snapshot.grid_views_raw), source: 'profile_grid' } : null);
   const dateRaw = snapshot.datetime || structured.uploadDate || structured.datePublished || null;
   const date = dateRaw && !Number.isNaN(Date.parse(dateRaw)) ? new Date(dateRaw).toISOString() : null;
-  const caption = snapshot.caption || structured.caption || structured.description ||
-    description.match(/:\s*[“"']?([\s\S]+)$/)?.[1]?.replace(/[”"']$/, '') || null;
+  const ogCaption = description.match(/:\s*[“"']([\s\S]*)[”"']\.?\s*$/)?.[1]
+    || description.match(/:\s*([\s\S]+)$/)?.[1]?.trim();
+  const caption = snapshot.caption || structured.caption || structured.description || ogCaption || null;
   const hashtags = [...new Set((caption || '').match(/#[\p{L}\p{N}_]+/gu) || [])];
   const mentions = [...new Set((caption || '').match(/@[A-Za-z0-9._]+/g) || [])];
   const missing = [!date && 'date', !likes && 'likes', !comments && 'comments', !views && 'views'].filter(Boolean);

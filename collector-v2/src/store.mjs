@@ -37,3 +37,13 @@ export function mergeItem(previous, current) {
   result.missing = ['date', 'likes', 'comments', 'views'].filter((field) => result[field] == null);
   return result;
 }
+
+export function mergeProfile(previous, current) {
+  if (!previous) return current;
+  const result = { ...previous, ...current };
+  for (const field of ['display_name', 'bio', 'posts_count', 'followers_count', 'following_count', 'category',
+    'profile_picture_url', 'date_joined', 'account_based_in', 'former_usernames_count']) {
+    if (result[field] == null && previous[field] != null) result[field] = previous[field];
+  }
+  return result;
+}

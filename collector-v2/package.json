@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "login": "node src/cli.mjs login",
+    "import-firefox": "node src/cli.mjs import-firefox",
     "collect": "node src/cli.mjs collect",
     "status": "node src/cli.mjs status",
     "report": "node src/cli.mjs report",

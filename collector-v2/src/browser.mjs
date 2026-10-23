@@ -81,9 +81,14 @@ export async function discover(page, username, kind, onProgress, { maxPasses = 2
     })));
     const sizeBefore = found.size;
     for (const anchor of raw) {
+      const pathname = new URL(anchor.href).pathname;
+      const owner = pathname.match(/^\/([^/]+)\/(?:p|reel|reels)\//)?.[1];
+      if (owner && owner.toLowerCase() !== username.toLowerCase()) continue;
       const item = canonicalItemUrl(anchor.href);
       if (item?.kind !== kind) continue;
-      const views = kind === 'reel' ? (anchor.label || anchor.text).match(/([\d,.]+\s*[KMB]?)\s*(?:views?|plays?)/i)?.[1] : null;
+      const tileText = clean(anchor.label || anchor.text);
+      const views = kind === 'reel' ? (tileText.match(/([\d,.]+\s*[KMB]?)\s*(?:views?|plays?)/i)?.[1]
+        || (/^[\d,.]+\s*[KMB]?$/i.test(tileText) ? tileText : null)) : null;
       found.set(item.url, { ...found.get(item.url), ...item, grid_views_raw: views || found.get(item.url)?.grid_views_raw || null });
     }
     if (found.size !== sizeBefore) await onProgress([...found.values()], false);
@@ -92,10 +97,12 @@ export async function discover(page, username, kind, onProgress, { maxPasses = 2
       height: Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
       viewport: window.innerHeight,
       loading: !!document.querySelector('[role="progressbar"]'),
-      text: (document.querySelector('main')?.innerText || '').slice(0, 1500)
+      text: (document.querySelector('main')?.innerText || '').slice(0, 1500),
+      gate: /Sign up and never miss a post|See photos, videos and more from/i.test(document.body.innerText || '')
     }));
     reason = blocked(page.url(), state.text);
     if (reason) break;
+    if (state.gate) { reason = 'The logged out preview showed a limited grid. Sign in to discover the full list.'; break; }
     const empty = kind === 'reel' ? /no reels|hasn't posted any reels|no content to show/i.test(state.text)
       : /no posts yet|hasn't posted/i.test(state.text);
     if (!found.size && empty) { complete = true; break; }
