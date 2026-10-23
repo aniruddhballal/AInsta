@@ -1,6 +1,6 @@
 # Isolated Instagram collector prototype
 
-This is an independent prototype for **only `edlt.shox`**. `targets.json` contains the sole candidate, which is checked against `../bot-info/database/profiles/index.json`. It never writes to the existing dashboard database or Firefox extension.
+This is an independent collector. `targets.json` supplies `edlt.shox` as the default candidate. Pass `--username=NAME` to collect another account from `../bot-info/database/profiles/index.json`. It never writes to the existing dashboard database or Firefox extension.
 
 The collector uses free, local Playwright Chromium automation. It reads visible Instagram pages, finds post and reel links from the profile grids, then opens each item by its canonical URL. It saves after each discovery update and each item, so interrupted runs can resume. It does not use undocumented Instagram endpoints or bypass login, checkpoints, or rate limits.
 
@@ -31,7 +31,7 @@ npm run status
 npm run report
 ```
 
-`collect` opens a visible browser. Use `node src/cli.mjs collect --headless` to run in the background. A normal rerun skips grids marked complete and items with complete details, while retrying partial or failed items. Use `--refresh` to rescan grids and refresh items. `--limit=N` limits item detail attempts for a small test; discovery still runs.
+`collect` opens a visible browser. Use `node src/cli.mjs collect --headless` to run in the background. Add `--username=NAME` for another catalog account and `--reels-only` to collect its reels before tackling posts. A normal rerun skips grids marked complete and items with complete details, while retrying partial or failed items. Use `--refresh` to rescan grids and refresh items. `--limit=N` limits item detail attempts for a small test; discovery still runs.
 
 Outputs are under ignored `data/edlt.shox/`:
 

@@ -14,10 +14,11 @@ const flags = new Set(process.argv.slice(3));
 const targetFile = await readJson(join(root, 'targets.json'));
 const index = await readJson(resolve(root, '..', 'bot-info', 'database', 'profiles', 'index.json'));
 const targets = targetFile?.profile_keys || [];
-if (targets.length !== 1 || targets[0] !== 'edlt.shox' || !index?.profile_keys?.includes(targets[0])) {
-  throw new Error('Prototype targets must contain only edlt.shox, and that username must exist in the source index.');
+const requestedUsername = process.argv.find((arg) => arg.startsWith('--username='))?.slice(11) || targets[0];
+const username = index?.profile_keys?.find((key) => key.toLowerCase() === requestedUsername?.toLowerCase());
+if (!username || !/^[A-Za-z0-9._]{1,30}$/.test(username)) {
+  throw new Error('Select an Instagram username present in bot-info/database/profiles/index.json.');
 }
-const username = targets[0];
 const path = paths(root, username);
 const log = (value) => console.log(`[${new Date().toLocaleTimeString('en-GB')}] ${value}`);
 const exec = promisify(execFile);
@@ -88,6 +89,7 @@ async function importFirefox() {
 async function collect() {
   const refresh = flags.has('--refresh');
   const headless = flags.has('--headless');
+  const kinds = flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
   const limitArg = process.argv.find((arg) => arg.startsWith('--limit='));
   const limit = limitArg ? Number(limitArg.slice(8)) : Infinity;
   if (!Number.isInteger(limit) && limit !== Infinity || limit < 0) throw new Error('--limit must be a nonnegative integer.');
@@ -106,7 +108,7 @@ async function collect() {
     return { ...item, date: day };
   });
   if (corrected) await writeJson(path.items, items);
-  run = { ...run, started_at: now(), updated_at: now(), status: 'running', phase: 'profile', error: null };
+  run = { ...run, started_at: now(), updated_at: now(), status: 'running', phase: 'profile', scope: kinds, error: null };
   await writeJson(path.run, run);
   let context;
   try {
@@ -118,7 +120,7 @@ async function collect() {
     const current = profileFromSnapshot(username, snapshot);
     profile = mergeProfile(profile, current);
     await writeJson(path.profile, profile);
-    for (const kind of ['post', 'reel']) {
+    for (const kind of kinds) {
       run = { ...run, phase: `${kind} discovery`, updated_at: now() };
       await writeJson(path.run, run);
       if (discovery[kind]?.complete && !refresh) { log(`Using saved ${kind} grid`); continue; }
@@ -138,7 +140,7 @@ async function collect() {
       log(`${kind}: ${result.items.length} found, ${result.complete ? 'complete' : result.error}`);
     }
     const queued = new Map();
-    for (const kind of ['post', 'reel']) for (const item of discovery[kind]?.items || []) queued.set(item.url, item);
+    for (const kind of kinds) for (const item of discovery[kind]?.items || []) queued.set(item.url, item);
     const existing = new Map(items.map((item) => [item.url, item]));
     for (const item of queued.values()) {
       const old = existing.get(item.url);
@@ -172,7 +174,7 @@ async function collect() {
       await writeJson(path.items, items);
       await new Promise((done) => setTimeout(done, 1600));
     }
-    const complete = ['post', 'reel'].every((kind) => discovery[kind]?.complete)
+    const complete = kinds.every((kind) => discovery[kind]?.complete)
       && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete' && !existing.get(url)?.last_error);
     run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial' };
     await writeJson(path.run, run);
