@@ -196,8 +196,10 @@ async function collect() {
       : `Done: ${items.length} items. Report: ${path.report}`);
   } catch (error) {
     run = { ...run, status: 'blocked', updated_at: now(), error: error instanceof Error ? error.message : String(error) };
-    await writeJson(path.run, run);
-    await writeReport(path, profile, discovery, items, run);
+    try { await writeJson(path.run, run); }
+    catch (saveError) { log(`Could not save failure status: ${saveError.message}`); }
+    try { await writeReport(path, profile, discovery, items, run); }
+    catch (saveError) { log(`Could not save failure report: ${saveError.message}`); }
     throw error;
   } finally { if (context) await context.close(); }
 }

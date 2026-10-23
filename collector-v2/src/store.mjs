@@ -1,6 +1,7 @@
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
+import { setTimeout as delay } from 'node:timers/promises';
 import { count, reasonsForMissing } from './model.mjs';
 
 export async function readJson(path, fallback = null) {
@@ -12,7 +13,18 @@ export async function writeJson(path, value) {
   await mkdir(dirname(path), { recursive: true });
   const temporary = `${path}.${randomUUID()}.tmp`;
   await writeFile(temporary, JSON.stringify(value, null, 2) + '\n', 'utf8');
-  await rename(temporary, path);
+  try {
+    for (let attempt = 0; ; attempt++) {
+      try { await rename(temporary, path); return; }
+      catch (error) {
+        if (!['EPERM', 'EACCES', 'EBUSY'].includes(error.code) || attempt >= 7) throw error;
+        await delay(Math.min(800, 50 * 2 ** attempt));
+      }
+    }
+  } catch (error) {
+    await unlink(temporary).catch(() => {});
+    throw error;
+  }
 }
 
 export function paths(root, username) {
