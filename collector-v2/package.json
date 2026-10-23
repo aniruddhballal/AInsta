@@ -6,6 +6,7 @@
     "login": "node src/cli.mjs login",
     "import-firefox": "node src/cli.mjs import-firefox",
     "collect": "node src/cli.mjs collect",
+    "ui": "node ui/server.mjs",
     "status": "node src/cli.mjs status",
     "report": "node src/cli.mjs report",
     "test": "node --test"
