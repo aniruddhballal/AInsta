@@ -39,7 +39,9 @@
   }
 
   async function loadStep(step) {
-    const url = step.stage === 'deep_post' ? step.post_url : step.stage === 'reels_count' ? reelsUrl(step.url) : step.url;
+    const url = step.stage === 'deep_post' ? step.post_url
+      : step.stage === 'content_item' ? step.content_url
+        : step.stage === 'reels_count' || step.stage === 'reel_content_profile' ? reelsUrl(step.url) : step.url;
     const tab = await getCollectorTab();
     if (tab.url !== url) {
       const loaded = new Promise((resolve, reject) => {
@@ -97,8 +99,12 @@
             ? { status: 'Collection failed', last_error: message, issues: [{ code: 'SURFACE_COLLECTION_FAILED', message }] }
             : step.stage === 'post_count'
               ? { posts_count: 'Not shown', error: message }
-              : step.stage === 'reels_count'
+            : step.stage === 'reels_count'
                 ? { reels_count: null, complete: false, error: message }
+            : step.stage === 'post_content_profile' || step.stage === 'reel_content_profile'
+              ? { content_urls: [], complete: false, error: message }
+            : step.stage === 'content_item'
+              ? { error: message, errors: [] }
             : step.stage === 'deep_profile'
               ? { post_urls: [], error: message }
               : { date: 'Not shown', error: message };

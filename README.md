@@ -46,7 +46,7 @@ Open `http://127.0.0.1:5173`. The dashboard imports usernames from `bot-info/ded
 
 ### 4. Load the Firefox add-on and collect
 
-In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on…**, and select `firefox-extension/manifest.json`. Keep the dashboard and Firefox open while collecting. In the dashboard, select profiles and run **Surface analysis** first; after it succeeds, select those profiles in **Deep analysis** to collect post dates. The add-on waits for dashboard jobs and does not scan profiles on its own. Profile data, post dates, job progress, and issues are stored in `bot-info/bot-account-info.json`.
+In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on…**, and select `firefox-extension/manifest.json`. Keep the dashboard and Firefox open while collecting. In the dashboard, run **Surface analysis** first; after it succeeds, select those profiles in **Deep analysis** to collect post dates. For engagement metrics, open any local profile page and run its separate post or reel details scan; these save independent records with dates, likes, comments, views, fetch times, and retryable issues. The add-on waits for dashboard jobs and does not scan profiles on its own. Profile data, post/reel records, job progress, and issues are stored in `bot-info/bot-account-info.json`.
 
 ### 5. Review analysis
 

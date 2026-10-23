@@ -2,17 +2,21 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react
 import { Activity, ArrowRight, ArrowUpRight, BarChart3, Circle, CircleAlert, CircleCheck, Database, FileText, Globe2, ListFilter, MessageSquareText, Search, Users, X } from 'lucide-react';
 
 type PostDate = { url: string; date: string };
+type ContentRecord = { url: string; kind?: 'post' | 'reel'; date?: string | null; likes_count?: number | null; comments_count?: number | null; views_count?: number | null; last_fetched_at?: string; fetch_status?: string; fetch_errors?: { field: string; message: string }[] };
 type Issue = { id?: string; username?: string; profile_url?: string; post_url?: string; code?: string; message?: string; occurred_at?: string; recommended_action?: string };
 type Profile = {
   url: string; username: string; bio?: string; country?: string; date_joined?: string;
   posts_count?: string | number; reels_count?: string | number; reels_count_status?: string; reels_count_last_attempt_at?: string;
   post_dates?: PostDate[]; status?: string; last_error?: string;
+  post_records?: ContentRecord[]; reel_records?: ContentRecord[];
+  posts_data_status?: string; posts_data_last_fetched_at?: string;
+  reels_data_status?: string; reels_data_last_fetched_at?: string;
   added_at?: string; catalog_first_seen_at?: string; last_fetched_at?: string | null; profile_text?: string; about_text?: string;
   collection_issues?: Issue[];
   deep_status?: string;
   ignored?: boolean;
 };
-type Job = { id: string; kind: 'surface' | 'deep' | 'post_count' | 'reels_count'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; updated_at?: string; completed_at?: string; last_activity_at?: string };
+type Job = { id: string; kind: 'surface' | 'deep' | 'post_count' | 'reels_count' | 'post_content' | 'reel_content'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; content_index?: number; content_urls?: string[]; started_at: string; updated_at?: string; completed_at?: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
 type Tab = 'master' | 'surface' | 'insights' | 'post_counts' | 'reel_counts' | 'deep' | 'issues';
 type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
@@ -225,14 +229,14 @@ function App() {
     const path = TAB_ROUTES[nextTab];
     if (window.location.pathname !== path) window.history.pushState({ tab: nextTab }, '', path);
   }
-  async function startJob(kind: 'surface' | 'deep' | 'post_count' | 'reels_count', selected: Set<string>) {
+  async function startJob(kind: Job['kind'], selected: Set<string>) {
     setBusy(true); setError('');
     try {
       await api('/jobs', { method: 'POST', body: JSON.stringify({ kind, profile_keys: [...selected] }) });
       if (kind === 'surface') setSurfaceSelection(new Set());
       else if (kind === 'deep') setDeepSelection(new Set());
       else if (kind === 'post_count') setPostCountSelection(new Set());
-      else setReelCountSelection(new Set());
+      else if (kind === 'reels_count') setReelCountSelection(new Set());
       await refresh();
     } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not start collection.'); }
     finally { setBusy(false); }
@@ -273,9 +277,9 @@ function App() {
     <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
     {!profileUsername && <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>}
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
-    {!profileUsername && activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
+    {!profileUsername && activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : activeJob.kind === 'post_content' ? 'Post details scan' : activeJob.kind === 'reel_content' ? 'Reel details scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
     {!profileUsername && <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => navigateTab(item.id)}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>}
-    {!data ? <section className="empty">Connecting to the local account data…</section> : profileUsername ? (selectedProfile ? <ProfileDetail profile={selectedProfile} issues={issues.filter((issue) => issue.username?.toLocaleLowerCase() === key(selectedProfile))} jobs={selectedProfileJobs} onBack={() => navigateTab('master')} /> : <section className="empty profile-not-found"><h3>Profile not found</h3><p>No local profile data exists for @{profileUsername}.</p><button className="button secondary" onClick={() => navigateTab('master')}>Back to profiles</button></section>) : <>
+    {!data ? <section className="empty">Connecting to the local account data…</section> : profileUsername ? (selectedProfile ? <ProfileDetail profile={selectedProfile} issues={issues.filter((issue) => issue.username?.toLocaleLowerCase() === key(selectedProfile))} jobs={selectedProfileJobs} activeJob={activeJob} busy={busy} onRun={(kind) => void startJob(kind, new Set([key(selectedProfile)]))} onCancel={() => void cancelJob()} onBack={() => navigateTab('master')} /> : <section className="empty profile-not-found"><h3>Profile not found</h3><p>No local profile data exists for @{profileUsername}.</p><button className="button secondary" onClick={() => navigateTab('master')}>Back to profiles</button></section>) : <>
       {tab === 'master' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="collection_failed">Collection failed</option><option value="deleted_account">Deleted account</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
         <div className="selection-bar"><span><strong>{masterProfiles.length}</strong> visible <span className="count-separator" aria-hidden="true">·</span> <strong>{surfaceSelection.size}</strong> selected for surface analysis</span><button className="button primary" disabled={!surfaceSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('surface', surfaceSelection)}>Run surface analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
@@ -316,8 +320,9 @@ function App() {
   </main>;
 }
 
-function ProfileDetail({ profile, issues, jobs, onBack }: { profile: Profile; issues: Issue[]; jobs: Job[]; onBack: () => void }) {
+function ProfileDetail({ profile, issues, jobs, activeJob, busy, onRun, onCancel, onBack }: { profile: Profile; issues: Issue[]; jobs: Job[]; activeJob: Job | null; busy: boolean; onRun: (kind: 'post_content' | 'reel_content') => void; onCancel: () => void; onBack: () => void }) {
   const dates = profile.post_dates || [];
+  const profileJob = activeJob?.profile_keys.some((username) => username.toLocaleLowerCase() === key(profile)) ? activeJob : null;
   return <section className="profile-detail">
     <button className="profile-back" onClick={onBack}><ArrowRight className="ui-icon back-arrow" size={16} aria-hidden="true" /> All profiles</button>
     <div className="profile-heading">
@@ -326,8 +331,10 @@ function ProfileDetail({ profile, issues, jobs, onBack }: { profile: Profile; is
         <div className="profile-title-row"><h1>{profile.username}</h1><Status value={profile.status || 'Pending'} /><a className="button secondary profile-instagram-link" href={profile.url} target="_blank" rel="noreferrer">Instagram <ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a></div>
         <div className="profile-counts"><div><strong>{text(profile.posts_count)}</strong><span>posts</span></div><div><strong>{text(profile.reels_count)}</strong><span>reels</span></div><div><strong>{dates.length.toLocaleString()}</strong><span>post dates</span></div></div>
         <div className="profile-bio"><strong>@{profile.username}</strong><p>{profile.bio || 'No bio collected.'}</p></div>
+        <div className="profile-content-actions"><button className="button primary" disabled={busy || Boolean(activeJob)} onClick={() => onRun('post_content')}>Scan post details <ArrowRight className="ui-icon button-icon" size={15} aria-hidden="true" /></button><button className="button secondary" disabled={busy || Boolean(activeJob)} onClick={() => onRun('reel_content')}>Scan reel details <ArrowRight className="ui-icon button-icon" size={15} aria-hidden="true" /></button></div>
       </div>
     </div>
+    {profileJob && <section className="profile-content-progress"><div><strong>{profileJob.kind === 'post_content' ? 'Post details scan' : profileJob.kind === 'reel_content' ? 'Reel details scan' : profileJob.kind.replace('_', ' ')}</strong><span>{profileJob.stage === 'content_item' ? `${profileJob.content_index || 0} / ${profileJob.content_urls?.length || 0} items` : 'Reading the profile content list…'}</span></div><button className="button secondary" disabled={busy} onClick={onCancel}>Stop scan</button></section>}
 
     <div className="profile-metadata">
       <ProfileField label="Profile URL" value={profile.url} />
@@ -354,13 +361,30 @@ function ProfileDetail({ profile, issues, jobs, onBack }: { profile: Profile; is
 
     <details className="profile-raw-record"><summary>Complete stored profile record</summary><pre>{JSON.stringify(profile, null, 2)}</pre></details>
 
-    <div className="profile-posts-heading"><h2>Collected post dates</h2><span>{dates.length.toLocaleString()} posts</span></div>
+    <div className="profile-posts-heading"><h2>Existing deep-analysis dates</h2><span>{dates.length.toLocaleString()} records</span></div>
+    <p className="profile-date-note">This is the original deep-analysis date list. Use the separate post and reel sections below for categorized records and engagement metrics.</p>
     {dates.length ? <div className="profile-post-grid">{dates.map((post, index) => <a className="profile-post-tile" href={post.url} target="_blank" rel="noreferrer" key={`${post.url}-${index}`}><span>POST {String(index + 1).padStart(2, '0')}</span><strong>{post.date || 'Date unavailable'}</strong><ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a>)}</div> : <div className="empty profile-post-empty"><h3>No post dates collected</h3><p>Run deep analysis on this profile to collect post dates.</p></div>}
+    <ContentRecordsSection title="Post dates and engagement" records={profile.post_records || []} status={profile.posts_data_status} lastFetched={profile.posts_data_last_fetched_at} kind="post" />
+    <ContentRecordsSection title="Reel dates and engagement" records={profile.reel_records || []} status={profile.reels_data_status} lastFetched={profile.reels_data_last_fetched_at} kind="reel" />
   </section>;
 }
 
 function ProfileField({ label, value }: { label: string; value?: string | number | null }) {
   return <div className="profile-field"><span>{label}</span><strong>{text(value)}</strong></div>;
+}
+
+function ContentRecordsSection({ title, records, status, lastFetched, kind }: { title: string; records: ContentRecord[]; status?: string; lastFetched?: string; kind: 'post' | 'reel' }) {
+  return <section className="content-record-section">
+    <header><div><h2>{title}</h2><span>{records.length.toLocaleString()} collected · {status || 'Not scanned'}</span></div><span>Last fetch {fmt(lastFetched)}</span></header>
+    {records.length ? <div className="content-record-grid">{records.map((record) => <article className="content-record" key={record.url}>
+      <div className="content-record-title"><span>{kind.toUpperCase()}</span><Status value={record.fetch_status || 'Incomplete'} /></div>
+      <a className="content-record-date" href={record.url} target="_blank" rel="noreferrer">{fmt(record.date)} <ArrowUpRight className="ui-icon" size={14} aria-hidden="true" /></a>
+      <div className="content-metrics"><div><strong>{text(record.views_count)}</strong><span>views</span></div><div><strong>{text(record.likes_count)}</strong><span>likes</span></div><div><strong>{text(record.comments_count)}</strong><span>comments</span></div></div>
+      <p>Fetched {fmt(record.last_fetched_at)}</p>
+      {record.fetch_errors?.length ? <ul className="content-record-errors">{record.fetch_errors.map((error, index) => <li key={`${error.field}-${index}`}><strong>{error.field.replace('_', ' ')}</strong>: {error.message}</li>)}</ul> : null}
+      <details><summary>Full item record</summary><pre>{JSON.stringify(record, null, 2)}</pre></details>
+    </article>)}</div> : <div className="empty profile-post-empty"><h3>No {kind} details collected</h3><p>Run the {kind} details scan to save dates and engagement counts here.</p></div>}
+  </section>;
 }
 
 function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profiles: Profile[]; mode: 'master' | 'surface' | 'deep'; selection: Set<string>; onToggle: (username: string) => void; onIgnore?: (username: string, ignored: boolean) => void }) {

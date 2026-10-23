@@ -243,6 +243,69 @@
     return [...urls];
   }
 
+  function contentItemUrls(kind) {
+    const urls = new Set();
+    for (const anchor of document.querySelectorAll('main a[href], a[href]')) {
+      try {
+        const url = new URL(anchor.href, location.origin);
+        if (url.origin !== location.origin) continue;
+        if (kind === 'post' && /^\/(?:p|tv)\/[^/]+\/?$/.test(url.pathname)) {
+          urls.add(`https://www.instagram.com${url.pathname}`);
+        } else if (kind === 'reel') {
+          const match = url.pathname.match(/^\/(?:[^/]+\/reels\/|reel\/)([^/]+)\/?$/);
+          if (match) urls.add(`https://www.instagram.com/reel/${encodeURIComponent(decodeURIComponent(match[1]))}/`);
+        }
+      } catch (_error) { /* Ignore invalid links. */ }
+    }
+    return [...urls];
+  }
+
+  function contentScanBlockReason() {
+    const alerts = [...document.querySelectorAll('[role="alert"], [role="dialog"]')]
+      .map((element) => element.innerText || '').join(' ').toLocaleLowerCase();
+    const mainText = String(document.querySelector('main')?.innerText || '').toLocaleLowerCase();
+    if (/\/accounts\/login|\/challenge\//.test(location.pathname)) return 'Instagram redirected to login or a security checkpoint.';
+    if (/challenge_required|checkpoint_required|please wait a few minutes|try again later/.test(alerts)) return 'Instagram showed a checkpoint, rate limit, or temporary error.';
+    if (/sorry, this page isn't available|page may have been removed/.test(mainText)) return 'This profile content page is unavailable.';
+    return '';
+  }
+
+  async function collectContentUrls(kind) {
+    const main = await waitFor(() => document.querySelector('main'));
+    if (!main) return { content_urls: [], complete: false, error: 'Instagram profile content did not load.' };
+    if (kind === 'reel' && !/^\/[^/]+\/reels\/?$/.test(location.pathname)) {
+      return { content_urls: [], complete: false, error: 'Instagram did not stay on the profile Reels tab.' };
+    }
+    const urls = new Set(contentItemUrls(kind));
+    let stablePasses = 0;
+    let reachedEnd = false;
+    let error = '';
+    const emptyPattern = kind === 'reel' ? /no reels|hasn't posted any reels|no content to show/i : /no posts yet|hasn't posted/i;
+    const emptyState = emptyPattern.test(main.innerText || '');
+    if (!urls.size && emptyState) return { content_urls: [], complete: true, error: '' };
+
+    for (let pass = 0; pass < 1200; pass += 1) {
+      error = contentScanBlockReason();
+      if (error) break;
+      contentItemUrls(kind).forEach((url) => urls.add(url));
+      const previousCount = urls.size;
+      window.scrollBy(0, Math.max(500, Math.floor(window.innerHeight * 0.75)));
+      await sleep(800);
+      contentItemUrls(kind).forEach((url) => urls.add(url));
+      const height = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+      const atBottom = window.scrollY + window.innerHeight >= height - 8;
+      const loading = [...document.querySelectorAll('[role="progressbar"], svg[aria-label*="Loading" i]')].some(visible);
+      if (atBottom && urls.size === previousCount && !loading) stablePasses += 1;
+      else stablePasses = 0;
+      if (stablePasses >= 5) { reachedEnd = true; break; }
+    }
+    const complete = !error && (reachedEnd || (urls.size === 0 && emptyState));
+    return {
+      content_urls: [...urls], complete,
+      error: error || (!complete ? 'Scrolling stopped before Instagram confirmed the end of the content list.' : '')
+    };
+  }
+
   async function collectAllPostUrls() {
     const urls = new Set(postUrls());
     let priorHeight = 0;
@@ -274,12 +337,65 @@
     return { date: new Date(time.dateTime || time.getAttribute('datetime')).toISOString() };
   }
 
+  function compactCount(value) {
+    const match = String(value || '').replace(/,/g, '').match(/^(\d+(?:\.\d+)?)\s*([KMB])?$/i);
+    if (!match) return null;
+    const scale = ({ k: 1_000, m: 1_000_000, b: 1_000_000_000 }[String(match[2] || '').toLocaleLowerCase()] || 1);
+    const count = Math.round(Number(match[1]) * scale);
+    return Number.isSafeInteger(count) && count >= 0 ? count : null;
+  }
+
+  function metricFrom(contexts, patterns) {
+    for (const context of contexts) {
+      for (const pattern of patterns) {
+        const match = String(context || '').match(pattern);
+        if (match) {
+          const count = compactCount(match[1]);
+          if (count !== null) return count;
+        }
+      }
+    }
+    return null;
+  }
+
+  async function collectContentDetails(step) {
+    const main = await waitFor(() => document.querySelector('main, [role="main"]'));
+    if (!main) return { error: 'Instagram content did not load.', errors: [] };
+    await sleep(700);
+    const article = document.querySelector('main article, [role="main"] article, article') || main;
+    const visibleText = clean(article.innerText || main.innerText || '');
+    const description = document.querySelector('meta[property="og:description"]')?.content || '';
+    const ariaText = [...article.querySelectorAll('[aria-label], [title]')]
+      .filter(visible).map((element) => `${element.getAttribute('aria-label') || ''} ${element.getAttribute('title') || ''}`).join('\n');
+    const contexts = [description, ariaText, visibleText];
+    const time = [...article.querySelectorAll('time[datetime]')]
+      .find((item) => !Number.isNaN(Date.parse(item.dateTime || item.getAttribute('datetime'))))
+      || [...document.querySelectorAll('time[datetime]')].find((item) => !Number.isNaN(Date.parse(item.dateTime || item.getAttribute('datetime'))));
+    const date = time ? new Date(time.dateTime || time.getAttribute('datetime')).toISOString() : null;
+    let likesCount = metricFrom(contexts, [/(\d[\d,.]*\s*[KMB]?)\s+likes?\b/i]);
+    if (likesCount === null) {
+      const others = metricFrom(contexts, [/and\s+(\d[\d,.]*\s*[KMB]?)\s+others?\b/i]);
+      if (others !== null) likesCount = others + 1;
+    }
+    const commentsCount = metricFrom(contexts, [/(?:view|see)\s+all\s+(\d[\d,.]*\s*[KMB]?)\s+comments?\b/i, /(\d[\d,.]*\s*[KMB]?)\s+comments?\b/i]);
+    const viewsCount = metricFrom(contexts, [/(\d[\d,.]*\s*[KMB]?)\s+(?:views?|plays?)\b/i]);
+    const errors = [];
+    if (!date) errors.push({ field: 'date', message: 'No post timestamp was found on this content page.' });
+    if (likesCount === null) errors.push({ field: 'likes_count', message: 'Instagram did not expose a readable like count on this content page.' });
+    if (commentsCount === null) errors.push({ field: 'comments_count', message: 'Instagram did not expose a readable comment count on this content page.' });
+    if (viewsCount === null) errors.push({ field: 'views_count', message: 'Instagram did not expose a readable view count on this content page.' });
+    return { date, likes_count: likesCount, comments_count: commentsCount, views_count: viewsCount, errors };
+  }
+
   browser.runtime.onMessage.addListener((message) => {
     if (message?.type !== 'dedgram_collect') return undefined;
     const { step } = message;
     if (step.stage === 'surface') return collectSurface(step);
     if (step.stage === 'post_count') return collectPostCount();
     if (step.stage === 'reels_count') return collectReelCount();
+    if (step.stage === 'post_content_profile') return collectContentUrls('post');
+    if (step.stage === 'reel_content_profile') return collectContentUrls('reel');
+    if (step.stage === 'content_item') return collectContentDetails(step);
     if (step.stage === 'deep_profile') return collectDeepProfile();
     if (step.stage === 'deep_post') return collectPostDate();
     return { error: 'Unknown collection stage.' };

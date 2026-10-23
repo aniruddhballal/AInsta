@@ -21,9 +21,10 @@ The Android app saves captures on the phone to `Documents/dedgram/profiles.json`
 - **Reel counts** scans each selected account’s Reels tab, counts unique reel links, and saves `reels_count` only after the scan reaches a stable end. Incomplete scans leave any previous count intact and create an Issue.
 - **Insights** summarizes country, status, post-count, join-year, and repeated-bio patterns across fetched profiles.
 - **Deep analysis** shows saved post dates.
+- **Profile pages** (`/username`) show separate post and reel detail scans. Their buttons collect each item’s date, likes, comments, views, and latest fetch time without changing surface or deep analysis. Unavailable fields and incomplete scans create retryable Issues.
 - **Issues** lists unavailable fields, posts, or profiles that should be reviewed; profiles can be ignored and restored from this tab or the master list.
 
-The dashboard API is the only writer for dashboard data. It stores profile records, post dates, job progress, and issues in `bot-account-info.json`. It writes the file atomically and preserves existing profile fields. Text is stored as JSON strings, so captions, bios, and raw page text do not get interpolated into HTML.
+The dashboard API is the only writer for dashboard data. It stores profile records, post dates, post/reel details, job progress, and issues in `bot-account-info.json`. It writes the file atomically and preserves existing profile fields. Text is stored as JSON strings, so captions, bios, and raw page text do not get interpolated into HTML.
 
 ## Browse all collected data
 

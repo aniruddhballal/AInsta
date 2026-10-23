@@ -101,6 +101,11 @@ function addIssue(data, profile, code, message, extra = {}) {
   profile.collection_issues.push(issue);
 }
 
+function clearIssues(data, profile, predicate) {
+  profile.collection_issues = (profile.collection_issues || []).filter((issue) => !predicate(issue));
+  data.issues = (data.issues || []).filter((issue) => !(keyOf({ username: issue.username || issue.profile_key }) === keyOf(profile) && predicate(issue)));
+}
+
 function finishJob(data, status = 'completed') {
   const job = data.workflow.active_job;
   if (!job) return;
@@ -114,9 +119,17 @@ function finishJob(data, status = 'completed') {
 
 function advance(job) {
   job.index += 1;
-  job.stage = job.kind === 'surface' ? 'surface' : job.kind === 'post_count' ? 'post_count' : job.kind === 'reels_count' ? 'reels_count' : 'deep_profile';
+  job.stage = job.kind === 'surface' ? 'surface'
+    : job.kind === 'post_count' ? 'post_count'
+      : job.kind === 'reels_count' ? 'reels_count'
+        : job.kind === 'post_content' ? 'post_content_profile'
+          : job.kind === 'reel_content' ? 'reel_content_profile' : 'deep_profile';
   job.post_urls = [];
   job.post_index = 0;
+  job.content_urls = [];
+  job.content_index = 0;
+  job.content_scan_complete = false;
+  job.content_has_errors = false;
   job.updated_at = now();
 }
 
@@ -155,7 +168,7 @@ async function route(request, response) {
     if (request.method === 'POST' && pathname === '/api/jobs') {
       const body = await jsonBody(request);
       const kind = body.kind;
-      if (!['surface', 'deep', 'post_count', 'reels_count'].includes(kind)) return send(response, 400, { error: 'Choose surface, deep, post count, or reel count analysis.' });
+      if (!['surface', 'deep', 'post_count', 'reels_count', 'post_content', 'reel_content'].includes(kind)) return send(response, 400, { error: 'Choose surface, deep, post count, reel count, post details, or reel details analysis.' });
       const data = await loadData();
       if (data.workflow.active_job) return send(response, 409, { error: 'A collection job is already running.' });
       const selected = [...new Set((body.profile_keys || []).map((value) => String(value).toLocaleLowerCase()))];
@@ -170,7 +183,8 @@ async function route(request, response) {
       }
       const job = {
         id: randomUUID(), kind, status: 'running', profile_keys: profiles.map(keyOf),
-        index: 0, stage: kind === 'surface' ? 'surface' : kind === 'post_count' ? 'post_count' : kind === 'reels_count' ? 'reels_count' : 'deep_profile', post_urls: [], post_index: 0,
+        index: 0, stage: kind === 'surface' ? 'surface' : kind === 'post_count' ? 'post_count' : kind === 'reels_count' ? 'reels_count' : kind === 'post_content' ? 'post_content_profile' : kind === 'reel_content' ? 'reel_content_profile' : 'deep_profile', post_urls: [], post_index: 0,
+        content_urls: [], content_index: 0, content_scan_complete: false, content_has_errors: false,
         started_at: now(), updated_at: now(), completed_at: null, last_activity_at: null
       };
       data.workflow.active_job = job;
@@ -194,6 +208,17 @@ async function route(request, response) {
     if (request.method === 'POST' && pathname === '/api/jobs/cancel') {
       const data = await loadData();
       if (!data.workflow.active_job) return send(response, 409, { error: 'There is no active job.' });
+      const active = data.workflow.active_job;
+      if (active.kind === 'post_content' || active.kind === 'reel_content') {
+        const profile = data.profiles.find((candidate) => keyOf(candidate) === active.profile_keys[active.index]);
+        if (profile?.[active.kind === 'post_content' ? 'posts_data_status' : 'reels_data_status'] === 'Collecting') {
+          const postScan = active.kind === 'post_content';
+          profile[postScan ? 'posts_data_status' : 'reels_data_status'] = 'Incomplete';
+          addIssue(data, profile, postScan ? 'POST_DETAILS_SCAN_CANCELLED' : 'REEL_DETAILS_SCAN_CANCELLED', 'The content details scan was stopped before it finished.', {
+            recommended_action: `Retry the ${postScan ? 'post' : 'reel'} details scan for this profile.`
+          });
+        }
+      }
       finishJob(data, 'cancelled');
       await saveData(data);
       return send(response, 200, { ok: true });
@@ -223,6 +248,22 @@ async function route(request, response) {
         step.stage = 'post_count';
       } else if (job.kind === 'reels_count') {
         step.stage = 'reels_count';
+      } else if (job.kind === 'post_content' && job.stage === 'post_content_profile') {
+        step.stage = 'post_content_profile';
+      } else if (job.kind === 'reel_content' && job.stage === 'reel_content_profile') {
+        step.stage = 'reel_content_profile';
+      } else if ((job.kind === 'post_content' || job.kind === 'reel_content') && job.stage === 'content_item') {
+        if (job.content_index >= job.content_urls.length) {
+          const statusField = job.kind === 'post_content' ? 'posts_data_status' : 'reels_data_status';
+          profile[statusField] = job.content_scan_complete && !job.content_has_errors ? 'Complete' : 'Incomplete';
+          advance(job);
+          if (job.index >= job.profile_keys.length) finishJob(data);
+          await saveData(data);
+          return send(response, 200, { idle: true });
+        }
+        step.stage = 'content_item';
+        step.content_kind = job.kind === 'post_content' ? 'post' : 'reel';
+        step.content_url = job.content_urls[job.content_index];
       } else if (job.stage === 'deep_profile') {
         step.stage = 'deep_profile';
       } else if (job.stage === 'deep_post') {
@@ -304,6 +345,98 @@ async function route(request, response) {
           });
         }
         advance(job);
+      } else if ((job.kind === 'post_content' && body.stage === 'post_content_profile' && job.stage === 'post_content_profile')
+        || (job.kind === 'reel_content' && body.stage === 'reel_content_profile' && job.stage === 'reel_content_profile')) {
+        const isPostScan = job.kind === 'post_content';
+        const recordField = isPostScan ? 'post_records' : 'reel_records';
+        const statusField = isPostScan ? 'posts_data_status' : 'reels_data_status';
+        const fetchedField = isPostScan ? 'posts_data_last_fetched_at' : 'reels_data_last_fetched_at';
+        const issueCode = isPostScan ? 'POST_DETAILS_LIST_INCOMPLETE' : 'REEL_DETAILS_LIST_INCOMPLETE';
+        const result = body.result || {};
+        const pattern = isPostScan
+          ? /^https:\/\/www\.instagram\.com\/(?:p|tv)\/[^/?#]+\/?(?:\?[^#]*)?$/i
+          : /^https:\/\/www\.instagram\.com\/reel\/[^/?#]+\/?(?:\?[^#]*)?$/i;
+        const urls = Array.isArray(result.content_urls)
+          ? [...new Set(result.content_urls.filter((url) => typeof url === 'string' && pattern.test(url)))] : [];
+        profile[recordField] ||= [];
+        profile[fetchedField] = now();
+        profile[statusField] = result.complete === true ? (urls.length ? 'Collecting' : 'Complete') : 'Incomplete';
+        job.content_urls = urls;
+        job.content_index = 0;
+        job.content_scan_complete = result.complete === true;
+        job.content_has_errors = result.complete !== true;
+        const cancelledCode = isPostScan ? 'POST_DETAILS_SCAN_CANCELLED' : 'REEL_DETAILS_SCAN_CANCELLED';
+        clearIssues(data, profile, (issue) => issue.code === issueCode || issue.code === cancelledCode);
+        if (result.complete !== true) addIssue(data, profile, issueCode, result.error || `Instagram did not confirm the end of the ${isPostScan ? 'posts' : 'Reels'} list.`, {
+          recommended_action: `Retry the ${isPostScan ? 'post' : 'reel'} details scan for this profile.`
+        });
+        if (result.complete !== true && !urls.length) {
+          profile[statusField] = 'Incomplete';
+          advance(job);
+        } else if (!urls.length) {
+          profile[statusField] = 'Complete';
+          advance(job);
+        } else {
+          job.stage = 'content_item';
+        }
+      } else if ((job.kind === 'post_content' || job.kind === 'reel_content') && body.stage === 'content_item' && job.stage === 'content_item') {
+        const isPostScan = job.kind === 'post_content';
+        const recordField = isPostScan ? 'post_records' : 'reel_records';
+        const statusField = isPostScan ? 'posts_data_status' : 'reels_data_status';
+        const fetchedField = isPostScan ? 'posts_data_last_fetched_at' : 'reels_data_last_fetched_at';
+        const url = job.content_urls[job.content_index];
+        if (!url) return send(response, 409, { error: 'The current content item is missing from the active job.' });
+        const result = body.result || {};
+        const fetchedAt = now();
+        const records = profile[recordField] || (profile[recordField] = []);
+        const existingIndex = records.findIndex((item) => item.url === url);
+        const record = existingIndex >= 0 ? records[existingIndex] : { url };
+        const metricFields = ['date', 'likes_count', 'comments_count', 'views_count'];
+        const labels = { date: 'date', likes_count: 'like count', comments_count: 'comment count', views_count: 'view count' };
+        const providedErrors = Array.isArray(result.errors) ? result.errors : [];
+        const errors = [];
+        const numericFields = new Set(['likes_count', 'comments_count', 'views_count']);
+        for (const field of metricFields) {
+          const value = result[field];
+          const valid = numericFields.has(field)
+            ? Number.isSafeInteger(value) && value >= 0
+            : typeof value === 'string' && !Number.isNaN(Date.parse(value));
+          if (valid) record[field] = numericFields.has(field) ? value : new Date(value).toISOString();
+          else {
+            const error = providedErrors.find((item) => item.field === field)?.message || `Could not read the ${labels[field]} for this ${isPostScan ? 'post' : 'reel'}.`;
+            errors.push({ field, message: error });
+          }
+        }
+        record.kind = isPostScan ? 'post' : 'reel';
+        record.last_fetched_at = fetchedAt;
+        if (result.error) errors.push({ field: 'page', message: result.error });
+        record.fetch_status = errors.length ? 'Incomplete' : 'Complete';
+        record.fetch_errors = errors;
+        if (existingIndex >= 0) records[existingIndex] = record;
+        else records.push(record);
+        profile[fetchedField] = fetchedAt;
+
+        const issueCodes = {
+          date: isPostScan ? 'POST_DATE_UNAVAILABLE' : 'REEL_DATE_UNAVAILABLE',
+          likes_count: isPostScan ? 'POST_LIKES_UNAVAILABLE' : 'REEL_LIKES_UNAVAILABLE',
+          comments_count: isPostScan ? 'POST_COMMENTS_UNAVAILABLE' : 'REEL_COMMENTS_UNAVAILABLE',
+          views_count: isPostScan ? 'POST_VIEWS_UNAVAILABLE' : 'REEL_VIEWS_UNAVAILABLE'
+        };
+        const fetchFailedCode = isPostScan ? 'POST_DETAILS_FETCH_FAILED' : 'REEL_DETAILS_FETCH_FAILED';
+        clearIssues(data, profile, (issue) => issue.post_url === url && [...Object.values(issueCodes), fetchFailedCode].includes(issue.code));
+        for (const error of errors) addIssue(data, profile, issueCodes[error.field], error.message, {
+          post_url: url,
+          recommended_action: `Retry the ${isPostScan ? 'post' : 'reel'} details scan for this profile.`
+        });
+        if (result.error) {
+          job.content_has_errors = true;
+          addIssue(data, profile, isPostScan ? 'POST_DETAILS_FETCH_FAILED' : 'REEL_DETAILS_FETCH_FAILED', result.error, {
+            post_url: url,
+            recommended_action: `Retry the ${isPostScan ? 'post' : 'reel'} details scan for this profile.`
+          });
+        }
+        if (errors.length) job.content_has_errors = true;
+        job.content_index += 1;
       } else if (job.kind === 'deep' && body.stage === 'deep_profile' && job.stage === 'deep_profile') {
         const postUrls = Array.isArray(body.result?.post_urls) ? [...new Set(body.result.post_urls.filter((url) => typeof url === 'string' && /^https:\/\/www\.instagram\.com\/(p|reel|tv)\//.test(url)))] : [];
         job.post_urls = postUrls;
