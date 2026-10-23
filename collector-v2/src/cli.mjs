@@ -159,10 +159,11 @@ async function collect() {
       try {
         const capture = await captureItem(page, item);
         const result = itemFromSnapshot(item, { ...capture, grid_views_raw: item.grid_views_raw });
-        existing.set(item.url, mergeItem(old, result));
+        existing.set(item.url, { ...mergeItem(old, result), last_error: null, last_attempt_at: now() });
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
-        existing.set(item.url, { ...old, ...item, status: old?.status || 'failed', last_error: message,
+        existing.set(item.url, { ...old, ...item,
+          status: old?.status === 'complete' || old?.status === 'partial' ? old.status : 'failed', last_error: message,
           last_attempt_at: now(), attempts: (old?.attempts || 0) + 1 });
         log(`Item issue: ${message}`);
         if (/login|checkpoint|temporary limit/i.test(message)) throw error;
@@ -172,7 +173,7 @@ async function collect() {
       await new Promise((done) => setTimeout(done, 1600));
     }
     const complete = ['post', 'reel'].every((kind) => discovery[kind]?.complete)
-      && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete');
+      && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete' && !existing.get(url)?.last_error);
     run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial' };
     await writeJson(path.run, run);
     await writeReport(path, profile, discovery, items, run);

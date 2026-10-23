@@ -83,6 +83,18 @@ test('a grid view estimate keeps its original rounded notation', () => {
   assert.equal(result.caption, 'Caption');
 });
 
+test('missing fields carry a specific reason when known and a source-level reason otherwise', () => {
+  const result = itemFromSnapshot({ kind: 'reel', grid_views_issue: 'Sensitive Content overlay hides the profile grid view label.' }, {
+    og_description: '12 likes, 3 comments - edlt.shox on October 22, 2026: "Caption"',
+    article_text: 'Sensitive Content\nSee reel'
+  });
+  assert.equal(result.missing_reasons.views, 'Sensitive Content overlay hides the profile grid view label.');
+  const generic = itemFromSnapshot({ kind: 'post' }, { article_text: 'No metrics shown' });
+  assert.match(generic.missing_reasons.likes, /No readable like count/);
+  assert.match(generic.missing_reasons.date, /No readable timestamp/);
+  assert.match(generic.missing_reasons.views, /content page/);
+});
+
 test('a retry preserves fields already collected', () => {
   const merged = mergeItem({ date: '2026-10-01T00:00:00.000Z', likes: { value: 7 }, status: 'partial' },
     { date: null, likes: null, comments: { value: 2 }, views: { value: 9 }, status: 'partial' });

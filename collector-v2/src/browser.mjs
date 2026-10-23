@@ -98,7 +98,8 @@ export async function discover(page, username, kind, onProgress, { maxPasses = 2
     const raw = await page.evaluate(() => [...document.querySelectorAll('main a[href]')].map((anchor) => ({
       href: anchor.href,
       label: anchor.getAttribute('aria-label') || '',
-      text: anchor.innerText || ''
+      text: anchor.innerText || '',
+      sensitive_overlay: !!anchor.querySelector('[aria-label*="sensitive content" i]')
     })));
     const sizeBefore = found.size;
     for (const anchor of raw) {
@@ -110,7 +111,10 @@ export async function discover(page, username, kind, onProgress, { maxPasses = 2
       const tileText = clean(anchor.label || anchor.text);
       const views = kind === 'reel' ? (tileText.match(/([\d,.]+\s*[KMB]?)\s*(?:views?|plays?)/i)?.[1]
         || (/^[\d,.]+\s*[KMB]?$/i.test(tileText) ? tileText : null)) : null;
-      found.set(item.url, { ...found.get(item.url), ...item, grid_views_raw: views || found.get(item.url)?.grid_views_raw || null });
+      const gridViews = views || found.get(item.url)?.grid_views_raw || null;
+      found.set(item.url, { ...found.get(item.url), ...item, grid_views_raw: gridViews,
+        grid_views_issue: !gridViews && anchor.sensitive_overlay
+          ? 'Sensitive Content overlay hides the profile grid view label; the reel page showed no readable view count.' : null });
     }
     if (found.size !== sizeBefore) await onProgress([...found.values()], false);
     const state = await page.evaluate(() => ({

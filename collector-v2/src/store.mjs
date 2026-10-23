@@ -1,7 +1,7 @@
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import { count } from './model.mjs';
+import { count, reasonsForMissing } from './model.mjs';
 
 export async function readJson(path, fallback = null) {
   try { return JSON.parse(await readFile(path, 'utf8')); }
@@ -42,19 +42,27 @@ export function mergeItem(previous, current) {
   }
   result.status = ['date', 'likes', 'comments', 'views'].every((field) => result[field] != null) ? 'complete' : 'partial';
   result.missing = ['date', 'likes', 'comments', 'views'].filter((field) => result[field] == null);
+  result.missing_reasons = reasonsForMissing(result.missing, result);
   return result;
 }
 
 export function syncGridViews(previous, discovered, observedAt) {
   const raw = discovered.grid_views_raw;
-  if (!raw) return { ...previous, grid_views_raw: previous.grid_views_raw || null };
+  if (!raw) {
+    const result = { ...previous, grid_views_raw: previous.grid_views_raw || null,
+    grid_views_issue: Object.hasOwn(discovered, 'grid_views_issue')
+      ? discovered.grid_views_issue : previous.grid_views_issue || null };
+    result.missing_reasons = reasonsForMissing(result.missing || [], result);
+    return result;
+  }
   const parsed = count(raw);
-  const result = { ...previous, grid_views_raw: raw };
+  const result = { ...previous, grid_views_raw: raw, grid_views_issue: null };
   if (parsed && (!previous.views || previous.views.source === 'profile_grid')) {
     result.views = { ...parsed, source: 'profile_grid', observed_at: observedAt };
     result.status = ['date', 'likes', 'comments', 'views'].every((field) => result[field] != null) ? 'complete' : 'partial';
     result.missing = ['date', 'likes', 'comments', 'views'].filter((field) => result[field] == null);
   }
+  result.missing_reasons = reasonsForMissing(result.missing || [], result);
   return result;
 }
 

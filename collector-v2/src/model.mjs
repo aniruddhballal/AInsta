@@ -92,6 +92,19 @@ export function dayFromDescription(description) {
   return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString().slice(0, 10);
 }
 
+export function reasonsForMissing(missing, item = {}) {
+  const defaults = {
+    date: 'No readable timestamp or calendar date was found on the content page or in its metadata.',
+    likes: 'No readable like count was found on the content page or in its metadata.',
+    comments: 'No readable comment count was found on the content page or in its metadata.',
+    views: item.kind === 'reel'
+      ? 'No readable view count was found on the reel page or profile grid.'
+      : 'No readable view count was found on the content page.'
+  };
+  return Object.fromEntries(missing.map((field) => [field,
+    field === 'views' && item.grid_views_issue ? item.grid_views_issue : defaults[field] || 'No readable value was found.']));
+}
+
 function jsonLdData(scripts) {
   for (const source of scripts || []) {
     try {
@@ -153,6 +166,7 @@ export function itemFromSnapshot(item, snapshot) {
     thumbnail_url: snapshot.og_image || null,
     media_url: snapshot.og_video || null,
     missing,
+    missing_reasons: reasonsForMissing(missing, item),
     raw: { description, article_text: text.slice(0, 20000), aria_text: aria.slice(0, 10000), json_ld: structured }
   };
 }
