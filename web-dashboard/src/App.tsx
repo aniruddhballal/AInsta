@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Activity, ArrowRight, ArrowUpRight, Circle, CircleAlert, CircleCheck, Database, ListFilter, Search, X } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { Activity, ArrowRight, ArrowUpRight, BarChart3, Circle, CircleAlert, CircleCheck, Database, FileText, Globe2, ListFilter, MessageSquareText, Search, Users, X } from 'lucide-react';
 
 type PostDate = { url: string; date: string };
 type Issue = { id?: string; username?: string; profile_url?: string; post_url?: string; code?: string; message?: string; occurred_at?: string; recommended_action?: string };
@@ -13,7 +13,7 @@ type Profile = {
 };
 type Job = { id: string; kind: 'surface' | 'deep'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
-type Tab = 'master' | 'surface' | 'deep' | 'issues';
+type Tab = 'master' | 'surface' | 'insights' | 'deep' | 'issues';
 type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
 
 const API = '/api';
@@ -112,6 +112,7 @@ function App() {
   const tabs: { id: Tab; label: string; count: number }[] = [
     { id: 'master', label: 'Master list', count: profiles.length },
     { id: 'surface', label: 'Surface analysis', count: profiles.filter((p) => Boolean(p.last_fetched_at)).length },
+    { id: 'insights', label: 'Insights', count: profiles.filter((p) => Boolean(p.last_fetched_at)).length },
     { id: 'deep', label: 'Deep analysis', count: profiles.filter((p) => p.deep_status === 'Collected').length },
     { id: 'issues', label: 'Issues', count: issues.length }
   ];
@@ -134,6 +135,7 @@ function App() {
         <div className="selection-bar"><span><strong>{deepSelection.size}</strong> selected · {readyForDeep.length} ready for deep analysis</span><button className="button primary" disabled={!deepSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('deep', deepSelection)}>Run deep analysis <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
         <ProfileTable profiles={visibleProfiles.filter((profile) => Boolean(profile.last_fetched_at))} mode="surface" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
       </section>}
+      {tab === 'insights' && <InsightsView profiles={profiles} />}
       {tab === 'deep' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label><span className="helper">Post dates are collected only after surface analysis succeeds.</span></div>
         <ProfileTable profiles={visibleProfiles.filter(successful)} mode="deep" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
@@ -159,6 +161,120 @@ function Status({ value }: { value?: string }) {
   const lower = String(value || 'Pending').toLocaleLowerCase();
   const type = lower.includes('collect') ? 'good' : lower.includes('fail') || lower.includes('deleted') || lower.includes('error') ? 'bad' : 'pending';
   return <span className={`status ${type}`}><Circle aria-hidden="true" />{value || 'Pending'}</span>;
+}
+
+function postCount(profile: Profile): number | null {
+  const parse = (value: unknown): number | null => {
+    if (typeof value === 'number') return Number.isFinite(value) && value >= 0 ? value : null;
+    const match = String(value ?? '').trim().match(/^([\d,.]+)\s*([kmb])?(?:\s+posts?)?$/i);
+    if (!match) return null;
+    const amount = Number(match[1].replace(/,/g, ''));
+    if (!Number.isFinite(amount)) return null;
+    const multiplier = ({ k: 1_000, m: 1_000_000, b: 1_000_000_000 } as Record<string, number>)[(match[2] || '').toLowerCase()] || 1;
+    return Math.round(amount * multiplier);
+  };
+  const direct = parse(profile.posts_count);
+  if (direct != null) return direct;
+  const fromProfileText = profile.profile_text?.match(/(?:^|\n)\s*([\d,.]+)\s*([kmb])?\s+posts?\b/i);
+  return fromProfileText ? parse(`${fromProfileText[1]}${fromProfileText[2] || ''}`) : null;
+}
+
+function InsightsView({ profiles }: { profiles: Profile[] }) {
+  const scanned = profiles.filter((profile) => Boolean(profile.last_fetched_at));
+  const countries = scanned.reduce((counts, profile) => {
+    const country = String(profile.country || '').trim();
+    if (country && !/^(not shared|not shown|unknown|n\/a)$/i.test(country)) {
+      const label = country.replace(/\s+/g, ' ');
+      counts.set(label, (counts.get(label) || 0) + 1);
+    }
+    return counts;
+  }, new Map<string, number>());
+  const countryRows = [...countries].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const postRows = scanned.map((profile) => ({ profile, count: postCount(profile) })).filter((item): item is { profile: Profile; count: number } => item.count != null);
+  const sortedPostCounts = postRows.map((item) => item.count).sort((a, b) => a - b);
+  const averagePosts = sortedPostCounts.length ? sortedPostCounts.reduce((sum, count) => sum + count, 0) / sortedPostCounts.length : 0;
+  const medianPosts = sortedPostCounts.length ? sortedPostCounts.length % 2
+    ? sortedPostCounts[Math.floor(sortedPostCounts.length / 2)]
+    : (sortedPostCounts[sortedPostCounts.length / 2 - 1] + sortedPostCounts[sortedPostCounts.length / 2]) / 2 : 0;
+  const postBuckets = [
+    { label: '0–99', count: postRows.filter(({ count }) => count < 100).length },
+    { label: '100–499', count: postRows.filter(({ count }) => count >= 100 && count < 500).length },
+    { label: '500–999', count: postRows.filter(({ count }) => count >= 500 && count < 1_000).length },
+    { label: '1K–4.9K', count: postRows.filter(({ count }) => count >= 1_000 && count < 5_000).length },
+    { label: '5K+', count: postRows.filter(({ count }) => count >= 5_000).length }
+  ];
+  const statuses = scanned.reduce((counts, profile) => {
+    const label = String(profile.status || 'Unspecified').trim() || 'Unspecified';
+    counts.set(label, (counts.get(label) || 0) + 1);
+    return counts;
+  }, new Map<string, number>());
+  const statusRows = [...statuses].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const joinYears = scanned.reduce((counts, profile) => {
+    const year = String(profile.date_joined || '').match(/\b(?:19|20)\d{2}\b/)?.[0];
+    if (year) counts.set(year, (counts.get(year) || 0) + 1);
+    return counts;
+  }, new Map<string, number>());
+  const joinYearRows = [...joinYears].sort((a, b) => a[0].localeCompare(b[0]));
+  const bioGroups = new Map<string, { bio: string; profiles: Profile[] }>();
+  for (const profile of scanned) {
+    const bio = String(profile.bio || '').trim().replace(/\s+/g, ' ').normalize('NFC');
+    if (!bio) continue;
+    const normalized = bio.toLocaleLowerCase();
+    const group = bioGroups.get(normalized) || { bio, profiles: [] };
+    group.profiles.push(profile);
+    bioGroups.set(normalized, group);
+  }
+  const repeatedBios = [...bioGroups.values()].filter((group) => group.profiles.length > 1)
+    .sort((a, b) => b.profiles.length - a.profiles.length || a.bio.localeCompare(b.bio)).slice(0, 6);
+  const maxCountry = Math.max(1, ...countryRows.map(([, count]) => count));
+  const maxStatus = Math.max(1, ...statusRows.map(([, count]) => count));
+  const maxJoinYear = Math.max(1, ...joinYearRows.map(([, count]) => count));
+  const maxPosts = Math.max(1, ...postBuckets.map((bucket) => bucket.count));
+  const missingCountries = scanned.length - countryRows.reduce((sum, [, count]) => sum + count, 0);
+  const fetchedAt = scanned.map((profile) => profile.last_fetched_at || '').sort().at(-1);
+
+  return <section className="insights-view">
+    <div className="insights-heading"><div><p className="eyebrow">SURFACE ANALYSIS / SUMMARY</p><h2>Profile insights</h2><p className="lede">A live summary of the profile data collected so far.</p></div><span className="insights-updated">{fetchedAt ? `Latest fetch ${fmt(fetchedAt)}` : 'No surface results yet'}</span></div>
+    {!scanned.length ? <div className="empty"><BarChart3 className="ui-icon" size={24} /><h3>No surface data to summarize</h3><p>Run surface analysis on profiles to see country, post-count, and bio patterns here.</p></div> : <>
+      <div className="insight-stats">
+        <InsightStat icon={<Users />} label="Profiles scanned" value={scanned.length.toLocaleString()} detail={`${profiles.length.toLocaleString()} total in the catalog`} />
+        <InsightStat icon={<Globe2 />} label="Countries identified" value={countryRows.length.toLocaleString()} detail={`${(scanned.length - missingCountries).toLocaleString()} profiles · ${missingCountries.toLocaleString()} not shared or unavailable`} />
+        <InsightStat icon={<BarChart3 />} label="Average posts" value={postRows.length ? Math.round(averagePosts).toLocaleString() : '—'} detail={postRows.length ? `Median ${Math.round(medianPosts).toLocaleString()} · based on ${postRows.length} profiles` : 'No numeric post counts available'} />
+        <InsightStat icon={<MessageSquareText />} label="Repeated bios" value={repeatedBios.length ? repeatedBios.length.toLocaleString() : '0'} detail={repeatedBios.length ? `${repeatedBios[0].profiles.length} profiles share the most common bio` : 'No exact bio repeats found'} />
+      </div>
+
+      <div className="insight-grid">
+        <InsightPanel icon={<Globe2 />} title="Accounts by country" meta={`${countryRows.length} countries`}>
+          {countryRows.length ? <><div className="insight-bars">{countryRows.slice(0, 8).map(([country, count]) => <InsightBar key={country} label={country} count={count} total={scanned.length} max={maxCountry} />)}</div>{missingCountries > 0 && <p className="insight-note">Country unavailable for {missingCountries} scanned {missingCountries === 1 ? 'profile' : 'profiles'}.</p>}</> : <p className="insight-note">No country values were shared in the scanned profiles.</p>}
+        </InsightPanel>
+        <InsightPanel icon={<FileText />} title="Profile status" meta={`${scanned.length} scan results`}>
+          <div className="insight-bars">{statusRows.map(([status, count]) => <InsightBar key={status} label={status} count={count} total={scanned.length} max={maxStatus} />)}</div>
+        </InsightPanel>
+        <InsightPanel icon={<BarChart3 />} title="Post-count distribution" meta={`${postRows.length} of ${scanned.length} readable`}>
+          {postRows.length ? <><div className="insight-bars">{postBuckets.map((bucket) => <InsightBar key={bucket.label} label={bucket.label} count={bucket.count} total={postRows.length} max={maxPosts} />)}</div><p className="insight-note">Mean {Math.round(averagePosts).toLocaleString()} posts · median {Math.round(medianPosts).toLocaleString()} · range {sortedPostCounts[0].toLocaleString()}–{sortedPostCounts.at(-1)?.toLocaleString()}</p></> : <p className="insight-note">Post counts were hidden or unavailable in the scanned profiles.</p>}
+        </InsightPanel>
+        <InsightPanel icon={<Users />} title="Accounts by join year" meta={`${joinYearRows.reduce((sum, [, count]) => sum + count, 0)} dates found`}>
+          {joinYearRows.length ? <div className="insight-bars">{joinYearRows.map(([year, count]) => <InsightBar key={year} label={year} count={count} total={scanned.length} max={maxJoinYear} />)}</div> : <p className="insight-note">No join years could be read from the scanned profiles.</p>}
+        </InsightPanel>
+        <InsightPanel className="wide" icon={<MessageSquareText />} title="Repeated bios" meta={`${bioGroups.size} distinct non-empty bios`}>
+          {repeatedBios.length ? <div className="repeated-bios">{repeatedBios.map((group) => <article className="repeated-bio" key={group.bio.toLocaleLowerCase()}><div className="repeat-count">{group.profiles.length}<small>accounts</small></div><div className="repeat-copy"><p>{group.bio}</p><div className="repeat-profiles">{group.profiles.slice(0, 8).map((profile) => <a key={key(profile)} href={profile.url} target="_blank" rel="noreferrer">@{profile.username}</a>)}{group.profiles.length > 8 && <span>+{group.profiles.length - 8} more</span>}</div></div></article>)}</div> : <div className="no-repeats"><span>Each non-empty bio is unique across these scanned profiles.</span><strong>{bioGroups.size.toLocaleString()} distinct bios</strong></div>}
+        </InsightPanel>
+      </div>
+      <p className="insights-footnote">Country and join-year summaries exclude values that weren’t shared or could not be read. Post statistics use numeric counts where available, including counts visible in the collected profile text. Bio matches ignore capitalization and whitespace only.</p>
+    </>}
+  </section>;
+}
+
+function InsightStat({ icon, label, value, detail }: { icon: ReactNode; label: string; value: string; detail: string }) {
+  return <article className="insight-stat"><div className="insight-stat-top"><span className="insight-stat-icon">{icon}</span><span>{label}</span></div><strong>{value}</strong><p>{detail}</p></article>;
+}
+
+function InsightPanel({ icon, title, meta, className = '', children }: { icon: ReactNode; title: string; meta: string; className?: string; children: ReactNode }) {
+  return <article className={`insight-panel ${className}`}><header><div className="insight-panel-title"><span className="insight-panel-icon">{icon}</span><h3>{title}</h3></div><span>{meta}</span></header>{children}</article>;
+}
+
+function InsightBar({ label, count, total, max }: { label: string; count: number; total: number; max: number }) {
+  return <div className="insight-bar-row"><span>{label}</span><div className="insight-bar-track"><span style={{ width: `${count ? Math.max(3, count / max * 100) : 0}%` }} /></div><strong>{count}</strong><small>{total ? `${Math.round(count / total * 100)}%` : '0%'}</small></div>;
 }
 
 export default App;
