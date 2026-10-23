@@ -18,6 +18,14 @@ type Tab = 'master' | 'surface' | 'insights' | 'post_counts' | 'reel_counts' | '
 type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
 
 const API = '/api';
+const TAB_ROUTES: Record<Tab, string> = {
+  master: '/', surface: '/surface-analysis', insights: '/insights', post_counts: '/post-counts',
+  reel_counts: '/reel-counts', deep: '/deep-analysis', issues: '/issues'
+};
+function tabFromPath(pathname: string): Tab {
+  const path = pathname.replace(/\/+$/, '') || '/';
+  return (Object.entries(TAB_ROUTES).find(([, route]) => route === path)?.[0] as Tab | undefined) || 'master';
+}
 const numericPostCount = (value: unknown): number | null => {
   if (typeof value === 'number') return Number.isFinite(value) && value >= 0 ? value : null;
   const match = String(value ?? '').trim().match(/^([\d,.]+)\s*([kmb])?(?:\s+posts?)?$/i);
@@ -68,7 +76,7 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
 
 function App() {
   const [data, setData] = useState<Data | null>(null);
-  const [tab, setTab] = useState<Tab>('master');
+  const [tab, setTab] = useState<Tab>(() => tabFromPath(window.location.pathname));
   const [search, setSearch] = useState('');
   const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>('all');
   const [surfaceCountry, setSurfaceCountry] = useState('all');
@@ -98,6 +106,14 @@ function App() {
   }, []);
 
   useEffect(() => { void refresh(); const timer = window.setInterval(() => void refresh(), 2500); return () => window.clearInterval(timer); }, [refresh]);
+  useEffect(() => {
+    const syncTab = () => setTab(tabFromPath(window.location.pathname));
+    if (window.location.pathname !== TAB_ROUTES[tabFromPath(window.location.pathname)]) {
+      window.history.replaceState(null, '', TAB_ROUTES[tabFromPath(window.location.pathname)]);
+    }
+    window.addEventListener('popstate', syncTab);
+    return () => window.removeEventListener('popstate', syncTab);
+  }, []);
 
   const profiles = data?.profiles || [];
   const visibleProfiles = useMemo(() => {
@@ -151,6 +167,12 @@ function App() {
     for (const profile of candidates) allSelected ? next.delete(key(profile)) : next.add(key(profile));
     setter(next);
   }
+  function navigateTab(nextTab: Tab) {
+    setTab(nextTab);
+    setSearch('');
+    const path = TAB_ROUTES[nextTab];
+    if (window.location.pathname !== path) window.history.pushState({ tab: nextTab }, '', path);
+  }
   async function startJob(kind: 'surface' | 'deep' | 'post_count' | 'reels_count', selected: Set<string>) {
     setBusy(true); setError('');
     try {
@@ -192,11 +214,11 @@ function App() {
   ];
 
   return <main className="shell">
-    <header className="topbar"><a className="brand" href="#master" onClick={() => setTab('master')} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
+    <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
     <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
     {activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : activeJob.kind === 'reels_count' ? 'Reel count scan' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{activeJob.kind === 'reels_count' && activeJob.index < activeJob.profile_keys.length && <p className="collector-wait">Scanning @{activeJob.profile_keys[activeJob.index]} · profiles with many reels may take a while.</p>}{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
-    <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => { setTab(item.id); setSearch(''); }}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
+    <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => navigateTab(item.id)}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
     {!data ? <section className="empty">Connecting to the local account data…</section> : <>
       {tab === 'master' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username, bio, or country" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><span className="sr-only">Filter profiles by surface status</span><select value={surfaceFilter} onChange={(event) => setSurfaceFilter(event.target.value as SurfaceFilter)} aria-label="Filter profiles by surface status"><option value="all">All profiles</option><option value="needs_surface">Needs surface analysis</option><option value="collected">Surface complete</option><option value="collection_failed">Collection failed</option><option value="deleted_account">Deleted account</option><option value="issues">Has issues</option><option value="ignored">Ignored</option></select></label><button className="button secondary" onClick={() => selectVisible(surfaceSelection, setSurfaceSelection, masterProfiles.filter((profile) => !profile.ignored))}>{masterProfiles.some((profile) => !profile.ignored) && masterProfiles.filter((profile) => !profile.ignored).every((profile) => surfaceSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
