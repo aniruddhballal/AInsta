@@ -1,6 +1,7 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { paths, readJson } from '../src/store.mjs';
+import { profileLevelComplete } from '../src/model.mjs';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const catalogPath = resolve(root, '..', 'bot-info', 'database', 'profiles', 'index.json');
@@ -49,6 +50,7 @@ export function profileSummary(data) {
     following: profile?.following_count || null,
     posts_reported: profile?.posts_count || null,
     profile_fetched_at: profile?.fetched_at || null,
+    profile_complete: profileLevelComplete(profile),
     reels: content('reel'),
     posts: content('post'),
     run: { status: run.status || 'not_started', phase: run.phase || null,

@@ -31,9 +31,18 @@ To use the new local workspace, start it from this folder:
 npm run ui
 ```
 
-Open `http://127.0.0.1:5174/`. The Collection page lists every account in the existing profile index. Search, filter, or switch between grid and list, select accounts, then start a reel scan. Profiles run one at a time in the background; the page shows the selected profile count, current account, reel progress, review count, and recent activity. **Stop after current profile** lets the current account finish before the queue stops. A later run resumes saved work and retries incomplete items. Keep this terminal open while a batch is running.
+Open `http://127.0.0.1:5174/`. The Collection page lists every account in the existing profile index. Select accounts and choose a strategy:
 
-Open `http://127.0.0.1:5174/profiles/edlt.shox` for a profile report with its fields, reel inventory, missing-field reasons, and a link to the original standalone HTML report. Open `http://127.0.0.1:5174/summary` for totals and rankings across collected accounts. Aggregate totals based on Instagram's `K` and `M` labels are estimates; per-reel values keep the displayed labels. The workspace scans **reels only** for now and shows posts as a later stage. It writes only inside ignored `collector-v2/data/` and leaves the older web dashboard unchanged.
+| Strategy | Order |
+| --- | --- |
+| Profile details only | Profile stage for each selected account; no reel work. |
+| Profile + reels, depth first | Profile then reels for account A, then account B, and so on. This also handles a single account. |
+| Profile + reels, breadth first | Profile stage for every selected account, then reel stage for every account. |
+| Reels only | Reel stage for accounts with saved profile details; no profile refresh. |
+
+Each profile card also has **Run profile + reels** for an immediate single-account depth-first run. Use the **Profile details ready** filter with **Select visible** to assemble a reels-only set. A profile is ready when its header and the three header counts were saved; incomplete captures are flagged for review. The queue shows completed profile and reel stages, the current account's reel count, review counts, and recent activity. **Stop after current stage** lets the current stage finish before the queue stops. A later run reuses saved grids and items, retrying incomplete items. Keep this terminal open while a batch is running.
+
+Open `http://127.0.0.1:5174/profiles/edlt.shox` for a profile report with its fields, reel inventory, missing-field reasons, and a link to the original standalone HTML report. Open `http://127.0.0.1:5174/summary` for totals and rankings across collected accounts. Aggregate totals based on Instagram's `K` and `M` labels are estimates; per-reel values keep the displayed labels. Posts remain a later content stage. The workspace writes only inside ignored `collector-v2/data/` and leaves the older web dashboard unchanged.
 
 The command-line collector is also available:
 
@@ -43,7 +52,7 @@ npm run status
 npm run report
 ```
 
-`collect` opens a visible browser. Use `node src/cli.mjs collect --headless` to run in the background. Add `--username=NAME` for another catalog account and `--reels-only` to collect its reels before tackling posts. A normal rerun skips grids marked complete and items with complete details, while retrying partial or failed items. Use `--refresh` to rescan grids and refresh items. `--limit=N` limits item detail attempts for a small test; discovery still runs.
+`collect` opens a visible browser. Use `node src/cli.mjs collect --headless` to run in the background. Add `--username=NAME` for another catalog account. `--profile-only` saves only profile fields; `--reels-only --skip-profile` uses saved profile fields and scans reels only. `--reels-only` alone refreshes the profile as well. A normal rerun skips grids marked complete and items with complete details, while retrying partial or failed items. Use `--refresh` to rescan grids and refresh items. `--limit=N` limits item detail attempts for a small test; discovery still runs.
 
 Outputs are under ignored `data/edlt.shox/`:
 

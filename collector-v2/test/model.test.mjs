@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { count, profileFromSnapshot, canonicalItemUrl, itemFromSnapshot } from '../src/model.mjs';
+import { count, profileFromSnapshot, profileLevelComplete, canonicalItemUrl, itemFromSnapshot } from '../src/model.mjs';
 import { mergeItem, mergeProfile, syncGridViews } from '../src/store.mjs';
 
 test('counts retain whether the source displayed a rounded value', () => {
@@ -22,6 +22,13 @@ test('profile extracts the sample account fields', () => {
   assert.equal(result.former_usernames_count.value, 13);
   assert.equal(result.category, 'Reel creator');
   assert.equal(result.ai_generated_profile, true);
+  assert.equal(profileLevelComplete(result), true);
+});
+
+test('a profile with missing header counts needs review before a reels-only run', () => {
+  const result = profileFromSnapshot('example', { header_text: 'example\n10 followers\n0 following' });
+  assert.equal(profileLevelComplete(result), false);
+  assert.match(result.issues.join(' '), /Post count unavailable/);
 });
 
 test('profile reads post count from page metadata when the public header omits it', () => {

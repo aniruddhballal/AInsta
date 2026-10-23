@@ -10,8 +10,8 @@ export const profileHref = (name) => `/profiles/${encodeURIComponent(name)}`;
 export const reportHref = (name) => `/reports/${encodeURIComponent(name)}`;
 export const statusText = (value) => ({ not_started: 'Not collected', running: 'Running', complete: 'Complete',
   needs_review: 'Needs review', partial: 'Needs review', queued: 'Queued', failed: 'Failed',
-  interrupted: 'Interrupted', stopped: 'Stopped' })[value] || value || 'Not collected';
-export const badge = (value) => `<span class="badge ${({ complete: 'good', running: 'active', needs_review: 'warn', partial: 'warn', failed: 'bad', interrupted: 'warn' })[value] || 'quiet'}">${esc(statusText(value))}</span>`;
+  interrupted: 'Interrupted', stopped: 'Stopped', skipped: 'Skipped' })[value] || value || 'Not collected';
+export const badge = (value) => `<span class="badge ${({ complete: 'good', running: 'active', needs_review: 'warn', partial: 'warn', failed: 'bad', interrupted: 'warn', skipped: 'warn' })[value] || 'quiet'}">${esc(statusText(value))}</span>`;
 export const progress = (done, total) => `<div class="track"><span style="width:${total ? Math.min(100, Math.round(done / total * 100)) : 0}%"></span></div>`;
 export const errorBanner = (error) => error ? `<div class="error-banner" role="alert"><strong>Something needs attention.</strong> ${esc(error)} <button data-action="dismiss" aria-label="Dismiss">×</button></div>` : '';
 export async function api(path, options) {

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { launch, captureProfile, discover, captureItem } from './browser.mjs';
-import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot } from './model.mjs';
+import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot, profileLevelComplete } from './model.mjs';
 import { paths, readJson, writeJson, mergeItem, mergeProfile, syncGridViews } from './store.mjs';
 import { writeReport } from './report.mjs';
 
@@ -89,11 +89,16 @@ async function importFirefox() {
 async function collect() {
   const refresh = flags.has('--refresh');
   const headless = flags.has('--headless');
-  const kinds = flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
+  const profileOnly = flags.has('--profile-only');
+  const skipProfile = flags.has('--skip-profile');
+  if (profileOnly && (flags.has('--reels-only') || skipProfile)) throw new Error('--profile-only cannot be combined with reel flags.');
+  if (skipProfile && !flags.has('--reels-only')) throw new Error('--skip-profile requires --reels-only.');
+  const kinds = profileOnly ? [] : flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
   const limitArg = process.argv.find((arg) => arg.startsWith('--limit='));
   const limit = limitArg ? Number(limitArg.slice(8)) : Infinity;
   if (!Number.isInteger(limit) && limit !== Infinity || limit < 0) throw new Error('--limit must be a nonnegative integer.');
   let { profile, discovery, items, run } = await files();
+  if (skipProfile && !profileLevelComplete(profile)) throw new Error(`Collect complete @${username} profile details before running reels only.`);
   let corrected = false;
   items = items.map((item) => {
     const day = item.date_precision === 'day' ? dayFromDescription(item.raw?.description) : null;
@@ -108,18 +113,26 @@ async function collect() {
     return { ...item, date: day };
   });
   if (corrected) await writeJson(path.items, items);
-  run = { ...run, started_at: now(), updated_at: now(), status: 'running', phase: 'profile', scope: kinds, error: null };
+  run = { ...run, started_at: now(), updated_at: now(), status: 'running',
+    phase: skipProfile ? 'reel discovery' : 'profile',
+    scope: profileOnly ? ['profile'] : skipProfile ? kinds : ['profile', ...kinds],
+    current_url: null, error: null };
   await writeJson(path.run, run);
   let context;
+  let profileStageComplete = skipProfile;
   try {
     const launched = await launch(root, { headless });
     context = launched.context;
     const page = launched.page;
-    log(`Collecting ${username} profile`);
-    const snapshot = await captureProfile(page, username);
-    const current = profileFromSnapshot(username, snapshot);
-    profile = mergeProfile(profile, current);
-    await writeJson(path.profile, profile);
+    if (!skipProfile) {
+      log(`Collecting ${username} profile`);
+      const snapshot = await captureProfile(page, username);
+      const current = profileFromSnapshot(username, snapshot);
+      profileStageComplete = profileLevelComplete(current);
+      profile = mergeProfile(profile, current);
+      await writeJson(path.profile, profile);
+      if (!profileStageComplete) log('Profile details are incomplete; missing header counts need review');
+    } else log(`Using saved ${username} profile details`);
     for (const kind of kinds) {
       run = { ...run, phase: `${kind} discovery`, updated_at: now() };
       await writeJson(path.run, run);
@@ -174,7 +187,7 @@ async function collect() {
       await writeJson(path.items, items);
       await new Promise((done) => setTimeout(done, 1600));
     }
-    const complete = kinds.every((kind) => discovery[kind]?.complete)
+    const complete = profileStageComplete && kinds.every((kind) => discovery[kind]?.complete)
       && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete' && !existing.get(url)?.last_error);
     run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial' };
     await writeJson(path.run, run);

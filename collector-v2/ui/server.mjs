@@ -5,7 +5,9 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { randomUUID } from 'node:crypto';
 import { catalog, detail, profileData, profileSummary, resolveUsername, root, summary, usernames } from './data.mjs';
+import { MODES, resultStatus, stepsFor, terminal } from './plan.mjs';
 import { paths, readJson, writeJson } from '../src/store.mjs';
+import { profileLevelComplete } from '../src/model.mjs';
 
 const publicDir = join(dirname(fileURLToPath(import.meta.url)), 'public');
 const jobPath = join(root, 'data', 'ui-job.json');
@@ -36,8 +38,13 @@ class BatchRunner {
     if (this.batch?.status === 'running') {
       this.batch.status = 'interrupted';
       this.batch.current = null;
+      this.batch.current_stage = null;
       for (const username of this.batch.profiles) {
-        if (this.batch.results[username]?.status === 'running') this.batch.results[username].status = 'interrupted';
+        const result = this.batch.results[username];
+        if (result?.status === 'running') result.status = 'interrupted';
+        for (const stage of Object.values(result?.stages || {})) {
+          if (stage.status === 'running') stage.status = 'interrupted';
+        }
       }
       await this.save();
     }
@@ -45,25 +52,46 @@ class BatchRunner {
 
   async save() { await writeJson(jobPath, this.batch); }
 
-  async start(requested) {
+  async start(requested, mode = 'depth_first') {
     if (this.active) throw Object.assign(new Error('A batch is already running.'), { status: 409 });
     if (!Array.isArray(requested) || !requested.length) throw Object.assign(new Error('Select at least one profile.'), { status: 400 });
+    if (!Object.hasOwn(MODES, mode)) throw Object.assign(new Error('Choose a valid collection mode.'), { status: 400 });
     const valid = await usernames();
     const lookup = new Map(valid.map((name) => [name.toLowerCase(), name]));
     const selected = [...new Set(requested.map((name) => typeof name === 'string' ? lookup.get(name.toLowerCase()) : null))];
     if (selected.includes(undefined) || selected.includes(null) || selected.length > valid.length) {
       throw Object.assign(new Error('Selection contains a profile outside the catalog.'), { status: 400 });
     }
+    if (mode === 'reels_only') {
+      const missing = (await Promise.all(selected.map(async (name) => ({ name, data: await profileData(name) }))))
+        .filter(({ data }) => !profileLevelComplete(data.profile)).map(({ name }) => `@${name}`);
+      if (missing.length) throw Object.assign(new Error(`Collect profile details first: ${missing.join(', ')}.`), { status: 400 });
+    }
+    const steps = stepsFor(selected, mode);
     const time = new Date().toISOString();
-    this.batch = { id: randomUUID(), status: 'running', profiles: selected,
-      results: Object.fromEntries(selected.map((name) => [name, { status: 'queued', started_at: null, finished_at: null, error: null }])),
-      current: null, started_at: time, updated_at: time, finished_at: null, stop_requested: false, logs: [] };
+    this.batch = { id: randomUUID(), mode, status: 'running', profiles: selected, steps,
+      results: Object.fromEntries(selected.map((name) => [name, { status: 'queued', started_at: null,
+        finished_at: null, error: null, stages: Object.fromEntries(steps.filter((step) => step.username === name)
+          .map((step) => [step.stage, { status: 'queued', started_at: null, finished_at: null, error: null }])) }])),
+      current: null, current_stage: null, started_at: time, updated_at: time, finished_at: null,
+      stop_requested: false, logs: [] };
     await this.save();
     this.active = true;
     void this.run().catch(async (error) => {
+      if (this.batch.current && this.batch.current_stage) {
+        const stage = this.batch.results[this.batch.current]?.stages?.[this.batch.current_stage];
+        if (stage) {
+          stage.status = 'failed';
+          stage.error = error.message;
+          stage.finished_at = new Date().toISOString();
+          this.batch.results[this.batch.current].status = 'failed';
+        }
+      }
       this.batch.status = 'failed';
       this.batch.error = error.message;
       this.batch.updated_at = new Date().toISOString();
+      this.batch.current = null;
+      this.batch.current_stage = null;
       this.active = false;
       await this.save().catch(() => {});
     });
@@ -87,17 +115,34 @@ class BatchRunner {
   }
 
   async run() {
-    for (const username of this.batch.profiles) {
+    for (const { username, stage: level } of this.batch.steps) {
       if (this.batch.stop_requested) break;
       const result = this.batch.results[username];
+      const stage = result.stages[level];
+      if (level === 'reels' && (['failed', 'needs_review'].includes(result.stages.profile?.status)
+        || !await profileData(username).then((data) => profileLevelComplete(data.profile)))) {
+        stage.status = 'skipped';
+        stage.error = 'Profile details are unavailable.';
+        stage.finished_at = new Date().toISOString();
+        result.status = resultStatus(result.stages);
+        result.error = stage.error;
+        result.finished_at = stage.finished_at;
+        this.log(`Skipped @${username} reels: ${stage.error}`);
+        await this.save();
+        continue;
+      }
+      stage.status = 'running';
+      stage.started_at = new Date().toISOString();
       result.status = 'running';
-      result.started_at = new Date().toISOString();
+      result.started_at ||= stage.started_at;
       this.batch.current = username;
-      this.batch.updated_at = result.started_at;
+      this.batch.current_stage = level;
+      this.batch.updated_at = stage.started_at;
       await this.save();
-      this.log(`Starting @${username}`);
+      this.log(`Starting @${username} ${level}`);
       const child = spawn(process.execPath,
-        ['src/cli.mjs', 'collect', `--username=${username}`, '--reels-only', '--headless'],
+        ['src/cli.mjs', 'collect', `--username=${username}`,
+          ...(level === 'profile' ? ['--profile-only'] : ['--reels-only', '--skip-profile']), '--headless'],
         { cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
       for (const stream of [child.stdout, child.stderr]) {
         stream.setEncoding('utf8');
@@ -116,22 +161,26 @@ class BatchRunner {
         child.once('close', (code) => resolveExit({ code, error }));
       });
       const collected = await profileData(username);
-      result.finished_at = new Date().toISOString();
-      result.status = exit.code === 0
+      stage.finished_at = new Date().toISOString();
+      stage.status = exit.code === 0 && (level !== 'profile' || collected.profile?.fetched_at)
         ? collected.run.status === 'complete' ? 'complete' : 'needs_review'
         : 'failed';
-      result.error = exit.error?.message || (exit.code === 0 ? collected.run.error || null
+      stage.error = exit.error?.message || (exit.code === 0 ? collected.run.error || null
         : collected.run.error || `Collector exited with code ${exit.code}.`);
-      this.log(`Finished @${username}: ${result.status}`);
+      result.status = resultStatus(result.stages);
+      result.error = stage.error || result.error;
+      if (Object.values(result.stages).every((value) => terminal(value.status))) result.finished_at = stage.finished_at;
+      this.log(`Finished @${username} ${level}: ${stage.status}`);
       this.batch.current = null;
-      this.batch.updated_at = result.finished_at;
+      this.batch.current_stage = null;
+      this.batch.updated_at = stage.finished_at;
       await this.save();
     }
     this.batch.status = this.batch.stop_requested ? 'stopped' : 'complete';
     this.batch.finished_at = new Date().toISOString();
     this.batch.updated_at = this.batch.finished_at;
-    this.active = false;
     await this.save();
+    this.active = false;
   }
 }
 
@@ -168,7 +217,10 @@ const server = createServer(async (request, response) => {
       if (!expected.includes(request.headers.origin) || !request.headers['content-type']?.startsWith('application/json')) {
         return json(response, 403, { error: 'Use this local UI to start or stop collection.' });
       }
-      if (pathname === '/api/runs') return json(response, 202, await runner.start((await body(request)).profiles));
+      if (pathname === '/api/runs') {
+        const input = await body(request);
+        return json(response, 202, await runner.start(input.profiles, input.mode));
+      }
       if (pathname === '/api/runs/stop') return json(response, 200, await runner.stop());
       return json(response, 404, { error: 'Unknown action.' });
     }
@@ -199,7 +251,7 @@ const server = createServer(async (request, response) => {
     }
     return json(response, 404, { error: 'Page not found.' });
   } catch (error) {
-    console.error(error);
+    if (!error.status) console.error(error);
     if (!response.headersSent) json(response, error.status || 500, { error: error.status ? error.message : 'The local UI encountered an error.' });
     else response.end();
   }

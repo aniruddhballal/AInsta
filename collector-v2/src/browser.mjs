@@ -70,7 +70,10 @@ async function aboutText(page) {
 
 export async function captureProfile(page, username) {
   await open(page, `https://www.instagram.com/${username}/`);
-  const headerText = await page.locator('main header').first().innerText().catch(() => '');
+  const header = page.locator('main header').first();
+  await header.waitFor({ state: 'visible', timeout: 15000 }).catch(() => {});
+  const headerText = await header.innerText().catch(() => '');
+  if (!headerText.trim()) throw new Error('Instagram did not show the profile header.');
   const about = await aboutText(page);
   const meta = await page.evaluate(() => ({
     description: document.querySelector('meta[name="description"]')?.content || '',

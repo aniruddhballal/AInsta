@@ -37,6 +37,8 @@ export function profileFromSnapshot(username, snapshot) {
   const about = snapshot.about_text || '';
   const former = afterLabel(about, 'Former usernames');
   const description = snapshot.description || '';
+  const headerPosts = metric(header, ['posts?']);
+  const metadataPosts = metric(description, ['posts?']);
   const headerFollowing = metric(header, ['following']);
   const metadataFollowing = metric(description, ['following']);
   const followingConflict = headerFollowing && metadataFollowing && headerFollowing.value !== metadataFollowing.value;
@@ -49,7 +51,7 @@ export function profileFromSnapshot(username, snapshot) {
     fetched_at: now(),
     display_name: statIndex > 1 ? lines.slice(1, statIndex).join(' ') : null,
     bio: bioContent.length ? bioContent.join('\n') : null,
-    posts_count: metric(header, ['posts?']) || metric(description, ['posts?']),
+    posts_count: headerPosts || metadataPosts,
     followers_count: exactFollowers ? { ...exactFollowers, source: 'header_title' }
       : headerFollowers ? { ...headerFollowers, source: 'header_text' } : null,
     following_count: headerFollowing ? { ...headerFollowing, source: 'header_text' }
@@ -57,7 +59,7 @@ export function profileFromSnapshot(username, snapshot) {
     count_evidence: {
       followers: { header: headerFollowers, exact_title: exactFollowers, metadata: metadataFollowers },
       following: { header: headerFollowing, metadata: metadataFollowing, conflict: Boolean(followingConflict) },
-      posts: { header: metric(header, ['posts?']), metadata: metric(description, ['posts?']) }
+      posts: { header: headerPosts, metadata: metadataPosts }
     },
     category,
     ai_generated_profile: lines.some((line) => /^AI-generated profile$/i.test(line)),
@@ -69,9 +71,17 @@ export function profileFromSnapshot(username, snapshot) {
     issues: [
       ...(!header ? ['profile header unavailable'] : []),
       ...(!about ? ['About this account unavailable'] : []),
+      ...(!headerPosts && !metadataPosts ? ['Post count unavailable in the profile header and page metadata.'] : []),
+      ...(!exactFollowers && !headerFollowers ? ['Follower count unavailable in the profile header.'] : []),
+      ...(!headerFollowing && !metadataFollowing ? ['Following count unavailable in the profile header and page metadata.'] : []),
       ...(followingConflict ? [`Page metadata says ${metadataFollowing.raw} following; current profile header says ${headerFollowing.raw}, which is used for the count.`] : [])
     ]
   };
+}
+
+export function profileLevelComplete(profile) {
+  return Boolean(profile?.fetched_at && profile?.raw?.header_text?.trim()
+    && profile.posts_count && profile.followers_count && profile.following_count);
 }
 
 export function canonicalItemUrl(href) {

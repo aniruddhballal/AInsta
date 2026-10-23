@@ -5,10 +5,13 @@ import { renderOverview } from './overview.js';
 
 const app = document.querySelector('#app');
 const saved = (() => { try { return JSON.parse(localStorage.getItem('dedgram-selected-v2') || '[]'); } catch { return []; } })();
+const savedMode = (() => { try { return localStorage.getItem('dedgram-mode-v2'); } catch { return null; } })();
 const state = {
   catalog: [], batch: null, batchProfiles: [], detail: null, overview: null,
   selected: new Set(Array.isArray(saved) ? saved : []),
-  search: '', filter: 'all', layout: 'grid', itemSearch: '', itemFilter: 'all', itemSort: 'newest',
+  search: '', filter: 'all', layout: 'grid',
+  mode: ['profile_only', 'depth_first', 'breadth_first', 'reels_only'].includes(savedMode) ? savedMode : 'depth_first',
+  itemSearch: '', itemFilter: 'all', itemSort: 'newest',
   busy: false, error: null
 };
 
@@ -56,6 +59,7 @@ document.addEventListener('input', (event) => {
 });
 document.addEventListener('change', (event) => {
   const target = event.target;
+  if (target.name === 'run-mode') { state.mode = target.value; localStorage.setItem('dedgram-mode-v2', state.mode); render(); return; }
   if (target.dataset.select) {
     target.checked ? state.selected.add(target.dataset.select) : state.selected.delete(target.dataset.select);
     saveSelection(); render();
@@ -72,10 +76,14 @@ document.addEventListener('click', async (event) => {
   if (action === 'grid' || action === 'list') { state.layout = action; render(); return; }
   if (action === 'clear') { state.selected.clear(); saveSelection(); render(); return; }
   if (action === 'select-visible') { for (const profile of filteredCatalog(state)) state.selected.add(profile.username); saveSelection(); render(); return; }
-  if (action === 'start' || action === 'stop') {
+  if (action === 'start' || action === 'run-one' || action === 'stop') {
     state.busy = true; state.error = null; render();
     try {
-      if (action === 'start') await api('/api/runs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ profiles: [...state.selected] }) });
+      if (action === 'start' || action === 'run-one') {
+        const profiles = action === 'run-one' ? [button.dataset.username] : [...state.selected];
+        const mode = action === 'run-one' ? 'depth_first' : state.mode;
+        await api('/api/runs', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ profiles, mode }) });
+      }
       else await api('/api/runs/stop', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
       await refresh();
     } catch (error) { state.error = error.message; }
