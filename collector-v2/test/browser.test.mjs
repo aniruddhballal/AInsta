@@ -32,3 +32,16 @@ test('browser adapter collects a profile, both grids, and a direct item page', a
     assert.equal(item.comments.value, 3);
   } finally { await browser.close(); }
 }, { timeout: 40000 });
+
+test('a post grid containing only reels confirms zero standalone posts', async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+  await page.route('https://www.instagram.com/example/', (route) => route.fulfill({
+    contentType: 'text/html', body: '<main><a href="/reel/REEL1/">A reel</a></main>'
+  }));
+  try {
+    const result = await discover(page, 'example', 'post', async () => {}, { maxPasses: 8 });
+    assert.equal(result.items.length, 0);
+    assert.equal(result.complete, true);
+  } finally { await browser.close(); }
+}, { timeout: 20000 });

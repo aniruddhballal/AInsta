@@ -29,17 +29,20 @@ export async function writeReport(paths, profile, discovery, items, run) {
   const profileRows = [
     ['username', 'url', 'fetched_at', 'display_name', 'bio', 'category', 'ai_generated_profile',
       'posts_count', 'followers_count', 'following_count', 'followers_header', 'followers_metadata',
-      'following_header', 'following_metadata', 'following_conflict', 'date_joined', 'account_based_in', 'former_usernames_count'],
+      'following_header', 'following_metadata', 'following_conflict', 'date_joined', 'account_based_in', 'former_usernames_count',
+      'post_grid_count', 'post_grid_complete', 'reel_grid_count', 'reel_grid_complete'],
     [profile?.username, profile?.url, profile?.fetched_at, profile?.display_name, profile?.bio, profile?.category,
       profile?.ai_generated_profile, profile?.posts_count?.value, profile?.followers_count?.value,
       profile?.following_count?.value, profile?.count_evidence?.followers?.header?.raw,
       profile?.count_evidence?.followers?.metadata?.raw, profile?.count_evidence?.following?.header?.raw,
       profile?.count_evidence?.following?.metadata?.raw, profile?.count_evidence?.following?.conflict,
-      profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value]
+      profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value,
+      discovery?.post?.items?.length, discovery?.post?.complete,
+      discovery?.reel?.items?.length, discovery?.reel?.complete]
   ];
   await writeFile(paths.profileCsv, profileRows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
   const metric = (field) => profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
-  const count = (kind) => items.filter((item) => item.kind === kind).length;
+  const count = (kind) => discovery?.[kind]?.items?.length ?? 'Not counted';
   const complete = items.filter((item) => item.status === 'complete').length;
   const reviewItems = items.filter((item) => reviewText(item));
   const manualReview = reviewItems.length ? `<section class="card review"><h2>Needs manual review (${reviewItems.length})</h2><ul>${reviewItems.map((item) => `<li><a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.shortcode)}</a>: ${esc(reviewText(item))}</li>`).join('')}</ul></section>` : '';

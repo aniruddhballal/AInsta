@@ -75,3 +75,9 @@ export function mergeProfile(previous, current) {
   }
   return result;
 }
+
+export function mergeDiscoveryItems(previous, found, complete) {
+  const saved = new Map(previous.map((item) => [item.url, item]));
+  const observed = new Map(found.map((item) => [item.url, { ...saved.get(item.url), ...item }]));
+  return [...(complete ? observed : new Map([...saved, ...observed])).values()];
+}

@@ -35,14 +35,14 @@ Open `http://127.0.0.1:5174/`. The Collection page lists every account in the ex
 
 | Strategy | Order |
 | --- | --- |
-| Profile details only | Profile stage for each selected account; no reel work. |
+| Profile details only | Save account fields, then count the post and reel grids for each selected account; no individual item pages. |
 | Profile + reels, depth first | Profile then reels for account A, then account B, and so on. This also handles a single account. |
 | Profile + reels, breadth first | Profile stage for every selected account, then reel stage for every account. |
 | Reels only | Reel stage for accounts with saved profile details; no profile refresh. |
 
-Each profile card also has **Run profile + reels** for an immediate single-account depth-first run. Use the **Profile details ready** filter with **Select visible** to assemble a reels-only set. A profile is ready when its header and the three header counts were saved; incomplete captures are flagged for review. The queue shows completed profile and reel stages, the current account's reel count, review counts, and recent activity. **Stop after current stage** lets the current stage finish before the queue stops. A later run reuses saved grids and items, retrying incomplete items. Keep this terminal open while a batch is running.
+Each profile card also has **Run profile + reels** for an immediate single-account depth-first run. Use the **Profile details ready** filter with **Select visible** to assemble a reels-only set. A profile is ready when its header counts and both grid counts were saved; incomplete captures are flagged for review. The queue shows completed profile and reel stages, the current account's post and reel counts, review counts, and recent activity. **Stop after current stage** lets the current stage finish before the queue stops. A later run reuses saved grids and items, retrying incomplete items. Keep this terminal open while a batch is running.
 
-Open `http://127.0.0.1:5174/profiles/edlt.shox` for a profile report with its fields, reel inventory, missing-field reasons, and a link to the original standalone HTML report. Open `http://127.0.0.1:5174/summary` for totals and rankings across collected accounts. Aggregate totals based on Instagram's `K` and `M` labels are estimates; per-reel values keep the displayed labels. Posts remain a later content stage. The workspace writes only inside ignored `collector-v2/data/` and leaves the older web dashboard unchanged.
+Open `http://127.0.0.1:5174/profiles/edlt.shox` for a profile report with its fields, grid counts, reel inventory, missing-field reasons, and a link to the original standalone HTML report. Open `http://127.0.0.1:5174/summary` for totals and rankings across collected accounts. Aggregate totals based on Instagram's `K` and `M` labels are estimates; per-reel values keep the displayed labels. Individual post details remain a later stage. Collected data in `collector-v2/data/` is tracked by Git; browser credentials in `.auth/` and temporary UI screenshots remain ignored. The older web dashboard is unchanged.
 
 The command-line collector is also available:
 
@@ -52,9 +52,9 @@ npm run status
 npm run report
 ```
 
-`collect` opens a visible browser. Use `node src/cli.mjs collect --headless` to run in the background. Add `--username=NAME` for another catalog account. `--profile-only` saves only profile fields; `--reels-only --skip-profile` uses saved profile fields and scans reels only. `--reels-only` alone refreshes the profile as well. A normal rerun skips grids marked complete and items with complete details, while retrying partial or failed items. Use `--refresh` to rescan grids and refresh items. `--limit=N` limits item detail attempts for a small test; discovery still runs.
+`collect` opens a visible browser. Use `node src/cli.mjs collect --headless` to run in the background. Add `--username=NAME` for another catalog account. `--profile-only` saves account fields and counts both grids without opening items; `--reels-only --skip-profile` uses saved profile fields and grid counts to scan reels only. `--reels-only` alone refreshes the profile as well. A normal rerun skips grids marked complete and items with complete details, while retrying partial or failed items. Use `--refresh` to rescan grids and refresh items. `--limit=N` limits item detail attempts for a small test; discovery still runs.
 
-Outputs are under ignored `data/edlt.shox/`:
+Outputs are under tracked `data/edlt.shox/`:
 
 | File | Contents |
 | --- | --- |
@@ -63,7 +63,7 @@ Outputs are under ignored `data/edlt.shox/`:
 | `items.json` | Item details, field sources, missing fields, retry state and raw evidence. |
 | `run.json` | Current or last run status and stage. |
 | `items.csv` | Analysis friendly flat export. |
-| `profile.csv` | One row of account level fields for analysis. |
+| `profile.csv` | One row of account level fields and post/reel grid counts for analysis. |
 | `report.html` | Standalone local review page. Open it directly in a browser. |
 
 Counts shown in Instagram as `K` or `M` are marked `approximate` and retain the original label. The HTML report shows the supplied view and like labels, including `K` or `M` when Instagram used them. `items.csv` keeps numeric estimates in `views` and `likes` and the supplied labels in `views_displayed` and `likes_displayed`. A grid refresh updates view labels in existing reel records and records when they were observed. A missing field is `null` and listed in `missing`; it is not turned into zero. A preview limited by a login wall is marked incomplete. Existing values survive a retry that temporarily cannot read the same field.

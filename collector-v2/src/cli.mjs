@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { launch, captureProfile, discover, captureItem } from './browser.mjs';
-import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot, profileLevelComplete } from './model.mjs';
-import { paths, readJson, writeJson, mergeItem, mergeProfile, syncGridViews } from './store.mjs';
+import { dayFromDescription, itemFromSnapshot, now, profileFromSnapshot, profileHeaderComplete, profileLevelComplete } from './model.mjs';
+import { paths, readJson, writeJson, mergeDiscoveryItems, mergeItem, mergeProfile, syncGridViews } from './store.mjs';
 import { writeReport } from './report.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -94,11 +94,12 @@ async function collect() {
   if (profileOnly && (flags.has('--reels-only') || skipProfile)) throw new Error('--profile-only cannot be combined with reel flags.');
   if (skipProfile && !flags.has('--reels-only')) throw new Error('--skip-profile requires --reels-only.');
   const kinds = profileOnly ? [] : flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
+  const discoveryKinds = profileOnly ? ['post', 'reel'] : kinds;
   const limitArg = process.argv.find((arg) => arg.startsWith('--limit='));
   const limit = limitArg ? Number(limitArg.slice(8)) : Infinity;
   if (!Number.isInteger(limit) && limit !== Infinity || limit < 0) throw new Error('--limit must be a nonnegative integer.');
   let { profile, discovery, items, run } = await files();
-  if (skipProfile && !profileLevelComplete(profile)) throw new Error(`Collect complete @${username} profile details before running reels only.`);
+  if (skipProfile && !profileLevelComplete(profile, discovery)) throw new Error(`Collect complete @${username} profile details and grid counts before running reels only.`);
   let corrected = false;
   items = items.map((item) => {
     const day = item.date_precision === 'day' ? dayFromDescription(item.raw?.description) : null;
@@ -115,7 +116,7 @@ async function collect() {
   if (corrected) await writeJson(path.items, items);
   run = { ...run, started_at: now(), updated_at: now(), status: 'running',
     phase: skipProfile ? 'reel discovery' : 'profile',
-    scope: profileOnly ? ['profile'] : skipProfile ? kinds : ['profile', ...kinds],
+    scope: profileOnly ? ['profile', 'post_grid', 'reel_grid'] : skipProfile ? kinds : ['profile', ...kinds],
     current_url: null, error: null };
   await writeJson(path.run, run);
   let context;
@@ -128,12 +129,12 @@ async function collect() {
       log(`Collecting ${username} profile`);
       const snapshot = await captureProfile(page, username);
       const current = profileFromSnapshot(username, snapshot);
-      profileStageComplete = profileLevelComplete(current);
+      profileStageComplete = profileHeaderComplete(current);
       profile = mergeProfile(profile, current);
       await writeJson(path.profile, profile);
       if (!profileStageComplete) log('Profile details are incomplete; missing header counts need review');
     } else log(`Using saved ${username} profile details`);
-    for (const kind of kinds) {
+    for (const kind of discoveryKinds) {
       run = { ...run, phase: `${kind} discovery`, updated_at: now() };
       await writeJson(path.run, run);
       if (discovery[kind]?.complete && !refresh) { log(`Using saved ${kind} grid`); continue; }
@@ -144,10 +145,9 @@ async function collect() {
         continue;
       }
       log(`Scanning ${kind} grid`);
-      const prior = new Map((discovery[kind]?.items || []).map((item) => [item.url, item]));
       const result = await discover(page, username, kind, async (found, complete, error = '') => {
-        for (const item of found) prior.set(item.url, { ...prior.get(item.url), ...item });
-        discovery[kind] = { items: [...prior.values()], complete, error, attempted_at: now() };
+        discovery[kind] = { items: mergeDiscoveryItems(discovery[kind]?.items || [], found, complete),
+          complete, error, attempted_at: now() };
         await writeJson(path.discovery, discovery);
       });
       log(`${kind}: ${result.items.length} found, ${result.complete ? 'complete' : result.error}`);
@@ -187,12 +187,13 @@ async function collect() {
       await writeJson(path.items, items);
       await new Promise((done) => setTimeout(done, 1600));
     }
-    const complete = profileStageComplete && kinds.every((kind) => discovery[kind]?.complete)
+    const complete = profileStageComplete && discoveryKinds.every((kind) => discovery[kind]?.complete)
       && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete' && !existing.get(url)?.last_error);
     run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial' };
     await writeJson(path.run, run);
     await writeReport(path, profile, discovery, items, run);
-    log(`Done: ${items.length} items. Report: ${path.report}`);
+    log(profileOnly ? `Done: ${discovery.post?.items?.length || 0} posts and ${discovery.reel?.items?.length || 0} reels counted. Report: ${path.report}`
+      : `Done: ${items.length} items. Report: ${path.report}`);
   } catch (error) {
     run = { ...run, status: 'blocked', updated_at: now(), error: error instanceof Error ? error.message : String(error) };
     await writeJson(path.run, run);

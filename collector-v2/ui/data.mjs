@@ -1,7 +1,7 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { paths, readJson } from '../src/store.mjs';
-import { profileLevelComplete } from '../src/model.mjs';
+import { profileHeaderComplete, profileLevelComplete } from '../src/model.mjs';
 
 export const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const catalogPath = resolve(root, '..', 'bot-info', 'database', 'profiles', 'index.json');
@@ -50,7 +50,8 @@ export function profileSummary(data) {
     following: profile?.following_count || null,
     posts_reported: profile?.posts_count || null,
     profile_fetched_at: profile?.fetched_at || null,
-    profile_complete: profileLevelComplete(profile),
+    profile_header_complete: profileHeaderComplete(profile),
+    profile_complete: profileLevelComplete(profile, discovery),
     reels: content('reel'),
     posts: content('post'),
     run: { status: run.status || 'not_started', phase: run.phase || null,
@@ -91,11 +92,14 @@ export async function summary() {
   return {
     catalog_profiles: profiles.length,
     collected_profiles: profiles.filter((profile) => !!profile.profile_fetched_at).length,
+    profiles_counted: profiles.filter((profile) => profile.profile_complete).length,
     reels_discovered: profiles.reduce((sum, profile) => sum + profile.reels.discovered, 0),
+    reel_grids_complete: profiles.filter((profile) => profile.reels.grid_complete).length,
     reels_processed: reels.filter((reel) => reel.status === 'complete' || reel.status === 'partial').length,
     reels_complete: reels.filter((reel) => reel.status === 'complete').length,
     reels_review: reels.filter((reel) => reel.status === 'partial' || reel.status === 'failed').length,
     posts_discovered: profiles.reduce((sum, profile) => sum + profile.posts.discovered, 0),
+    post_grids_complete: profiles.filter((profile) => profile.posts.grid_complete).length,
     engagement: {
       views: { total: total('views'), covered: measured('views').length,
         approximate: measured('views').some((item) => item.views.approximate),

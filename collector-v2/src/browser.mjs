@@ -136,7 +136,10 @@ export async function discover(page, username, kind, onProgress, { maxPasses = 2
     if (!found.size && empty) { complete = true; break; }
     const atBottom = state.y + state.viewport >= state.height - 12;
     stable = atBottom && found.size === sizeBefore && !state.loading ? stable + 1 : 0;
-    if (stable >= 5 && found.size > 0) { complete = true; break; }
+    if (stable >= 5 && (found.size > 0 || raw.some((anchor) => canonicalItemUrl(anchor.href)))) {
+      complete = true;
+      break;
+    }
     await page.evaluate(() => window.scrollBy(0, Math.max(500, Math.floor(window.innerHeight * .8))));
     await pause(850);
   }

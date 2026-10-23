@@ -64,8 +64,8 @@ class BatchRunner {
     }
     if (mode === 'reels_only') {
       const missing = (await Promise.all(selected.map(async (name) => ({ name, data: await profileData(name) }))))
-        .filter(({ data }) => !profileLevelComplete(data.profile)).map(({ name }) => `@${name}`);
-      if (missing.length) throw Object.assign(new Error(`Collect profile details first: ${missing.join(', ')}.`), { status: 400 });
+        .filter(({ data }) => !profileLevelComplete(data.profile, data.discovery)).map(({ name }) => `@${name}`);
+      if (missing.length) throw Object.assign(new Error(`Finish profile details and grid counts first: ${missing.join(', ')}.`), { status: 400 });
     }
     const steps = stepsFor(selected, mode);
     const time = new Date().toISOString();
@@ -120,9 +120,9 @@ class BatchRunner {
       const result = this.batch.results[username];
       const stage = result.stages[level];
       if (level === 'reels' && (['failed', 'needs_review'].includes(result.stages.profile?.status)
-        || !await profileData(username).then((data) => profileLevelComplete(data.profile)))) {
+        || !await profileData(username).then((data) => profileLevelComplete(data.profile, data.discovery)))) {
         stage.status = 'skipped';
-        stage.error = 'Profile details are unavailable.';
+        stage.error = 'Profile details or grid counts are incomplete.';
         stage.finished_at = new Date().toISOString();
         result.status = resultStatus(result.stages);
         result.error = stage.error;

@@ -79,9 +79,13 @@ export function profileFromSnapshot(username, snapshot) {
   };
 }
 
-export function profileLevelComplete(profile) {
+export function profileHeaderComplete(profile) {
   return Boolean(profile?.fetched_at && profile?.raw?.header_text?.trim()
     && profile.posts_count && profile.followers_count && profile.following_count);
+}
+
+export function profileLevelComplete(profile, discovery) {
+  return profileHeaderComplete(profile) && ['post', 'reel'].every((kind) => discovery?.[kind]?.complete);
 }
 
 export function canonicalItemUrl(href) {
