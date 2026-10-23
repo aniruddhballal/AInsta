@@ -7,9 +7,9 @@ import { mkdir } from 'node:fs/promises';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '..');
-const dataFile = resolve(process.env.AINSTA_DATA_FILE || resolve(repoRoot, 'bot-analysis/bot-account-info.json'));
-const catalogFile = resolve(repoRoot, 'bot-analysis/botsainsta.md');
-const port = Number(process.env.AINSTA_API_PORT || 4317);
+const dataFile = resolve(process.env.DEDGRAM_DATA_FILE || resolve(repoRoot, 'bot-info/bot-account-info.json'));
+const catalogFile = resolve(repoRoot, 'bot-info/dedgram-catalog.json');
+const port = Number(process.env.DEDGRAM_API_PORT || 4317);
 const host = '127.0.0.1';
 
 const now = () => new Date().toISOString();
@@ -136,14 +136,14 @@ async function route(request, response) {
   const origin = request.headers.origin;
   if (origin) {
     const allowed = origin === 'http://127.0.0.1:5173' || origin === 'http://localhost:5173' || /^moz-extension:\/\/[a-z0-9-]+$/i.test(origin);
-    if (!allowed) return send(response, 403, { error: 'This local API only accepts requests from the AInsta dashboard or Firefox add-on.' });
+    if (!allowed) return send(response, 403, { error: 'This local API only accepts requests from the Dedgram dashboard or Firefox add-on.' });
     response.setHeader('Access-Control-Allow-Origin', origin);
     response.setHeader('Vary', 'Origin');
   }
   if (request.method === 'OPTIONS') return send(response, 204, {});
   try {
     const pathname = new URL(request.url, `http://${host}:${port}`).pathname;
-    if (request.method === 'GET' && pathname === '/api/health') return send(response, 200, { ok: true, app: 'ainsta-dashboard' });
+    if (request.method === 'GET' && pathname === '/api/health') return send(response, 200, { ok: true, app: 'dedgram-dashboard' });
     if (request.method === 'GET' && pathname === '/api/state') return send(response, 200, await loadData());
 
     if (request.method === 'POST' && pathname === '/api/jobs') {
@@ -302,6 +302,6 @@ async function route(request, response) {
 }
 
 createServer((request, response) => { void route(request, response); }).listen(port, host, () => {
-  console.log(`AInsta API ready at http://${host}:${port}`);
+  console.log(`Dedgram API ready at http://${host}:${port}`);
   console.log(`Data file: ${dataFile}`);
 });

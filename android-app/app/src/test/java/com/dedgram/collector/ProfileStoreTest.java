@@ -1,4 +1,4 @@
-package com.ainsta.collector;
+package com.dedgram.collector;
 
 import org.junit.Test;
 
@@ -31,8 +31,8 @@ public final class ProfileStoreTest {
 
     @Test
     public void normalizedValueIsStableForDuplicateChecks() {
-        String first = ProfileStore.normalizeUsername("AInsta.Creator");
-        String second = ProfileStore.normalizeUsername("@ainsta.creator");
+        String first = ProfileStore.normalizeUsername("Dedgram.Creator");
+        String second = ProfileStore.normalizeUsername("@dedgram.creator");
         assertTrue(!first.isEmpty());
         assertEquals(first, second);
     }

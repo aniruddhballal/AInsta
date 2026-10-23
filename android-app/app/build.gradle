@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.ainsta.collector'
+    namespace 'com.dedgram.collector'
     compileSdk 36
 
     defaultConfig {
-        applicationId 'com.ainsta.collector'
+        applicationId 'com.dedgram.collector'
         minSdk 24
         targetSdk 36
         versionCode 2

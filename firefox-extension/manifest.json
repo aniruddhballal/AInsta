@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "AInsta Dashboard Collector",
+  "name": "Dedgram Dashboard Collector",
   "version": "3.0.0",
-  "description": "Collects Instagram profile and post information only for jobs started in the local AInsta dashboard.",
+  "description": "Collects Instagram profile and post information only for jobs started in the local Dedgram dashboard.",
   "permissions": [
     "tabs",
     "http://127.0.0.1:4317/*"

@@ -1,4 +1,4 @@
-package com.ainsta.collector;
+package com.dedgram.collector;
 
 import org.junit.Test;
 

@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const defaultFile = resolve(here, '../../bot-analysis/bot-account-info.json');
+const defaultFile = resolve(here, '../../bot-info/bot-account-info.json');
 const args = process.argv.slice(2);
 const apply = args.includes('--apply');
 const fileArg = args.find((arg) => arg !== '--apply');

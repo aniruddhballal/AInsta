@@ -1,11 +1,11 @@
-# AInsta Android
+# Dedgram Android
 
-AInsta is a native Android companion for collecting Instagram profile usernames. It places a small capture bubble over Instagram, reads the visible accessibility tree only after the user taps it, and maintains a searchable saved-profile catalog.
+Dedgram is a native Android companion for collecting Instagram profile usernames. It places a small capture bubble over Instagram, reads the visible accessibility tree only after the user taps it, and maintains a searchable saved-profile catalog.
 
 ## Current features
 
 - The capture bubble appears only while Instagram is the active app.
-- The bubble uses the AInsta pixel-alien branding in a black rounded-square/squircle.
+- The bubble uses the Dedgram pixel D mark in a black rounded-square/squircle.
 - Drag the bubble to any position on the screen. Its position is remembered for later sessions.
 - A tap and a drag are distinguished, so repositioning the bubble does not accidentally save a profile.
 - The bubble uses an accessibility overlay when available and falls back to an accessibility-service overlay when needed.
@@ -26,10 +26,10 @@ AInsta is a native Android companion for collecting Instagram profile usernames.
 ## Capture setup
 
 1. Install the APK.
-2. Open AInsta and grant **Overlay permission**.
-3. Open Android **Accessibility settings** and enable **AInsta profile capture**.
+2. Open Dedgram and grant **Overlay permission**.
+3. Open Android **Accessibility settings** and enable **Dedgram profile capture**.
 4. Open an individual Instagram profile.
-5. Tap the AInsta bubble once.
+5. Tap the Dedgram bubble once.
 
 The service only attempts capture when the active accessibility window belongs to Instagram. It stores the username after successful validation; it does not save screenshots, captions, bios, follower counts, post counts, direct messages, or surrounding UI text.
 
@@ -38,7 +38,7 @@ The service only attempts capture when the active accessibility window belongs t
 The Android catalog is stored at the user-visible shared path:
 
 ```text
-Documents/AInsta/profiles.json
+Documents/Dedgram/profiles.json
 ```
 
 Each saved entry contains the captured username, its normalized username, and the first-seen timestamp. The app derives the displayed `instagram.com/<username>/` URL from the normalized username. The file is outside private app storage, so it remains user-visible and normally survives an app uninstall. The app also de-duplicates and validates entries when reading the file.
@@ -66,10 +66,10 @@ The local release build uses the generated debug signing key and is intended for
 adb install -r app\build\outputs\apk\debug\app-debug.apk
 ```
 
-Reinstalling an APK can cause Android to reset the accessibility-service toggle. If the capture bubble disappears after reinstalling, check AInsta in Accessibility settings again.
+Reinstalling an APK can cause Android to reset the accessibility-service toggle. If the capture bubble disappears after reinstalling, check Dedgram in Accessibility settings again.
 
 ## Platform limitation
 
 An ordinary Android overlay cannot inspect Instagram's page text. A user-enabled `AccessibilityService` is therefore required for the tap-to-capture workflow. The service is restricted to Instagram's package and reads the active UI only after the bubble is tapped.
 
-Instagram can change its UI structure and accessibility labels. If the profile header is ambiguous, inaccessible, or not yet rendered, AInsta refuses to guess and reports a capture failure instead.
+Instagram can change its UI structure and accessibility labels. If the profile header is ambiguous, inaccessible, or not yet rendered, Dedgram refuses to guess and reports a capture failure instead.

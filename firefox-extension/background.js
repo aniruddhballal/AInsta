@@ -64,7 +64,7 @@
     let lastError;
     for (let attempt = 0; attempt < 12; attempt += 1) {
       try {
-        const value = await browser.tabs.sendMessage(tab.id, { type: 'AINSTA_COLLECT', step });
+        const value = await browser.tabs.sendMessage(tab.id, { type: 'DEDGRAM_COLLECT', step });
         if (value) return value;
       } catch (error) { lastError = error; }
       await sleep(700);
@@ -94,7 +94,7 @@
         }
       }
     } catch (error) {
-      console.debug('[AInsta] Local dashboard is idle or unavailable.', error);
+      console.debug('[Dedgram] Local dashboard is idle or unavailable.', error);
     } finally {
       busy = false;
       setTimeout(poll, WAIT_MS);
@@ -102,7 +102,7 @@
   }
 
   browser.runtime.onMessage.addListener((message) => {
-    if (message?.type === 'AINSTA_STOP') stopped = true;
+    if (message?.type === 'DEDGRAM_STOP') stopped = true;
   });
   browser.runtime.onStartup.addListener(() => { stopped = false; void poll(); });
   browser.runtime.onInstalled.addListener(() => { stopped = false; void poll(); });

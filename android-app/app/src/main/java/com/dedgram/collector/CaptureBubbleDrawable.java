@@ -1,4 +1,4 @@
-package com.ainsta.collector;
+package com.dedgram.collector;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -25,7 +25,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     private final Paint savedHighlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint shimmerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path clipPath = new Path();
-    private final Drawable alien;
+    private final Drawable mark;
     private ValueAnimator shimmerAnimator;
     private ValueAnimator pulseAnimator;
     private ValueAnimator failureAnimator;
@@ -36,7 +36,7 @@ public final class CaptureBubbleDrawable extends Drawable {
 
     public CaptureBubbleDrawable(Context context) {
         backgroundPaint.setColor(Color.BLACK);
-        alien = context.getDrawable(R.drawable.ainsta_alien);
+        mark = context.getDrawable(R.drawable.dedgram_mark);
     }
 
     @Override
@@ -82,8 +82,8 @@ public final class CaptureBubbleDrawable extends Drawable {
             canvas.restore();
         }
 
-        alien.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
-        alien.draw(canvas);
+        mark.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
+        mark.draw(canvas);
         canvas.restore();
     }
 
@@ -175,7 +175,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-        if (alien != null) alien.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
+        if (mark != null) mark.setBounds(0, 0, (int) ICON_SIZE, (int) ICON_SIZE);
     }
 
     @Override
@@ -183,7 +183,7 @@ public final class CaptureBubbleDrawable extends Drawable {
         backgroundPaint.setAlpha(alpha);
         savedHighlightPaint.setAlpha(alpha);
         shimmerPaint.setAlpha(alpha);
-        alien.setAlpha(alpha);
+        mark.setAlpha(alpha);
         invalidateSelf();
     }
 
@@ -191,7 +191,7 @@ public final class CaptureBubbleDrawable extends Drawable {
     public void setColorFilter(android.graphics.ColorFilter colorFilter) {
         backgroundPaint.setColorFilter(colorFilter);
         shimmerPaint.setColorFilter(colorFilter);
-        alien.setColorFilter(colorFilter);
+        mark.setColorFilter(colorFilter);
         invalidateSelf();
     }
 

@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'AInsta'
+rootProject.name = 'Dedgram'
 include ':app'

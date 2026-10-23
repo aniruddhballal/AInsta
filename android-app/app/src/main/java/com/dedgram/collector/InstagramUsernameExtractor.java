@@ -1,4 +1,4 @@
-package com.ainsta.collector;
+package com.dedgram.collector;
 
 import android.graphics.Rect;
 import android.view.accessibility.AccessibilityNodeInfo;

@@ -1,4 +1,4 @@
-package com.ainsta.collector;
+package com.dedgram.collector;
 
 import org.json.JSONException;
 import org.json.JSONObject;

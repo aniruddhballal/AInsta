@@ -1,10 +1,10 @@
 <resources>
-    <style name="Theme.AInsta" parent="android:style/Theme.Material.Light.NoActionBar">
+    <style name="Theme.Dedgram" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">@color/ainsta_white</item>
-        <item name="android:navigationBarColor">@color/ainsta_white</item>
+        <item name="android:statusBarColor">@color/dedgram_white</item>
+        <item name="android:navigationBarColor">@color/dedgram_white</item>
         <item name="android:windowActionModeOverlay">true</item>
-        <item name="android:colorAccent">@color/ainsta_black</item>
+        <item name="android:colorAccent">@color/dedgram_black</item>
     </style>
 </resources>
