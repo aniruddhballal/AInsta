@@ -45,3 +45,17 @@ test('a post grid containing only reels confirms zero standalone posts', async (
     assert.equal(result.complete, true);
   } finally { await browser.close(); }
 }, { timeout: 20000 });
+
+test('a long reel grid can finish after more than 240 scroll passes', async () => {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({ viewport: { width: 800, height: 800 } });
+  await page.route('https://www.instagram.com/large/reels/', (route) => route.fulfill({
+    contentType: 'text/html',
+    body: '<main><a href="/reel/ONE/">1,234</a><div style="height:200000px"></div></main>'
+  }));
+  try {
+    const result = await discover(page, 'large', 'reel', async () => {}, { pauseMs: 0 });
+    assert.equal(result.complete, true);
+    assert.equal(result.items.length, 1);
+  } finally { await browser.close(); }
+}, { timeout: 30000 });

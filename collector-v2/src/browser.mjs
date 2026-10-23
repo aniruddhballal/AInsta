@@ -90,13 +90,17 @@ export async function captureProfile(page, username) {
   return { header_text: headerText, about_text: about, ...meta };
 }
 
-export async function discover(page, username, kind, onProgress, { maxPasses = 240 } = {}) {
+export async function discover(page, username, kind, onProgress,
+  { maxPasses = Infinity, maxIdleMs = 60_000, pauseMs = 850 } = {}) {
   const url = `https://www.instagram.com/${username}/${kind === 'reel' ? 'reels/' : ''}`;
   await open(page, url);
   const found = new Map();
   let stable = 0;
   let complete = false;
   let reason = '';
+  let lastProgressAt = Date.now();
+  let lastY = -1;
+  let lastHeight = -1;
   for (let pass = 0; pass < maxPasses; pass++) {
     const raw = await page.evaluate(() => [...document.querySelectorAll('main a[href]')].map((anchor) => ({
       href: anchor.href,
@@ -140,10 +144,19 @@ export async function discover(page, username, kind, onProgress, { maxPasses = 2
       complete = true;
       break;
     }
+    if (found.size > sizeBefore || state.y > lastY + 1 || state.height > lastHeight + 1) {
+      lastProgressAt = Date.now();
+    }
+    lastY = state.y;
+    lastHeight = state.height;
+    if (Date.now() - lastProgressAt >= maxIdleMs) {
+      reason = `Grid made no progress for ${Math.round(maxIdleMs / 1000)} seconds at scroll ${Math.round(state.y)}/${Math.round(state.height)} with ${found.size} ${kind} links${state.loading ? ' while Instagram showed a loading indicator' : ''}.`;
+      break;
+    }
     await page.evaluate(() => window.scrollBy(0, Math.max(500, Math.floor(window.innerHeight * .8))));
-    await pause(850);
+    await pause(pauseMs);
   }
-  if (!complete && !reason) reason = 'Grid scan ended before confirming the last item.';
+  if (!complete && !reason) reason = `Grid reached the configured ${maxPasses}-pass limit before confirming the last item.`;
   await onProgress([...found.values()], complete, reason);
   return { items: [...found.values()], complete, error: reason };
 }
