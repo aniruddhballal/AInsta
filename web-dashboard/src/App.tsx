@@ -26,6 +26,8 @@ function tabFromPath(pathname: string): Tab {
   const path = pathname.replace(/\/+$/, '') || '/';
   return (Object.entries(TAB_ROUTES).find(([, route]) => route === path)?.[0] as Tab | undefined) || 'master';
 }
+const isSurfaceFilter = (value: string | null): value is SurfaceFilter => ['all', 'needs_surface', 'collected', 'collection_failed', 'deleted_account', 'issues', 'ignored'].includes(value || '');
+const isDateValue = (value: string | null) => Boolean(value && /^\d{4}-\d{2}-\d{2}$/.test(value));
 const numericPostCount = (value: unknown): number | null => {
   if (typeof value === 'number') return Number.isFinite(value) && value >= 0 ? value : null;
   const match = String(value ?? '').trim().match(/^([\d,.]+)\s*([kmb])?(?:\s+posts?)?$/i);
@@ -77,18 +79,24 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
 function App() {
   const [data, setData] = useState<Data | null>(null);
   const [tab, setTab] = useState<Tab>(() => tabFromPath(window.location.pathname));
-  const [search, setSearch] = useState('');
-  const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>('all');
-  const [surfaceCountry, setSurfaceCountry] = useState('all');
-  const [joinedFrom, setJoinedFrom] = useState('');
-  const [joinedTo, setJoinedTo] = useState('');
-  const [postSort, setPostSort] = useState<'none' | 'asc' | 'desc'>('none');
+  const [search, setSearch] = useState(() => new URLSearchParams(window.location.search).get('q') || '');
+  const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>(() => {
+    const value = new URLSearchParams(window.location.search).get('status');
+    return isSurfaceFilter(value) ? value : 'all';
+  });
+  const [surfaceCountry, setSurfaceCountry] = useState(() => new URLSearchParams(window.location.search).get('country') || 'all');
+  const [joinedFrom, setJoinedFrom] = useState(() => { const value = new URLSearchParams(window.location.search).get('from'); return isDateValue(value) ? value : ''; });
+  const [joinedTo, setJoinedTo] = useState(() => { const value = new URLSearchParams(window.location.search).get('to'); return isDateValue(value) ? value : ''; });
+  const [postSort, setPostSort] = useState<'none' | 'asc' | 'desc'>(() => {
+    const value = new URLSearchParams(window.location.search).get('posts');
+    return value === 'asc' || value === 'desc' ? value : 'none';
+  });
   const [surfaceSelection, setSurfaceSelection] = useState<Set<string>>(new Set());
   const [deepSelection, setDeepSelection] = useState<Set<string>>(new Set());
   const [postCountSelection, setPostCountSelection] = useState<Set<string>>(new Set());
-  const [postCountFilter, setPostCountFilter] = useState<'missing' | 'all'>('missing');
+  const [postCountFilter, setPostCountFilter] = useState<'missing' | 'all'>(() => new URLSearchParams(window.location.search).get('post-counts') === 'all' ? 'all' : 'missing');
   const [reelCountSelection, setReelCountSelection] = useState<Set<string>>(new Set());
-  const [reelCountFilter, setReelCountFilter] = useState<'missing' | 'all'>('missing');
+  const [reelCountFilter, setReelCountFilter] = useState<'missing' | 'all'>(() => new URLSearchParams(window.location.search).get('reel-counts') === 'all' ? 'all' : 'missing');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
@@ -107,13 +115,44 @@ function App() {
 
   useEffect(() => { void refresh(); const timer = window.setInterval(() => void refresh(), 2500); return () => window.clearInterval(timer); }, [refresh]);
   useEffect(() => {
-    const syncTab = () => setTab(tabFromPath(window.location.pathname));
-    if (window.location.pathname !== TAB_ROUTES[tabFromPath(window.location.pathname)]) {
-      window.history.replaceState(null, '', TAB_ROUTES[tabFromPath(window.location.pathname)]);
-    }
-    window.addEventListener('popstate', syncTab);
-    return () => window.removeEventListener('popstate', syncTab);
+    const syncFromUrl = () => {
+      setTab(tabFromPath(window.location.pathname));
+      const params = new URLSearchParams(window.location.search);
+      setSearch(params.get('q') || '');
+      const status = params.get('status');
+      setSurfaceFilter(isSurfaceFilter(status) ? status : 'all');
+      setSurfaceCountry(params.get('country') || 'all');
+      const from = params.get('from');
+      const to = params.get('to');
+      setJoinedFrom(isDateValue(from) ? from : '');
+      setJoinedTo(isDateValue(to) ? to : '');
+      const posts = params.get('posts');
+      setPostSort(posts === 'asc' || posts === 'desc' ? posts : 'none');
+      setPostCountFilter(params.get('post-counts') === 'all' ? 'all' : 'missing');
+      setReelCountFilter(params.get('reel-counts') === 'all' ? 'all' : 'missing');
+    };
+    const currentTab = tabFromPath(window.location.pathname);
+    if (window.location.pathname !== TAB_ROUTES[currentTab]) window.history.replaceState(null, '', `${TAB_ROUTES[currentTab]}${window.location.search}`);
+    window.addEventListener('popstate', syncFromUrl);
+    return () => window.removeEventListener('popstate', syncFromUrl);
   }, []);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.pathname = TAB_ROUTES[tab];
+    url.search = '';
+    const params = url.searchParams;
+    if (search) params.set('q', search);
+    if (surfaceFilter !== 'all') params.set('status', surfaceFilter);
+    if (surfaceCountry !== 'all') params.set('country', surfaceCountry);
+    if (joinedFrom) params.set('from', joinedFrom);
+    if (joinedTo) params.set('to', joinedTo);
+    if (postSort !== 'none') params.set('posts', postSort);
+    if (postCountFilter !== 'missing') params.set('post-counts', postCountFilter);
+    if (reelCountFilter !== 'missing') params.set('reel-counts', reelCountFilter);
+    const nextUrl = `${url.pathname}${url.search}`;
+    if (`${window.location.pathname}${window.location.search}` !== nextUrl) window.history.replaceState({ tab }, '', nextUrl);
+  }, [tab, search, surfaceFilter, surfaceCountry, joinedFrom, joinedTo, postSort, postCountFilter, reelCountFilter]);
 
   const profiles = data?.profiles || [];
   const visibleProfiles = useMemo(() => {
@@ -169,7 +208,6 @@ function App() {
   }
   function navigateTab(nextTab: Tab) {
     setTab(nextTab);
-    setSearch('');
     const path = TAB_ROUTES[nextTab];
     if (window.location.pathname !== path) window.history.pushState({ tab: nextTab }, '', path);
   }
