@@ -1,0 +1,100 @@
+{
+  "username": "edlt.shox",
+  "url": "https://www.instagram.com/edlt.shox/",
+  "fetched_at": "2026-10-23T09:50:50.077Z",
+  "display_name": "🗽",
+  "bio": "③ 魔王軍との全面戦争を繰り広げる！『勇者伝説 公式\nInstagramです！TVアニメ『聖剣のレガリア』放送中！\n『劇場版特別編』デジタル配信/ブルーレイ＆DVD\n発売中",
+  "posts_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false
+  },
+  "followers_count": {
+    "value": 22389,
+    "raw": "22,389",
+    "approximate": false,
+    "source": "header_title"
+  },
+  "following_count": {
+    "value": 0,
+    "raw": "0",
+    "approximate": false,
+    "source": "header_text"
+  },
+  "category": "Reel creator",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/843474414_18123648751832332_2344484505231766082_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=4FgGQNBoZgAQ7kNvwFz6wx2&_nc_oc=AdpS5asbOHYKzkByPEBq_JnNwgEOsEsg6qkZsja11oebgkTe2Id9G2JLq3E5jFOTakEslDb9ZjRkAZjLle6JDBHX&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=aWDnMweHkBsLibbWxfP8eA&_nc_ss=7f6a8&oh=00_AQO4Cw6vYayFpqLDQnu8BcAVsxQEHgC_pK_EevqCP--MCw&oe=6AE1158B",
+  "date_joined": "September 2026",
+  "account_based_in": "Tajikistan",
+  "former_usernames_count": {
+    "value": 13,
+    "raw": "13",
+    "approximate": false
+  },
+  "raw": {
+    "header_text": "edlt.shox\n🗽\n0 posts\n22.3K followers\n0 following\nReel creator • \nAI-generated profile\n③ 魔王軍との全面戦争を繰り広げる！『勇者伝説 公式\nInstagramです！TVアニメ『聖剣のレガリア』放送中！\n『劇場版特別編』デジタル配信/ブルーレイ＆DVD\n発売中\nFollow\nMessage",
+    "about_text": "About this account\nedlt.shox\n • AI-generated profile\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nTajikistan\nFormer usernames\n13\nClose",
+    "description": "20K Followers, 49 Following, 0 Posts - 🗽 (@edlt.shox) on Instagram: \"③ 魔王軍との全面戦争を繰り広げる！『勇者伝説 公式\nInstagramです！TVアニメ『聖剣のレガリア』放送中！\n『劇場版特別編』デジタル配信/ブルーレイ＆DVD\n発売中\"",
+    "stat_evidence": {
+      "posts": {
+        "label": "",
+        "exact_title": ""
+      },
+      "followers": {
+        "label": "22.3K followers",
+        "exact_title": "22,389"
+      },
+      "following": {
+        "label": "0 following",
+        "exact_title": ""
+      }
+    }
+  },
+  "issues": [
+    "Page metadata says 49 following; current profile header says 0, which is used for the count."
+  ],
+  "ai_generated_profile": true,
+  "count_evidence": {
+    "followers": {
+      "header": {
+        "value": 22300,
+        "raw": "22.3K",
+        "approximate": true
+      },
+      "exact_title": {
+        "value": 22389,
+        "raw": "22,389",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 20000,
+        "raw": "20K",
+        "approximate": true
+      }
+    },
+    "following": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 49,
+        "raw": "49",
+        "approximate": false
+      },
+      "conflict": true
+    },
+    "posts": {
+      "header": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      },
+      "metadata": {
+        "value": 0,
+        "raw": "0",
+        "approximate": false
+      }
+    }
+  }
+}
