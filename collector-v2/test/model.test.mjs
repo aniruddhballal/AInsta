@@ -78,3 +78,9 @@ test('a retry preserves fields already collected', () => {
   assert.equal(merged.status, 'complete');
   assert.equal(merged.likes.value, 7);
 });
+
+test('a date-only retry cannot replace an exact timestamp', () => {
+  const merged = mergeItem({ date: '2026-10-23T02:00:00.000Z' }, { date: '2026-10-23', date_precision: 'day' });
+  assert.equal(merged.date, '2026-10-23T02:00:00.000Z');
+  assert.equal(merged.date_precision, 'timestamp');
+});

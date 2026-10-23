@@ -34,7 +34,8 @@ export function mergeItem(previous, current) {
   for (const field of ['date', 'caption', 'likes', 'comments', 'views', 'thumbnail_url', 'media_url']) {
     if (result[field] == null && previous[field] != null) result[field] = previous[field];
   }
-  if (previous.date_precision === 'timestamp' && current.date_precision !== 'timestamp') {
+  if ((previous.date_precision === 'timestamp' || /^\d{4}-\d{2}-\d{2}T/.test(previous.date || ''))
+    && current.date_precision !== 'timestamp') {
     result.date = previous.date;
     result.date_precision = 'timestamp';
   }

@@ -1,7 +1,11 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 
 const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
-const csv = (value) => `"${String(value ?? '').replace(/"/g, '""')}"`;
+const csv = (value) => {
+  let text = String(value ?? '');
+  if (/^[=+\-@\t\r]/.test(text)) text = `'${text}`;
+  return `"${text.replace(/"/g, '""')}"`;
+};
 
 export async function writeReport(paths, profile, discovery, items, run) {
   await mkdir(paths.base, { recursive: true });

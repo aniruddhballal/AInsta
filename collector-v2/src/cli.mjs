@@ -95,7 +95,13 @@ async function collect() {
   let corrected = false;
   items = items.map((item) => {
     const day = item.date_precision === 'day' ? dayFromDescription(item.raw?.description) : null;
-    if (!day || day === item.date) return item;
+    if (!day || day === item.date) {
+      if (!item.date_precision && /^\d{4}-\d{2}-\d{2}T/.test(item.date || '')) {
+        corrected = true;
+        return { ...item, date_precision: 'timestamp' };
+      }
+      return item;
+    }
     corrected = true;
     return { ...item, date: day };
   });

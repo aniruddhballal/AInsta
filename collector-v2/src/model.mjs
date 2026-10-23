@@ -33,6 +33,7 @@ export function profileFromSnapshot(username, snapshot) {
   const bioStop = lines.findIndex((line, i) => i > bioStart && /^(follow|following|message|edit profile|share profile|posts|reels|tagged)$/i.test(line));
   const bioLines = bioStart >= 0 ? lines.slice(bioStart + 1, bioStop >= 0 ? bioStop : undefined) : [];
   const category = snapshot.category || bioLines.find((line) => /^(reel creator|digital creator|video creator|blogger|editor|artist|public figure|entrepreneur|personal blog)\s*•?$/i.test(line))?.replace(/\s*•$/, '') || null;
+  const bioContent = bioLines.filter((line) => line !== category && line !== `${category} •` && !/^AI-generated profile$/i.test(line));
   const about = snapshot.about_text || '';
   const former = afterLabel(about, 'Former usernames');
   return {
@@ -40,7 +41,7 @@ export function profileFromSnapshot(username, snapshot) {
     url: `https://www.instagram.com/${username}/`,
     fetched_at: now(),
     display_name: statIndex > 1 ? lines.slice(1, statIndex).join(' ') : null,
-    bio: bioLines.length ? bioLines.join('\n') : null,
+    bio: bioContent.length ? bioContent.join('\n') : null,
     posts_count: metric(header, ['posts?']) || metric(snapshot.description || '', ['posts?']),
     followers_count: metric(header, ['followers?']),
     following_count: metric(header, ['following']),
