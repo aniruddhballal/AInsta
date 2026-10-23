@@ -28,8 +28,18 @@ test('profile reads post count from page metadata when the public header omits i
   const result = profileFromSnapshot('edlt.shox', { header_text: 'edlt.shox\n22.2K followers\n0 following',
     description: '20K Followers, 49 Following, 0 Posts - account on Instagram' });
   assert.equal(result.posts_count.value, 0);
-  assert.equal(result.following_count.value, 0);
+  assert.equal(result.following_count, null);
+  assert.equal(result.count_evidence.following.header.value, 0);
+  assert.equal(result.count_evidence.following.metadata.value, 49);
   assert.equal(mergeProfile({ date_joined: 'September 2026' }, result).date_joined, 'September 2026');
+});
+
+test('profile prefers the exact follower title over the rounded header', () => {
+  const result = profileFromSnapshot('edlt.shox', { header_text: 'edlt.shox\n22.3K followers\n0 following',
+    description: '20K Followers, 49 Following, 0 Posts',
+    stat_evidence: { followers: { label: '22.3K followers', exact_title: '22,316' } } });
+  assert.deepEqual(result.followers_count, { value: 22316, raw: '22,316', approximate: false, source: 'header_title' });
+  assert.equal(result.count_evidence.following.conflict, true);
 });
 
 test('canonical items strip tracking parameters and reject foreign hosts', () => {

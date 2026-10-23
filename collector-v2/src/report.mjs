@@ -18,13 +18,23 @@ export async function writeReport(paths, profile, discovery, items, run) {
   await writeFile(paths.csv, rows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
   const profileRows = [
     ['username', 'url', 'fetched_at', 'display_name', 'bio', 'category', 'ai_generated_profile',
-      'posts_count', 'followers_count', 'following_count', 'date_joined', 'account_based_in', 'former_usernames_count'],
+      'posts_count', 'followers_count', 'following_count', 'followers_header', 'followers_metadata',
+      'following_header', 'following_metadata', 'following_conflict', 'date_joined', 'account_based_in', 'former_usernames_count'],
     [profile?.username, profile?.url, profile?.fetched_at, profile?.display_name, profile?.bio, profile?.category,
       profile?.ai_generated_profile, profile?.posts_count?.value, profile?.followers_count?.value,
-      profile?.following_count?.value, profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value]
+      profile?.following_count?.value, profile?.count_evidence?.followers?.header?.raw,
+      profile?.count_evidence?.followers?.metadata?.raw, profile?.count_evidence?.following?.header?.raw,
+      profile?.count_evidence?.following?.metadata?.raw, profile?.count_evidence?.following?.conflict,
+      profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value]
   ];
   await writeFile(paths.profileCsv, profileRows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
-  const metric = (field) => profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
+  const metric = (field) => {
+    if (field === 'following_count' && profile?.count_evidence?.following?.conflict) {
+      const evidence = profile.count_evidence.following;
+      return `Disputed (header ${evidence.header.raw}; metadata ${evidence.metadata.raw})`;
+    }
+    return profile?.[field] ? `${profile[field].raw}${profile[field].approximate ? ' (rounded)' : ''}` : 'Unknown';
+  };
   const count = (kind) => items.filter((item) => item.kind === kind).length;
   const complete = items.filter((item) => item.status === 'complete').length;
   const body = items.map((item) => `<tr><td>${esc(item.kind)}</td><td><a href="${esc(item.url)}">${esc(item.shortcode)}</a></td><td>${esc(item.date || '—')}</td><td>${esc(item.likes?.value ?? '—')}</td><td>${esc(item.comments?.value ?? '—')}</td><td>${esc(item.views?.value ?? '—')}</td><td>${esc(item.status || 'pending')}</td><td>${esc((item.missing || []).join(', ') || item.last_error || '')}</td><td title="${esc(item.caption || '')}">${esc((item.caption || '').slice(0, 130))}</td></tr>`).join('\n');

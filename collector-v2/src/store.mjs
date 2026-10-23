@@ -47,7 +47,7 @@ export function mergeItem(previous, current) {
 export function mergeProfile(previous, current) {
   if (!previous) return current;
   const result = { ...previous, ...current };
-  for (const field of ['display_name', 'bio', 'posts_count', 'followers_count', 'following_count', 'category', 'ai_generated_profile',
+  for (const field of ['display_name', 'bio', 'posts_count', 'followers_count', 'category', 'ai_generated_profile',
     'profile_picture_url', 'date_joined', 'account_based_in', 'former_usernames_count']) {
     if (result[field] == null && previous[field] != null) result[field] = previous[field];
   }

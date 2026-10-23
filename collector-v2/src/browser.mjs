@@ -74,7 +74,15 @@ export async function captureProfile(page, username) {
   const about = await aboutText(page);
   const meta = await page.evaluate(() => ({
     description: document.querySelector('meta[name="description"]')?.content || '',
-    profile_picture_url: document.querySelector('main header img')?.src || document.querySelector('meta[property="og:image"]')?.content || ''
+    profile_picture_url: document.querySelector('main header img')?.src || document.querySelector('meta[property="og:image"]')?.content || '',
+    stat_evidence: Object.fromEntries(['posts', 'followers', 'following'].map((name) => {
+      const element = [...document.querySelectorAll('main header a, main header button')]
+        .find((candidate) => new RegExp(`\\b${name}\\b`, 'i').test(candidate.innerText || ''));
+      return [name, {
+        label: element?.innerText || '',
+        exact_title: element?.querySelector('[title]')?.getAttribute('title') || ''
+      }];
+    }))
   }));
   return { header_text: headerText, about_text: about, ...meta };
 }

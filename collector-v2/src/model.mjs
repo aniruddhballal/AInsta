@@ -36,25 +36,39 @@ export function profileFromSnapshot(username, snapshot) {
   const bioContent = bioLines.filter((line) => line !== category && line !== `${category} •` && !/^AI-generated profile$/i.test(line));
   const about = snapshot.about_text || '';
   const former = afterLabel(about, 'Former usernames');
+  const description = snapshot.description || '';
+  const headerFollowing = metric(header, ['following']);
+  const metadataFollowing = metric(description, ['following']);
+  const followingConflict = headerFollowing && metadataFollowing && headerFollowing.value !== metadataFollowing.value;
+  const exactFollowers = count(snapshot.stat_evidence?.followers?.exact_title);
+  const headerFollowers = metric(header, ['followers?']);
+  const metadataFollowers = metric(description, ['followers?']);
   return {
     username,
     url: `https://www.instagram.com/${username}/`,
     fetched_at: now(),
     display_name: statIndex > 1 ? lines.slice(1, statIndex).join(' ') : null,
     bio: bioContent.length ? bioContent.join('\n') : null,
-    posts_count: metric(header, ['posts?']) || metric(snapshot.description || '', ['posts?']),
-    followers_count: metric(header, ['followers?']),
-    following_count: metric(header, ['following']),
+    posts_count: metric(header, ['posts?']) || metric(description, ['posts?']),
+    followers_count: exactFollowers ? { ...exactFollowers, source: 'header_title' }
+      : headerFollowers ? { ...headerFollowers, source: 'header_text' } : null,
+    following_count: followingConflict ? null : headerFollowing || metadataFollowing,
+    count_evidence: {
+      followers: { header: headerFollowers, exact_title: exactFollowers, metadata: metadataFollowers },
+      following: { header: headerFollowing, metadata: metadataFollowing, conflict: Boolean(followingConflict) },
+      posts: { header: metric(header, ['posts?']), metadata: metric(description, ['posts?']) }
+    },
     category,
     ai_generated_profile: lines.some((line) => /^AI-generated profile$/i.test(line)),
     profile_picture_url: snapshot.profile_picture_url || null,
     date_joined: afterLabel(about, 'Date joined'),
     account_based_in: afterLabel(about, 'Account based in'),
     former_usernames_count: count(former),
-    raw: { header_text: header, about_text: about, description: snapshot.description || '' },
+    raw: { header_text: header, about_text: about, description, stat_evidence: snapshot.stat_evidence || {} },
     issues: [
       ...(!header ? ['profile header unavailable'] : []),
-      ...(!about ? ['About this account unavailable'] : [])
+      ...(!about ? ['About this account unavailable'] : []),
+      ...(followingConflict ? [`Following count conflicts: header shows ${headerFollowing.raw}, page metadata shows ${metadataFollowing.raw}.`] : [])
     ]
   };
 }

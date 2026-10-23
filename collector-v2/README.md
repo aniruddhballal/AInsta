@@ -47,6 +47,8 @@ Outputs are under ignored `data/edlt.shox/`:
 
 Counts shown in Instagram as `K` or `M` are marked `approximate` and retain the original label. A missing field is `null` and listed in `missing`; it is not turned into zero. A preview limited by a login wall is marked incomplete. Existing values survive a retry that temporarily cannot read the same field.
 
+For follower counts, the collector uses an exact number from the profile header's `title` attribute when Instagram provides one. It also records the displayed header and page metadata counts as evidence. When following counts disagree between those sources, the chosen count stays `null`, and the report shows both observed values instead of asserting one as correct.
+
 ## Verification
 
 ```powershell
