@@ -1,7 +1,7 @@
 {
   "username": "not.your.ordinary.nga",
   "url": "https://www.instagram.com/not.your.ordinary.nga/",
-  "fetched_at": "2026-10-23T10:19:39.581Z",
+  "fetched_at": "2026-10-23T10:48:05.235Z",
   "display_name": null,
   "bio": "TVアニメ『紫禁・御猫房』10月10日放送開始! 宮廷に隠された秘密とは? みんなは観たい? コメントで教えてね!\n#紫禁御猫房 #新作アニメ #拡散希望 #猫\n《紫禁·御猫房》\n#紫禁御猫房...\nmore\napps.apple.com/us/app/wrizz-rizz-keyboard/id6743861531",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 63208,
-    "raw": "63,208",
+    "value": 63207,
+    "raw": "63,207",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 63208,
-        "raw": "63,208",
+        "value": 63207,
+        "raw": "63,207",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": "Reel creator",
   "ai_generated_profile": true,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/798291195_18104132056986512_7736592971246079045_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MzQuQzMifQ%3D%3D&_nc_ohc=kUIFWRed0F0Q7kNvwEJSlxU&_nc_oc=AdoHUnVs3RnvvWZDAZYjkcjv1wbO559iRWE1IOX8NSgqPd3AnE2Tl0uArmdFxe6ECkLmcdC5Xylll6sZA6HSz-uV&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=szUyLFfPl92OmYDLST83jw&_nc_ss=7f6a8&oh=00_AQOt1DvTqzhnRSoCt2Wz9gfym6pE7ASdSgHWxTuEAwLllg&oe=6AE11761",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/798291195_18104132056986512_7736592971246079045_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy43MzQuQzMifQ%3D%3D&_nc_ohc=kUIFWRed0F0Q7kNvwEJSlxU&_nc_oc=AdoHUnVs3RnvvWZDAZYjkcjv1wbO559iRWE1IOX8NSgqPd3AnE2Tl0uArmdFxe6ECkLmcdC5Xylll6sZA6HSz-uV&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=dHL-qBIBVcR_DSW0n5djnQ&_nc_ss=7f2a8&oh=00_AQNqUPQmEbIl2JEPiEoekLAOFvXhO65aOfvvCw8nV82v7w&oe=6AE11761",
   "date_joined": "September 2026",
   "account_based_in": "India",
   "former_usernames_count": null,
@@ -82,7 +82,7 @@
       },
       "followers": {
         "label": "63.2K followers",
-        "exact_title": "63,208"
+        "exact_title": "63,207"
       },
       "following": {
         "label": "0 following",

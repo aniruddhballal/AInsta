@@ -1,7 +1,7 @@
 {
-  "id": "af704746-243f-4a67-b001-4bd8e1c6112d",
+  "id": "1bd5d8d9-84cf-4032-8f71-562e6d83f333",
   "mode": "profile_only",
-  "status": "complete",
+  "status": "interrupted",
   "profiles": [
     "not.your.ordinary.nga",
     "gzfr",
@@ -633,1751 +633,1751 @@
   ],
   "results": {
     "not.your.ordinary.nga": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:19:33.429Z",
-      "finished_at": "2026-10-23T10:19:40.806Z",
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-23T10:47:59.607Z",
+      "finished_at": "2026-10-23T10:48:11.744Z",
+      "error": "Windows EPERM prevented saving the post grid scan before it finished.",
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:19:33.429Z",
-          "finished_at": "2026-10-23T10:19:40.806Z",
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-23T10:47:59.607Z",
+          "finished_at": "2026-10-23T10:48:11.744Z",
+          "error": "Windows EPERM prevented saving the post grid scan before it finished."
         }
       }
     },
     "gzfr": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:19:40.809Z",
-      "finished_at": "2026-10-23T10:19:47.375Z",
-      "error": null,
+      "status": "interrupted",
+      "started_at": "2026-10-23T10:48:11.749Z",
+      "finished_at": "2026-10-23T14:11:12.372Z",
+      "error": "Collector process ended before the post grid scan finished.",
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:19:40.809Z",
-          "finished_at": "2026-10-23T10:19:47.375Z",
-          "error": null
+          "status": "interrupted",
+          "started_at": "2026-10-23T10:48:11.749Z",
+          "finished_at": "2026-10-23T14:11:12.372Z",
+          "error": "Collector process ended before the post grid scan finished."
         }
       }
     },
     "pigeon.flac": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:19:47.377Z",
-      "finished_at": "2026-10-23T10:19:53.918Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:19:47.377Z",
-          "finished_at": "2026-10-23T10:19:53.918Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "reposted": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:19:53.920Z",
-      "finished_at": "2026-10-23T10:20:00.669Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:19:53.920Z",
-          "finished_at": "2026-10-23T10:20:00.669Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "memekarbo": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:00.672Z",
-      "finished_at": "2026-10-23T10:20:06.570Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:00.672Z",
-          "finished_at": "2026-10-23T10:20:06.570Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "goofvault": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:06.572Z",
-      "finished_at": "2026-10-23T10:20:12.911Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:06.572Z",
-          "finished_at": "2026-10-23T10:20:12.911Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "asapcoder.exe": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:12.913Z",
-      "finished_at": "2026-10-23T10:20:18.882Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:12.913Z",
-          "finished_at": "2026-10-23T10:20:18.882Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "birobidzanih": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:18.885Z",
-      "finished_at": "2026-10-23T10:20:25.167Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:18.885Z",
-          "finished_at": "2026-10-23T10:20:25.167Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pichypeapp": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:25.170Z",
-      "finished_at": "2026-10-23T10:20:32.080Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:25.170Z",
-          "finished_at": "2026-10-23T10:20:32.080Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pexe.bh": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:32.085Z",
-      "finished_at": "2026-10-23T10:20:38.804Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:32.085Z",
-          "finished_at": "2026-10-23T10:20:38.804Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "9ineesss": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:38.806Z",
-      "finished_at": "2026-10-23T10:20:45.209Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:38.806Z",
-          "finished_at": "2026-10-23T10:20:45.209Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "printamovie": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:45.212Z",
-      "finished_at": "2026-10-23T10:20:52.072Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:45.212Z",
-          "finished_at": "2026-10-23T10:20:52.072Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "amanrajxofficial_12": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:52.078Z",
-      "finished_at": "2026-10-23T10:20:58.216Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:52.078Z",
-          "finished_at": "2026-10-23T10:20:58.216Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "hulksmash.exe": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:20:58.219Z",
-      "finished_at": "2026-10-23T10:21:04.639Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:20:58.219Z",
-          "finished_at": "2026-10-23T10:21:04.639Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "intr0vert.viks": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:04.642Z",
-      "finished_at": "2026-10-23T10:21:10.644Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:04.642Z",
-          "finished_at": "2026-10-23T10:21:10.644Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "diamond_bl0ckk": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:10.647Z",
-      "finished_at": "2026-10-23T10:21:16.735Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:10.647Z",
-          "finished_at": "2026-10-23T10:21:16.735Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "editor": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:16.738Z",
-      "finished_at": "2026-10-23T10:21:23.114Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:16.738Z",
-          "finished_at": "2026-10-23T10:21:23.114Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "kanyeglazerwest": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:23.117Z",
-      "finished_at": "2026-10-23T10:21:29.428Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:23.117Z",
-          "finished_at": "2026-10-23T10:21:29.428Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "blogger": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:29.432Z",
-      "finished_at": "2026-10-23T10:21:36.390Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:29.432Z",
-          "finished_at": "2026-10-23T10:21:36.390Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "vviennteru": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:36.393Z",
-      "finished_at": "2026-10-23T10:21:42.996Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:36.393Z",
-          "finished_at": "2026-10-23T10:21:42.996Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "sankuro75": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:42.999Z",
-      "finished_at": "2026-10-23T10:21:49.431Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:42.999Z",
-          "finished_at": "2026-10-23T10:21:49.431Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "thragg_grand_regentnumber1": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:49.441Z",
-      "finished_at": "2026-10-23T10:21:55.901Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:49.441Z",
-          "finished_at": "2026-10-23T10:21:55.901Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "notmemezz": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:21:55.904Z",
-      "finished_at": "2026-10-23T10:22:02.788Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:21:55.904Z",
-          "finished_at": "2026-10-23T10:22:02.788Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "hnvx.07": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:22:02.791Z",
-      "finished_at": "2026-10-23T10:22:08.026Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:22:02.791Z",
-          "finished_at": "2026-10-23T10:22:08.026Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "memesprcaf": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:08.029Z",
-      "finished_at": "2026-10-23T10:22:14.570Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:08.029Z",
-          "finished_at": "2026-10-23T10:22:14.570Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "2xamca": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:14.572Z",
-      "finished_at": "2026-10-23T10:22:21.304Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:14.572Z",
-          "finished_at": "2026-10-23T10:22:21.304Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "goofybara777": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:21.307Z",
-      "finished_at": "2026-10-23T10:22:27.890Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:21.307Z",
-          "finished_at": "2026-10-23T10:22:27.890Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "hezciv": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:27.892Z",
-      "finished_at": "2026-10-23T10:22:34.735Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:27.892Z",
-          "finished_at": "2026-10-23T10:22:34.735Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "z4rxk0": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:34.738Z",
-      "finished_at": "2026-10-23T10:22:41.653Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:34.738Z",
-          "finished_at": "2026-10-23T10:22:41.653Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "slleep91": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:41.656Z",
-      "finished_at": "2026-10-23T10:22:48.382Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:41.656Z",
-          "finished_at": "2026-10-23T10:22:48.382Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "mugiwaramemez": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:48.384Z",
-      "finished_at": "2026-10-23T10:22:54.688Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:48.384Z",
-          "finished_at": "2026-10-23T10:22:54.688Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "xkenshutsu": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:22:54.691Z",
-      "finished_at": "2026-10-23T10:23:01.294Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:22:54.691Z",
-          "finished_at": "2026-10-23T10:23:01.294Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "uz87b": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:01.299Z",
-      "finished_at": "2026-10-23T10:23:07.628Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:01.299Z",
-          "finished_at": "2026-10-23T10:23:07.628Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "prime_senchui": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:23:07.630Z",
-      "finished_at": "2026-10-23T10:23:12.915Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:23:07.630Z",
-          "finished_at": "2026-10-23T10:23:12.915Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "ft.neyz": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:12.918Z",
-      "finished_at": "2026-10-23T10:23:19.407Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:12.918Z",
-          "finished_at": "2026-10-23T10:23:19.407Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "camilaboucheryamamoto": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:19.409Z",
-      "finished_at": "2026-10-23T10:23:25.762Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:19.409Z",
-          "finished_at": "2026-10-23T10:23:25.762Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "raffater7": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:25.765Z",
-      "finished_at": "2026-10-23T10:23:32.455Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:25.765Z",
-          "finished_at": "2026-10-23T10:23:32.455Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "starson.ig": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:32.457Z",
-      "finished_at": "2026-10-23T10:23:38.835Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:32.457Z",
-          "finished_at": "2026-10-23T10:23:38.835Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "zyr1x1": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:38.838Z",
-      "finished_at": "2026-10-23T10:23:45.348Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:38.838Z",
-          "finished_at": "2026-10-23T10:23:45.348Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "1sntreal": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:45.351Z",
-      "finished_at": "2026-10-23T10:23:51.295Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:45.351Z",
-          "finished_at": "2026-10-23T10:23:51.295Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "777.psps": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:23:51.299Z",
-      "finished_at": "2026-10-23T10:23:57.416Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:23:51.299Z",
-          "finished_at": "2026-10-23T10:23:57.416Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "hammergag": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:23:57.418Z",
-      "finished_at": "2026-10-23T10:24:32.835Z",
-      "error": "Instagram did not show the profile header.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:23:57.418Z",
-          "finished_at": "2026-10-23T10:24:32.835Z",
-          "error": "Instagram did not show the profile header."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "reellbuddy": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:24:32.838Z",
-      "finished_at": "2026-10-23T10:24:39.921Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:24:32.838Z",
-          "finished_at": "2026-10-23T10:24:39.921Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "futureshock3272": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:24:39.924Z",
-      "finished_at": "2026-10-23T10:24:46.398Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:24:39.924Z",
-          "finished_at": "2026-10-23T10:24:46.398Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "not.yourtyppee": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:24:46.400Z",
-      "finished_at": "2026-10-23T10:24:52.961Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:24:46.400Z",
-          "finished_at": "2026-10-23T10:24:52.961Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "caodogsfofo": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:24:52.965Z",
-      "finished_at": "2026-10-23T10:25:28.271Z",
-      "error": "Instagram did not show the profile header.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:24:52.965Z",
-          "finished_at": "2026-10-23T10:25:28.271Z",
-          "error": "Instagram did not show the profile header."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "illmisguideyou": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:25:28.274Z",
-      "finished_at": "2026-10-23T10:25:32.963Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:25:28.274Z",
-          "finished_at": "2026-10-23T10:25:32.963Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "positive.mpire": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:25:32.966Z",
-      "finished_at": "2026-10-23T10:25:39.052Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:25:32.966Z",
-          "finished_at": "2026-10-23T10:25:39.052Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pastwillhunt666": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:25:39.055Z",
-      "finished_at": "2026-10-23T10:25:45.531Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:25:39.055Z",
-          "finished_at": "2026-10-23T10:25:45.531Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "renee30287": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:25:45.534Z",
-      "finished_at": "2026-10-23T10:25:52.354Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:25:45.534Z",
-          "finished_at": "2026-10-23T10:25:52.354Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "internetdamage8": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:25:52.357Z",
-      "finished_at": "2026-10-23T10:25:59.286Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:25:52.357Z",
-          "finished_at": "2026-10-23T10:25:59.286Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "its_thanos.battle": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:25:59.290Z",
-      "finished_at": "2026-10-23T10:26:05.908Z",
-      "error": "Collector exited with code 1.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:25:59.290Z",
-          "finished_at": "2026-10-23T10:26:05.908Z",
-          "error": "Collector exited with code 1."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "doomscroll.dumpling": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:05.911Z",
-      "finished_at": "2026-10-23T10:26:12.258Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:05.911Z",
-          "finished_at": "2026-10-23T10:26:12.258Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "ijuggminors": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:12.261Z",
-      "finished_at": "2026-10-23T10:26:18.407Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:12.261Z",
-          "finished_at": "2026-10-23T10:26:18.407Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "anngry_birrds": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:18.410Z",
-      "finished_at": "2026-10-23T10:26:24.825Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:18.410Z",
-          "finished_at": "2026-10-23T10:26:24.825Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "yapbaaz_": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:24.828Z",
-      "finished_at": "2026-10-23T10:26:30.768Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:24.828Z",
-          "finished_at": "2026-10-23T10:26:30.768Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "vlad.aep_": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:26:30.770Z",
-      "finished_at": "2026-10-23T10:26:35.542Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:26:30.770Z",
-          "finished_at": "2026-10-23T10:26:35.542Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "reelscantheal": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:35.544Z",
-      "finished_at": "2026-10-23T10:26:42.215Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:35.544Z",
-          "finished_at": "2026-10-23T10:26:42.215Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "onlyhi_story_": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:42.218Z",
-      "finished_at": "2026-10-23T10:26:48.812Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:42.218Z",
-          "finished_at": "2026-10-23T10:26:48.812Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "luffytheegear5": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:48.815Z",
-      "finished_at": "2026-10-23T10:26:55.263Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:48.815Z",
-          "finished_at": "2026-10-23T10:26:55.263Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "reelrestock": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:26:55.267Z",
-      "finished_at": "2026-10-23T10:27:01.542Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:26:55.267Z",
-          "finished_at": "2026-10-23T10:27:01.542Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "zkyus_": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:01.551Z",
-      "finished_at": "2026-10-23T10:27:07.904Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:01.551Z",
-          "finished_at": "2026-10-23T10:27:07.904Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "filmrollstoriess": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:07.907Z",
-      "finished_at": "2026-10-23T10:27:14.368Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:07.907Z",
-          "finished_at": "2026-10-23T10:27:14.368Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "back": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:27:14.371Z",
-      "finished_at": "2026-10-23T10:27:18.886Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:27:14.371Z",
-          "finished_at": "2026-10-23T10:27:18.886Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "borrsack": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:18.889Z",
-      "finished_at": "2026-10-23T10:27:25.522Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:18.889Z",
-          "finished_at": "2026-10-23T10:27:25.522Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "bubble_tuanzi": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:25.525Z",
-      "finished_at": "2026-10-23T10:27:31.913Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:25.525Z",
-          "finished_at": "2026-10-23T10:27:31.913Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "the.ravshanbek_": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:31.916Z",
-      "finished_at": "2026-10-23T10:27:38.010Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:31.916Z",
-          "finished_at": "2026-10-23T10:27:38.010Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "fayziyevv_org": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:38.013Z",
-      "finished_at": "2026-10-23T10:27:43.953Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:38.013Z",
-          "finished_at": "2026-10-23T10:27:43.953Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "cartoon_.xhub": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:43.956Z",
-      "finished_at": "2026-10-23T10:27:50.046Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:43.956Z",
-          "finished_at": "2026-10-23T10:27:50.046Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "bollyxedit.7": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:50.049Z",
-      "finished_at": "2026-10-23T10:27:56.467Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:50.049Z",
-          "finished_at": "2026-10-23T10:27:56.467Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "dark_man1__": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:27:56.470Z",
-      "finished_at": "2026-10-23T10:28:03.015Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:27:56.470Z",
-          "finished_at": "2026-10-23T10:28:03.015Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "hazelxpost": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:03.017Z",
-      "finished_at": "2026-10-23T10:28:09.911Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:03.017Z",
-          "finished_at": "2026-10-23T10:28:09.911Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "popcornparade": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:09.914Z",
-      "finished_at": "2026-10-23T10:28:16.100Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:09.914Z",
-          "finished_at": "2026-10-23T10:28:16.100Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pranto_harryson": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:16.103Z",
-      "finished_at": "2026-10-23T10:28:23.119Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:16.103Z",
-          "finished_at": "2026-10-23T10:28:23.119Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "tretinfhh": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:23.121Z",
-      "finished_at": "2026-10-23T10:28:29.679Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:23.121Z",
-          "finished_at": "2026-10-23T10:28:29.679Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "cliprotter67": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:29.681Z",
-      "finished_at": "2026-10-23T10:28:35.815Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:29.681Z",
-          "finished_at": "2026-10-23T10:28:35.815Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "black.airforce.nigga": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:35.817Z",
-      "finished_at": "2026-10-23T10:28:42.236Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:35.817Z",
-          "finished_at": "2026-10-23T10:28:42.236Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "nastynigas": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:42.239Z",
-      "finished_at": "2026-10-23T10:28:48.248Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:42.239Z",
-          "finished_at": "2026-10-23T10:28:48.248Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "rooxxi.1": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:48.250Z",
-      "finished_at": "2026-10-23T10:28:54.709Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:48.250Z",
-          "finished_at": "2026-10-23T10:28:54.709Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "soul_reaper261": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:28:54.711Z",
-      "finished_at": "2026-10-23T10:29:01.598Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:28:54.711Z",
-          "finished_at": "2026-10-23T10:29:01.598Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "thoughtsby.div": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:01.601Z",
-      "finished_at": "2026-10-23T10:29:07.688Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:01.601Z",
-          "finished_at": "2026-10-23T10:29:07.688Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "nxx._.nmercy": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:29:07.691Z",
-      "finished_at": "2026-10-23T10:29:12.642Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:29:07.691Z",
-          "finished_at": "2026-10-23T10:29:12.642Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "auraaluuxx": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:12.645Z",
-      "finished_at": "2026-10-23T10:29:19.347Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:12.645Z",
-          "finished_at": "2026-10-23T10:29:19.347Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "memeehubx69": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:29:19.350Z",
-      "finished_at": "2026-10-23T10:29:26.042Z",
-      "error": "Collector exited with code 1.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:29:19.350Z",
-          "finished_at": "2026-10-23T10:29:26.042Z",
-          "error": "Collector exited with code 1."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "dexea.100k": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:26.045Z",
-      "finished_at": "2026-10-23T10:29:32.403Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:26.045Z",
-          "finished_at": "2026-10-23T10:29:32.403Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "toyirov.40k": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:32.406Z",
-      "finished_at": "2026-10-23T10:29:38.496Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:32.406Z",
-          "finished_at": "2026-10-23T10:29:38.496Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "moviebouncee": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:38.499Z",
-      "finished_at": "2026-10-23T10:29:45.468Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:38.499Z",
-          "finished_at": "2026-10-23T10:29:45.468Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "igpostinggang": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:29:45.470Z",
-      "finished_at": "2026-10-23T10:29:49.965Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:29:45.470Z",
-          "finished_at": "2026-10-23T10:29:49.965Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "hi.bytezen": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:49.967Z",
-      "finished_at": "2026-10-23T10:29:56.709Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:49.967Z",
-          "finished_at": "2026-10-23T10:29:56.709Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "noglitch00": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:29:56.711Z",
-      "finished_at": "2026-10-23T10:30:03.190Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:29:56.711Z",
-          "finished_at": "2026-10-23T10:30:03.190Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "james_basas": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:03.193Z",
-      "finished_at": "2026-10-23T10:30:09.554Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:03.193Z",
-          "finished_at": "2026-10-23T10:30:09.554Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "padrinhos.exe": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:09.557Z",
-      "finished_at": "2026-10-23T10:30:15.767Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:09.557Z",
-          "finished_at": "2026-10-23T10:30:15.767Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "arthurmoviegan": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:15.770Z",
-      "finished_at": "2026-10-23T10:30:22.328Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:15.770Z",
-          "finished_at": "2026-10-23T10:30:22.328Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "ballsitchingshi": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:22.332Z",
-      "finished_at": "2026-10-23T10:30:28.515Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:22.332Z",
-          "finished_at": "2026-10-23T10:30:28.515Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pophistoryhub": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:28.517Z",
-      "finished_at": "2026-10-23T10:30:34.617Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:28.517Z",
-          "finished_at": "2026-10-23T10:30:34.617Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pinkjohnrp": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:34.620Z",
-      "finished_at": "2026-10-23T10:30:40.897Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:34.620Z",
-          "finished_at": "2026-10-23T10:30:40.897Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "memeswithsanju": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:40.899Z",
-      "finished_at": "2026-10-23T10:30:47.177Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:40.899Z",
-          "finished_at": "2026-10-23T10:30:47.177Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "wayneeeeeeeeeeeeeeeeeeeeeeq": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:47.180Z",
-      "finished_at": "2026-10-23T10:30:53.377Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:47.180Z",
-          "finished_at": "2026-10-23T10:30:53.377Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "rzk.mp4": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:30:53.383Z",
-      "finished_at": "2026-10-23T10:30:57.979Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:30:53.383Z",
-          "finished_at": "2026-10-23T10:30:57.979Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "oggy675908": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:30:57.985Z",
-      "finished_at": "2026-10-23T10:31:03.904Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:30:57.985Z",
-          "finished_at": "2026-10-23T10:31:03.904Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "renyajichu": {
-      "status": "failed",
-      "started_at": "2026-10-23T10:31:03.906Z",
-      "finished_at": "2026-10-23T10:31:08.699Z",
-      "error": "Instagram reports this page is unavailable.",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
+      "error": null,
       "stages": {
         "profile": {
-          "status": "failed",
-          "started_at": "2026-10-23T10:31:03.906Z",
-          "finished_at": "2026-10-23T10:31:08.699Z",
-          "error": "Instagram reports this page is unavailable."
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
+          "error": null
         }
       }
     },
     "jace_zn": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:08.702Z",
-      "finished_at": "2026-10-23T10:31:15.532Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:08.702Z",
-          "finished_at": "2026-10-23T10:31:15.532Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "stuckonyourfyp": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:15.535Z",
-      "finished_at": "2026-10-23T10:31:21.952Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:15.535Z",
-          "finished_at": "2026-10-23T10:31:21.952Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "dank.meemz420": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:21.954Z",
-      "finished_at": "2026-10-23T10:31:28.745Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:21.954Z",
-          "finished_at": "2026-10-23T10:31:28.745Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "iblamealanz": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:28.748Z",
-      "finished_at": "2026-10-23T10:31:35.336Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:28.748Z",
-          "finished_at": "2026-10-23T10:31:35.336Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "ryumaaa_ae": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:35.339Z",
-      "finished_at": "2026-10-23T10:31:41.733Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:35.339Z",
-          "finished_at": "2026-10-23T10:31:41.733Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "woe_almighty": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:41.736Z",
-      "finished_at": "2026-10-23T10:31:47.853Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:41.736Z",
-          "finished_at": "2026-10-23T10:31:47.853Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "prxctm0l": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:47.855Z",
-      "finished_at": "2026-10-23T10:31:54.623Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:47.855Z",
-          "finished_at": "2026-10-23T10:31:54.623Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "natsukisubaru.exe": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:31:54.627Z",
-      "finished_at": "2026-10-23T10:32:01.125Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:31:54.627Z",
-          "finished_at": "2026-10-23T10:32:01.125Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "aiza.editzzz": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:01.128Z",
-      "finished_at": "2026-10-23T10:32:07.588Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:01.128Z",
-          "finished_at": "2026-10-23T10:32:07.588Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "ubncu": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:07.590Z",
-      "finished_at": "2026-10-23T10:32:13.663Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:07.590Z",
-          "finished_at": "2026-10-23T10:32:13.663Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "circflix": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:13.666Z",
-      "finished_at": "2026-10-23T10:32:19.934Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:13.666Z",
-          "finished_at": "2026-10-23T10:32:19.934Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "bingomovie_": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:19.936Z",
-      "finished_at": "2026-10-23T10:32:26.315Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:19.936Z",
-          "finished_at": "2026-10-23T10:32:26.315Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "brainrotnic": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:26.318Z",
-      "finished_at": "2026-10-23T10:32:32.847Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:26.318Z",
-          "finished_at": "2026-10-23T10:32:32.847Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "mikre_film": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:32.850Z",
-      "finished_at": "2026-10-23T10:32:40.087Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:32.850Z",
-          "finished_at": "2026-10-23T10:32:40.087Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "kiddcat68": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:40.090Z",
-      "finished_at": "2026-10-23T10:32:46.543Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:40.090Z",
-          "finished_at": "2026-10-23T10:32:46.543Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "pop.lore_x": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:46.546Z",
-      "finished_at": "2026-10-23T10:32:53.178Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:46.546Z",
-          "finished_at": "2026-10-23T10:32:53.178Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "maxx.__.zx4": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:53.180Z",
-      "finished_at": "2026-10-23T10:32:59.443Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:53.180Z",
-          "finished_at": "2026-10-23T10:32:59.443Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "0ggyyyy__07": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:32:59.445Z",
-      "finished_at": "2026-10-23T10:33:05.686Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:32:59.445Z",
-          "finished_at": "2026-10-23T10:33:05.686Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "nreanimnida": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:33:05.689Z",
-      "finished_at": "2026-10-23T10:33:12.271Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:33:05.689Z",
-          "finished_at": "2026-10-23T10:33:12.271Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "rokymental.1": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:33:12.274Z",
-      "finished_at": "2026-10-23T10:33:18.604Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:33:12.274Z",
-          "finished_at": "2026-10-23T10:33:18.604Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "reddyannacare_": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:33:18.607Z",
-      "finished_at": "2026-10-23T10:33:24.725Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:33:18.607Z",
-          "finished_at": "2026-10-23T10:33:24.725Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "femtaility": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:33:24.728Z",
-      "finished_at": "2026-10-23T10:33:30.866Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:33:24.728Z",
-          "finished_at": "2026-10-23T10:33:30.866Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "waytoway__": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:33:30.871Z",
-      "finished_at": "2026-10-23T10:33:36.882Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:33:30.871Z",
-          "finished_at": "2026-10-23T10:33:36.882Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
     },
     "memesupreme.tv": {
-      "status": "complete",
-      "started_at": "2026-10-23T10:33:36.886Z",
-      "finished_at": "2026-10-23T10:33:43.126Z",
+      "status": "queued",
+      "started_at": null,
+      "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "complete",
-          "started_at": "2026-10-23T10:33:36.886Z",
-          "finished_at": "2026-10-23T10:33:43.126Z",
+          "status": "queued",
+          "started_at": null,
+          "finished_at": null,
           "error": null
         }
       }
@@ -2385,70 +2385,29 @@
   },
   "current": null,
   "current_stage": null,
-  "started_at": "2026-10-23T10:19:33.414Z",
-  "updated_at": "2026-10-23T10:33:43.129Z",
-  "finished_at": "2026-10-23T10:33:43.129Z",
-  "stop_requested": false,
+  "started_at": "2026-10-23T10:47:59.598Z",
+  "updated_at": "2026-10-23T14:11:12.372Z",
+  "finished_at": "2026-10-23T14:11:12.372Z",
+  "stop_requested": true,
   "logs": [
-    "Starting @ubncu profile",
-    "[16:02:08] Collecting ubncu profile",
-    "[16:02:12] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\ubncu\\report.html",
-    "Finished @ubncu profile: complete",
-    "Starting @circflix profile",
-    "[16:02:15] Collecting circflix profile",
-    "[16:02:18] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\circflix\\report.html",
-    "Finished @circflix profile: complete",
-    "Starting @bingomovie_ profile",
-    "[16:02:21] Collecting bingomovie_ profile",
-    "[16:02:25] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\bingomovie_\\report.html",
-    "Finished @bingomovie_ profile: complete",
-    "Starting @brainrotnic profile",
-    "[16:02:27] Collecting brainrotnic profile",
-    "[16:02:31] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\brainrotnic\\report.html",
-    "Finished @brainrotnic profile: complete",
-    "Starting @mikre_film profile",
-    "[16:02:34] Collecting mikre_film profile",
-    "[16:02:39] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\mikre_film\\report.html",
-    "Finished @mikre_film profile: complete",
-    "Starting @kiddcat68 profile",
-    "[16:02:41] Collecting kiddcat68 profile",
-    "[16:02:45] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\kiddcat68\\report.html",
-    "Finished @kiddcat68 profile: complete",
-    "Starting @pop.lore_x profile",
-    "[16:02:48] Collecting pop.lore_x profile",
-    "[16:02:52] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\pop.lore_x\\report.html",
-    "Finished @pop.lore_x profile: complete",
-    "Starting @maxx.__.zx4 profile",
-    "[16:02:54] Collecting maxx.__.zx4 profile",
-    "[16:02:58] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\maxx.__.zx4\\report.html",
-    "Finished @maxx.__.zx4 profile: complete",
-    "Starting @0ggyyyy__07 profile",
-    "[16:03:00] Collecting 0ggyyyy__07 profile",
-    "[16:03:04] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\0ggyyyy__07\\report.html",
-    "Finished @0ggyyyy__07 profile: complete",
-    "Starting @nreanimnida profile",
-    "[16:03:07] Collecting nreanimnida profile",
-    "[16:03:11] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\nreanimnida\\report.html",
-    "Finished @nreanimnida profile: complete",
-    "Starting @rokymental.1 profile",
-    "[16:03:13] Collecting rokymental.1 profile",
-    "[16:03:17] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\rokymental.1\\report.html",
-    "Finished @rokymental.1 profile: complete",
-    "Starting @reddyannacare_ profile",
-    "[16:03:20] Collecting reddyannacare_ profile",
-    "[16:03:23] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\reddyannacare_\\report.html",
-    "Finished @reddyannacare_ profile: complete",
-    "Starting @femtaility profile",
-    "[16:03:26] Collecting femtaility profile",
-    "[16:03:29] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\femtaility\\report.html",
-    "Finished @femtaility profile: complete",
-    "Starting @waytoway__ profile",
-    "[16:03:32] Collecting waytoway__ profile",
-    "[16:03:35] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\waytoway__\\report.html",
-    "Finished @waytoway__ profile: complete",
-    "Starting @memesupreme.tv profile",
-    "[16:03:38] Collecting memesupreme.tv profile",
-    "[16:03:42] Done: 0 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\memesupreme.tv\\report.html",
-    "Finished @memesupreme.tv profile: complete"
-  ]
+    "Starting @not.your.ordinary.nga profile",
+    "[16:18:01] Collecting not.your.ordinary.nga profile",
+    "[16:18:05] Scanning post grid",
+    "Error: EPERM: operation not permitted, rename 'D:\\post engg\\dedgram\\collector-v2\\data\\not.your.ordinary.nga\\run.json.887e34c7-289d-4e51-9bbf-1c5182737133.tmp' -> 'D:\\post engg\\dedgram\\collector-v2\\data\\not.your.ordinary.nga\\run.json'",
+    "at async rename (node:internal/fs/promises:784:10)",
+    "at async writeJson (file:///D:/post%20engg/dedgram/collector-v2/src/store.mjs:15:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:199:5)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:208:35 {",
+    "errno: -4048,",
+    "code: 'EPERM',",
+    "syscall: 'rename',",
+    "path: 'D:\\\\post engg\\\\dedgram\\\\collector-v2\\\\data\\\\not.your.ordinary.nga\\\\run.json.887e34c7-289d-4e51-9bbf-1c5182737133.tmp',",
+    "dest: 'D:\\\\post engg\\\\dedgram\\\\collector-v2\\\\data\\\\not.your.ordinary.nga\\\\run.json'",
+    "}",
+    "Finished @not.your.ordinary.nga profile: failed",
+    "Starting @gzfr profile",
+    "[16:18:13] Collecting gzfr profile",
+    "[16:18:17] Scanning post grid"
+  ],
+  "error": "Collector process ended before the active profile scan finished."
 }

@@ -1,7 +1,7 @@
 {
   "username": "gzfr",
   "url": "https://www.instagram.com/gzfr/",
-  "fetched_at": "2026-10-23T10:19:46.317Z",
+  "fetched_at": "2026-10-23T10:48:17.118Z",
   "display_name": null,
   "bio": "holly",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 578067,
-    "raw": "578,067",
+    "value": 578045,
+    "raw": "578,045",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 578067,
-        "raw": "578,067",
+        "value": 578045,
+        "raw": "578,045",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=hlgdxoADaGUQ7kNvwET6kB_&_nc_oc=AdobMqomQ2N2d91gV_yKUOLv71iy4owjtY3p1iDNWNMfEFqPh8O4B2nD3_sam1w_oK7awWQQhWt-hQcU2nZDJVcg&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=aeO9Qj1scKnt7sQyo-34IQ&_nc_ss=7f6a8&oh=00_AQPrZfzGVBQtoM5uh0pm2xEQa9eIoRFdJQashKXMegWp0A&oe=6AE11D30",
+  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=hlgdxoADaGUQ7kNvwET6kB_&_nc_oc=AdobMqomQ2N2d91gV_yKUOLv71iy4owjtY3p1iDNWNMfEFqPh8O4B2nD3_sam1w_oK7awWQQhWt-hQcU2nZDJVcg&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=dfVocmNPthSsE9gfBcrBrQ&_nc_ss=7f6a8&oh=00_AQMrbii-V0Z12tM3oIt5E1Q1hVqlGCJ2Tqbs1oeLFIvU1g&oe=6AE11D30",
   "date_joined": "June 2022",
   "account_based_in": "Not shared",
   "former_usernames_count": {
@@ -86,7 +86,7 @@
       },
       "followers": {
         "label": "578K followers",
-        "exact_title": "578,067"
+        "exact_title": "578,045"
       },
       "following": {
         "label": "1 following",

@@ -1,0 +1,23 @@
+{
+  "post": {
+    "items": [
+      {
+        "kind": "post",
+        "shortcode": "DeaWCzcD2iu",
+        "url": "https://www.instagram.com/p/DeaWCzcD2iu/",
+        "grid_views_raw": null,
+        "grid_views_issue": null
+      },
+      {
+        "kind": "post",
+        "shortcode": "DeX0u-dvTra",
+        "url": "https://www.instagram.com/p/DeX0u-dvTra/",
+        "grid_views_raw": null,
+        "grid_views_issue": null
+      }
+    ],
+    "complete": false,
+    "error": "Collector process ended before the post grid scan finished.",
+    "attempted_at": "2026-10-23T10:48:19.362Z"
+  }
+}

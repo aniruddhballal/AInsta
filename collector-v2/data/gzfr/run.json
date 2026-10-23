@@ -1,11 +1,13 @@
 {
-  "started_at": "2026-10-23T10:19:41.808Z",
-  "updated_at": "2026-10-23T10:19:46.325Z",
-  "status": "complete",
-  "phase": "done",
+  "started_at": "2026-10-23T10:48:12.776Z",
+  "updated_at": "2026-10-23T14:11:12.372Z",
+  "status": "blocked",
+  "phase": "post discovery",
   "scope": [
-    "profile"
+    "profile",
+    "post_grid",
+    "reel_grid"
   ],
   "current_url": null,
-  "error": null
+  "error": "Collector process ended before the grid scan finished."
 }

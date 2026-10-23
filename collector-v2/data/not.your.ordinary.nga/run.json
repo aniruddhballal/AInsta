@@ -1,11 +1,13 @@
 {
-  "started_at": "2026-10-23T10:19:34.632Z",
-  "updated_at": "2026-10-23T10:19:39.589Z",
-  "status": "complete",
-  "phase": "done",
+  "started_at": "2026-10-23T10:48:00.782Z",
+  "updated_at": "2026-10-23T14:11:12.372Z",
+  "status": "blocked",
+  "phase": "post discovery",
   "scope": [
-    "profile"
+    "profile",
+    "post_grid",
+    "reel_grid"
   ],
   "current_url": null,
-  "error": null
+  "error": "Windows EPERM prevented saving the post grid scan before it finished."
 }
