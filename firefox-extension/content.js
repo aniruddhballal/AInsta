@@ -261,10 +261,16 @@
         if (!itemUrl) continue;
         const item = items.get(itemUrl) || { url: itemUrl };
         if (kind === 'reel') {
-          const tileText = [anchor.getAttribute('aria-label'), anchor.getAttribute('title'), anchor.innerText, anchor.textContent].filter(Boolean).join(' ');
-          const views = metricFrom([tileText], [/([\d,.]+\s*[KMB]?)\s*(?:views?|plays?)\b/i]);
-          const standaloneCount = views === null ? compactCount(clean(anchor.innerText || anchor.textContent)) : null;
-          if (views !== null || standaloneCount !== null) item.views_count = views ?? standaloneCount;
+          const tileText = [anchor.getAttribute('aria-label'), anchor.getAttribute('title'), anchor.innerText, anchor.textContent].filter(Boolean);
+          let views = metricFrom(tileText, [/([\d,.]+\s*[KMB]?)\s*(?:views?|plays?)\b/i]);
+          if (views === null) {
+            const countLines = [
+              ...tileText.flatMap((value) => String(value).split(/\r?\n/)),
+              ...[...anchor.querySelectorAll('span')].map((span) => span.innerText || span.textContent || '')
+            ].map(clean).filter((value) => /^[\d,.]+\s*[KMB]?$/i.test(value));
+            views = countLines.map(compactCount).find((value) => value !== null) ?? null;
+          }
+          if (views !== null) item.views_count = views;
         }
         items.set(itemUrl, item);
       } catch (_error) { /* Ignore invalid links. */ }
@@ -292,7 +298,9 @@
       await waitFor(() => decodeURIComponent(location.pathname) === basePath, 5000);
     }
 
-    for (let pass = 0; pass < 240; pass += 1) {
+    let direction = window.scrollY <= 4 ? 1 : -1;
+    let edgesReached = 0;
+    for (let pass = 0; pass < 480; pass += 1) {
       const anchor = [...document.querySelectorAll('main a[href], a[href]')]
         .find((item) => reelCode(item.href) === targetCode);
       if (anchor) {
@@ -306,9 +314,14 @@
         if (opened) return '';
         return 'Clicking the reel tile did not open its Instagram detail view.';
       }
-      if (window.scrollY <= 0) break;
-      window.scrollBy(0, -Math.max(400, Math.floor(window.innerHeight * 0.7)));
+      const previousY = window.scrollY;
+      window.scrollBy(0, direction * Math.max(400, Math.floor(window.innerHeight * 0.7)));
       await sleep(250);
+      if (Math.abs(window.scrollY - previousY) < 2) {
+        edgesReached += 1;
+        if (edgesReached >= 2) break;
+        direction *= -1;
+      }
     }
     return 'The reel tile was not found in the profile grid.';
   }
