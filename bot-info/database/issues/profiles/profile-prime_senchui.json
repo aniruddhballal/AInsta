@@ -1,0 +1,13 @@
+{
+  "issues": [
+    {
+      "id": "84e82b17-8664-4367-af50-bee120023f1d",
+      "username": "prime_senchui",
+      "profile_url": "https://www.instagram.com/prime_senchui/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:56:27.585Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

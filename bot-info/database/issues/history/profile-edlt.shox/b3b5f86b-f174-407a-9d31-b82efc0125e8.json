@@ -1,0 +1,10 @@
+{
+  "id": "b3b5f86b-f174-407a-9d31-b82efc0125e8",
+  "username": "edlt.shox",
+  "profile_url": "https://www.instagram.com/edlt.shox/",
+  "code": "REEL_DETAILS_FETCH_FAILED",
+  "message": "The reel tile was not found in the profile grid.",
+  "occurred_at": "2026-10-23T07:04:59.040Z",
+  "recommended_action": "Retry the reel details scan for this profile.",
+  "post_url": "https://www.instagram.com/reel/DexALXAOo9i/"
+}

@@ -1,0 +1,40 @@
+{
+  "issues": [
+    {
+      "id": "33beffb4-707f-414e-a042-3b64ed219d89",
+      "username": "rzk.mp4",
+      "profile_url": "https://www.instagram.com/rzk.mp4/",
+      "code": "ACCOUNT_UNAVAILABLE",
+      "message": "Instagram reports that this profile is unavailable.",
+      "occurred_at": "2026-10-22T16:26:20.001Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "a8481137-abcc-4a6f-b8e4-313dd5d8dc57",
+      "username": "rzk.mp4",
+      "profile_url": "https://www.instagram.com/rzk.mp4/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "The displayed post count could not be identified in the profile header.",
+      "occurred_at": "2026-10-22T16:26:20.001Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "fc3460c3-2cb2-4d38-ad40-0b5cdb16464b",
+      "username": "rzk.mp4",
+      "profile_url": "https://www.instagram.com/rzk.mp4/",
+      "code": "DATE_JOINED_UNAVAILABLE",
+      "message": "The Date joined value could not be identified in About this account.",
+      "occurred_at": "2026-10-22T16:26:20.001Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "e4349538-4a94-402d-b799-56d53f5c37a2",
+      "username": "rzk.mp4",
+      "profile_url": "https://www.instagram.com/rzk.mp4/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:57:16.955Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

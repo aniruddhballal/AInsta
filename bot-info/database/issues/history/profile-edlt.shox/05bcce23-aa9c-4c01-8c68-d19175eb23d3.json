@@ -1,0 +1,10 @@
+{
+  "id": "05bcce23-aa9c-4c01-8c68-d19175eb23d3",
+  "username": "edlt.shox",
+  "profile_url": "https://www.instagram.com/edlt.shox/",
+  "code": "REEL_COMMENTS_UNAVAILABLE",
+  "message": "Could not read the comment count for this reel.",
+  "occurred_at": "2026-10-23T07:05:27.703Z",
+  "recommended_action": "Retry the reel details scan for this profile.",
+  "post_url": "https://www.instagram.com/reel/DezFUucuZHy/"
+}

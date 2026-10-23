@@ -1,0 +1,9 @@
+{
+  "id": "7103fffe-bbe6-4596-9c12-6adffeaea9a6",
+  "username": "caodogsfofo",
+  "profile_url": "https://www.instagram.com/caodogsfofo/",
+  "code": "POST_COUNT_UNAVAILABLE",
+  "message": "Could not identify the post count in the profile header.",
+  "occurred_at": "2026-10-23T02:57:02.903Z",
+  "recommended_action": "Retry the post count refresh when the profile is available."
+}

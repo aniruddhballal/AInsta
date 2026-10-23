@@ -9,10 +9,12 @@ dedgram is a small toolkit for building and maintaining an Instagram profile cat
 | [`android-app/`](android-app/README.md) | Native Android app and accessibility service. It shows a draggable capture bubble over Instagram, extracts validated usernames, stores them in a searchable catalog, and provides save-state feedback. |
 | [`firefox-extension/`](firefox-extension/README.md) | Temporary Firefox add-on that collects profile and post details only for jobs started in the dashboard. |
 | [`web-dashboard/`](web-dashboard/README.md) | Local React dashboard and loopback API for searching the phone catalog, selecting accounts, and running surface or deep analysis into the shared JSON file. |
-| `bot-info/` | The phone-catalog import file and collected profile data. |
+| `bot-info/` | The phone-catalog import file and normalized local JSON data store. |
 | [`dedgram.apk`](dedgram.apk) | APK snapshot kept at the repository root for convenient transfer or installation. For a freshly built APK, use the Android build instructions. |
 
-The Android app and desktop dashboard use separate files. Android writes its phone catalog to `Documents/dedgram/profiles.json`; the dashboard imports usernames from the repository's `bot-info/dedgram-catalog.json` file into `bot-info/bot-account-info.json`. There is no automatic phone-to-computer sync: copy or merge the phone catalog into the repository catalog when you want to bring new captures into the dashboard. Both catalog files are JSON and use the same format. The Firefox add-on performs DOM collection only for jobs explicitly started in the dashboard and sends results to its local API.
+The Android app and desktop dashboard use separate data. Android writes its phone catalog to `Documents/dedgram/profiles.json`; the dashboard imports usernames from `bot-info/dedgram-catalog.json` into the local store at `bot-info/database/`. There is no automatic phone-to-computer sync: copy or merge the phone catalog into the repository catalog when you want to bring new captures into the dashboard. Both catalog files are JSON and use the same format. The Firefox add-on performs DOM collection only for jobs explicitly started in the dashboard and sends results to its local API.
+
+Dashboard data is split by entity and analysis type: core profile files live in `bot-info/database/profiles/`, post dates in `deep-analysis/`, post and reel records in `content/posts/` and `content/reels/`, retryable current issues and issue history in `issues/`, and queued jobs in `workflow.json`. The API combines these records into the dashboard's state response; the files remain independently readable and shareable.
 
 ## Typical workflow
 
@@ -42,21 +44,21 @@ npm install
 npm run dev
 ```
 
-Open `http://127.0.0.1:5173`. The dashboard imports usernames from `bot-info/dedgram-catalog.json` into `bot-info/bot-account-info.json` without replacing existing profile results. The local API binds only to `127.0.0.1`.
+Open `http://127.0.0.1:5173`. The dashboard imports usernames from `bot-info/dedgram-catalog.json` into `bot-info/database/` without replacing existing profile results. The local API binds only to `127.0.0.1`.
 
 ### 4. Load the Firefox add-on and collect
 
-In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on…**, and select `firefox-extension/manifest.json`. Keep the dashboard and Firefox open while collecting. In the dashboard, run **Surface analysis** first; after it succeeds, select those profiles in **Deep analysis** to collect post dates. For engagement metrics, open any local profile page and run its separate post or reel details scan; these save independent records with dates, likes, comments, views, fetch times, and retryable issues. The add-on waits for dashboard jobs and does not scan profiles on its own. Profile data, post/reel records, job progress, and issues are stored in `bot-info/bot-account-info.json`.
+In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, choose **Load Temporary Add-on…**, and select `firefox-extension/manifest.json`. Keep the dashboard and Firefox open while collecting. In the dashboard, run **Surface analysis** first; after it succeeds, select those profiles in **Deep analysis** to collect post dates. For engagement metrics, open any local profile page and run its separate post or reel details scan; these save independent records with dates, likes, comments, views, fetch times, and retryable issues. The add-on waits for dashboard jobs and does not scan profiles on its own. Profile data, post/reel records, job progress, and issues are stored in separate JSON files under `bot-info/database/`.
 
 ### 5. Review analysis
 
-Use the dashboard at `http://127.0.0.1:5173` for all profile data: Master list, Surface analysis, Deep analysis, and Issues. These views read the shared `bot-info/bot-account-info.json` file through the local API.
+Use the dashboard at `http://127.0.0.1:5173` for all profile data: Master list, Surface analysis, Deep analysis, and Issues. These views read the JSON files under `bot-info/database/` through the local API.
 
 ## Data and privacy boundaries
 
 - The Android service reads Instagram's active accessibility tree only after the user taps the capture bubble. It stores validated usernames, not screenshots, captions, bios, follower counts, post counts, direct messages, or surrounding UI text.
 - The Android catalog is user-visible and can be managed as `Documents/dedgram/profiles.json`.
-- The Firefox add-on reads Instagram's logged-in page DOM only for jobs queued by the dashboard. The local API stores its results in `bot-info/bot-account-info.json`.
+- The Firefox add-on reads Instagram's logged-in page DOM only for jobs queued by the dashboard. The local API stores its results in separate files under `bot-info/database/`.
 - The Firefox collector does not use Selenium, screen coordinates, or keyboard-count macros, and it cannot bypass Instagram login, checkpoints, rate limits, or consent screens.
 - Instagram can change its UI and accessibility labels. When identity or collection controls cannot be identified safely, the tools report a failure instead of guessing.
 

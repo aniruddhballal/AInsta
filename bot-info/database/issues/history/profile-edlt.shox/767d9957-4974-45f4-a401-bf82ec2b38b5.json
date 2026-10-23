@@ -1,0 +1,10 @@
+{
+  "id": "767d9957-4974-45f4-a401-bf82ec2b38b5",
+  "username": "edlt.shox",
+  "profile_url": "https://www.instagram.com/edlt.shox/",
+  "code": "REEL_LIKES_UNAVAILABLE",
+  "message": "Could not read the like count for this reel.",
+  "occurred_at": "2026-10-23T07:25:12.690Z",
+  "recommended_action": "Retry the reel details scan for this profile.",
+  "post_url": "https://www.instagram.com/reel/DebWOhlu1r9/"
+}

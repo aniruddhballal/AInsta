@@ -1,0 +1,40 @@
+{
+  "issues": [
+    {
+      "id": "749724d2-9ddc-40da-a95b-aacfe2e7cc86",
+      "username": "nxx._.nmercy",
+      "profile_url": "https://www.instagram.com/nxx._.nmercy/",
+      "code": "ACCOUNT_UNAVAILABLE",
+      "message": "Instagram reports that this profile is unavailable.",
+      "occurred_at": "2026-10-22T16:24:58.499Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "926247be-5801-4ae5-bddd-bf57d4eb52d3",
+      "username": "nxx._.nmercy",
+      "profile_url": "https://www.instagram.com/nxx._.nmercy/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "The displayed post count could not be identified in the profile header.",
+      "occurred_at": "2026-10-22T16:24:58.499Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "99b41a0a-e605-468c-b322-d5c91a8490ad",
+      "username": "nxx._.nmercy",
+      "profile_url": "https://www.instagram.com/nxx._.nmercy/",
+      "code": "DATE_JOINED_UNAVAILABLE",
+      "message": "The Date joined value could not be identified in About this account.",
+      "occurred_at": "2026-10-22T16:24:58.499Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "a8c9b2bc-b15a-496c-a3a7-dd4798da753f",
+      "username": "nxx._.nmercy",
+      "profile_url": "https://www.instagram.com/nxx._.nmercy/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:57:10.344Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

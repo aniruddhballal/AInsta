@@ -1,0 +1,9 @@
+{
+  "id": "66026558-e2b1-4944-8e12-97a8a01ac7a1",
+  "username": "back",
+  "profile_url": "https://www.instagram.com/back/",
+  "code": "POST_COUNT_UNAVAILABLE",
+  "message": "Could not identify the post count in the profile header.",
+  "occurred_at": "2026-10-23T02:57:06.826Z",
+  "recommended_action": "Retry the post count refresh when the profile is available."
+}

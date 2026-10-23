@@ -1,13 +1,14 @@
 import { createServer } from 'node:http';
-import { readFile, rename, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { mkdir } from 'node:fs/promises';
+import { fileExists, importLegacyData, readDataStore, writeDataStore } from './storage.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '..');
-const dataFile = resolve(process.env.dedgram_data_file || resolve(repoRoot, 'bot-info/bot-account-info.json'));
+const dataDirectory = resolve(process.env.dedgram_data_dir || resolve(repoRoot, 'bot-info/database'));
+const legacyDataFile = resolve(process.env.dedgram_data_file || resolve(repoRoot, 'bot-info/bot-account-info.json'));
 const catalogFile = resolve(repoRoot, 'bot-info/dedgram-catalog.json');
 const port = Number(process.env.dedgram_api_port || 4317);
 const host = '127.0.0.1';
@@ -31,20 +32,28 @@ async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
 }
 
+let dataCache = null;
+let dataLoadPromise = null;
+
 async function saveData(data) {
   data.generated_at = now();
-  const tempFile = `${dataFile}.${process.pid}.tmp`;
-  await mkdir(dirname(dataFile), { recursive: true });
-  await writeFile(tempFile, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
-  await rename(tempFile, dataFile);
+  await writeDataStore(data, dataDirectory);
 }
 
 async function loadData() {
-  const [data, catalog] = await Promise.all([readJson(dataFile), readJson(catalogFile)]);
-  if (!Array.isArray(data.profiles)) throw new Error('Account info JSON has no profiles list.');
+  if (!dataCache) {
+    if (!dataLoadPromise) dataLoadPromise = (async () => {
+      const stored = await readDataStore(dataDirectory);
+      if (stored) return stored;
+      if (await fileExists(legacyDataFile)) return importLegacyData(legacyDataFile, dataDirectory);
+      return { format: 'dedgram-bot-account-info', version: 1, generated_at: now(), profiles: [], issues: [], workflow: { active_job: null, recent_jobs: [] } };
+    })();
+    try { dataCache = await dataLoadPromise; }
+    finally { dataLoadPromise = null; }
+  }
+  const [data, catalog] = await Promise.all([Promise.resolve(dataCache), readJson(catalogFile)]);
   let changed = false;
-  const legacyIssues = data.profiles.flatMap((profile) => (profile.collection_issues || []).map((issue) => ({ ...issue, username: issue.username || profile.username })));
-  if (!Array.isArray(data.issues) || (!data.issues.length && legacyIssues.length)) { data.issues = legacyIssues; changed = true; }
+  if (!Array.isArray(data.issues)) { data.issues = []; changed = true; }
   if (!data.workflow) { data.workflow = { active_job: null, recent_jobs: [] }; changed = true; }
   if (!Array.isArray(data.workflow.recent_jobs)) { data.workflow.recent_jobs = []; changed = true; }
   for (const profile of data.profiles) {
@@ -495,5 +504,5 @@ async function route(request, response) {
 
 createServer((request, response) => { void route(request, response); }).listen(port, host, () => {
   console.log(`dedgram API ready at http://${host}:${port}`);
-  console.log(`Data file: ${dataFile}`);
+  console.log(`Data directory: ${dataDirectory}`);
 });

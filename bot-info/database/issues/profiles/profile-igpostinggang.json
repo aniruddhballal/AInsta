@@ -1,0 +1,40 @@
+{
+  "issues": [
+    {
+      "id": "c54bbe64-a81f-439e-b256-c8ac89269013",
+      "username": "igpostinggang",
+      "profile_url": "https://www.instagram.com/igpostinggang/",
+      "code": "ACCOUNT_UNAVAILABLE",
+      "message": "Instagram reports that this profile is unavailable.",
+      "occurred_at": "2026-10-22T16:25:26.195Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "4fc8433c-f45f-467e-9591-21a516ef5cbc",
+      "username": "igpostinggang",
+      "profile_url": "https://www.instagram.com/igpostinggang/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "The displayed post count could not be identified in the profile header.",
+      "occurred_at": "2026-10-22T16:25:26.195Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "3bc91775-7098-4b97-92a2-b765a589463d",
+      "username": "igpostinggang",
+      "profile_url": "https://www.instagram.com/igpostinggang/",
+      "code": "DATE_JOINED_UNAVAILABLE",
+      "message": "The Date joined value could not be identified in About this account.",
+      "occurred_at": "2026-10-22T16:25:26.195Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "813b944a-0214-4b67-8c78-a6163a845981",
+      "username": "igpostinggang",
+      "profile_url": "https://www.instagram.com/igpostinggang/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:57:13.652Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

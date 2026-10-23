@@ -1,0 +1,9 @@
+{
+  "id": "a8c9b2bc-b15a-496c-a3a7-dd4798da753f",
+  "username": "nxx._.nmercy",
+  "profile_url": "https://www.instagram.com/nxx._.nmercy/",
+  "code": "POST_COUNT_UNAVAILABLE",
+  "message": "Could not identify the post count in the profile header.",
+  "occurred_at": "2026-10-23T02:57:10.344Z",
+  "recommended_action": "Retry the post count refresh when the profile is available."
+}

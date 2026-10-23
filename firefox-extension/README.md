@@ -10,7 +10,7 @@ The Firefox add-on is the Instagram DOM adapter for the local web dashboard. It 
 4. Choose **Load Temporary Add-on...** and select this folder's `manifest.json`.
 5. In the dedgram dashboard, select profiles for surface, post-count, reel-count, or deep analysis; for separate post/reel engagement scans, open a profile page and use its scan buttons.
 
-The background script polls `http://127.0.0.1:4317` while idle. It navigates one reusable Instagram tab only after the dashboard has queued a profile. Results and collection issues are written by the API to `bot-info/bot-account-info.json`.
+The background script polls `http://127.0.0.1:4317` while idle. It navigates one reusable Instagram tab only after the dashboard has queued a profile. Results and collection issues are written by the API as separate JSON records under `bot-info/database/`.
 
 ## Analysis stages
 

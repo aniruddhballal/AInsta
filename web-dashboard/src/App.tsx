@@ -334,7 +334,7 @@ function App() {
       </section>}
       {tab === 'issues' && <section className="issues">{issues.length ? issues.slice().reverse().map((issue, index) => { const affected = profiles.find((profile) => key(profile) === issue.username?.toLocaleLowerCase()); return <article className="issue" key={issue.id || `${issue.username}-${issue.occurred_at}-${index}`}><div className="issue-icon"><CircleAlert aria-hidden="true" /></div><div className="issue-body"><div className="issue-head"><strong>@{issue.username || 'Unknown profile'}</strong><span>{text(issue.code)}</span></div><p>{text(issue.message)}</p><small>{fmt(issue.occurred_at)}</small>{issue.recommended_action && <p className="muted">{issue.recommended_action}</p>}</div><div className="issue-links">{issue.profile_url && <a href={issue.profile_url} target="_blank" rel="noreferrer">Profile <ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a>}{issue.post_url && <a href={issue.post_url} target="_blank" rel="noreferrer">Post <ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a>}{affected && <button className="link-button" onClick={() => void setIgnored(affected.username, !affected.ignored)}>{affected.ignored ? 'Restore profile' : 'Ignore profile'}</button>}</div></article>; }) : <div className="empty"><span className="check"><CircleCheck aria-hidden="true" /></span><h3>No issues recorded</h3><p>Collection problems will appear here with the affected profile.</p></div>}</section>}
     </>}
-    <footer><span>dedgram · LOCAL PROFILE DATA</span><span>Reads and writes <code>bot-account-info.json</code></span></footer>
+    <footer><span>dedgram · LOCAL PROFILE DATA</span><span>Reads and writes <code>bot-info/database/</code></span></footer>
   </main>;
 }
 

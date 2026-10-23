@@ -1,0 +1,10 @@
+{
+  "id": "c021fbcd-1bf6-49d5-833c-5da4481dc282",
+  "username": "edlt.shox",
+  "profile_url": "https://www.instagram.com/edlt.shox/",
+  "code": "REEL_DETAILS_FETCH_FAILED",
+  "message": "Clicking the reel tile did not open its Instagram detail view.",
+  "occurred_at": "2026-10-23T07:24:41.416Z",
+  "recommended_action": "Retry the reel details scan for this profile.",
+  "post_url": "https://www.instagram.com/reel/DeZi5DwuiZa/"
+}

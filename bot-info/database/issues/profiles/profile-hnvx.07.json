@@ -1,0 +1,13 @@
+{
+  "issues": [
+    {
+      "id": "9ec1e1ab-6174-49cf-8013-d42fcfc6aed4",
+      "username": "hnvx.07",
+      "profile_url": "https://www.instagram.com/hnvx.07/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:55:49.687Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

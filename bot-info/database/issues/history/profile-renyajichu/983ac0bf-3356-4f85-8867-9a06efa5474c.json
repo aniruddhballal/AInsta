@@ -1,0 +1,9 @@
+{
+  "id": "983ac0bf-3356-4f85-8867-9a06efa5474c",
+  "username": "renyajichu",
+  "profile_url": "https://www.instagram.com/renyajichu/",
+  "code": "POST_COUNT_UNAVAILABLE",
+  "message": "The displayed post count could not be identified in the profile header.",
+  "occurred_at": "2026-10-22T16:26:28.439Z",
+  "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+}

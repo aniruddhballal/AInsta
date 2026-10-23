@@ -1,0 +1,9 @@
+{
+  "id": "e4349538-4a94-402d-b799-56d53f5c37a2",
+  "username": "rzk.mp4",
+  "profile_url": "https://www.instagram.com/rzk.mp4/",
+  "code": "POST_COUNT_UNAVAILABLE",
+  "message": "Could not identify the post count in the profile header.",
+  "occurred_at": "2026-10-23T02:57:16.955Z",
+  "recommended_action": "Retry the post count refresh when the profile is available."
+}

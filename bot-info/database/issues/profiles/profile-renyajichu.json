@@ -1,0 +1,40 @@
+{
+  "issues": [
+    {
+      "id": "e17b3ad3-973e-418b-8f5e-66ae4ecbe780",
+      "username": "renyajichu",
+      "profile_url": "https://www.instagram.com/renyajichu/",
+      "code": "ACCOUNT_UNAVAILABLE",
+      "message": "Instagram reports that this profile is unavailable.",
+      "occurred_at": "2026-10-22T16:26:28.439Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "983ac0bf-3356-4f85-8867-9a06efa5474c",
+      "username": "renyajichu",
+      "profile_url": "https://www.instagram.com/renyajichu/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "The displayed post count could not be identified in the profile header.",
+      "occurred_at": "2026-10-22T16:26:28.439Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "a0dfa778-b6eb-4609-a07e-c7a944920402",
+      "username": "renyajichu",
+      "profile_url": "https://www.instagram.com/renyajichu/",
+      "code": "DATE_JOINED_UNAVAILABLE",
+      "message": "The Date joined value could not be identified in About this account.",
+      "occurred_at": "2026-10-22T16:26:28.439Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "10beceaf-437a-4d27-a62f-81d47da19967",
+      "username": "renyajichu",
+      "profile_url": "https://www.instagram.com/renyajichu/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:57:20.437Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "id": "813b944a-0214-4b67-8c78-a6163a845981",
+  "username": "igpostinggang",
+  "profile_url": "https://www.instagram.com/igpostinggang/",
+  "code": "POST_COUNT_UNAVAILABLE",
+  "message": "Could not identify the post count in the profile header.",
+  "occurred_at": "2026-10-23T02:57:13.652Z",
+  "recommended_action": "Retry the post count refresh when the profile is available."
+}

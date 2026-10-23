@@ -1,0 +1,9 @@
+{
+  "id": "e596f35b-ddf3-4442-8512-ab23df340c3a",
+  "username": "hulksmash.exe",
+  "profile_url": "https://www.instagram.com/hulksmash.exe/",
+  "code": "DEEP_PROFILE_SCAN_FAILED",
+  "message": "Could not establish connection. Receiving end does not exist.",
+  "occurred_at": "2026-10-23T02:59:35.814Z",
+  "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+}

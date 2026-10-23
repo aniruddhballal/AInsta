@@ -1,0 +1,40 @@
+{
+  "issues": [
+    {
+      "id": "bd767c48-ce06-429f-a5bd-bf074ddfd7d7",
+      "username": "back",
+      "profile_url": "https://www.instagram.com/back/",
+      "code": "ACCOUNT_UNAVAILABLE",
+      "message": "Instagram reports that this profile is unavailable.",
+      "occurred_at": "2026-10-22T16:23:30.282Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "5aa18822-3bf3-4925-9744-86e57579e5f0",
+      "username": "back",
+      "profile_url": "https://www.instagram.com/back/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "The displayed post count could not be identified in the profile header.",
+      "occurred_at": "2026-10-22T16:23:30.282Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "257e8f64-fb1f-4172-bc4e-d19b686f9bf8",
+      "username": "back",
+      "profile_url": "https://www.instagram.com/back/",
+      "code": "DATE_JOINED_UNAVAILABLE",
+      "message": "The Date joined value could not be identified in About this account.",
+      "occurred_at": "2026-10-22T16:23:30.282Z",
+      "recommended_action": "Review the profile and retry surface or deep analysis when appropriate."
+    },
+    {
+      "id": "66026558-e2b1-4944-8e12-97a8a01ac7a1",
+      "username": "back",
+      "profile_url": "https://www.instagram.com/back/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:57:06.826Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

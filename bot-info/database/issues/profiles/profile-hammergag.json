@@ -1,0 +1,13 @@
+{
+  "issues": [
+    {
+      "id": "4bc241ee-56b5-42f9-8e32-1c5442499e5d",
+      "username": "hammergag",
+      "profile_url": "https://www.instagram.com/hammergag/",
+      "code": "POST_COUNT_UNAVAILABLE",
+      "message": "Could not identify the post count in the profile header.",
+      "occurred_at": "2026-10-23T02:56:59.043Z",
+      "recommended_action": "Retry the post count refresh when the profile is available."
+    }
+  ]
+}

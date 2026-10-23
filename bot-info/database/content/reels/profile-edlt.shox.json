@@ -1,0 +1,2268 @@
+{
+  "status": "Collecting",
+  "last_fetched_at": "2026-10-23T07:25:12.690Z",
+  "records": [
+    {
+      "url": "https://www.instagram.com/reel/De0hYZIoecD/",
+      "likes_count": 746,
+      "comments_count": 7,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:06:03.836Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/De0b3Z9ogUn/",
+      "likes_count": 679,
+      "comments_count": 4,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:55.861Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DezWaxVOtkV/",
+      "likes_count": 2142,
+      "comments_count": 11,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:48.567Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DezWAw1O8oU/",
+      "likes_count": 520,
+      "comments_count": 7,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:40.103Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DezUU5wOo_E/",
+      "likes_count": 5645,
+      "comments_count": 86,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:31.200Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DezFUucuZHy/",
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:27.702Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Dey86UfOQpK/",
+      "likes_count": 83,
+      "comments_count": 1,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:24.220Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Dey0T9KO-ZG/",
+      "likes_count": 157,
+      "comments_count": 3,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:20.371Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Deyowj6Ouuq/",
+      "likes_count": 176,
+      "comments_count": 3,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:12.758Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeyAQbJI6yD/",
+      "likes_count": 1485,
+      "comments_count": 10,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:05:05.657Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DexALXAOo9i/",
+      "likes_count": 3623,
+      "comments_count": 144,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:59.039Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Dewzx8PunKM/",
+      "likes_count": 41000,
+      "comments_count": 996,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:52.743Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Dewun6rOQCF/",
+      "likes_count": 46000,
+      "comments_count": 81,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:46.278Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DewmNRruEj0/",
+      "likes_count": 18000,
+      "comments_count": 461,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:38.241Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Dewg5C-ua5M/",
+      "likes_count": 20000,
+      "comments_count": 37,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:30.629Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DewTubLugIS/",
+      "likes_count": 639000,
+      "comments_count": 3388,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:23.953Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeuWw0DuN1g/",
+      "likes_count": 415000,
+      "comments_count": 1427,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:18.405Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeuShvguESB/",
+      "likes_count": 34000,
+      "comments_count": 53,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:14.682Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeuLtjfOa0T/",
+      "likes_count": 907,
+      "comments_count": 8,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:09.067Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Detg_NMurBl/",
+      "likes_count": 521,
+      "comments_count": 5,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:04:03.625Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DesxZHYI3w3/",
+      "likes_count": 1455,
+      "comments_count": 48,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:57.795Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Der8whsu6Lr/",
+      "likes_count": 471,
+      "comments_count": 4,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:51.282Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Der0wnbub5u/",
+      "likes_count": 2390,
+      "comments_count": 84,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:45.889Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeryuOAuv3T/",
+      "likes_count": 70000,
+      "comments_count": 293,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:40.290Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DerxR__ut4Z/",
+      "likes_count": 512,
+      "comments_count": 12,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:34.446Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeqN4l7oCkL/",
+      "likes_count": 5801,
+      "comments_count": 97,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:28.165Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeqMGrUobOV/",
+      "likes_count": 2269,
+      "comments_count": 33,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:21.617Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DepcBXZOZLP/",
+      "likes_count": 4634,
+      "comments_count": 37,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:15.504Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DepaBJcOltK/",
+      "likes_count": 903000,
+      "comments_count": 1327,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:10.485Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DepXP3QOYka/",
+      "likes_count": 3202,
+      "comments_count": 18,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:06.880Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DepWAQ3uy89/",
+      "likes_count": 15000,
+      "comments_count": 42,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:03:01.607Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DepFL91Okng/",
+      "likes_count": 496000,
+      "comments_count": 1510,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:56.613Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DepCYLoOsgR/",
+      "likes_count": 582000,
+      "comments_count": 2411,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:50.638Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DenxFsooJ81/",
+      "likes_count": 217,
+      "comments_count": 3,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:45.562Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DenwUwBI8IM/",
+      "likes_count": 915,
+      "comments_count": 13,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:39.090Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DemdmLDOuy6/",
+      "likes_count": 14000,
+      "comments_count": 76,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:33.926Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DemZKD-unEm/",
+      "likes_count": 47000,
+      "comments_count": 312,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:30.413Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DemOAPjOp3V/",
+      "likes_count": 1132,
+      "comments_count": 15,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:25.606Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DemNUQLO4Mn/",
+      "likes_count": 135000,
+      "comments_count": 587,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:21.019Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Del7lFbuMbx/",
+      "likes_count": 172,
+      "comments_count": 2,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:17.484Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Del6ZQxO79K/",
+      "likes_count": 33000,
+      "comments_count": 51,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:12.657Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DelwG3kOcxo/",
+      "likes_count": 939,
+      "comments_count": 9,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:07.065Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DelvXC-OG6N/",
+      "likes_count": 2383,
+      "comments_count": 21,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:02:02.463Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DelDzJzo1Qh/",
+      "likes_count": 126000,
+      "comments_count": 399,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:58.899Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DelDQt5ooQd/",
+      "likes_count": 28000,
+      "comments_count": 654,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:54.663Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DekLVWVuu2_/",
+      "likes_count": 58000,
+      "comments_count": 153,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:49.455Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DekG5j7OzQ3/",
+      "likes_count": 370000,
+      "comments_count": 2069,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:45.695Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DekBD7lufK-/",
+      "likes_count": 79000,
+      "comments_count": 304,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:41.267Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DejK1_VOTk9/",
+      "likes_count": 5502,
+      "comments_count": 18,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:37.068Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Deieh-son5w/",
+      "likes_count": 95000,
+      "comments_count": 2145,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:33.412Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeieEx9Ix_S/",
+      "likes_count": 417,
+      "comments_count": 65,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:29.012Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DehjbvxuC4Z/",
+      "likes_count": 3796,
+      "comments_count": 16,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:24.073Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DehcM98uu6V/",
+      "likes_count": 126000,
+      "comments_count": 314,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:19.866Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DehWVtxuCWH/",
+      "likes_count": 56000,
+      "comments_count": 706,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:15.941Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DehQkaXuZHD/",
+      "likes_count": 404000,
+      "comments_count": 2467,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:12.062Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DehB9WWOVNG/",
+      "likes_count": 2366,
+      "comments_count": 818,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:07.847Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DehBrAzucz-/",
+      "likes_count": 169,
+      "comments_count": 0,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:01:03.752Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DegmNmVuEUx/",
+      "likes_count": 1977,
+      "comments_count": 24,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:59.698Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Degj1VBuARF/",
+      "likes_count": 324,
+      "comments_count": 6,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:56.322Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Degi8c3uAcR/",
+      "likes_count": 953000,
+      "comments_count": 3554,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:52.480Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeekssJMU3J/",
+      "likes_count": 1270,
+      "comments_count": 9,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:50.507Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Ded7d3xu25R/",
+      "likes_count": 3969,
+      "comments_count": 40,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:47.185Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Ded7L-3OvEa/",
+      "likes_count": 3741,
+      "comments_count": 17,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:43.542Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DedUshAIpKh/",
+      "likes_count": 39000,
+      "comments_count": 583,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:39.989Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DedTcyxoaE2/",
+      "likes_count": 193000,
+      "comments_count": 533,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:36.728Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DecG3L_uy0H/",
+      "likes_count": 253000,
+      "comments_count": 1156,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:33.211Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Deb8aayuhJ-/",
+      "likes_count": 438000,
+      "comments_count": 2905,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:29.325Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/Deb3COCOhky/",
+      "likes_count": 196000,
+      "comments_count": 2042,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:00:26.203Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "views_count",
+          "message": "Could not read the view count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ]
+    },
+    {
+      "url": "https://www.instagram.com/reel/DebWOhlu1r9/",
+      "likes_count": 106000,
+      "comments_count": 328,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:25:12.690Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ],
+      "views_count": 328,
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeavhmwIGd4/",
+      "likes_count": 584000,
+      "comments_count": 2310,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:25:09.688Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "Clicking the reel tile did not open its Instagram detail view."
+        }
+      ],
+      "views_count": 2311,
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeauY1wIB3O/",
+      "likes_count": 6003,
+      "comments_count": 0,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:24:50.860Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ],
+      "views_count": 60180,
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeZ5d_suDdH/",
+      "likes_count": 3022,
+      "comments_count": 9,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:24:44.507Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ],
+      "views_count": 30259,
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeZi5DwuiZa/",
+      "likes_count": 13000,
+      "comments_count": 154,
+      "views_count": 154,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:24:41.415Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "Clicking the reel tile did not open its Instagram detail view."
+        }
+      ],
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeY1_8HupKf/",
+      "likes_count": 378,
+      "comments_count": 3,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:24:23.239Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ],
+      "views_count": 3783,
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeY0U51u04r/",
+      "likes_count": 638000,
+      "comments_count": 1729,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:24:13.431Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "The reel tile was not found in the profile grid."
+        }
+      ],
+      "views_count": 1729,
+      "views_count_source": "profile_grid"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DeYH4uEIqYK/",
+      "likes_count": 438,
+      "comments_count": 19,
+      "kind": "reel",
+      "last_fetched_at": "2026-10-23T07:24:10.382Z",
+      "fetch_status": "Incomplete",
+      "fetch_errors": [
+        {
+          "field": "date",
+          "message": "Could not read the date for this reel."
+        },
+        {
+          "field": "likes_count",
+          "message": "Could not read the like count for this reel."
+        },
+        {
+          "field": "comments_count",
+          "message": "Could not read the comment count for this reel."
+        },
+        {
+          "field": "page",
+          "message": "Clicking the reel tile did not open its Instagram detail view."
+        }
+      ],
+      "views_count": 43819,
+      "views_count_source": "profile_grid"
+    }
+  ]
+}

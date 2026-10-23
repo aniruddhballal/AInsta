@@ -1,13 +1,13 @@
-import { readFile, rename, writeFile } from 'node:fs/promises';
+import { readFile, readdir, rename, stat, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const defaultFile = resolve(here, '../../bot-info/bot-account-info.json');
+const defaultDirectory = resolve(here, '../../bot-info/database/profiles');
 const args = process.argv.slice(2);
 const apply = args.includes('--apply');
-const fileArg = args.find((arg) => arg !== '--apply');
-const dataFile = resolve(fileArg || defaultFile);
+const pathArg = args.find((arg) => arg !== '--apply');
+const targetPath = resolve(pathArg || defaultDirectory);
 
 // These code points are the Windows-1252 characters for byte values 0x80–0x9f.
 const cp1252Extension = [
@@ -47,29 +47,38 @@ function recover(value) {
   return passes === 4 ? text : value;
 }
 
-const data = JSON.parse(await readFile(dataFile, 'utf8'));
-if (!Array.isArray(data.profiles)) throw new Error('The selected JSON file has no profiles list.');
-
+const targetStat = await stat(targetPath);
+const profileFiles = targetStat.isDirectory()
+  ? (await readdir(targetPath, { withFileTypes: true })).filter((entry) => entry.isFile() && entry.name.endsWith('.json') && entry.name !== 'index.json').map((entry) => resolve(targetPath, entry.name))
+  : [targetPath];
 const changed = [];
-for (const profile of data.profiles) {
-  const fields = [];
-  for (const field of ['bio', 'profile_text', 'about_text']) {
-    if (typeof profile[field] !== 'string' || !profile[field]) continue;
-    const recovered = recover(profile[field]);
-    if (recovered !== profile[field]) {
-      profile[field] = recovered;
-      fields.push(field);
+for (const profileFile of profileFiles) {
+  const data = JSON.parse(await readFile(profileFile, 'utf8'));
+  const profiles = Array.isArray(data.profiles) ? data.profiles : data.username ? [data] : null;
+  if (!profiles) throw new Error(`The selected JSON file has no profile record: ${profileFile}`);
+  let fileChanged = false;
+  for (const profile of profiles) {
+    const fields = [];
+    for (const field of ['bio', 'profile_text', 'about_text']) {
+      if (typeof profile[field] !== 'string' || !profile[field]) continue;
+      const recovered = recover(profile[field]);
+      if (recovered !== profile[field]) {
+        profile[field] = recovered;
+        fields.push(field);
+      }
+    }
+    if (fields.length) {
+      changed.push({ username: profile.username || '(unknown)', fields });
+      fileChanged = true;
     }
   }
-  if (fields.length) changed.push({ username: profile.username || '(unknown)', fields });
+  if (apply && fileChanged) {
+    const tempFile = `${profileFile}.${process.pid}.tmp`;
+    await writeFile(tempFile, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
+    await rename(tempFile, profileFile);
+  }
 }
 
-console.log(`${apply ? 'Repaired' : 'Would repair'} ${changed.reduce((sum, item) => sum + item.fields.length, 0)} text field(s) across ${changed.length} profile(s) in ${dataFile}.`);
+console.log(`${apply ? 'Repaired' : 'Would repair'} ${changed.reduce((sum, item) => sum + item.fields.length, 0)} text field(s) across ${changed.length} profile(s) in ${targetPath}.`);
 for (const item of changed) console.log(`@${item.username}: ${item.fields.join(', ')}`);
-
-if (apply && changed.length) {
-  const tempFile = `${dataFile}.${process.pid}.tmp`;
-  await writeFile(tempFile, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
-  await rename(tempFile, dataFile);
-  console.log('Updated the JSON atomically.');
-}
+if (apply && changed.length) console.log('Updated the affected profile JSON files atomically.');
