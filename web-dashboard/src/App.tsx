@@ -11,12 +11,22 @@ type Profile = {
   deep_status?: string;
   ignored?: boolean;
 };
-type Job = { id: string; kind: 'surface' | 'deep'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
+type Job = { id: string; kind: 'surface' | 'deep' | 'post_count'; status: string; profile_keys: string[]; index: number; stage: string; post_index: number; post_urls: string[]; started_at: string; last_activity_at?: string };
 type Data = { profiles: Profile[]; issues?: Issue[]; workflow?: { active_job?: Job | null; recent_jobs?: Job[] } };
-type Tab = 'master' | 'surface' | 'insights' | 'deep' | 'issues';
+type Tab = 'master' | 'surface' | 'insights' | 'post_counts' | 'deep' | 'issues';
 type SurfaceFilter = 'all' | 'needs_surface' | 'collected' | 'collection_failed' | 'deleted_account' | 'issues' | 'ignored';
 
 const API = '/api';
+const numericPostCount = (value: unknown): number | null => {
+  if (typeof value === 'number') return Number.isFinite(value) && value >= 0 ? value : null;
+  const match = String(value ?? '').trim().match(/^([\d,.]+)\s*([kmb])?(?:\s+posts?)?$/i);
+  if (!match) return null;
+  const amount = Number(match[1].replace(/,/g, ''));
+  if (!Number.isFinite(amount)) return null;
+  const multiplier = ({ k: 1_000, m: 1_000_000, b: 1_000_000_000 } as Record<string, number>)[(match[2] || '').toLowerCase()] || 1;
+  return Math.round(amount * multiplier);
+};
+const hasPostCount = (profile: Profile) => numericPostCount(profile.posts_count) != null;
 const key = (profile: Profile) => profile.username.toLocaleLowerCase();
 const text = (value: unknown) => value == null || value === '' ? '—' : String(value);
 const successful = (profile: Profile) => Boolean(profile.last_fetched_at) && profile.status?.toLocaleLowerCase() === 'collected';
@@ -41,11 +51,19 @@ function App() {
   const [surfaceFilter, setSurfaceFilter] = useState<SurfaceFilter>('all');
   const [surfaceSelection, setSurfaceSelection] = useState<Set<string>>(new Set());
   const [deepSelection, setDeepSelection] = useState<Set<string>>(new Set());
+  const [postCountSelection, setPostCountSelection] = useState<Set<string>>(new Set());
+  const [postCountFilter, setPostCountFilter] = useState<'missing' | 'all'>('missing');
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
 
   const refresh = useCallback(async () => {
-    try { setData(await api<Data>('/state')); setError(''); }
+    try {
+      const next = await api<Data>('/state');
+      setData(next);
+      const missingKeys = new Set(next.profiles.filter((profile) => !hasPostCount(profile) && !profile.ignored).map(key));
+      setPostCountSelection((current) => new Set([...current].filter((profileKey) => missingKeys.has(profileKey))));
+      setError('');
+    }
     catch (caught) { setError(caught instanceof Error ? caught.message : 'Unable to load account data.'); }
   }, []);
 
@@ -68,6 +86,8 @@ function App() {
     if (surfaceFilter === 'issues') return Boolean(profile.last_error || profile.collection_issues?.length || issues.some((issue) => issue.username?.toLocaleLowerCase() === key(profile)));
     return true;
   }), [visibleProfiles, surfaceFilter, issues]);
+  const postCountProfiles = visibleProfiles.filter((profile) => !profile.ignored && (postCountFilter === 'all' || !hasPostCount(profile)));
+  const postCountSelectable = postCountProfiles.filter((profile) => !hasPostCount(profile));
   const readyForDeep = profiles.filter(successful);
   const doneCount = activeJob ? Math.min(activeJob.index, activeJob.profile_keys.length) : 0;
 
@@ -82,11 +102,13 @@ function App() {
     for (const profile of candidates) allSelected ? next.delete(key(profile)) : next.add(key(profile));
     setter(next);
   }
-  async function startJob(kind: 'surface' | 'deep', selected: Set<string>) {
+  async function startJob(kind: 'surface' | 'deep' | 'post_count', selected: Set<string>) {
     setBusy(true); setError('');
     try {
       await api('/jobs', { method: 'POST', body: JSON.stringify({ kind, profile_keys: [...selected] }) });
-      if (kind === 'surface') setSurfaceSelection(new Set()); else setDeepSelection(new Set());
+      if (kind === 'surface') setSurfaceSelection(new Set());
+      else if (kind === 'deep') setDeepSelection(new Set());
+      else setPostCountSelection(new Set());
       await refresh();
     } catch (caught) { setError(caught instanceof Error ? caught.message : 'Could not start collection.'); }
     finally { setBusy(false); }
@@ -113,6 +135,7 @@ function App() {
     { id: 'master', label: 'Master list', count: profiles.length },
     { id: 'surface', label: 'Surface analysis', count: profiles.filter((p) => Boolean(p.last_fetched_at)).length },
     { id: 'insights', label: 'Insights', count: profiles.filter((p) => Boolean(p.last_fetched_at)).length },
+    { id: 'post_counts', label: 'Post counts', count: profiles.filter((p) => !p.ignored && !hasPostCount(p)).length },
     { id: 'deep', label: 'Deep analysis', count: profiles.filter((p) => p.deep_status === 'Collected').length },
     { id: 'issues', label: 'Issues', count: issues.length }
   ];
@@ -121,7 +144,7 @@ function App() {
     <header className="topbar"><a className="brand" href="#master" onClick={() => setTab('master')} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span>{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</div></header>
     <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
-    {activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
+    {activeJob && <section className="job-card"><div className="job-title"><div><span className="eyebrow">COLLECTION IN PROGRESS</span><h2>{activeJob.kind === 'surface' ? 'Surface analysis' : activeJob.kind === 'post_count' ? 'Post count refresh' : 'Deep analysis'}</h2></div><button className="button secondary" disabled={busy} onClick={() => void cancelJob()}>Stop</button></div><div className="progress-track"><span style={{ width: `${Math.max(4, (doneCount / activeJob.profile_keys.length) * 100)}%` }} /></div><p className="muted">{doneCount} of {activeJob.profile_keys.length} profiles complete{activeJob.kind === 'deep' ? ` · ${activeJob.post_index} post dates in progress` : ''}</p>{!activeJob.last_activity_at && <p className="collector-wait">Waiting for the Firefox add-on. Load it in Firefox and stay signed in to Instagram.</p>}</section>}
     <nav className="tabs" aria-label="Profile views">{tabs.map((item) => <button key={item.id} className={`tab ${tab === item.id ? 'active' : ''}`} onClick={() => { setTab(item.id); setSearch(''); }}><span>{item.label}</span><b>{item.count}</b></button>)}</nav>
     {!data ? <section className="empty">Connecting to the local account data…</section> : <>
       {tab === 'master' && <section>
@@ -136,6 +159,12 @@ function App() {
         <ProfileTable profiles={visibleProfiles.filter((profile) => Boolean(profile.last_fetched_at))} mode="surface" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
       </section>}
       {tab === 'insights' && <InsightsView profiles={profiles} />}
+      {tab === 'post_counts' && <section>
+        <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search username or bio" /></label><label className="filter-select"><ListFilter className="ui-icon filter-icon" size={16} strokeWidth={1.8} aria-hidden="true" /><select value={postCountFilter} onChange={(event) => setPostCountFilter(event.target.value as 'missing' | 'all')} aria-label="Filter by post count"><option value="missing">Missing post count</option><option value="all">All profiles</option></select></label><button className="button secondary" disabled={!postCountSelectable.length} onClick={() => selectVisible(postCountSelection, setPostCountSelection, postCountSelectable)}>{postCountSelectable.length > 0 && postCountSelectable.every((profile) => postCountSelection.has(key(profile))) ? 'Clear visible' : 'Select visible'}</button></div>
+        <div className="selection-bar"><span><strong>{postCountProfiles.length}</strong> visible <span className="count-separator" aria-hidden="true">·</span> <strong>{postCountSelection.size}</strong> selected for post count refresh</span><button className="button primary" disabled={!postCountSelection.size || busy || Boolean(activeJob)} onClick={() => void startJob('post_count', postCountSelection)}>Fetch post counts <ArrowRight className="ui-icon button-icon" size={15} strokeWidth={1.8} aria-hidden="true" /></button></div>
+        <p className="helper post-count-help">On success, this updates only <code>posts_count</code>. Failed attempts are recorded in Issues; other surface fields and post-date data stay untouched.</p>
+        <PostCountTable profiles={postCountProfiles} selection={postCountSelection} onToggle={(username) => toggle(postCountSelection, setPostCountSelection, username)} />
+      </section>}
       {tab === 'deep' && <section>
         <div className="toolbar"><label className="search"><Search className="ui-icon search-icon" size={17} strokeWidth={1.8} aria-hidden="true" /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Find a profile" /></label><span className="helper">Post dates are collected only after surface analysis succeeds.</span></div>
         <ProfileTable profiles={visibleProfiles.filter(successful)} mode="deep" selection={deepSelection} onToggle={(username) => toggle(deepSelection, setDeepSelection, username)} />
@@ -157,6 +186,11 @@ function ProfileTable({ profiles, mode, selection, onToggle, onIgnore }: { profi
   </tr>)}</tbody></table></div>;
 }
 
+function PostCountTable({ profiles, selection, onToggle }: { profiles: Profile[]; selection: Set<string>; onToggle: (username: string) => void }) {
+  if (!profiles.length) return <div className="empty"><h3>No matching profiles</h3><p>Profiles with missing post counts will appear here.</p></div>;
+  return <div className="table-wrap"><table className="post-count-table"><thead><tr><th className="check-col"><span className="sr-only">Select</span></th><th>PROFILE</th><th>POST COUNT</th><th>SURFACE STATUS</th><th>LAST FETCHED</th></tr></thead><tbody>{profiles.map((profile) => <tr key={key(profile)}><td><input aria-label={`Select @${profile.username} for post count refresh`} type="checkbox" checked={selection.has(key(profile))} disabled={hasPostCount(profile)} onChange={() => onToggle(key(profile))} /></td><td><div className="profile-cell"><span className="avatar">{profile.username.slice(0, 1).toLocaleUpperCase()}</span><div><a className="username" href={profile.url} target="_blank" rel="noreferrer">@{profile.username}<ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a><small>{profile.url}</small></div></div></td><td><span className={hasPostCount(profile) ? '' : 'missing-post-count'}>{text(profile.posts_count)}</span></td><td><Status value={profile.status || 'Not analyzed'} /></td><td>{fmt(profile.last_fetched_at)}</td></tr>)}</tbody></table></div>;
+}
+
 function Status({ value }: { value?: string }) {
   const lower = String(value || 'Pending').toLocaleLowerCase();
   const type = lower.includes('collect') ? 'good' : lower.includes('fail') || lower.includes('deleted') || lower.includes('error') ? 'bad' : 'pending';
@@ -164,19 +198,10 @@ function Status({ value }: { value?: string }) {
 }
 
 function postCount(profile: Profile): number | null {
-  const parse = (value: unknown): number | null => {
-    if (typeof value === 'number') return Number.isFinite(value) && value >= 0 ? value : null;
-    const match = String(value ?? '').trim().match(/^([\d,.]+)\s*([kmb])?(?:\s+posts?)?$/i);
-    if (!match) return null;
-    const amount = Number(match[1].replace(/,/g, ''));
-    if (!Number.isFinite(amount)) return null;
-    const multiplier = ({ k: 1_000, m: 1_000_000, b: 1_000_000_000 } as Record<string, number>)[(match[2] || '').toLowerCase()] || 1;
-    return Math.round(amount * multiplier);
-  };
-  const direct = parse(profile.posts_count);
+  const direct = numericPostCount(profile.posts_count);
   if (direct != null) return direct;
   const fromProfileText = profile.profile_text?.match(/(?:^|\n)\s*([\d,.]+)\s*([kmb])?\s+posts?\b/i);
-  return fromProfileText ? parse(`${fromProfileText[1]}${fromProfileText[2] || ''}`) : null;
+  return fromProfileText ? numericPostCount(`${fromProfileText[1]}${fromProfileText[2] || ''}`) : null;
 }
 
 function InsightsView({ profiles }: { profiles: Profile[] }) {

@@ -87,6 +87,8 @@
           const message = error instanceof Error ? error.message : String(error);
           const result = step.stage === 'surface'
             ? { status: 'Collection failed', last_error: message, issues: [{ code: 'SURFACE_COLLECTION_FAILED', message }] }
+            : step.stage === 'post_count'
+              ? { posts_count: 'Not shown', error: message }
             : step.stage === 'deep_profile'
               ? { post_urls: [], error: message }
               : { date: 'Not shown', error: message };

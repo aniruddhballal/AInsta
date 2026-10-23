@@ -128,6 +128,17 @@
     };
   }
 
+  async function collectPostCount() {
+    const main = await waitFor(() => document.querySelector('main'));
+    if (!main) return { posts_count: NOT_SHOWN, error: 'Instagram profile content did not load.' };
+    await sleep(650);
+    const count = postsCount(profileText());
+    return {
+      posts_count: count,
+      error: count === NOT_SHOWN ? 'Could not identify the post count in the profile header.' : ''
+    };
+  }
+
   function failedSurface(step, capturedProfile, message) {
     return {
       bio: bioFrom(capturedProfile, step.username), country: NOT_SHOWN, date_joined: NOT_SHOWN,
@@ -183,6 +194,7 @@
     if (message?.type !== 'dedgram_collect') return undefined;
     const { step } = message;
     if (step.stage === 'surface') return collectSurface(step);
+    if (step.stage === 'post_count') return collectPostCount();
     if (step.stage === 'deep_profile') return collectDeepProfile();
     if (step.stage === 'deep_post') return collectPostDate();
     return { error: 'Unknown collection stage.' };

@@ -15,6 +15,11 @@ const host = '127.0.0.1';
 const now = () => new Date().toISOString();
 const keyOf = (profile) => String(profile?.normalized_username || profile?.username || '').trim().toLocaleLowerCase();
 const isSurfaceComplete = (p) => Boolean(p?.last_fetched_at) && String(p.status || '').toLocaleLowerCase() === 'collected';
+const isNumericPostCount = (value) => {
+  if (typeof value === 'number') return Number.isFinite(value) && value >= 0;
+  const match = String(value ?? '').trim().match(/^([\d,.]+)\s*([kmb])?(?:\s+posts?)?$/i);
+  return Boolean(match && Number.isFinite(Number(match[1].replace(/,/g, ''))));
+};
 function isoTimestamp(value) {
   if (value === null || value === undefined || value === '') return null;
   const numeric = typeof value === 'number' || /^\d{10,13}$/.test(String(value).trim());
@@ -108,7 +113,7 @@ function finishJob(data, status = 'completed') {
 
 function advance(job) {
   job.index += 1;
-  job.stage = job.kind === 'surface' ? 'surface' : 'deep_profile';
+  job.stage = job.kind === 'surface' ? 'surface' : job.kind === 'post_count' ? 'post_count' : 'deep_profile';
   job.post_urls = [];
   job.post_index = 0;
   job.updated_at = now();
@@ -149,7 +154,7 @@ async function route(request, response) {
     if (request.method === 'POST' && pathname === '/api/jobs') {
       const body = await jsonBody(request);
       const kind = body.kind;
-      if (!['surface', 'deep'].includes(kind)) return send(response, 400, { error: 'Choose surface or deep analysis.' });
+      if (!['surface', 'deep', 'post_count'].includes(kind)) return send(response, 400, { error: 'Choose surface, deep, or post count analysis.' });
       const data = await loadData();
       if (data.workflow.active_job) return send(response, 409, { error: 'A collection job is already running.' });
       const selected = [...new Set((body.profile_keys || []).map((value) => String(value).toLocaleLowerCase()))];
@@ -159,9 +164,12 @@ async function route(request, response) {
       if (kind === 'deep' && profiles.some((profile) => !isSurfaceComplete(profile))) {
         return send(response, 400, { error: 'Deep analysis can only run for profiles with completed surface analysis.' });
       }
+      if (kind === 'post_count' && profiles.some((profile) => isNumericPostCount(profile.posts_count))) {
+        return send(response, 400, { error: 'Post count refresh only accepts profiles whose post count is missing.' });
+      }
       const job = {
         id: randomUUID(), kind, status: 'running', profile_keys: profiles.map(keyOf),
-        index: 0, stage: kind === 'surface' ? 'surface' : 'deep_profile', post_urls: [], post_index: 0,
+        index: 0, stage: kind === 'surface' ? 'surface' : kind === 'post_count' ? 'post_count' : 'deep_profile', post_urls: [], post_index: 0,
         started_at: now(), updated_at: now(), completed_at: null, last_activity_at: null
       };
       data.workflow.active_job = job;
@@ -210,6 +218,8 @@ async function route(request, response) {
       const step = { job_id: job.id, profile_key: keyOf(profile), url: profile.url, username: profile.username };
       if (job.kind === 'surface') {
         step.stage = 'surface';
+      } else if (job.kind === 'post_count') {
+        step.stage = 'post_count';
       } else if (job.stage === 'deep_profile') {
         step.stage = 'deep_profile';
       } else if (job.stage === 'deep_post') {
@@ -259,6 +269,20 @@ async function route(request, response) {
           addIssue(data, profile, 'DATE_JOINED_UNAVAILABLE', 'The Date joined value could not be identified in About this account.');
         }
         if (result.error) addIssue(data, profile, 'SURFACE_ANALYSIS_FAILED', result.error);
+        advance(job);
+      } else if (job.kind === 'post_count' && body.stage === 'post_count' && job.stage === 'post_count') {
+        const result = body.result || {};
+        const count = result.posts_count;
+        if (isNumericPostCount(count)) {
+          profile.posts_count = String(count).trim();
+          const isPostCountIssue = (issue) => issue.code === 'POST_COUNT_UNAVAILABLE' && keyOf({ username: issue.username || issue.profile_key }) === keyOf(profile);
+          profile.collection_issues = (profile.collection_issues || []).filter((issue) => !isPostCountIssue(issue));
+          data.issues = data.issues.filter((issue) => !isPostCountIssue(issue));
+        } else {
+          addIssue(data, profile, 'POST_COUNT_UNAVAILABLE', result.error || 'Could not identify the post count in the profile header.', {
+            recommended_action: 'Retry the post count refresh when the profile is available.'
+          });
+        }
         advance(job);
       } else if (job.kind === 'deep' && body.stage === 'deep_profile' && job.stage === 'deep_profile') {
         const postUrls = Array.isArray(body.result?.post_urls) ? [...new Set(body.result.post_urls.filter((url) => typeof url === 'string' && /^https:\/\/www\.instagram\.com\/(p|reel|tv)\//.test(url)))] : [];
