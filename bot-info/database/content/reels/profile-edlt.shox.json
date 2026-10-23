@@ -163,21 +163,26 @@
           "message": "Could not read the date for this reel."
         },
         {
-          "field": "likes_count",
-          "message": "Could not read the like count for this reel."
-        },
-        {
-          "field": "comments_count",
-          "message": "Could not read the comment count for this reel."
-        },
-        {
-          "field": "views_count",
-          "message": "Could not read the view count for this reel."
-        },
-        {
           "field": "page",
           "message": "The reel tile was not found in the profile grid."
         }
+      ],
+      "likes_count": 262,
+      "comments_count": 1,
+      "reposts_count": 13,
+      "shares_count": 20,
+      "saves_count": 17,
+      "views_count": 3325,
+      "views_count_source": "manual_phone",
+      "manually_checked_at": "2026-10-23T07:56:15Z",
+      "manually_checked_source": "phone",
+      "manually_checked_fields": [
+        "likes_count",
+        "comments_count",
+        "reposts_count",
+        "shares_count",
+        "saves_count",
+        "views_count"
       ]
     },
     {

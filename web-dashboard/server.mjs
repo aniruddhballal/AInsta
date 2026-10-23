@@ -411,7 +411,9 @@ async function route(request, response) {
         const providedErrors = Array.isArray(result.errors) ? result.errors : [];
         const errors = [];
         const numericFields = new Set(['likes_count', 'comments_count', 'views_count']);
+        const manuallyCheckedFields = new Set(record.manually_checked_fields || []);
         for (const field of metricFields) {
+          if (manuallyCheckedFields.has(field)) continue;
           let value = result[field];
           let viewsSource = result.views_count_source || 'item_page';
           if (field === 'views_count' && !(Number.isSafeInteger(value) && value >= 0)

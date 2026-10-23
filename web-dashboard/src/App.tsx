@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react
 import { Activity, ArrowRight, ArrowUpRight, BarChart3, Circle, CircleAlert, CircleCheck, Database, FileText, Globe2, ListFilter, MessageSquareText, Puzzle, Search, Users, X } from 'lucide-react';
 
 type PostDate = { url: string; date: string };
-type ContentRecord = { url: string; kind?: 'post' | 'reel'; date?: string | null; likes_count?: number | null; comments_count?: number | null; views_count?: number | null; views_count_source?: 'item_page' | 'profile_grid'; last_fetched_at?: string; fetch_status?: string; fetch_errors?: { field: string; message: string }[] };
+type ContentRecord = { url: string; kind?: 'post' | 'reel'; date?: string | null; likes_count?: number | null; comments_count?: number | null; reposts_count?: number | null; shares_count?: number | null; saves_count?: number | null; views_count?: number | null; views_count_source?: 'item_page' | 'profile_grid' | 'manual_phone'; manually_checked_at?: string; manually_checked_source?: string; manually_checked_fields?: string[]; last_fetched_at?: string; fetch_status?: string; fetch_errors?: { field: string; message: string }[] };
 type Issue = { id?: string; username?: string; profile_url?: string; post_url?: string; code?: string; message?: string; occurred_at?: string; recommended_action?: string };
 type Profile = {
   url: string; username: string; bio?: string; country?: string; date_joined?: string;
@@ -397,8 +397,9 @@ function ContentRecordsSection({ title, records, status, lastFetched, kind }: { 
     {records.length ? <div className="content-record-grid">{records.map((record) => <article className="content-record" key={record.url}>
       <div className="content-record-title"><span>{kind.toUpperCase()}</span><Status value={record.fetch_status || 'Incomplete'} /></div>
       <a className="content-record-date" href={record.url} target="_blank" rel="noreferrer">{fmt(record.date)} <ArrowUpRight className="ui-icon" size={14} aria-hidden="true" /></a>
-      <div className="content-metrics"><div><strong>{text(record.views_count)}</strong><span>{record.views_count_source === 'profile_grid' ? 'views · grid' : 'views'}</span></div><div><strong>{text(record.likes_count)}</strong><span>likes</span></div><div><strong>{text(record.comments_count)}</strong><span>comments</span></div></div>
+      <div className="content-metrics"><div><strong>{text(record.views_count)}</strong><span>{record.views_count_source === 'profile_grid' ? 'views · grid' : 'views'}</span></div><div><strong>{text(record.likes_count)}</strong><span>likes</span></div><div><strong>{text(record.comments_count)}</strong><span>comments</span></div><div><strong>{text(record.reposts_count)}</strong><span>reposts</span></div><div><strong>{text(record.shares_count)}</strong><span>shares</span></div><div><strong>{text(record.saves_count)}</strong><span>saves</span></div></div>
       <p>Fetched {fmt(record.last_fetched_at)}</p>
+      {record.manually_checked_at ? <p>Phone checked {fmt(record.manually_checked_at)}</p> : null}
       {record.fetch_errors?.length ? <ul className="content-record-errors">{record.fetch_errors.map((error, index) => <li key={`${error.field}-${index}`}><strong>{error.field.replace('_', ' ')}</strong>: {error.message}</li>)}</ul> : null}
       <details><summary>Full item record</summary><pre>{JSON.stringify(record, null, 2)}</pre></details>
     </article>)}</div> : <div className="empty profile-post-empty"><h3>No {kind} details collected</h3><p>Run the {kind} details scan to save dates and engagement counts here.</p></div>}
