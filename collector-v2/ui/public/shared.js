@@ -2,8 +2,7 @@ export const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => 
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 })[char]);
 export const number = (value) => Number(value || 0).toLocaleString();
-export const gridLabel = (grid) => grid.grid_complete ? number(grid.discovered)
-  : grid.grid_error === 'Grid has not been scanned.' ? 'Not scanned' : 'Error';
+export const gridLabel = (grid) => grid.grid_complete ? number(grid.discovered) : 'Error';
 export const compact = (value) => new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(value || 0);
 export const time = (value) => value ? new Date(value).toLocaleString() : 'Not yet';
 export const metric = (value) => value?.source === 'others_plus_one'

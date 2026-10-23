@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { profileSummary } from '../ui/data.mjs';
 import { renderProfile } from '../ui/public/profile.js';
+import { gridLabel } from '../ui/public/shared.js';
 
 test('the profile page never displays a partial grid count as a result', () => {
   const discovery = { post: { items: [{ url: 'one' }, { url: 'two' }], complete: false,
@@ -15,6 +16,8 @@ test('the profile page never displays a partial grid count as a result', () => {
   const summary = profileSummary(data);
   assert.equal(summary.posts.discovered, null);
   assert.equal(summary.posts.grid_error, 'Grid scan stopped early.');
+  assert.equal(gridLabel({ discovered: null, grid_complete: false,
+    grid_error: 'Grid has not been scanned.' }), 'Error');
   const html = renderProfile({ detail: { ...data, summary }, itemSearch: '', itemFilter: 'all',
     itemSort: 'newest', batch: null, error: null });
   assert.match(html, /INSTAGRAM POSTS<\/span><strong>2,894<\/strong>/);
