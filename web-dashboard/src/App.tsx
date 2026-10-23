@@ -359,11 +359,12 @@ function ProfileDetail({ profile, issues, jobs, activeJob, busy, onRun, onCancel
 
     <details className="profile-raw-record"><summary>Complete stored profile record</summary><pre>{JSON.stringify(profile, null, 2)}</pre></details>
 
-    <div className="profile-posts-heading"><h2>Existing deep-analysis dates</h2><span>{dates.length.toLocaleString()} records</span></div>
-    <p className="profile-date-note">This is the original deep-analysis date list. Use the separate post and reel sections below for categorized records and engagement metrics.</p>
-    {dates.length ? <div className="profile-post-grid">{dates.map((post, index) => <a className="profile-post-tile" href={post.url} target="_blank" rel="noreferrer" key={`${post.url}-${index}`}><span>POST {String(index + 1).padStart(2, '0')}</span><strong>{post.date || 'Date unavailable'}</strong><ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a>)}</div> : <div className="empty profile-post-empty"><h3>No post dates collected</h3><p>Run deep analysis on this profile to collect post dates.</p></div>}
-    <ContentRecordsSection title="Post dates and engagement" records={profile.post_records || []} status={profile.posts_data_status} lastFetched={profile.posts_data_last_fetched_at} kind="post" />
     <ContentRecordsSection title="Reel dates and engagement" records={profile.reel_records || []} status={profile.reels_data_status} lastFetched={profile.reels_data_last_fetched_at} kind="reel" />
+    <ContentRecordsSection title="Post dates and engagement" records={profile.post_records || []} status={profile.posts_data_status} lastFetched={profile.posts_data_last_fetched_at} kind="post" />
+
+    <div className="profile-posts-heading"><h2>Existing deep-analysis dates</h2><span>{dates.length.toLocaleString()} records</span></div>
+    <p className="profile-date-note">This is the original deep-analysis date list. Use the post and reel sections above for categorized records and engagement metrics.</p>
+    {dates.length ? <div className="profile-post-grid">{dates.map((post, index) => <a className="profile-post-tile" href={post.url} target="_blank" rel="noreferrer" key={`${post.url}-${index}`}><span>POST {String(index + 1).padStart(2, '0')}</span><strong>{post.date || 'Date unavailable'}</strong><ArrowUpRight className="ui-icon" size={15} aria-hidden="true" /></a>)}</div> : <div className="empty profile-post-empty"><h3>No post dates collected</h3><p>Run deep analysis on this profile to collect post dates.</p></div>}
     <section className="profile-issues"><h2>Collection issues <span>{issues.length}</span></h2>{issues.length ? <div className="profile-issue-list">{issues.map((issue, index) => <article key={issue.id || `${issue.occurred_at}-${index}`}><div><strong>{text(issue.code)}</strong><span>{fmt(issue.occurred_at)}</span></div><p>{text(issue.message)}</p>{issue.recommended_action && <small>{issue.recommended_action}</small>}{issue.post_url && <a href={issue.post_url} target="_blank" rel="noreferrer">Open affected post <ArrowUpRight className="ui-icon" size={13} aria-hidden="true" /></a>}<details className="profile-issue-raw"><summary>Full issue record</summary><pre>{JSON.stringify(issue, null, 2)}</pre></details></article>)}</div> : <p className="profile-no-issues">No collection issues recorded for this profile.</p>}</section>
   </section>;
 }
