@@ -141,11 +141,12 @@
 
   function reelUrls() {
     const urls = new Set();
-    for (const anchor of document.querySelectorAll('main a[href]')) {
+    for (const anchor of document.querySelectorAll('a[href]')) {
       try {
         const url = new URL(anchor.href, location.origin);
-        const match = url.pathname.match(/^\/reel\/([^/]+)\/?$/);
-        if (match) urls.add(match[1]);
+        if (url.origin !== location.origin) continue;
+        const match = url.pathname.match(/^\/(?:[^/]+\/)?reels?\/([^/]+)\/?$/);
+        if (match) urls.add(decodeURIComponent(match[1]));
       } catch (_error) { /* Ignore invalid links. */ }
     }
     return urls;
@@ -182,6 +183,10 @@
     let error = '';
 
     for (let pass = 0; pass < maxPasses; pass += 1) {
+      if (!/^\/[^/]+\/reels\/?$/.test(location.pathname)) {
+        error = 'Instagram navigated away from the profile Reels tab during the scan.';
+        break;
+      }
       error = reelScanBlockReason();
       if (error) break;
       reelUrls().forEach((id) => ids.add(id));
@@ -206,7 +211,6 @@
       if (newHeight <= scrollHeight && ids.size === previousCount && !atBottom) await sleep(600);
     }
 
-    window.scrollTo(0, 0);
     const emptyState = /no reels|hasn't posted any reels|no content to show/i.test(main.innerText || '');
     const complete = !error && reachedEnd && (ids.size > 0 || emptyState);
     return {
