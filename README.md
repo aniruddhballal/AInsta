@@ -9,7 +9,7 @@ AInsta is a small toolkit for building and maintaining an Instagram profile cata
 | [`android-app/`](android-app/README.md) | Native Android app and accessibility service. It shows a draggable capture bubble over Instagram, extracts validated usernames, stores them in a searchable catalog, and provides save-state feedback. |
 | [`firefox-extension/`](firefox-extension/README.md) | Temporary Firefox add-on that collects profile and post details only for jobs started in the dashboard. |
 | [`web-dashboard/`](web-dashboard/README.md) | Local React dashboard and loopback API for searching the phone catalog, selecting accounts, and running surface or deep analysis into the shared JSON file. |
-| `bot-analysis/` | Saved profile URL lists and generated HTML account-information reports. |
+| `bot-analysis/` | The phone-catalog import file and collected profile data. |
 | [`AInsta.apk`](AInsta.apk) | APK snapshot kept at the repository root for convenient transfer or installation. For a freshly built APK, use the Android build instructions. |
 
 The Android app and desktop dashboard use separate files. Android writes its phone catalog to `Documents/AInsta/profiles.json`; the dashboard imports usernames from the repository's `bot-analysis/botsainsta.md` file into `bot-analysis/bot-account-info.json`. There is no automatic phone-to-computer sync: copy or merge the phone catalog into the repository catalog when you want to bring new captures into the dashboard. Despite its `.md` suffix, `botsainsta.md` contains JSON in the same catalog format as the Android file. The Firefox add-on performs DOM collection only for jobs explicitly started in the dashboard and sends results to its local API.
@@ -50,10 +50,7 @@ In Firefox, sign in to Instagram, open `about:debugging#/runtime/this-firefox`, 
 
 ### 5. Review reports
 
-The dashboard has Master list, Surface analysis, Deep analysis, and Issues tabs. While the dashboard server is running, open `http://127.0.0.1:4317/report` to view the latest JSON data automatically. The reusable report viewer is also available at:
-
-- `bot-account-info.json` - profile records, post dates, workflow state, and collection issues
-- `bot-account-info.html` - read-only viewer served by the local API; direct `file:///` opens require manually choosing the JSON file because browsers block automatic reads of neighboring local files
+Use the dashboard at `http://127.0.0.1:5173` for all profile data: Master list, Surface analysis, Deep analysis, and Issues. These views read the shared `bot-analysis/bot-account-info.json` file through the local API.
 
 ## Data and privacy boundaries
 

@@ -9,7 +9,6 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(here, '..');
 const dataFile = resolve(process.env.AINSTA_DATA_FILE || resolve(repoRoot, 'bot-analysis/bot-account-info.json'));
 const catalogFile = resolve(repoRoot, 'bot-analysis/botsainsta.md');
-const reportFile = resolve(repoRoot, 'bot-analysis/bot-account-info.html');
 const port = Number(process.env.AINSTA_API_PORT || 4317);
 const host = '127.0.0.1';
 
@@ -144,14 +143,8 @@ async function route(request, response) {
   if (request.method === 'OPTIONS') return send(response, 204, {});
   try {
     const pathname = new URL(request.url, `http://${host}:${port}`).pathname;
-    if (request.method === 'GET' && pathname === '/report') {
-      response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
-      response.end(await readFile(reportFile, 'utf8'));
-      return;
-    }
     if (request.method === 'GET' && pathname === '/api/health') return send(response, 200, { ok: true, app: 'ainsta-dashboard' });
     if (request.method === 'GET' && pathname === '/api/state') return send(response, 200, await loadData());
-    if (request.method === 'GET' && pathname === '/api/report-data') return send(response, 200, await readJson(dataFile));
 
     if (request.method === 'POST' && pathname === '/api/jobs') {
       const body = await jsonBody(request);

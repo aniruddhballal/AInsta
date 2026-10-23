@@ -22,9 +22,9 @@ The Android app saves captures on the phone to `Documents/AInsta/profiles.json`.
 
 The dashboard API is the only writer for dashboard data. It stores profile records, post dates, job progress, and issues in `bot-account-info.json`. It writes the file atomically and preserves existing profile fields. Text is stored as JSON strings, so captions, bios, and raw page text do not get interpolated into HTML.
 
-## Open the standalone report
+## Browse all collected data
 
-With the dashboard server running, open `http://127.0.0.1:4317/report`. The report automatically reads the latest `bot-account-info.json` through the local API. Opening `../bot-analysis/bot-account-info.html` directly as a `file:///` URL cannot automatically read the neighboring JSON file because browsers restrict local-file access; use the JSON picker in that case.
+Use the dashboard at `http://127.0.0.1:5173` for the full catalog and analysis results. The Master list, Surface analysis, Deep analysis, and Issues tabs together show the profile data, post dates, statuses, and collection problems stored in `../bot-analysis/bot-account-info.json`.
 
 ## Repair an older text export
 
