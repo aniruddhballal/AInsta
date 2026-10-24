@@ -1,18 +1,10 @@
 {
-  "id": "5b9f7a0a-500d-4e9d-90fa-2202ec3a8484",
+  "id": "1cd6adb8-f0a9-4b47-b994-7c48fcc74a04",
   "mode": "profile_only",
   "order": "posts_ascending",
   "status": "running",
   "profiles": [
     "dexea.100k",
-    "goofybara777",
-    "woe_almighty",
-    "ballsitchingshi",
-    "kanyeglazerwest",
-    "zkyus_",
-    "futureshock3272",
-    "gzfr",
-    "thoughtsby.div",
     "asapcoder.exe",
     "goofvault",
     "iblamealanz",
@@ -34,38 +26,6 @@
   "steps": [
     {
       "username": "dexea.100k",
-      "stage": "profile"
-    },
-    {
-      "username": "goofybara777",
-      "stage": "profile"
-    },
-    {
-      "username": "woe_almighty",
-      "stage": "profile"
-    },
-    {
-      "username": "ballsitchingshi",
-      "stage": "profile"
-    },
-    {
-      "username": "kanyeglazerwest",
-      "stage": "profile"
-    },
-    {
-      "username": "zkyus_",
-      "stage": "profile"
-    },
-    {
-      "username": "futureshock3272",
-      "stage": "profile"
-    },
-    {
-      "username": "gzfr",
-      "stage": "profile"
-    },
-    {
-      "username": "thoughtsby.div",
       "stage": "profile"
     },
     {
@@ -140,153 +100,41 @@
   "results": {
     "dexea.100k": {
       "status": "failed",
-      "started_at": "2026-10-24T06:41:25.334Z",
-      "finished_at": "2026-10-24T06:41:29.710Z",
+      "started_at": "2026-10-24T07:47:09.803Z",
+      "finished_at": "2026-10-24T07:47:20.272Z",
       "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
           "status": "failed",
-          "started_at": "2026-10-24T06:41:25.334Z",
-          "finished_at": "2026-10-24T06:41:29.710Z",
+          "started_at": "2026-10-24T07:47:09.803Z",
+          "finished_at": "2026-10-24T07:47:20.272Z",
           "error": "Instagram reports this page is unavailable."
         }
       }
     },
-    "goofybara777": {
-      "status": "complete",
-      "started_at": "2026-10-24T06:41:29.712Z",
-      "finished_at": "2026-10-24T06:45:48.497Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T06:41:29.712Z",
-          "finished_at": "2026-10-24T06:45:48.497Z",
-          "error": null
-        }
-      }
-    },
-    "woe_almighty": {
-      "status": "complete",
-      "started_at": "2026-10-24T06:45:48.500Z",
-      "finished_at": "2026-10-24T06:49:12.505Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T06:45:48.500Z",
-          "finished_at": "2026-10-24T06:49:12.505Z",
-          "error": null
-        }
-      }
-    },
-    "ballsitchingshi": {
-      "status": "complete",
-      "started_at": "2026-10-24T06:49:12.508Z",
-      "finished_at": "2026-10-24T06:54:54.539Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T06:49:12.508Z",
-          "finished_at": "2026-10-24T06:54:54.539Z",
-          "error": null
-        }
-      }
-    },
-    "kanyeglazerwest": {
-      "status": "complete",
-      "started_at": "2026-10-24T06:54:54.541Z",
-      "finished_at": "2026-10-24T06:58:54.089Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T06:54:54.541Z",
-          "finished_at": "2026-10-24T06:58:54.089Z",
-          "error": null
-        }
-      }
-    },
-    "zkyus_": {
-      "status": "complete",
-      "started_at": "2026-10-24T06:58:54.101Z",
-      "finished_at": "2026-10-24T06:59:55.508Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T06:58:54.101Z",
-          "finished_at": "2026-10-24T06:59:55.508Z",
-          "error": null
-        }
-      }
-    },
-    "futureshock3272": {
-      "status": "complete",
-      "started_at": "2026-10-24T06:59:55.515Z",
-      "finished_at": "2026-10-24T07:08:46.964Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T06:59:55.515Z",
-          "finished_at": "2026-10-24T07:08:46.964Z",
-          "error": null
-        }
-      }
-    },
-    "gzfr": {
-      "status": "complete",
-      "started_at": "2026-10-24T07:08:46.975Z",
-      "finished_at": "2026-10-24T07:12:39.629Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T07:08:46.975Z",
-          "finished_at": "2026-10-24T07:12:39.629Z",
-          "error": null
-        }
-      }
-    },
-    "thoughtsby.div": {
-      "status": "complete",
-      "started_at": "2026-10-24T07:12:39.633Z",
-      "finished_at": "2026-10-24T07:18:34.935Z",
-      "error": null,
-      "stages": {
-        "profile": {
-          "status": "complete",
-          "started_at": "2026-10-24T07:12:39.633Z",
-          "finished_at": "2026-10-24T07:18:34.935Z",
-          "error": null
-        }
-      }
-    },
     "asapcoder.exe": {
-      "status": "running",
-      "started_at": "2026-10-24T07:18:34.939Z",
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-24T07:47:20.275Z",
+      "finished_at": "2026-10-24T07:53:54.019Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "running",
-          "started_at": "2026-10-24T07:18:34.939Z",
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-24T07:47:20.275Z",
+          "finished_at": "2026-10-24T07:53:54.019Z",
           "error": null
         }
       }
     },
     "goofvault": {
-      "status": "queued",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-10-24T07:53:54.046Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
+          "status": "running",
+          "started_at": "2026-10-24T07:53:54.046Z",
           "finished_at": null,
           "error": null
         }
@@ -503,68 +351,26 @@
       }
     }
   },
-  "current": "asapcoder.exe",
+  "current": "goofvault",
   "current_stage": "profile",
-  "started_at": "2026-10-24T06:41:25.329Z",
-  "updated_at": "2026-10-24T07:18:34.939Z",
+  "started_at": "2026-10-24T07:47:09.793Z",
+  "updated_at": "2026-10-24T07:53:54.046Z",
   "finished_at": null,
   "stop_requested": false,
   "logs": [
     "Starting @dexea.100k profile",
-    "[12:11:26] Collecting dexea.100k profile",
+    "[13:17:11] Collecting dexea.100k profile",
     "Error: Instagram reports this page is unavailable.",
     "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
     "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
-    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:131:24)",
-    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:215:35",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
     "Finished @dexea.100k profile: failed",
-    "Starting @goofybara777 profile",
-    "[12:11:30] Collecting goofybara777 profile",
-    "[12:11:34] Scanning reel grid",
-    "[12:15:47] reel: 838 confirmed",
-    "[12:15:47] Done: Instagram posts 839, reels 838. Report: D:\\post engg\\dedgram\\collector-v2\\data\\goofybara777\\report.html",
-    "Finished @goofybara777 profile: complete",
-    "Starting @woe_almighty profile",
-    "[12:15:49] Collecting woe_almighty profile",
-    "[12:15:53] Scanning reel grid",
-    "[12:19:10] reel: 662 confirmed",
-    "[12:19:10] Done: Instagram posts 988, reels 662. Report: D:\\post engg\\dedgram\\collector-v2\\data\\woe_almighty\\report.html",
-    "Finished @woe_almighty profile: complete",
-    "Starting @ballsitchingshi profile",
-    "[12:19:13] Collecting ballsitchingshi profile",
-    "[12:19:18] Scanning reel grid",
-    "[12:24:53] reel: 1067 confirmed",
-    "[12:24:53] Done: Instagram posts 1135, reels 1067. Report: D:\\post engg\\dedgram\\collector-v2\\data\\ballsitchingshi\\report.html",
-    "Finished @ballsitchingshi profile: complete",
-    "Starting @kanyeglazerwest profile",
-    "[12:24:55] Collecting kanyeglazerwest profile",
-    "[12:25:00] Scanning reel grid",
-    "[12:28:50] reel: 702 confirmed",
-    "[12:28:50] Done: Instagram posts 1148, reels 702. Report: D:\\post engg\\dedgram\\collector-v2\\data\\kanyeglazerwest\\report.html",
-    "Finished @kanyeglazerwest profile: complete",
-    "Starting @zkyus_ profile",
-    "[12:28:56] Collecting zkyus_ profile",
-    "[12:29:00] Scanning reel grid",
-    "[12:29:52] reel: 166 confirmed",
-    "[12:29:52] Done: Instagram posts 1258, reels 166. Report: D:\\post engg\\dedgram\\collector-v2\\data\\zkyus_\\report.html",
-    "Finished @zkyus_ profile: complete",
-    "Starting @futureshock3272 profile",
-    "[12:30:02] Collecting futureshock3272 profile",
-    "[12:30:08] Scanning reel grid",
-    "[12:38:44] reel: 1465 confirmed",
-    "[12:38:44] Done: Instagram posts 1460, reels 1465. Report: D:\\post engg\\dedgram\\collector-v2\\data\\futureshock3272\\report.html",
-    "Finished @futureshock3272 profile: complete",
-    "Starting @gzfr profile",
-    "[12:38:51] Collecting gzfr profile",
-    "[12:38:57] Scanning reel grid",
-    "[12:42:38] reel: 716 confirmed",
-    "[12:42:38] Done: Instagram posts 1542, reels 716. Report: D:\\post engg\\dedgram\\collector-v2\\data\\gzfr\\report.html",
-    "Finished @gzfr profile: complete",
-    "Starting @thoughtsby.div profile",
-    "[12:42:40] Collecting thoughtsby.div profile",
-    "[12:42:44] Scanning reel grid",
-    "[12:48:33] reel: 1019 confirmed",
-    "[12:48:33] Done: Instagram posts 1557, reels 1019. Report: D:\\post engg\\dedgram\\collector-v2\\data\\thoughtsby.div\\report.html",
-    "Finished @thoughtsby.div profile: complete"
+    "Starting @asapcoder.exe profile",
+    "[13:17:22] Collecting asapcoder.exe profile",
+    "[13:17:29] Scanning reel grid",
+    "[13:23:50] reel: 1201 confirmed",
+    "[13:23:50] Done: Instagram posts 1812, reels 1201. Report: D:\\post engg\\dedgram\\collector-v2\\data\\asapcoder.exe\\report.html",
+    "Finished @asapcoder.exe profile: complete"
   ]
 }
