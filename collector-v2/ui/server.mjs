@@ -7,7 +7,7 @@ import { randomUUID } from 'node:crypto';
 import { catalog, detail, profileData, profileSummary, resolveUsername, root, summary, usernames } from './data.mjs';
 import { MODES, ORDERS, orderProfiles, resultStatus, stepsFor, terminal } from './plan.mjs';
 import { paths, readJson, writeJson } from '../src/store.mjs';
-import { exactPostCount, profileHeaderComplete, profileLevelComplete } from '../src/model.mjs';
+import { exactPostCount, gridCount, profileHeaderComplete, profileLevelComplete } from '../src/model.mjs';
 
 const publicDir = join(dirname(fileURLToPath(import.meta.url)), 'public');
 const jobPath = process.env.COLLECTOR_UI_JOB_PATH || join(root, 'data', 'ui-job.json');
@@ -75,10 +75,11 @@ class BatchRunner {
         .filter(({ data }) => !profileLevelComplete(data.profile, data.discovery)).map(({ name }) => `@${name}`);
       if (missing.length) throw Object.assign(new Error(`Finish profile details and reel counts first: ${missing.join(', ')}.`), { status: 400 });
     }
-    if (order === 'posts_ascending') {
-      const postCounts = new Map(await Promise.all(selected.map(async (name) =>
-        [name, exactPostCount(await readJson(paths(root, name).profile))])));
-      selected = orderProfiles(selected, order, postCounts);
+    if (order === 'posts_ascending' || order === 'reels_ascending') {
+      const counts = new Map(await Promise.all(selected.map(async (name) => [name,
+        order === 'posts_ascending' ? exactPostCount(await readJson(paths(root, name).profile))
+          : gridCount((await readJson(paths(root, name).discovery))?.reel)])));
+      selected = orderProfiles(selected, order, counts);
     }
     const steps = stepsFor(selected, mode);
     const time = new Date().toISOString();

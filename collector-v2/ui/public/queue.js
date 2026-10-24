@@ -1,5 +1,9 @@
 import { badge, errorBanner, esc, gridLabel, number, profileHref, progress, statusText, time } from './shared.js';
 
+export function reelsNeedWork(profile) {
+  return profile.profile_complete && (profile.reels.processed < profile.reels.discovered || profile.reels.review > 0);
+}
+
 export function filteredCatalog(state) {
   const needle = state.search.trim().toLowerCase();
   return state.catalog.filter((profile) => {
@@ -7,6 +11,7 @@ export function filteredCatalog(state) {
       .some((value) => String(value || '').toLowerCase().includes(needle))) return false;
     if (state.filter === 'uncollected') return !profile.profile_complete;
     if (state.filter === 'collected') return profile.profile_complete;
+    if (state.filter === 'reels_pending') return reelsNeedWork(profile);
     if (state.filter === 'review') return profile.reels.review > 0 || profile.run.status === 'blocked'
       || (profile.profile_header_complete && !profile.profile_complete);
     return true;
@@ -87,13 +92,13 @@ export function renderQueue(state) {
         ${modeOption(state, 'depth_first', 'Profile + reels, depth first', 'Finish each account before moving to the next.')}
         ${modeOption(state, 'breadth_first', 'Profile + reels, breadth first', 'Collect every profile first, then every account\'s reels.')}
         ${modeOption(state, 'reels_only', 'Reels only', 'Use saved profile details; collect and retry reels.')}</div>
-      <label class="order-control">Run order <select id="run-order" aria-label="Profile run order"><option value="posts_ascending" ${state.order === 'posts_ascending' ? 'selected' : ''}>Fewest posts first</option><option value="selection" ${state.order === 'selection' ? 'selected' : ''}>Selection order</option></select></label>
+      <label class="order-control">Run order <select id="run-order" aria-label="Profile run order"><option value="posts_ascending" ${state.order === 'posts_ascending' ? 'selected' : ''}>Fewest posts first</option><option value="reels_ascending" ${state.order === 'reels_ascending' ? 'selected' : ''}>Fewest reels first</option><option value="selection" ${state.order === 'selection' ? 'selected' : ''}>Selection order</option></select></label>
       <p class="mode-note">Fewest posts first uses saved exact post counts; profiles without one run last. Individual post details will be added later.${state.mode === 'reels_only' && unavailable.length ? ` First finish profile details and reel counts for ${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'}.` : ''}</p></section>
     <section class="catalog-section"><div class="section-heading"><div><span class="eyebrow">PROFILE CATALOG</span><h2>Pick a collection set</h2><p>Accounts come from the existing bot profile index.</p></div>
       <div class="selection-actions"><button class="button subtle" data-action="select-visible">Select visible</button><button class="button subtle" data-action="clear">Clear</button>
         <button class="button primary" data-action="start" ${!state.selected.size || !ready || running || state.busy ? 'disabled' : ''}>${state.busy ? 'Starting...' : `Run ${state.selected.size ? `${state.selected.size} selected` : 'selection'}`}</button></div></div>
       <div class="toolbar"><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="catalog-search" type="search" placeholder="Search username, country, category..." value="${esc(state.search)}" aria-label="Search profiles"></div>
-        <select id="catalog-filter" aria-label="Filter profiles"><option value="all" ${state.filter === 'all' ? 'selected' : ''}>All profiles</option><option value="uncollected" ${state.filter === 'uncollected' ? 'selected' : ''}>Profile not ready</option><option value="collected" ${state.filter === 'collected' ? 'selected' : ''}>Profile details ready</option><option value="review" ${state.filter === 'review' ? 'selected' : ''}>Needs review</option></select>
+        <select id="catalog-filter" aria-label="Filter profiles"><option value="all" ${state.filter === 'all' ? 'selected' : ''}>All profiles</option><option value="uncollected" ${state.filter === 'uncollected' ? 'selected' : ''}>Profile not ready</option><option value="collected" ${state.filter === 'collected' ? 'selected' : ''}>Profile details ready</option><option value="reels_pending" ${state.filter === 'reels_pending' ? 'selected' : ''}>Reels incomplete</option><option value="review" ${state.filter === 'review' ? 'selected' : ''}>Needs review</option></select>
         <div class="layout-toggle"><button data-action="grid" class="${state.layout === 'grid' ? 'current' : ''}" aria-label="Grid view">▦</button><button data-action="list" class="${state.layout === 'list' ? 'current' : ''}" aria-label="List view">☰</button></div></div>
       <div class="catalog-meta">Showing ${number(visible.length)} of ${number(state.catalog.length)} profiles</div>
       ${visible.length ? `<div class="profile-grid ${state.layout === 'list' ? 'list-layout' : ''}">${visible.map((profile) => card(profile, state.selected.has(profile.username), running || state.busy)).join('')}</div>` : `<div class="empty-state"><strong>No profiles match that view.</strong><p>Try another search or filter.</p></div>`}</section>`;

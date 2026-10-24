@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { orderProfiles, resultStatus, stepsFor } from './plan.mjs';
+import { filteredCatalog, reelsNeedWork } from './public/queue.js';
 
 const selected = ['alpha', 'beta'];
 const labels = (mode) => stepsFor(selected, mode).map(({ username, stage }) => `${username}:${stage}`);
@@ -31,4 +32,23 @@ test('post count order sorts saved exact counts and puts unknown counts last', (
     ['zero', 'small', 'tied', 'large', 'unknown', 'another_unknown']);
   assert.deepEqual(orderProfiles(selected, 'selection', counts), selected);
   assert.throws(() => orderProfiles(selected, 'other', counts), /valid profile order/);
+});
+
+test('reel count order puts smaller complete grids first and keeps ties stable', () => {
+  const names = ['large', 'unknown', 'small', 'zero', 'same', 'another_unknown'];
+  const reelCounts = new Map([['large', 800], ['small', 12], ['zero', 0], ['same', 12]]);
+  assert.deepEqual(orderProfiles(names, 'reels_ascending', reelCounts),
+    ['zero', 'small', 'same', 'large', 'unknown', 'another_unknown']);
+});
+
+test('reel work includes only ready profiles with pending or reviewable reel details', () => {
+  const profiles = [
+    { username: 'pending', profile_complete: true, reels: { discovered: 5, processed: 2, review: 0 } },
+    { username: 'review', profile_complete: true, reels: { discovered: 5, processed: 5, review: 1 } },
+    { username: 'done', profile_complete: true, reels: { discovered: 5, processed: 5, review: 0 } },
+    { username: 'profile_pending', profile_complete: false, reels: { discovered: 5, processed: 2, review: 0 } }
+  ];
+  assert.deepEqual(profiles.filter(reelsNeedWork).map(({ username }) => username), ['pending', 'review']);
+  assert.deepEqual(filteredCatalog({ catalog: profiles, search: '', filter: 'reels_pending' }).map(({ username }) => username),
+    ['pending', 'review']);
 });

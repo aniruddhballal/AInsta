@@ -1,5 +1,6 @@
 import { api, esc } from './shared.js';
 import { steps, visibleCatalog, renderSelect, renderStage, renderReview, batchStrip } from './flow.js';
+import { reelsNeedWork } from './queue.js';
 import { renderProfile } from './profile-v3.js';
 import { renderOverview } from './overview.js';
 
@@ -15,7 +16,7 @@ const state = {
   selected: new Set(Array.isArray(saved) ? saved : []),
   search: '', filter: 'all', layout: 'grid',
   mode: ['profile_only', 'depth_first', 'breadth_first', 'reels_only'].includes(savedMode) ? savedMode : 'depth_first',
-  order: ['selection', 'posts_ascending'].includes(savedOrder) ? savedOrder : 'posts_ascending',
+  order: ['selection', 'posts_ascending', 'reels_ascending'].includes(savedOrder) ? savedOrder : 'posts_ascending',
   setupStep: ['profiles', 'mode', 'order', 'review', 'progress'].includes(savedSetup) ? savedSetup : 'profiles',
   itemSearch: '', itemFilter: 'all', itemSort: 'newest', busy: false, error: null, readOnly: false
 };
@@ -104,6 +105,14 @@ document.addEventListener('click', async (event) => {
   }
   if (action === 'grid' || action === 'list') { state.layout = action; render(); return; }
   if (action === 'clear') { state.selected.clear(); saveSelection(); render(); return; }
+  if (action === 'select-reel-work') {
+    state.selected = new Set(state.catalog.filter(reelsNeedWork).map((profile) => profile.username));
+    state.search = ''; state.filter = 'reels_pending'; state.mode = 'reels_only'; state.order = 'reels_ascending';
+    saveSelection();
+    localStorage.setItem('dedgram-mode-v2', state.mode);
+    localStorage.setItem('dedgram-order-v2', state.order);
+    render(); return;
+  }
   if (action === 'select-visible') { for (const profile of visibleCatalog(state)) state.selected.add(profile.username); saveSelection(); render(); return; }
   if (!['run-stage', 'start', 'run-one', 'stop'].includes(action)) return;
   state.busy = true; state.error = null; render();

@@ -10,13 +10,14 @@ export const MODES = Object.freeze({
 
 export const ORDERS = Object.freeze({
   selection: 'Selection order',
-  posts_ascending: 'Fewest posts first'
+  posts_ascending: 'Fewest posts first',
+  reels_ascending: 'Fewest reels first'
 });
 
-export function orderProfiles(profiles, order = 'selection', postCounts = new Map()) {
+export function orderProfiles(profiles, order = 'selection', counts = new Map()) {
   if (!Object.hasOwn(ORDERS, order)) throw new Error('Choose a valid profile order.');
   if (order === 'selection') return [...profiles];
-  return profiles.map((username, index) => ({ username, index, count: postCounts.get(username) }))
+  return profiles.map((username, index) => ({ username, index, count: counts.get(username) }))
     .sort((a, b) => {
       const aKnown = Number.isSafeInteger(a.count) && a.count >= 0;
       const bKnown = Number.isSafeInteger(b.count) && b.count >= 0;

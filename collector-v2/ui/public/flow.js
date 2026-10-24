@@ -1,5 +1,5 @@
 import { badge, esc, gridLabel, number, profileHref, progress, statusText, time } from './shared.js';
-import { filteredCatalog } from './queue.js';
+import { filteredCatalog, reelsNeedWork } from './queue.js';
 
 export const steps = [
   { path: '/', label: 'Choose profiles', short: 'Select', number: '01' },
@@ -50,7 +50,7 @@ function strategy(state) {
 }
 
 function orderControl(state) {
-  return `<label class="flow-order">Run order <select id="run-order" aria-label="Profile run order"><option value="posts_ascending" ${state.order === 'posts_ascending' ? 'selected' : ''}>Fewest posts first</option><option value="selection" ${state.order === 'selection' ? 'selected' : ''}>Selection order</option></select></label>`;
+  return `<label class="flow-order">Run order <select id="run-order" aria-label="Profile run order"><option value="posts_ascending" ${state.order === 'posts_ascending' ? 'selected' : ''}>Fewest posts first</option><option value="reels_ascending" ${state.order === 'reels_ascending' ? 'selected' : ''}>Fewest reels first</option><option value="selection" ${state.order === 'selection' ? 'selected' : ''}>Selection order</option></select></label>`;
 }
 
 function runPanel(state) {
@@ -101,7 +101,7 @@ function modeStep(state) {
 function orderStep(state) {
   return `${setupHeader(state, 'Choose run order', 'Choose how the selected accounts will be queued.')}
     <section class="setup-choice"><span class="eyebrow">RUN ORDER</span>${orderControl(state)}
-      <p>Fewest posts first uses saved exact post counts; profiles without one run last. Selection order follows the order you selected accounts. Individual post details will be added later.</p></section>
+      <p>Fewest posts first uses saved exact post counts. Fewest reels first uses saved finalized reel grid counts. Profiles without the chosen count run last. Selection order follows the order you selected accounts.</p></section>
     ${setupActions(true, 'Review collection', !state.selected.size, `${number(state.selected.size)} profile${state.selected.size === 1 ? '' : 's'} · ${esc(modeOptions.find(([mode]) => mode === state.mode)?.[1] || state.mode)}`)}`;
 }
 
@@ -110,11 +110,11 @@ function reviewStep(state) {
   const unavailable = profiles.filter((profile) => !profile.profile_complete);
   const canRun = profiles.length && !running(state) && !state.busy && !state.readOnly && (state.mode !== 'reels_only' || !unavailable.length);
   const mode = modeOptions.find(([value]) => value === state.mode)?.[1] || state.mode;
-  const order = state.order === 'posts_ascending' ? 'Fewest posts first' : 'Selection order';
+  const order = state.order === 'posts_ascending' ? 'Fewest posts first' : state.order === 'reels_ascending' ? 'Fewest reels first' : 'Selection order';
   return `${setupHeader(state, 'Review and start', 'Check your choices before starting collection.')}
     <section class="setup-review"><div><span class="eyebrow">PROFILES</span><strong>${number(profiles.length)} selected</strong><p>${profiles.slice(0, 7).map((profile) => `@${esc(profile.username)}`).join(', ')}${profiles.length > 7 ? `, and ${profiles.length - 7} more` : ''}</p><button data-action="setup-step" data-step="profiles">Edit profiles</button></div>
       <div><span class="eyebrow">COLLECTION MODE</span><strong>${esc(mode)}</strong><p>${esc(modeOptions.find(([value]) => value === state.mode)?.[2] || '')}</p><button data-action="setup-step" data-step="mode">Edit mode</button></div>
-      <div><span class="eyebrow">RUN ORDER</span><strong>${esc(order)}</strong><p>${state.order === 'posts_ascending' ? 'Saved exact post counts determine order.' : 'Accounts run in the order selected.'}</p><button data-action="setup-step" data-step="order">Edit order</button></div></section>
+      <div><span class="eyebrow">RUN ORDER</span><strong>${esc(order)}</strong><p>${state.order === 'posts_ascending' ? 'Saved exact post counts determine order.' : state.order === 'reels_ascending' ? 'Saved finalized reel counts determine order.' : 'Accounts run in the order selected.'}</p><button data-action="setup-step" data-step="order">Edit order</button></div></section>
     ${state.mode === 'reels_only' && unavailable.length ? `<p class="flow-warning">${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'} still need profile details and reel counts before a reels-only run.</p>` : ''}
     <div class="setup-actions"><button class="button secondary" data-action="setup-back">← Back</button><a class="button secondary ${profiles.length ? '' : 'disabled'}" href="/collect/profiles">Collect step by step →</a><button class="button primary" data-action="start" ${canRun ? '' : 'disabled'}>${state.busy ? 'Starting…' : `Run ${number(profiles.length)} selected →`}</button></div>`;
 }
@@ -130,10 +130,11 @@ export function renderSelect(state) {
   if (state.setupStep === 'review') return reviewStep(state);
   if (state.setupStep === 'progress') return progressStep(state);
   const visible = visibleCatalog(state);
+  const reelWorkCount = state.catalog.filter(reelsNeedWork).length;
   return `${setupHeader(state, 'Choose profiles', 'Find and select the accounts you want to collect.')}
-    <section class="flow-head"><div><span class="eyebrow">PROFILE CATALOG</span><h2>Pick a collection set</h2><p>Accounts come from the existing bot profile index.</p></div><div class="flow-actions"><button class="button secondary" data-action="select-visible">Select visible</button><button class="button secondary" data-action="clear">Clear</button></div></section>
+    <section class="flow-head"><div><span class="eyebrow">PROFILE CATALOG</span><h2>Pick a collection set</h2><p>Accounts come from the existing bot profile index.</p></div><div class="flow-actions"><button class="button secondary" data-action="select-reel-work" ${reelWorkCount ? '' : 'disabled'}>Select all reel work (${number(reelWorkCount)})</button><button class="button secondary" data-action="select-visible">Select visible</button><button class="button secondary" data-action="clear">Clear</button></div></section>
     <div class="setup-dock"><span><strong>${number(state.selected.size)}</strong> selected</span><button class="button primary" data-action="setup-next" ${state.selected.size ? '' : 'disabled'}>Continue to mode →</button></div>
-    <div class="flow-filters"><label>SEARCH PROFILES<input id="catalog-search" type="search" placeholder="Username, country, category, bio" value="${esc(state.search)}"></label><label>SHOW<select id="catalog-filter" aria-label="Filter profiles"><option value="all" ${state.filter === 'all' ? 'selected' : ''}>All profiles</option><option value="uncollected" ${state.filter === 'uncollected' ? 'selected' : ''}>Profile not ready</option><option value="collected" ${state.filter === 'collected' ? 'selected' : ''}>Profile details ready</option><option value="review" ${state.filter === 'review' ? 'selected' : ''}>Needs review</option></select></label><div class="flow-layout" role="group" aria-label="Profile layout"><button data-action="grid" class="${state.layout === 'grid' ? 'current' : ''}" aria-label="Grid view" aria-pressed="${state.layout === 'grid'}">▦</button><button data-action="list" class="${state.layout === 'list' ? 'current' : ''}" aria-label="List view" aria-pressed="${state.layout === 'list'}">☰</button></div></div>
+    <div class="flow-filters"><label>SEARCH PROFILES<input id="catalog-search" type="search" placeholder="Username, country, category, bio" value="${esc(state.search)}"></label><label>SHOW<select id="catalog-filter" aria-label="Filter profiles"><option value="all" ${state.filter === 'all' ? 'selected' : ''}>All profiles</option><option value="uncollected" ${state.filter === 'uncollected' ? 'selected' : ''}>Profile not ready</option><option value="collected" ${state.filter === 'collected' ? 'selected' : ''}>Profile details ready</option><option value="reels_pending" ${state.filter === 'reels_pending' ? 'selected' : ''}>Reels incomplete</option><option value="review" ${state.filter === 'review' ? 'selected' : ''}>Needs review</option></select></label><div class="flow-layout" role="group" aria-label="Profile layout"><button data-action="grid" class="${state.layout === 'grid' ? 'current' : ''}" aria-label="Grid view" aria-pressed="${state.layout === 'grid'}">▦</button><button data-action="list" class="${state.layout === 'list' ? 'current' : ''}" aria-label="List view" aria-pressed="${state.layout === 'list'}">☰</button></div></div>
     <div class="flow-list-title"><span>SHOWING ${number(visible.length)} OF ${number(state.catalog.length)} PROFILES</span><span>${number(state.selected.size)} SELECTED</span></div>
     <div class="flow-profile-list ${state.layout === 'list' ? 'list-layout' : ''}">${visible.map((profile) => {
       const checked = state.selected.has(profile.username);
