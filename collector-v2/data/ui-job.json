@@ -2,7 +2,7 @@
   "id": "ff4792c0-4688-44d8-8197-a79f9fdb07ce",
   "mode": "reels_only",
   "order": "selection",
-  "status": "running",
+  "status": "interrupted",
   "profiles": [
     "pigeon.flac",
     "reposted",
@@ -158,13 +158,13 @@
       }
     },
     "hulksmash.exe": {
-      "status": "running",
+      "status": "interrupted",
       "started_at": "2026-10-24T09:41:06.361Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "reels": {
-          "status": "running",
+          "status": "interrupted",
           "started_at": "2026-10-24T09:41:06.361Z",
           "finished_at": null,
           "error": null
@@ -256,8 +256,8 @@
       }
     }
   },
-  "current": "hulksmash.exe",
-  "current_stage": "reels",
+  "current": null,
+  "current_stage": null,
   "started_at": "2026-10-24T09:06:54.039Z",
   "updated_at": "2026-10-24T09:41:06.361Z",
   "finished_at": null,
