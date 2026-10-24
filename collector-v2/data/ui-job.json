@@ -251,28 +251,28 @@
       }
     },
     "thoughtsby.div": {
-      "status": "running",
+      "status": "complete",
       "started_at": "2026-10-24T07:12:39.633Z",
-      "finished_at": null,
+      "finished_at": "2026-10-24T07:18:34.935Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "running",
+          "status": "complete",
           "started_at": "2026-10-24T07:12:39.633Z",
-          "finished_at": null,
+          "finished_at": "2026-10-24T07:18:34.935Z",
           "error": null
         }
       }
     },
     "asapcoder.exe": {
-      "status": "queued",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-10-24T07:18:34.939Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
+          "status": "running",
+          "started_at": "2026-10-24T07:18:34.939Z",
           "finished_at": null,
           "error": null
         }
@@ -503,10 +503,10 @@
       }
     }
   },
-  "current": "thoughtsby.div",
+  "current": "asapcoder.exe",
   "current_stage": "profile",
   "started_at": "2026-10-24T06:41:25.329Z",
-  "updated_at": "2026-10-24T07:12:39.633Z",
+  "updated_at": "2026-10-24T07:18:34.939Z",
   "finished_at": null,
   "stop_requested": false,
   "logs": [
@@ -559,6 +559,12 @@
     "[12:38:57] Scanning reel grid",
     "[12:42:38] reel: 716 confirmed",
     "[12:42:38] Done: Instagram posts 1542, reels 716. Report: D:\\post engg\\dedgram\\collector-v2\\data\\gzfr\\report.html",
-    "Finished @gzfr profile: complete"
+    "Finished @gzfr profile: complete",
+    "Starting @thoughtsby.div profile",
+    "[12:42:40] Collecting thoughtsby.div profile",
+    "[12:42:44] Scanning reel grid",
+    "[12:48:33] reel: 1019 confirmed",
+    "[12:48:33] Done: Instagram posts 1557, reels 1019. Report: D:\\post engg\\dedgram\\collector-v2\\data\\thoughtsby.div\\report.html",
+    "Finished @thoughtsby.div profile: complete"
   ]
 }
