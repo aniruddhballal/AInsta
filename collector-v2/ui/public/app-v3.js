@@ -6,10 +6,15 @@ import { renderOverview } from './overview.js';
 const app = document.querySelector('#app');
 const selectionKey = 'dedgram-selected-v2';
 const saved = (() => { try { return JSON.parse(localStorage.getItem(selectionKey) || '[]'); } catch { return []; } })();
+const savedMode = localStorage.getItem('dedgram-mode-v2');
+const savedOrder = localStorage.getItem('dedgram-order-v2');
 const state = {
   catalog: [], batch: null, batchProfiles: [], detail: null, overview: null,
   selected: new Set(Array.isArray(saved) ? saved : []),
-  search: '', filter: 'all', itemSearch: '', itemFilter: 'all', itemSort: 'newest', busy: false, error: null, readOnly: false
+  search: '', filter: 'all', layout: 'grid',
+  mode: ['profile_only', 'depth_first', 'breadth_first', 'reels_only'].includes(savedMode) ? savedMode : 'depth_first',
+  order: ['selection', 'posts_ascending'].includes(savedOrder) ? savedOrder : 'posts_ascending',
+  itemSearch: '', itemFilter: 'all', itemSort: 'newest', busy: false, error: null, readOnly: false
 };
 const path = () => location.pathname === '/summary' ? '/overview' : location.pathname;
 const saveSelection = () => localStorage.setItem(selectionKey, JSON.stringify([...state.selected]));
@@ -56,6 +61,8 @@ document.addEventListener('input', (event) => {
 });
 document.addEventListener('change', (event) => {
   const target = event.target;
+  if (target.name === 'run-mode') { state.mode = target.value; localStorage.setItem('dedgram-mode-v2', state.mode); render(); return; }
+  if (target.id === 'run-order') { state.order = target.value; localStorage.setItem('dedgram-order-v2', state.order); render(); return; }
   if (target.dataset.select) { target.checked ? state.selected.add(target.dataset.select) : state.selected.delete(target.dataset.select); saveSelection(); render(); }
   if (target.id === 'catalog-filter') { state.filter = target.value; render(); }
   if (target.id === 'item-filter') { state.itemFilter = target.value; render(); }
@@ -66,13 +73,15 @@ document.addEventListener('click', async (event) => {
   if (!button) return;
   const action = button.dataset.action;
   if (action === 'dismiss') { state.error = null; render(); return; }
+  if (action === 'grid' || action === 'list') { state.layout = action; render(); return; }
   if (action === 'clear') { state.selected.clear(); saveSelection(); render(); return; }
   if (action === 'select-visible') { for (const profile of visibleCatalog(state)) state.selected.add(profile.username); saveSelection(); render(); return; }
-  if (action !== 'run-stage' && action !== 'stop') return;
+  if (!['run-stage', 'start', 'run-one', 'stop'].includes(action)) return;
   state.busy = true; state.error = null; render();
   try {
     const endpoint = action === 'stop' ? '/api/runs/stop' : '/api/runs';
-    const body = action === 'stop' ? {} : { profiles: [...state.selected], mode: button.dataset.mode, order: 'selection' };
+    const body = action === 'stop' ? {} : { profiles: action === 'run-one' ? [button.dataset.username] : [...state.selected],
+      mode: action === 'run-one' ? 'depth_first' : action === 'start' ? state.mode : button.dataset.mode, order: state.order };
     await api(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
     await refresh();
   } catch (error) { state.error = error.message; }
