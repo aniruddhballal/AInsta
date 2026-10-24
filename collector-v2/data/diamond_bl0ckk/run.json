@@ -1,12 +1,11 @@
 {
-  "started_at": "2026-10-23T14:44:16.311Z",
-  "updated_at": "2026-10-23T14:44:52.947Z",
-  "status": "complete",
-  "phase": "done",
+  "started_at": "2026-10-24T15:58:27.629Z",
+  "updated_at": "2026-10-24T16:02:41.933Z",
+  "status": "running",
+  "phase": "item details",
   "scope": [
-    "profile",
-    "reel_grid"
+    "reel"
   ],
-  "current_url": null,
+  "current_url": "https://www.instagram.com/reel/DeuIHKzgRj7/",
   "error": null
 }

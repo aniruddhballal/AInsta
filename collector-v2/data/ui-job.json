@@ -1,15 +1,9 @@
 {
-  "id": "ff4792c0-4688-44d8-8197-a79f9fdb07ce",
+  "id": "9dcbc125-f489-4ae3-9365-99b9703f0990",
   "mode": "reels_only",
   "order": "selection",
-  "status": "interrupted",
+  "status": "running",
   "profiles": [
-    "pigeon.flac",
-    "reposted",
-    "pexe.bh",
-    "pichypeapp",
-    "printamovie",
-    "9ineesss",
     "hulksmash.exe",
     "diamond_bl0ckk",
     "vviennteru",
@@ -19,30 +13,6 @@
     "camilaboucheryamamoto"
   ],
   "steps": [
-    {
-      "username": "pigeon.flac",
-      "stage": "reels"
-    },
-    {
-      "username": "reposted",
-      "stage": "reels"
-    },
-    {
-      "username": "pexe.bh",
-      "stage": "reels"
-    },
-    {
-      "username": "pichypeapp",
-      "stage": "reels"
-    },
-    {
-      "username": "printamovie",
-      "stage": "reels"
-    },
-    {
-      "username": "9ineesss",
-      "stage": "reels"
-    },
     {
       "username": "hulksmash.exe",
       "stage": "reels"
@@ -73,113 +43,29 @@
     }
   ],
   "results": {
-    "pigeon.flac": {
-      "status": "complete",
-      "started_at": "2026-10-24T09:06:54.054Z",
-      "finished_at": "2026-10-24T09:15:26.064Z",
-      "error": null,
-      "stages": {
-        "reels": {
-          "status": "complete",
-          "started_at": "2026-10-24T09:06:54.054Z",
-          "finished_at": "2026-10-24T09:15:26.064Z",
-          "error": null
-        }
-      }
-    },
-    "reposted": {
-      "status": "complete",
-      "started_at": "2026-10-24T09:15:26.074Z",
-      "finished_at": "2026-10-24T09:16:16.484Z",
-      "error": null,
-      "stages": {
-        "reels": {
-          "status": "complete",
-          "started_at": "2026-10-24T09:15:26.074Z",
-          "finished_at": "2026-10-24T09:16:16.484Z",
-          "error": null
-        }
-      }
-    },
-    "pexe.bh": {
-      "status": "complete",
-      "started_at": "2026-10-24T09:16:16.489Z",
-      "finished_at": "2026-10-24T09:20:36.606Z",
-      "error": null,
-      "stages": {
-        "reels": {
-          "status": "complete",
-          "started_at": "2026-10-24T09:16:16.489Z",
-          "finished_at": "2026-10-24T09:20:36.606Z",
-          "error": null
-        }
-      }
-    },
-    "pichypeapp": {
-      "status": "needs_review",
-      "started_at": "2026-10-24T09:20:36.615Z",
-      "finished_at": "2026-10-24T09:25:56.218Z",
-      "error": null,
-      "stages": {
-        "reels": {
-          "status": "needs_review",
-          "started_at": "2026-10-24T09:20:36.615Z",
-          "finished_at": "2026-10-24T09:25:56.218Z",
-          "error": null
-        }
-      }
-    },
-    "printamovie": {
-      "status": "needs_review",
-      "started_at": "2026-10-24T09:25:56.229Z",
-      "finished_at": "2026-10-24T09:32:46.592Z",
-      "error": null,
-      "stages": {
-        "reels": {
-          "status": "needs_review",
-          "started_at": "2026-10-24T09:25:56.229Z",
-          "finished_at": "2026-10-24T09:32:46.592Z",
-          "error": null
-        }
-      }
-    },
-    "9ineesss": {
-      "status": "needs_review",
-      "started_at": "2026-10-24T09:32:46.601Z",
-      "finished_at": "2026-10-24T09:41:06.353Z",
-      "error": null,
-      "stages": {
-        "reels": {
-          "status": "needs_review",
-          "started_at": "2026-10-24T09:32:46.601Z",
-          "finished_at": "2026-10-24T09:41:06.353Z",
-          "error": null
-        }
-      }
-    },
     "hulksmash.exe": {
-      "status": "interrupted",
-      "started_at": "2026-10-24T09:41:06.361Z",
-      "finished_at": null,
+      "status": "needs_review",
+      "started_at": "2026-10-24T15:44:11.916Z",
+      "finished_at": "2026-10-24T15:58:24.878Z",
       "error": null,
       "stages": {
         "reels": {
-          "status": "interrupted",
-          "started_at": "2026-10-24T09:41:06.361Z",
-          "finished_at": null,
+          "status": "needs_review",
+          "started_at": "2026-10-24T15:44:11.916Z",
+          "finished_at": "2026-10-24T15:58:24.878Z",
           "error": null
         }
       }
     },
     "diamond_bl0ckk": {
-      "status": "queued",
-      "started_at": null,
+      "status": "running",
+      "started_at": "2026-10-24T15:58:24.889Z",
       "finished_at": null,
       "error": null,
       "stages": {
         "reels": {
-          "status": "queued",
-          "started_at": null,
+          "status": "running",
+          "started_at": "2026-10-24T15:58:24.889Z",
           "finished_at": null,
           "error": null
         }
@@ -256,72 +142,72 @@
       }
     }
   },
-  "current": null,
-  "current_stage": null,
-  "started_at": "2026-10-24T09:06:54.039Z",
-  "updated_at": "2026-10-24T09:41:06.361Z",
+  "current": "diamond_bl0ckk",
+  "current_stage": "reels",
+  "started_at": "2026-10-24T15:44:11.906Z",
+  "updated_at": "2026-10-24T15:58:24.889Z",
   "finished_at": null,
   "stop_requested": false,
   "logs": [
-    "[15:07:06] 63: reel DemtevSvZY3",
-    "[15:07:11] 64: reel DemtaRjvRTS",
-    "[15:07:15] 65: reel DemtUgjPAlA",
-    "[15:07:19] 66: reel DemtNxHvi5N",
-    "[15:07:23] 67: reel DemtEixvWYw",
-    "[15:07:27] 68: reel DemtAwcvcsA",
-    "[15:07:31] 69: reel Dems6N-vBJY",
-    "[15:07:36] 70: reel DemspEgNjMh",
-    "[15:07:40] 71: reel DemGH-VuogQ",
-    "[15:07:44] 72: reel DemGDCjOBYN",
-    "[15:07:48] 73: reel DemF8gJu9DV",
-    "[15:07:53] 74: reel DemF44bOhLI",
-    "[15:07:57] 75: reel DemFve9OrEA",
-    "[15:08:01] 76: reel DemFqfmODzR",
-    "[15:08:06] 77: reel DemFjl7u9B-",
-    "[15:08:09] 78: reel DemFd0Au-9t",
-    "[15:08:13] 79: reel DemFWdsOOMQ",
-    "[15:08:17] 80: reel DemFPMZuuFb",
-    "[15:08:22] 81: reel DemFKE7u562",
-    "[15:08:27] 82: reel DemFE0VuW2_",
-    "[15:08:30] 83: reel DemE-EUIr7b",
-    "[15:08:34] 84: reel DemE45KIHb5",
-    "[15:08:38] 85: reel DemEwJCuFny",
-    "[15:08:42] 86: reel DelfLK3pVdm",
-    "[15:08:46] 87: reel DeldguFJUZ3",
-    "[15:08:50] 88: reel DeldbEoJyrs",
-    "[15:08:55] 89: reel DeldJk0JDUP",
-    "[15:08:58] 90: reel Delc6zPpmjv",
-    "[15:09:03] 91: reel DelcpDuJUsC",
-    "[15:09:07] 92: reel DelcggbpLWM",
-    "[15:09:11] 93: reel DelcdhoJ2rb",
-    "[15:09:15] 94: reel DelcagVpa-R",
-    "[15:09:19] 95: reel DelcYM0pyu7",
-    "[15:09:23] 96: reel DelbJ1xNGMw",
-    "[15:09:27] 97: reel DekIJdjJN0G",
-    "[15:09:31] 98: reel DekIHQYp_z9",
-    "[15:09:35] 99: reel DekIB4YNp-2",
-    "[15:09:39] 100: reel DekH8bJNnG2",
-    "[15:09:43] 101: reel DekHtr1t9oL",
-    "[15:09:47] 102: reel DekHpm2t075",
-    "[15:09:50] 103: reel DekHl9otucm",
-    "[15:09:55] 104: reel DekHYONNAdA",
-    "[15:09:58] 105: reel DekHSiptuxw",
-    "[15:10:02] 106: reel DekGZsENf4h",
-    "[15:10:07] 107: reel DejtszfIIMv",
-    "[15:10:11] 108: reel DejtoWeIYix",
-    "[15:10:15] 109: reel DejtUjEs_3H",
-    "[15:10:19] 110: reel DejtLOiMf_5",
-    "[15:10:23] 111: reel DejtEOTsJFl",
-    "[15:10:27] 112: reel Dejs8EesToQ",
-    "[15:10:31] 113: reel Dejs20isyfW",
-    "[15:10:35] 114: reel Dei5KW5t6PU",
-    "[15:10:39] 115: reel Dei5Fr0NrXW",
-    "[15:10:44] 116: reel Dei5DNjt55F",
-    "[15:10:48] 117: reel DeiYiakypRl",
-    "[15:10:52] 118: reel DeiYfKyyWVh",
-    "[15:10:56] 119: reel DeiYT9HSmcS",
-    "[15:11:00] 120: reel DeiYNHTyooy",
-    "[15:11:04] Done: 120 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\9ineesss\\report.html",
-    "Finished @9ineesss reels: needs_review"
+    "[21:17:06] 10: reel DerMih9JJHq",
+    "[21:17:27] Item issue: Instagram rendered an empty page.",
+    "[21:17:29] 11: reel DeqlvsVpG0P",
+    "[21:17:50] Item issue: Instagram rendered an empty page.",
+    "[21:17:52] 12: reel DeqbIUFJ8rk",
+    "[21:18:13] Item issue: Instagram rendered an empty page.",
+    "[21:18:15] 13: reel DeqOBKvpOBL",
+    "[21:18:36] Item issue: Instagram rendered an empty page.",
+    "[21:18:38] 14: reel DeqGR5cvmhX",
+    "[21:18:59] Item issue: Instagram rendered an empty page.",
+    "[21:19:01] 15: reel Dep4MDmy6tT",
+    "[21:19:22] Item issue: Instagram rendered an empty page.",
+    "[21:19:24] 16: reel Deo-6ugpUy3",
+    "[21:19:46] Item issue: Instagram rendered an empty page.",
+    "[21:19:47] 17: reel DeouNNyuaui",
+    "[21:20:09] Item issue: Instagram rendered an empty page.",
+    "[21:20:10] 18: reel Deod7ORv3AB",
+    "[21:20:32] Item issue: Instagram rendered an empty page.",
+    "[21:20:34] 19: reel DeoXGV5AxO1",
+    "[21:20:56] Item issue: Instagram rendered an empty page.",
+    "[21:20:58] 20: reel Densx_XBfwn",
+    "[21:21:20] Item issue: Instagram rendered an empty page.",
+    "[21:21:22] 21: reel DembUBdtu-C",
+    "[21:21:44] Item issue: Instagram rendered an empty page.",
+    "[21:21:47] 22: reel Delky4mN7Xr",
+    "[21:22:10] Item issue: Instagram rendered an empty page.",
+    "[21:22:12] 23: reel DelbmictM1-",
+    "[21:22:33] Item issue: Instagram rendered an empty page.",
+    "[21:22:35] 24: reel DelWdrstgnl",
+    "[21:22:57] Item issue: Instagram rendered an empty page.",
+    "[21:22:58] 25: reel DelPSwrB-CE",
+    "[21:23:20] Item issue: Instagram rendered an empty page.",
+    "[21:23:21] 26: reel Dek_Lnkph-l",
+    "[21:23:43] Item issue: Instagram rendered an empty page.",
+    "[21:23:45] 27: reel Dek3w9vpYyg",
+    "[21:24:06] Item issue: Instagram rendered an empty page.",
+    "[21:24:08] 28: reel Dej2TnPBKVB",
+    "[21:24:30] Item issue: Instagram rendered an empty page.",
+    "[21:24:32] 29: reel DejuXA1Sksf",
+    "[21:24:54] Item issue: Instagram rendered an empty page.",
+    "[21:24:55] 30: reel DejpVdkM_Ms",
+    "[21:25:17] Item issue: Instagram rendered an empty page.",
+    "[21:25:18] 31: reel DejfyMnh0CY",
+    "[21:25:40] Item issue: Instagram rendered an empty page.",
+    "[21:25:42] 32: reel DejZTIYBGOj",
+    "[21:26:03] Item issue: Instagram rendered an empty page.",
+    "[21:26:05] 33: reel DejQ54KP7bq",
+    "[21:26:26] Item issue: Instagram rendered an empty page.",
+    "[21:26:28] 34: reel DejBf4hBohU",
+    "[21:26:49] Item issue: Instagram rendered an empty page.",
+    "[21:26:51] 35: reel Dei6D8NSrqF",
+    "[21:27:12] Item issue: Instagram rendered an empty page.",
+    "[21:27:14] 36: reel DeixvXlBWpv",
+    "[21:27:35] Item issue: Instagram rendered an empty page.",
+    "[21:27:37] 37: reel DeiouUtg3UL",
+    "[21:27:58] Item issue: Instagram rendered an empty page.",
+    "[21:28:00] 38: reel DehIKRLN5GT",
+    "[21:28:21] Item issue: Instagram rendered an empty page.",
+    "[21:28:23] Done: 44 items. Report: D:\\post engg\\dedgram\\collector-v2\\data\\hulksmash.exe\\report.html",
+    "Finished @hulksmash.exe reels: needs_review"
   ]
 }

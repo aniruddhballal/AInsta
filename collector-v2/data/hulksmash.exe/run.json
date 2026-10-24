@@ -1,11 +1,11 @@
 {
-  "started_at": "2026-10-24T09:41:07.520Z",
-  "updated_at": "2026-10-24T09:43:04.206Z",
-  "status": "running",
-  "phase": "item details",
+  "started_at": "2026-10-24T15:44:13.052Z",
+  "updated_at": "2026-10-24T15:58:23.257Z",
+  "status": "partial",
+  "phase": "done",
   "scope": [
     "reel"
   ],
-  "current_url": "https://www.instagram.com/reel/Det5peqNT-7/",
+  "current_url": null,
   "error": null
 }
