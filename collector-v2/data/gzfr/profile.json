@@ -1,7 +1,7 @@
 {
   "username": "gzfr",
   "url": "https://www.instagram.com/gzfr/",
-  "fetched_at": "2026-10-23T14:20:04.303Z",
+  "fetched_at": "2026-10-24T07:08:57.303Z",
   "display_name": null,
   "bio": "holly",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 578782,
-    "raw": "578,782",
+    "value": 578611,
+    "raw": "578,611",
     "approximate": false,
     "source": "header_title"
   },
@@ -29,8 +29,8 @@
         "approximate": true
       },
       "exact_title": {
-        "value": 578782,
-        "raw": "578,782",
+        "value": 578611,
+        "raw": "578,611",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=hlgdxoADaGUQ7kNvwGcZ5yD&_nc_oc=Adq9eLnoIm6Y7mZbZbUlsjeRU5lDgYYd3xPFKpAJ6mKmxsiweS8Z0qFIF2PudHH4aiOO_vpXIhg-Du9v2Ke9VIVK&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=Mp2wUeypkbCK8RKKbplLaw&_nc_ss=7f6a8&oh=00_AQMPHSrkn-i7b4Sd6Laa-rb28NcUOKB8W7qcaMKOjyov_Q&oe=6AE15570",
+  "profile_picture_url": "https://instagram.fblr24-3.fna.fbcdn.net/v/t51.82787-19/779167653_18056273483794999_871079000182283254_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy44MDguQzMifQ%3D%3D&_nc_ohc=ZQibwpSfrkcQ7kNvwGT3brY&_nc_oc=AdpjilfKocV2Nu5ebXF4IhOwFdXDrl6aL_Isskf3tMCZbHX1yd7w-leC_lRL0KzDPdgptkGnrC2hN8wgQXv6LIIE&_nc_zt=24&_nc_ht=instagram.fblr24-3.fna&_nc_gid=HL6KhAY7jC4HFoKoKnDj5w&_nc_ss=7f6a8&oh=00_AQMFTM2cobU-3C_Pa2OLCTJQE0t3gI591hSnmxSVAFDc2g&oe=6AE23670",
   "date_joined": "June 2022",
   "account_based_in": "Not shared",
   "former_usernames_count": {
@@ -86,7 +86,7 @@
       },
       "followers": {
         "label": "578K followers",
-        "exact_title": "578,782"
+        "exact_title": "578,611"
       },
       "following": {
         "label": "0 following",
@@ -94,7 +94,6 @@
       }
     }
   },
-  "issues": [
-    "Page metadata says 28 following; current profile header says 0, which is used for the count."
-  ]
+  "issues": [],
+  "posts_count_observed_at": "2026-10-24T07:08:57.303Z"
 }

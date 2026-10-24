@@ -1,7 +1,7 @@
 {
   "username": "goofybara777",
   "url": "https://www.instagram.com/goofybara777/",
-  "fetched_at": "2026-10-23T15:01:24.463Z",
+  "fetched_at": "2026-10-24T06:41:34.960Z",
   "display_name": "Goofybara",
   "bio": "If you love cats, you belong here 😻🐈♥️\nFollow for daily cuteness 🐾\nwww.instagram.com/goofybara777",
   "posts_count": {
@@ -10,8 +10,8 @@
     "approximate": false
   },
   "followers_count": {
-    "value": 26895,
-    "raw": "26,895",
+    "value": 27005,
+    "raw": "27,005",
     "approximate": false,
     "source": "header_title"
   },
@@ -24,13 +24,13 @@
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 26800,
-        "raw": "26.8K",
+        "value": 27000,
+        "raw": "27K",
         "approximate": true
       },
       "exact_title": {
-        "value": 26895,
-        "raw": "26,895",
+        "value": 27005,
+        "raw": "27,005",
         "approximate": false
       },
       "metadata": {
@@ -67,7 +67,7 @@
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/806784720_18101098130093284_5170595210887361990_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NDEuQzMifQ%3D%3D&_nc_ohc=7JMbq9mWGK8Q7kNvwFBvimf&_nc_oc=AdrY_KzKq6pJteynqgFLESf4FD0FARFsI8lbPwRUhsoNnIGdPIp4HI-0K1CzJQyt6dcRH2lvpwh_JKjybNfM0x2b&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=dRpBmgbMx272O5CMiIvi-g&_nc_ss=7f6a8&oh=00_AQNdDzvmzwPPRmaekdVd1Jsjb8QRcs5OrWfHQOnPXFEnyA&oe=6AE15039",
+  "profile_picture_url": "https://instagram.fblr24-3.fna.fbcdn.net/v/t51.82787-19/806784720_18101098130093284_5170595210887361990_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy45NDEuQzMifQ%3D%3D&_nc_ohc=7JMbq9mWGK8Q7kNvwHy-STq&_nc_oc=AdrsbocC3wICh-U4TQLF-8wiy2WD0Ceez8h1aHURplKsARTAmZIeR4sjovo9zY5Vgf7DBYOvC_2XRE02YQV1VUtK&_nc_zt=24&_nc_ht=instagram.fblr24-3.fna&_nc_gid=d38YnNn8rlITs1aMTYdyRg&_nc_ss=7f6a8&oh=00_AQO9ikenrgh9kKGl6iMQGpDXbTaO3WGAfrEpr3RyyjFNIQ&oe=6AE23139",
   "date_joined": "September 2026",
   "account_based_in": "Turkey",
   "former_usernames_count": {
@@ -76,7 +76,7 @@
     "approximate": false
   },
   "raw": {
-    "header_text": "goofybara777\nGoofybara\n839 posts\n26.8K followers\n1 following\nIf you love cats, you belong here 😻🐈♥️\nFollow for daily cuteness 🐾\nwww.instagram.com/goofybara777\nFollow\nMessage\n≽(◉˕ ◉ ≼マ\n/ᐠ > ˕ <マ ₊˚⊹♡\n˃⩊˂\n≽^• ˕ • ྀི≼",
+    "header_text": "goofybara777\nGoofybara\n839 posts\n27K followers\n1 following\nIf you love cats, you belong here 😻🐈♥️\nFollow for daily cuteness 🐾\nwww.instagram.com/goofybara777\nFollow\nMessage\n≽(◉˕ ◉ ≼マ\n/ᐠ > ˕ <マ ₊˚⊹♡\n˃⩊˂\n≽^• ˕ • ྀི≼",
     "about_text": "About this account\ngoofybara777\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nSeptember 2026\nAccount based in\nTurkey\nFormer usernames\n1\nClose",
     "description": "27K Followers, 1 Following, 839 Posts - Goofybara (@goofybara777) on Instagram: \"If you love cats, you belong here 😻🐈♥️\nFollow for daily cuteness 🐾\"",
     "stat_evidence": {
@@ -85,8 +85,8 @@
         "exact_title": ""
       },
       "followers": {
-        "label": "26.8K followers",
-        "exact_title": "26,895"
+        "label": "27K followers",
+        "exact_title": "27,005"
       },
       "following": {
         "label": "1 following",

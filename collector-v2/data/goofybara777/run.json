@@ -1,12 +1,12 @@
 {
-  "started_at": "2026-10-23T15:01:19.222Z",
-  "updated_at": "2026-10-23T15:04:56.845Z",
-  "status": "partial",
+  "started_at": "2026-10-24T06:41:30.570Z",
+  "updated_at": "2026-10-24T06:45:47.166Z",
+  "status": "complete",
   "phase": "done",
   "scope": [
     "profile",
     "reel_grid"
   ],
   "current_url": null,
-  "error": "reel grid: Grid scan ended before confirming the last item."
+  "error": null
 }
