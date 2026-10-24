@@ -165,7 +165,7 @@ async function route(request, response) {
   const origin = request.headers.origin;
   if (origin) {
     const allowed = origin === 'http://127.0.0.1:5173' || origin === 'http://localhost:5173' || /^moz-extension:\/\/[a-z0-9-]+$/i.test(origin);
-    if (!allowed) return send(response, 403, { error: 'This local API only accepts requests from the dedgram dashboard or Firefox add-on.' });
+    if (!allowed) return send(response, 403, { error: 'This local API only accepts requests from the deadgram dashboard or Firefox add-on.' });
     response.setHeader('Access-Control-Allow-Origin', origin);
     response.setHeader('Vary', 'Origin');
   }
@@ -505,6 +505,6 @@ async function route(request, response) {
 }
 
 createServer((request, response) => { void route(request, response); }).listen(port, host, () => {
-  console.log(`dedgram API ready at http://${host}:${port}`);
+  console.log(`deadgram API ready at http://${host}:${port}`);
   console.log(`Data directory: ${dataDirectory}`);
 });

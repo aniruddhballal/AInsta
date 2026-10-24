@@ -99,8 +99,8 @@ function App() {
     return isSurfaceFilter(value) ? value : 'all';
   });
   const [surfaceCountry, setSurfaceCountry] = useState(() => new URLSearchParams(window.location.search).get('country') || 'all');
-  const [joinedFrom, setJoinedFrom] = useState(() => { const value = new URLSearchParams(window.location.search).get('from'); return isDateValue(value) ? value : ''; });
-  const [joinedTo, setJoinedTo] = useState(() => { const value = new URLSearchParams(window.location.search).get('to'); return isDateValue(value) ? value : ''; });
+  const [joinedFrom, setJoinedFrom] = useState(() => { const value = new URLSearchParams(window.location.search).get('from'); return value && isDateValue(value) ? value : ''; });
+  const [joinedTo, setJoinedTo] = useState(() => { const value = new URLSearchParams(window.location.search).get('to'); return value && isDateValue(value) ? value : ''; });
   const [postSort, setPostSort] = useState<'none' | 'asc' | 'desc'>(() => {
     const value = new URLSearchParams(window.location.search).get('posts');
     return value === 'asc' || value === 'desc' ? value : 'none';
@@ -156,8 +156,8 @@ function App() {
       setSurfaceCountry(params.get('country') || 'all');
       const from = params.get('from');
       const to = params.get('to');
-      setJoinedFrom(isDateValue(from) ? from : '');
-      setJoinedTo(isDateValue(to) ? to : '');
+      setJoinedFrom(from && isDateValue(from) ? from : '');
+      setJoinedTo(to && isDateValue(to) ? to : '');
       const posts = params.get('posts');
       setPostSort(posts === 'asc' || posts === 'desc' ? posts : 'none');
       setPostCountFilter(params.get('post-counts') === 'all' ? 'all' : 'missing');
@@ -291,7 +291,7 @@ function App() {
     .filter((job): job is Job => Boolean(job && selectedProfile && job.profile_keys.some((username) => username.toLocaleLowerCase() === key(selectedProfile))));
 
   return <main className={`shell${profileUsername ? ' profile-shell' : ''}`}>
-    <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="dedgram home"><span className="brand-mark">d</span><span>dedgram <small>PROFILE ANALYSIS</small></span></a><div className="topbar-actions"><button className="button secondary extension-shortcut" type="button" onClick={() => void copyFirefoxDebuggingUrl()} title="Copy Firefox add-on debugging address"><Puzzle aria-hidden="true" size={15} strokeWidth={1.8} /><span>Firefox add-on</span></button><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span><span className="connection-label">{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</span></div></div></header>
+    <header className="topbar"><a className="brand" href="/" onClick={(event) => { event.preventDefault(); navigateTab('master'); }} aria-label="deadgram home"><img className="brand-mark" src="/favicon.svg" alt="" /><span>deadgram <small>PROFILE ANALYSIS</small></span></a><div className="topbar-actions"><button className="button secondary extension-shortcut" type="button" onClick={() => void copyFirefoxDebuggingUrl()} title="Copy Firefox add-on debugging address"><Puzzle aria-hidden="true" size={15} strokeWidth={1.8} /><span>Firefox add-on</span></button><div className="connection"><span className="connection-icon" aria-hidden="true">{activeJob ? <Activity /> : <Database />}</span><span className="connection-label">{activeJob ? 'JOB RUNNING' : 'LOCAL DATA CONNECTED'}</span></div></div></header>
     {debuggingHint && <div className="debugging-hint" role="status"><span>{debuggingHint}</span><button className="icon-button" onClick={() => setDebuggingHint('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
     {!profileUsername && <section className="intro"><div><p className="eyebrow">PRIVATE WORKSPACE / LOCAL ONLY</p><h1>Bot profiles</h1><p className="lede">Browse the phone catalog, collect profile details, and inspect post dates.</p></div><div className="metric"><strong>{profiles.length}</strong><span>PROFILES</span></div></section>}
     {error && <div className="alert" role="alert"><span>{error}</span><button className="icon-button" onClick={() => setError('')} aria-label="Dismiss"><X aria-hidden="true" /></button></div>}
@@ -334,7 +334,7 @@ function App() {
       </section>}
       {tab === 'issues' && <section className="issues">{issues.length ? issues.slice().reverse().map((issue, index) => { const affected = profiles.find((profile) => key(profile) === issue.username?.toLocaleLowerCase()); return <article className="issue" key={issue.id || `${issue.username}-${issue.occurred_at}-${index}`}><div className="issue-icon"><CircleAlert aria-hidden="true" /></div><div className="issue-body"><div className="issue-head"><strong>@{issue.username || 'Unknown profile'}</strong><span>{text(issue.code)}</span></div><p>{text(issue.message)}</p><small>{fmt(issue.occurred_at)}</small>{issue.recommended_action && <p className="muted">{issue.recommended_action}</p>}</div><div className="issue-links">{issue.profile_url && <a href={issue.profile_url} target="_blank" rel="noreferrer">Profile <ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a>}{issue.post_url && <a href={issue.post_url} target="_blank" rel="noreferrer">Post <ArrowUpRight className="ui-icon link-icon" aria-hidden="true" /></a>}{affected && <button className="link-button" onClick={() => void setIgnored(affected.username, !affected.ignored)}>{affected.ignored ? 'Restore profile' : 'Ignore profile'}</button>}</div></article>; }) : <div className="empty"><span className="check"><CircleCheck aria-hidden="true" /></span><h3>No issues recorded</h3><p>Collection problems will appear here with the affected profile.</p></div>}</section>}
     </>}
-    <footer><span>dedgram · LOCAL PROFILE DATA</span><span>Reads and writes <code>bot-info/database/</code></span></footer>
+    <footer><span>deadgram · LOCAL PROFILE DATA</span><span>Reads and writes <code>bot-info/database/</code></span></footer>
   </main>;
 }
 

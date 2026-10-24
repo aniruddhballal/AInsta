@@ -1,4 +1,5 @@
 /* Collector-specific layout on top of the Profile Showcase stylesheet. */
+.brand-word{text-transform:lowercase}
 #app{min-height:calc(100vh - 150px);padding-bottom:100px}
 .loading,.empty-state,.flow-empty{padding:50px 0;color:var(--muted);font-size:13px}
 .button:disabled,.button.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}

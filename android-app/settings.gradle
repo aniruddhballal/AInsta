@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = 'dedgram'
+rootProject.name = 'deadgram'
 include ':app'

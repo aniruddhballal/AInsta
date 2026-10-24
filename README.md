@@ -1,6 +1,6 @@
-# dedgram
+# deadgram
 
-dedgram is a small toolkit for building and maintaining an Instagram profile catalog. It includes a native Android collector, a local web dashboard, and a Firefox extension that collects only jobs started from that dashboard.
+deadgram is a small toolkit for building and maintaining an Instagram profile catalog. It includes a native Android collector, a local web dashboard, and a Firefox extension that collects only jobs started from that dashboard.
 
 ## Project layout
 
@@ -20,7 +20,7 @@ Dashboard data is split by entity and analysis type: core profile files live in 
 
 ### 1. Capture profiles on Android
 
-Build or install the Android app, grant overlay permission, enable the dedgram accessibility service, open an Instagram profile, and tap the dedgram bubble. The app validates the visible profile identity, ignores duplicates and false metric labels, and saves the username to:
+Build or install the Android app, grant overlay permission, enable the deadgram accessibility service, open an Instagram profile, and tap the deadgram bubble. The app validates the visible profile identity, ignores duplicates and false metric labels, and saves the username to:
 
 ```text
 Documents/dedgram/profiles.json

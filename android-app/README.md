@@ -1,11 +1,11 @@
-# dedgram Android
+# deadgram Android
 
-dedgram is a native Android companion for collecting Instagram profile usernames. It places a small capture bubble over Instagram, reads the visible accessibility tree only after the user taps it, and maintains a searchable saved-profile catalog.
+deadgram is a native Android companion for collecting Instagram profile usernames. It places a small capture bubble over Instagram, reads the visible accessibility tree only after the user taps it, and maintains a searchable saved-profile catalog.
 
 ## Current features
 
 - The capture bubble appears only while Instagram is the active app.
-- The bubble uses the dedgram pixel D mark in a black rounded-square/squircle.
+- The bubble uses the black-and-white deadgram mark: a circle within a circle with a dot at the center.
 - Drag the bubble to any position on the screen. Its position is remembered for later sessions.
 - A tap and a drag are distinguished, so repositioning the bubble does not accidentally save a profile.
 - The bubble uses an accessibility overlay when available and falls back to an accessibility-service overlay when needed.
@@ -26,10 +26,10 @@ dedgram is a native Android companion for collecting Instagram profile usernames
 ## Capture setup
 
 1. Install the APK.
-2. Open dedgram and grant **Overlay permission**.
-3. Open Android **Accessibility settings** and enable **dedgram profile capture**.
+2. Open deadgram and grant **Overlay permission**.
+3. Open Android **Accessibility settings** and enable **deadgram profile capture**.
 4. Open an individual Instagram profile.
-5. Tap the dedgram bubble once.
+5. Tap the deadgram bubble once.
 
 The service only attempts capture when the active accessibility window belongs to Instagram. It stores the username after successful validation; it does not save screenshots, captions, bios, follower counts, post counts, direct messages, or surrounding UI text.
 
@@ -66,10 +66,10 @@ The local release build uses the generated debug signing key and is intended for
 adb install -r app\build\outputs\apk\debug\app-debug.apk
 ```
 
-Reinstalling an APK can cause Android to reset the accessibility-service toggle. If the capture bubble disappears after reinstalling, check dedgram in Accessibility settings again.
+Reinstalling an APK can cause Android to reset the accessibility-service toggle. If the capture bubble disappears after reinstalling, check deadgram in Accessibility settings again.
 
 ## Platform limitation
 
 An ordinary Android overlay cannot inspect Instagram's page text. A user-enabled `AccessibilityService` is therefore required for the tap-to-capture workflow. The service is restricted to Instagram's package and reads the active UI only after the bubble is tapped.
 
-Instagram can change its UI structure and accessibility labels. If the profile header is ambiguous, inaccessible, or not yet rendered, dedgram refuses to guess and reports a capture failure instead.
+Instagram can change its UI structure and accessibility labels. If the profile header is ambiguous, inaccessible, or not yet rendered, deadgram refuses to guess and reports a capture failure instead.

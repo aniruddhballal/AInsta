@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">dedgram</string>
-    <string name="accessibility_service_label">dedgram profile capture</string>
-    <string name="accessibility_service_description">Reads the visible Instagram profile header only after you tap the dedgram capture bubble, then saves the username to your dedgram catalog.</string>
+    <string name="app_name">deadgram</string>
+    <string name="accessibility_service_label">deadgram profile capture</string>
+    <string name="accessibility_service_description">Reads the visible Instagram profile header only after you tap the deadgram capture bubble, then saves the username to your deadgram catalog.</string>
 </resources>

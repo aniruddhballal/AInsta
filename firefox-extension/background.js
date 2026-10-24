@@ -115,7 +115,7 @@
         }
       }
     } catch (error) {
-      console.debug('[dedgram] Local dashboard is idle or unavailable.', error);
+      console.debug('[deadgram] Local dashboard is idle or unavailable.', error);
     } finally {
       busy = false;
       setTimeout(poll, WAIT_MS);

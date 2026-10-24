@@ -1,4 +1,4 @@
-# Dedgram Atlas public preview
+# deadgram atlas public preview
 
 A static, self-contained Vercel site. It lists every username in the bot profile index, publishes a detailed page for `edlt.shox`, and labels the other profiles as in progress. No Instagram login, collector process, database, or server function is needed to serve it.
 

@@ -1,4 +1,4 @@
-# dedgram Dashboard Collector
+# deadgram dashboard collector
 
 The Firefox add-on is the Instagram DOM adapter for the local web dashboard. It has no separate profile catalog and does not start profile scans on its own. It checks the dashboard's loopback API for an explicitly queued job; when no job is active, it leaves Instagram pages alone.
 
@@ -8,7 +8,7 @@ The Firefox add-on is the Instagram DOM adapter for the local web dashboard. It 
 2. Sign in to Instagram in Firefox.
 3. Open `about:debugging#/runtime/this-firefox`.
 4. Choose **Load Temporary Add-on...** and select this folder's `manifest.json`.
-5. In the dedgram dashboard, select profiles for surface, post-count, reel-count, or deep analysis; for separate post/reel engagement scans, open a profile page and use its scan buttons.
+5. In the deadgram dashboard, select profiles for surface, post-count, reel-count, or deep analysis; for separate post/reel engagement scans, open a profile page and use its scan buttons.
 
 The background script polls `http://127.0.0.1:4317` while idle. It navigates one reusable Instagram tab only after the dashboard has queued a profile. Results and collection issues are written by the API as separate JSON records under `bot-info/database/`.
 

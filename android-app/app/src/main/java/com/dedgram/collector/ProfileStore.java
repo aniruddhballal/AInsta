@@ -146,7 +146,7 @@ public final class ProfileStore {
 
         // Some file managers and adb copies update the path on disk without
         // preserving MediaStore's RELATIVE_PATH metadata. The filename is
-        // still unique for dedgram, so use it as a safe compatibility fallback.
+        // still unique for deadgram, so use it as a safe compatibility fallback.
         return findFile(resolver, collection, projection,
                 MediaStore.MediaColumns.DISPLAY_NAME + "=?", new String[]{FILE_NAME});
     }

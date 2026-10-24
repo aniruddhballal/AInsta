@@ -10,7 +10,6 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
@@ -53,19 +52,18 @@ public final class CaptureBubbleDrawable extends Drawable {
         canvas.translate(offsetX, offsetY);
         canvas.scale(renderedScale, renderedScale);
 
-        RectF bubbleBounds = new RectF(0f, 0f, ICON_SIZE, ICON_SIZE);
-        canvas.drawRoundRect(bubbleBounds, 12f, 12f, backgroundPaint);
+        canvas.drawCircle(ICON_SIZE / 2f, ICON_SIZE / 2f, ICON_SIZE / 2f, backgroundPaint);
         if (alreadySaved) {
             savedHighlightPaint.setColor(SAVED_BORDER_COLOR);
             savedHighlightPaint.setStyle(Paint.Style.STROKE);
             savedHighlightPaint.setStrokeWidth(1.15f);
             savedHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
-            canvas.drawRoundRect(new RectF(2f, 2f, ICON_SIZE - 2f, ICON_SIZE - 2f), 10f, 10f, savedHighlightPaint);
+            canvas.drawCircle(ICON_SIZE / 2f, ICON_SIZE / 2f, ICON_SIZE / 2f - 2f, savedHighlightPaint);
         }
 
         if (shimmerAnimator != null && shimmerAnimator.isRunning()) {
             clipPath.reset();
-            clipPath.addRoundRect(bubbleBounds, 12f, 12f, Path.Direction.CW);
+            clipPath.addCircle(ICON_SIZE / 2f, ICON_SIZE / 2f, ICON_SIZE / 2f, Path.Direction.CW);
             canvas.save();
             canvas.clipPath(clipPath);
             shimmerPaint.setShader(new LinearGradient(

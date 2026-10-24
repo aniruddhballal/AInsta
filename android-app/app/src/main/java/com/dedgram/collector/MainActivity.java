@@ -92,14 +92,14 @@ public final class MainActivity extends Activity {
         TextView title = UiStyles.text(this, "Capture profiles", 24, Color.BLACK, true);
         title.setLetterSpacing(-0.02f);
         content.addView(title, margin(0, 5, 0, 0));
-        TextView description = UiStyles.text(this, "Keep a clean, deduplicated list of Instagram usernames. Tap the small dedgram square while a profile is open.", 15, Color.BLACK, false);
+        TextView description = UiStyles.text(this, "Keep a clean, deduplicated list of Instagram usernames. Tap the small deadgram circle while a profile is open.", 15, Color.BLACK, false);
         description.setLineSpacing(UiStyles.dp(this, 2), 1.0f);
         content.addView(description, margin(0, 10, 0, 0));
 
         content.addView(spacer(20));
         content.addView(UiStyles.utility(this, "CAPTURE SETUP"));
-        content.addView(buildPermissionRow("OVERLAY PERMISSION", "Allows the dedgram square to stay visible over Instagram.", true));
-        content.addView(buildPermissionRow("ACCESSIBILITY ACCESS", "Reads only the visible profile UI after you tap the square.", false));
+        content.addView(buildPermissionRow("OVERLAY PERMISSION", "Allows the deadgram circle to stay visible over Instagram.", true));
+        content.addView(buildPermissionRow("ACCESSIBILITY ACCESS", "Reads only the visible profile UI after you tap the circle.", false));
 
         content.addView(spacer(22));
         LinearLayout heading = new LinearLayout(this);
@@ -126,7 +126,7 @@ public final class MainActivity extends Activity {
         storageStatus = UiStyles.text(this, "Stored in Documents/dedgram/profiles.json", 11, 0xFF555555, false);
         storageStatus.setLineSpacing(UiStyles.dp(this, 2), 1.0f);
         content.addView(storageStatus, margin(0, 10, 0, 0));
-        TextView privacy = UiStyles.text(this, "dedgram does not save screenshots, captions, bios, or direct messages.", 11, 0xFF555555, false);
+        TextView privacy = UiStyles.text(this, "deadgram does not save screenshots, captions, bios, or direct messages.", 11, 0xFF555555, false);
         privacy.setLineSpacing(UiStyles.dp(this, 2), 1.0f);
         content.addView(privacy, margin(0, 4, 0, 0));
         return scroll;
@@ -157,7 +157,7 @@ public final class MainActivity extends Activity {
 
         LinearLayout brand = new LinearLayout(this);
         brand.setOrientation(LinearLayout.VERTICAL);
-        TextView wordmark = UiStyles.text(this, "dedgram", 30, Color.BLACK, true);
+        TextView wordmark = UiStyles.text(this, "deadgram", 30, Color.BLACK, true);
         wordmark.setLetterSpacing(-0.05f);
         brand.addView(wordmark);
         brand.addView(UiStyles.utility(this, "PROFILE COLLECTOR"), margin(0, 3, 0, 0));
@@ -289,7 +289,7 @@ public final class MainActivity extends Activity {
         empty.setOrientation(LinearLayout.VERTICAL);
         empty.setPadding(0, UiStyles.dp(this, 22), 0, UiStyles.dp(this, 22));
         empty.addView(UiStyles.text(this, "Nothing saved yet", 24, Color.BLACK, true), margin(0, 20, 0, 0));
-        empty.addView(UiStyles.text(this, "Open an Instagram profile, then tap the white dedgram square to add its username.", 15, Color.BLACK, false), margin(0, 10, 0, 0));
+        empty.addView(UiStyles.text(this, "Open an Instagram profile, then tap the deadgram circle to add its username.", 15, Color.BLACK, false), margin(0, 10, 0, 0));
         return empty;
     }
 

@@ -15,7 +15,7 @@ img { display: block; max-width: 100%; }
 .topbar-inner { max-width: 1360px; margin: auto; padding: 14px 32px; display: flex; align-items: center; gap: 48px; }
 .brand { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; letter-spacing: .09em; line-height: 1.1; white-space: nowrap; }
 .brand small { display: block; font-size: 9px; font-weight: 700; letter-spacing: .26em; margin-top: 4px; }
-.brand-icon { display: grid; place-items: center; width: 38px; height: 38px; background: #000; color: #fff; font-size: 20px; font-weight: 900; letter-spacing: -.08em; }
+.brand-icon { display: block; width: 38px; height: 38px; flex: 0 0 38px; }
 nav { align-self: stretch; display: flex; align-items: center; gap: 30px; }
 nav a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 10px; border: 1px solid transparent; font-size: 12px; font-weight: 650; color: var(--muted); }
 nav a.active, nav a:hover { color: #000; }
@@ -175,7 +175,7 @@ a.profile-internal:hover .row-title strong { text-decoration: underline; text-un
 }
 @media (max-width: 530px) {
   .brand { font-size: 12px; }
-  .brand-icon { width: 33px; height: 33px; font-size: 17px; }
+  .brand-icon { width: 33px; height: 33px; flex-basis: 33px; }
   nav { gap: 10px; }
   nav a { font-size: 10px; }
   .hero h1 { font-size: clamp(55px, 15vw, 75px); }
