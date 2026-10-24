@@ -85,6 +85,7 @@ export function mergeProfile(previous, current) {
     'profile_picture_url', 'date_joined', 'account_based_in', 'former_usernames_count']) {
     if (result[field] == null && previous[field] != null) result[field] = previous[field];
   }
+  if (current.posts_count == null) result.posts_count_observed_at = previous.posts_count_observed_at || null;
   return result;
 }
 

@@ -29,17 +29,19 @@ export async function writeReport(paths, profile, discovery, items, run) {
   await writeFile(paths.csv, rows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
   const profileRows = [
     ['username', 'url', 'fetched_at', 'display_name', 'bio', 'category', 'ai_generated_profile',
-      'posts_count', 'posts_count_displayed', 'posts_count_error', 'followers_count', 'following_count', 'followers_header', 'followers_metadata',
+      'posts_count', 'posts_count_displayed', 'posts_count_error', 'posts_count_observed_at', 'followers_count', 'following_count', 'followers_header', 'followers_metadata',
       'following_header', 'following_metadata', 'following_conflict', 'date_joined', 'account_based_in', 'former_usernames_count',
-      'post_grid_count', 'post_grid_complete', 'post_grid_error', 'reel_grid_count', 'reel_grid_complete', 'reel_grid_error'],
+      'post_grid_count', 'post_grid_complete', 'post_grid_error', 'reel_grid_count', 'reel_grid_complete', 'reel_grid_error', 'reel_grid_finalized_at'],
     [profile?.username, profile?.url, profile?.fetched_at, profile?.display_name, profile?.bio, profile?.category,
-      profile?.ai_generated_profile, exactPostCount(profile), profile?.posts_count?.raw, postCountError(profile), profile?.followers_count?.value,
+      profile?.ai_generated_profile, exactPostCount(profile), profile?.posts_count?.raw, postCountError(profile), profile?.posts_count_observed_at,
+      profile?.followers_count?.value,
       profile?.following_count?.value, profile?.count_evidence?.followers?.header?.raw,
       profile?.count_evidence?.followers?.metadata?.raw, profile?.count_evidence?.following?.header?.raw,
       profile?.count_evidence?.following?.metadata?.raw, profile?.count_evidence?.following?.conflict,
       profile?.date_joined, profile?.account_based_in, profile?.former_usernames_count?.value,
       gridCount(discovery?.post), gridCount(discovery?.post) !== null, gridCountError(discovery?.post),
-      gridCount(discovery?.reel), gridCount(discovery?.reel) !== null, gridCountError(discovery?.reel)]
+      gridCount(discovery?.reel), gridCount(discovery?.reel) !== null, gridCountError(discovery?.reel),
+      gridCount(discovery?.reel) !== null ? discovery?.reel?.attempted_at : null]
   ];
   await writeFile(paths.profileCsv, profileRows.map((row) => row.map(csv).join(',')).join('\n') + '\n', 'utf8');
   const metric = (field) => field === 'posts_count' ? exactPostCount(profile) ?? `Error: ${postCountError(profile)}`

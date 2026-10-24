@@ -35,6 +35,7 @@ export function profileSummary(data) {
       complete: records.filter((item) => item.status === 'complete' && !item.last_error).length,
       review: records.filter((item) => item.status === 'partial' || item.status === 'failed' || !!item.last_error).length,
       grid_complete: gridCount(discovery[kind]) !== null,
+      attempted_at: discovery[kind]?.attempted_at || null,
       grid_error: gridCountError(discovery[kind])
     };
   };
@@ -51,6 +52,7 @@ export function profileSummary(data) {
     following: profile?.following_count || null,
     posts_reported: profile?.posts_count || null,
     posts_count: exactPostCount(profile),
+    posts_count_observed_at: profile?.posts_count_observed_at || null,
     posts_count_error: postCountError(profile),
     profile_fetched_at: profile?.fetched_at || null,
     profile_header_complete: profileHeaderComplete(profile),

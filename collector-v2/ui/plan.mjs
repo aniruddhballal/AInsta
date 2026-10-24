@@ -1,4 +1,7 @@
 export const MODES = Object.freeze({
+  profile_header: 'Profile details and post count',
+  reel_grid: 'Reel URLs and count',
+  reel_details: 'Reel details',
   profile_only: 'Profile details only',
   depth_first: 'Profile + reels, one account at a time',
   breadth_first: 'All profiles, then all reels',
@@ -27,6 +30,9 @@ export const terminal = (status) => ['complete', 'needs_review', 'failed', 'skip
 export function stepsFor(profiles, mode) {
   if (!Object.hasOwn(MODES, mode)) throw new Error('Choose a valid collection mode.');
   const step = (username, stage) => ({ username, stage });
+  if (mode === 'profile_header') return profiles.map((username) => step(username, 'profile_header'));
+  if (mode === 'reel_grid') return profiles.map((username) => step(username, 'reel_grid'));
+  if (mode === 'reel_details') return profiles.map((username) => step(username, 'reels'));
   if (mode === 'profile_only') return profiles.map((username) => step(username, 'profile'));
   if (mode === 'reels_only') return profiles.map((username) => step(username, 'reels'));
   if (mode === 'breadth_first') return [

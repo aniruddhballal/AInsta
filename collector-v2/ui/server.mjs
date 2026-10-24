@@ -7,11 +7,12 @@ import { randomUUID } from 'node:crypto';
 import { catalog, detail, profileData, profileSummary, resolveUsername, root, summary, usernames } from './data.mjs';
 import { MODES, ORDERS, orderProfiles, resultStatus, stepsFor, terminal } from './plan.mjs';
 import { paths, readJson, writeJson } from '../src/store.mjs';
-import { exactPostCount, profileLevelComplete } from '../src/model.mjs';
+import { exactPostCount, profileHeaderComplete, profileLevelComplete } from '../src/model.mjs';
 
 const publicDir = join(dirname(fileURLToPath(import.meta.url)), 'public');
-const jobPath = join(root, 'data', 'ui-job.json');
+const jobPath = process.env.COLLECTOR_UI_JOB_PATH || join(root, 'data', 'ui-job.json');
 const port = Number(process.env.COLLECTOR_UI_PORT || 5174);
+const preview = process.env.COLLECTOR_UI_PREVIEW === '1';
 
 const json = (response, status, value) => {
   response.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -35,6 +36,7 @@ class BatchRunner {
 
   async load() {
     this.batch = await readJson(jobPath);
+    if (preview) return;
     if (this.batch?.status === 'running') {
       this.batch.status = 'interrupted';
       this.batch.current = null;
@@ -63,7 +65,12 @@ class BatchRunner {
     if (selected.includes(undefined) || selected.includes(null) || selected.length > valid.length) {
       throw Object.assign(new Error('Selection contains a profile outside the catalog.'), { status: 400 });
     }
-    if (mode === 'reels_only') {
+    if (mode === 'reel_grid') {
+      const missing = (await Promise.all(selected.map(async (name) => ({ name, data: await profileData(name) }))))
+        .filter(({ data }) => !profileHeaderComplete(data.profile) || exactPostCount(data.profile) === null).map(({ name }) => `@${name}`);
+      if (missing.length) throw Object.assign(new Error(`Finish profile details and the exact post count first: ${missing.join(', ')}.`), { status: 400 });
+    }
+    if (mode === 'reels_only' || mode === 'reel_details') {
       const missing = (await Promise.all(selected.map(async (name) => ({ name, data: await profileData(name) }))))
         .filter(({ data }) => !profileLevelComplete(data.profile, data.discovery)).map(({ name }) => `@${name}`);
       if (missing.length) throw Object.assign(new Error(`Finish profile details and reel counts first: ${missing.join(', ')}.`), { status: 400 });
@@ -146,9 +153,11 @@ class BatchRunner {
       this.batch.updated_at = stage.started_at;
       await this.save();
       this.log(`Starting @${username} ${level}`);
+      const flags = level === 'profile' ? ['--profile-only'] : level === 'profile_header' ? ['--header-only']
+        : level === 'reel_grid' ? ['--reel-grid-only', '--refresh']
+          : ['--reels-only', '--skip-profile', ...(this.batch.mode === 'reel_details' ? ['--refresh'] : [])];
       const child = spawn(process.execPath,
-        ['src/cli.mjs', 'collect', `--username=${username}`,
-          ...(level === 'profile' ? ['--profile-only'] : ['--reels-only', '--skip-profile']), '--headless'],
+        ['src/cli.mjs', 'collect', `--username=${username}`, ...flags, '--headless'],
         { cwd: root, windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
       for (const stream of [child.stdout, child.stderr]) {
         stream.setEncoding('utf8');
@@ -168,9 +177,10 @@ class BatchRunner {
       });
       const collected = await profileData(username);
       stage.finished_at = new Date().toISOString();
-      stage.status = exit.code === 0 && (level !== 'profile' || collected.profile?.fetched_at)
-        ? collected.run.status === 'complete' ? 'complete' : 'needs_review'
-        : 'failed';
+      const stageComplete = level === 'profile_header' ? profileHeaderComplete(collected.profile) && exactPostCount(collected.profile) !== null
+        : level === 'reel_grid' ? collected.discovery?.reel?.complete === true
+        : level === 'profile' ? Boolean(collected.profile?.fetched_at) : collected.run.status === 'complete';
+      stage.status = exit.code === 0 ? stageComplete && collected.run.status === 'complete' ? 'complete' : 'needs_review' : 'failed';
       stage.error = exit.error?.message || (exit.code === 0 ? collected.run.error || null
         : collected.run.error || `Collector exited with code ${exit.code}.`);
       result.status = resultStatus(result.stages);
@@ -195,11 +205,16 @@ await runner.load();
 
 const assets = new Map([
   ['/app.js', ['app.js', 'text/javascript; charset=utf-8']],
+  ['/app-v3.js', ['app-v3.js', 'text/javascript; charset=utf-8']],
+  ['/flow.js', ['flow.js', 'text/javascript; charset=utf-8']],
   ['/shared.js', ['shared.js', 'text/javascript; charset=utf-8']],
   ['/queue.js', ['queue.js', 'text/javascript; charset=utf-8']],
   ['/profile.js', ['profile.js', 'text/javascript; charset=utf-8']],
+  ['/profile-v3.js', ['profile-v3.js', 'text/javascript; charset=utf-8']],
   ['/overview.js', ['overview.js', 'text/javascript; charset=utf-8']],
   ['/style.css', ['style.css', 'text/css; charset=utf-8']],
+  ['/showcase.css', ['showcase.css', 'text/css; charset=utf-8']],
+  ['/flow.css', ['flow.css', 'text/css; charset=utf-8']],
   ['/favicon.svg', ['favicon.svg', 'image/svg+xml']]
 ]);
 
@@ -219,6 +234,7 @@ const server = createServer(async (request, response) => {
     const url = new URL(request.url, `http://127.0.0.1:${port}`);
     const pathname = url.pathname;
     if (request.method === 'POST') {
+      if (preview) return json(response, 409, { error: 'This preview is read only. Collection continues in the original UI.' });
       const expected = [`http://127.0.0.1:${port}`, `http://localhost:${port}`];
       if (!expected.includes(request.headers.origin) || !request.headers['content-type']?.startsWith('application/json')) {
         return json(response, 403, { error: 'Use this local UI to start or stop collection.' });
@@ -231,10 +247,11 @@ const server = createServer(async (request, response) => {
       return json(response, 404, { error: 'Unknown action.' });
     }
     if (request.method !== 'GET') return json(response, 405, { error: 'Method not allowed.' });
-    if (pathname === '/api/health') return json(response, 200, { ok: true, active: runner.active });
+    if (pathname === '/api/health') return json(response, 200, { ok: true, active: preview ? runner.batch?.status === 'running' : runner.active, read_only: preview });
     if (pathname === '/api/catalog') return json(response, 200, { profiles: await catalog() });
     if (pathname === '/api/summary') return json(response, 200, await summary());
     if (pathname === '/api/run') {
+      if (preview) runner.batch = await readJson(jobPath);
       const profiles = runner.batch?.profiles || [];
       const summaries = await Promise.all(profiles.map(async (username) => profileSummary(await profileData(username))));
       return json(response, 200, { batch: runner.batch, profiles: summaries });
@@ -252,8 +269,10 @@ const server = createServer(async (request, response) => {
       const [file, type] = assets.get(pathname);
       return sendFile(response, join(publicDir, file), type);
     }
-    if (pathname === '/' || pathname === '/summary' || pathname.startsWith('/profiles/')) {
-      return sendFile(response, join(publicDir, 'index.html'), 'text/html; charset=utf-8');
+    if (pathname === '/' || pathname === '/summary' || pathname === '/overview' || pathname === '/collection/review'
+      || pathname === '/collect/profiles' || pathname === '/collect/reel-urls' || pathname === '/collect/reel-details'
+      || pathname.startsWith('/profiles/')) {
+      return sendFile(response, join(publicDir, 'index-v3.html'), 'text/html; charset=utf-8');
     }
     return json(response, 404, { error: 'Page not found.' });
   } catch (error) {

@@ -45,13 +45,15 @@ export function profileFromSnapshot(username, snapshot) {
   const exactFollowers = count(snapshot.stat_evidence?.followers?.exact_title);
   const headerFollowers = metric(header, ['followers?']);
   const metadataFollowers = metric(description, ['followers?']);
+  const observedAt = now();
   return {
     username,
     url: `https://www.instagram.com/${username}/`,
-    fetched_at: now(),
+    fetched_at: observedAt,
     display_name: statIndex > 1 ? lines.slice(1, statIndex).join(' ') : null,
     bio: bioContent.length ? bioContent.join('\n') : null,
     posts_count: headerPosts || metadataPosts,
+    posts_count_observed_at: headerPosts || metadataPosts ? observedAt : null,
     followers_count: exactFollowers ? { ...exactFollowers, source: 'header_title' }
       : headerFollowers ? { ...headerFollowers, source: 'header_text' } : null,
     following_count: headerFollowing ? { ...headerFollowing, source: 'header_text' }

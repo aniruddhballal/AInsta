@@ -6,6 +6,9 @@ const selected = ['alpha', 'beta'];
 const labels = (mode) => stepsFor(selected, mode).map(({ username, stage }) => `${username}:${stage}`);
 
 test('collection strategies schedule profile and reel stages in the requested order', () => {
+  assert.deepEqual(labels('profile_header'), ['alpha:profile_header', 'beta:profile_header']);
+  assert.deepEqual(labels('reel_grid'), ['alpha:reel_grid', 'beta:reel_grid']);
+  assert.deepEqual(labels('reel_details'), ['alpha:reels', 'beta:reels']);
   assert.deepEqual(labels('profile_only'), ['alpha:profile', 'beta:profile']);
   assert.deepEqual(labels('depth_first'), ['alpha:profile', 'alpha:reels', 'beta:profile', 'beta:reels']);
   assert.deepEqual(labels('breadth_first'), ['alpha:profile', 'beta:profile', 'alpha:reels', 'beta:reels']);

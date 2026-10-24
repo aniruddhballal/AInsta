@@ -91,11 +91,16 @@ async function collect() {
   const refresh = flags.has('--refresh');
   const headless = flags.has('--headless');
   const profileOnly = flags.has('--profile-only');
+  const headerOnly = flags.has('--header-only');
+  const reelGridOnly = flags.has('--reel-grid-only');
   const skipProfile = flags.has('--skip-profile');
+  if ([profileOnly, headerOnly, reelGridOnly].filter(Boolean).length > 1) throw new Error('Choose one collection stage.');
   if (profileOnly && (flags.has('--reels-only') || skipProfile)) throw new Error('--profile-only cannot be combined with reel flags.');
+  if (headerOnly && (flags.has('--reels-only') || skipProfile)) throw new Error('--header-only cannot be combined with reel flags.');
+  if (reelGridOnly && (flags.has('--reels-only') || skipProfile)) throw new Error('--reel-grid-only cannot be combined with reel flags.');
   if (skipProfile && !flags.has('--reels-only')) throw new Error('--skip-profile requires --reels-only.');
-  const kinds = profileOnly ? [] : flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
-  const discoveryKinds = profileOnly ? ['reel'] : kinds;
+  const kinds = profileOnly || headerOnly || reelGridOnly ? [] : flags.has('--reels-only') ? ['reel'] : ['post', 'reel'];
+  const discoveryKinds = headerOnly ? [] : profileOnly || reelGridOnly ? ['reel'] : kinds;
   const limitArg = process.argv.find((arg) => arg.startsWith('--limit='));
   const limit = limitArg ? Number(limitArg.slice(8)) : Infinity;
   if (!Number.isInteger(limit) && limit !== Infinity || limit < 0) throw new Error('--limit must be a nonnegative integer.');
@@ -116,8 +121,8 @@ async function collect() {
   });
   if (corrected) await writeJson(path.items, items);
   run = { ...run, started_at: now(), updated_at: now(), status: 'running',
-    phase: skipProfile ? 'reel discovery' : 'profile',
-    scope: profileOnly ? ['profile', 'reel_grid'] : skipProfile ? kinds : ['profile', ...kinds],
+    phase: skipProfile || reelGridOnly ? 'reel discovery' : 'profile',
+    scope: headerOnly ? ['profile'] : reelGridOnly ? ['reel_grid'] : profileOnly ? ['profile', 'reel_grid'] : skipProfile ? kinds : ['profile', ...kinds],
     current_url: null, error: null };
   await writeJson(path.run, run);
   let context;
@@ -126,7 +131,7 @@ async function collect() {
     const launched = await launch(root, { headless });
     context = launched.context;
     const page = launched.page;
-    if (!skipProfile) {
+    if (!skipProfile && !reelGridOnly) {
       log(`Collecting ${username} profile`);
       const snapshot = await captureProfile(page, username);
       const current = profileFromSnapshot(username, snapshot);
@@ -188,16 +193,18 @@ async function collect() {
       await writeJson(path.items, items);
       await new Promise((done) => setTimeout(done, 1600));
     }
-    const complete = profileStageComplete && discoveryKinds.every((kind) => gridCount(discovery[kind]) !== null)
+    const complete = (reelGridOnly || profileStageComplete) && discoveryKinds.every((kind) => gridCount(discovery[kind]) !== null)
       && [...queued.keys()].every((url) => existing.get(url)?.status === 'complete' && !existing.get(url)?.last_error);
     const gridErrors = discoveryKinds.filter((kind) => gridCount(discovery[kind]) === null)
       .map((kind) => `${kind} grid: ${gridCountError(discovery[kind])}`);
     run = { ...run, phase: 'done', current_url: null, updated_at: now(), status: complete ? 'complete' : 'partial',
-      error: gridErrors.join(' | ') || (!profileStageComplete
+    error: gridErrors.join(' | ') || (!reelGridOnly && !profileStageComplete
         ? postCountError(profile) || 'Profile header counts are incomplete.' : null) };
     await writeJson(path.run, run);
     await writeReport(path, profile, discovery, items, run);
-    log(profileOnly ? `Done: Instagram posts ${exactPostCount(profile) ?? `error (${postCountError(profile)})`}, reels ${gridCount(discovery.reel) ?? `error (${gridCountError(discovery.reel)})`}. Report: ${path.report}`
+    log(headerOnly ? `Done: Instagram posts ${exactPostCount(profile) ?? `error (${postCountError(profile)})`}. Report: ${path.report}`
+      : reelGridOnly ? `Done: reel URLs ${gridCount(discovery.reel) ?? `error (${gridCountError(discovery.reel)})`}. Report: ${path.report}`
+      : profileOnly ? `Done: Instagram posts ${exactPostCount(profile) ?? `error (${postCountError(profile)})`}, reels ${gridCount(discovery.reel) ?? `error (${gridCountError(discovery.reel)})`}. Report: ${path.report}`
       : `Done: ${items.length} items. Report: ${path.report}`);
   } catch (error) {
     run = { ...run, status: 'blocked', updated_at: now(), error: error instanceof Error ? error.message : String(error) };
