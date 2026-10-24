@@ -1,17 +1,17 @@
 {
   "username": "ijuggminors",
   "url": "https://www.instagram.com/ijuggminors/",
-  "fetched_at": "2026-10-23T15:40:09.491Z",
+  "fetched_at": "2026-10-24T08:18:26.684Z",
   "display_name": null,
   "bio": "Hi welcome to my instagram page\nFollowed by bakinees, 7m0d1.13 + 1 more",
   "posts_count": {
-    "value": 2472,
-    "raw": "2,472",
+    "value": 1950,
+    "raw": "1,950",
     "approximate": false
   },
   "followers_count": {
-    "value": 242993,
-    "raw": "242,993",
+    "value": 243404,
+    "raw": "243,404",
     "approximate": false,
     "source": "header_title"
   },
@@ -24,13 +24,13 @@
   "count_evidence": {
     "followers": {
       "header": {
-        "value": 242000,
-        "raw": "242K",
+        "value": 243000,
+        "raw": "243K",
         "approximate": true
       },
       "exact_title": {
-        "value": 242993,
-        "raw": "242,993",
+        "value": 243404,
+        "raw": "243,404",
         "approximate": false
       },
       "metadata": {
@@ -54,35 +54,35 @@
     },
     "posts": {
       "header": {
-        "value": 2472,
-        "raw": "2,472",
+        "value": 1950,
+        "raw": "1,950",
         "approximate": false
       },
       "metadata": {
-        "value": 2472,
-        "raw": "2,472",
+        "value": 1950,
+        "raw": "1,950",
         "approximate": false
       }
     }
   },
   "category": null,
   "ai_generated_profile": false,
-  "profile_picture_url": "https://instagram.fblr1-9.fna.fbcdn.net/v/t51.82787-19/857937612_17910688491487881_4002339912478125233_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4zMjAuQzMifQ%3D%3D&_nc_ohc=-VyQSw_7dDwQ7kNvwGzvbfu&_nc_oc=Adre1ip4RCJjLbisFQcaprM1J71tMEk7yEZAzmoB6vnMDTGWu0MezOT4v5l9JGNWrRxURf-exEySRdzDhzxUpZrt&_nc_zt=24&_nc_ht=instagram.fblr1-9.fna&_nc_gid=0wXwudoFQiZCfSZQOfP7lg&_nc_ss=7f6a8&oh=00_AQPsX7dUevPSHlvZha96zHr6D3oyAsHDo_2Nkoq0TNDTYA&oe=6AE15ADF",
+  "profile_picture_url": "https://instagram.fblr24-3.fna.fbcdn.net/v/t51.82787-19/857937612_17910688491487881_4002339912478125233_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=1&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4zMjAuQzMifQ%3D%3D&_nc_ohc=-VyQSw_7dDwQ7kNvwFWtYI0&_nc_oc=Adr6Ns4DmpL2Mc0o-3jSV4HKdeBvHy7FtAX_PKvECHushV0Ap-mARAtAZ5hHE5P5ScdFF7lP_ZkzuZg5-3ZKO2Fg&_nc_zt=24&_nc_ht=instagram.fblr24-3.fna&_nc_gid=8iGA1gKqjp4LarJ0-FF3Qg&_nc_ss=7f2a8&oh=00_AQPbM50vM3E9eeFkGqad6H1dw_UwtlgzLUYjtsDePa8n6Q&oe=6AE23BDF",
   "date_joined": "May 2025",
   "account_based_in": "United States",
   "former_usernames_count": null,
   "raw": {
-    "header_text": "ijuggminors\n2,472 posts\n242K followers\n248 following\nHi welcome to my instagram page\nFollowed by bakinees, 7m0d1.13 + 1 more\nFollow\nMessage",
+    "header_text": "ijuggminors\n1,950 posts\n243K followers\n248 following\nHi welcome to my instagram page\nFollowed by bakinees, 7m0d1.13 + 1 more\nFollow\nMessage",
     "about_text": "About this account\nijuggminors\nTo help keep our community authentic, we’re showing information about profiles on Instagram. See why this information is important.\nDate joined\nMay 2025\nAccount based in\nUnited States\nClose",
-    "description": "243K Followers, 322 Following, 2,472 Posts - @ijuggminors on Instagram: \"Hi welcome to my instagram page\"",
+    "description": "243K Followers, 322 Following, 1,950 Posts - @ijuggminors on Instagram: \"Hi welcome to my instagram page\"",
     "stat_evidence": {
       "posts": {
         "label": "",
         "exact_title": ""
       },
       "followers": {
-        "label": "242K followers",
-        "exact_title": "242,993"
+        "label": "243K followers",
+        "exact_title": "243,404"
       },
       "following": {
         "label": "248 following",
@@ -90,7 +90,6 @@
       }
     }
   },
-  "issues": [
-    "Page metadata says 322 following; current profile header says 248, which is used for the count."
-  ]
+  "issues": [],
+  "posts_count_observed_at": "2026-10-24T08:18:26.684Z"
 }

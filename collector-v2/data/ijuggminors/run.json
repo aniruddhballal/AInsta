@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-10-23T15:40:05.594Z",
-  "updated_at": "2026-10-23T15:40:09.493Z",
-  "status": "running",
-  "phase": "reel discovery",
+  "started_at": "2026-10-24T08:18:22.033Z",
+  "updated_at": "2026-10-24T08:23:55.498Z",
+  "status": "complete",
+  "phase": "done",
   "scope": [
     "profile",
     "reel_grid"

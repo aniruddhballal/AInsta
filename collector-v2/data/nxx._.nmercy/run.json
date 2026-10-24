@@ -1,10 +1,11 @@
 {
-  "started_at": "2026-10-23T10:29:08.792Z",
-  "updated_at": "2026-10-23T10:29:11.668Z",
+  "started_at": "2026-10-24T08:38:16.230Z",
+  "updated_at": "2026-10-24T08:38:18.709Z",
   "status": "blocked",
   "phase": "profile",
   "scope": [
-    "profile"
+    "profile",
+    "reel_grid"
   ],
   "current_url": null,
   "error": "Instagram reports this page is unavailable."

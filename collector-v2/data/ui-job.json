@@ -2,7 +2,7 @@
   "id": "1cd6adb8-f0a9-4b47-b994-7c48fcc74a04",
   "mode": "profile_only",
   "order": "posts_ascending",
-  "status": "running",
+  "status": "complete",
   "profiles": [
     "dexea.100k",
     "asapcoder.exe",
@@ -127,250 +127,296 @@
       }
     },
     "goofvault": {
-      "status": "running",
+      "status": "complete",
       "started_at": "2026-10-24T07:53:54.046Z",
-      "finished_at": null,
+      "finished_at": "2026-10-24T08:04:56.869Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "running",
+          "status": "complete",
           "started_at": "2026-10-24T07:53:54.046Z",
-          "finished_at": null,
+          "finished_at": "2026-10-24T08:04:56.869Z",
           "error": null
         }
       }
     },
     "iblamealanz": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-24T08:04:56.875Z",
+      "finished_at": "2026-10-24T08:18:21.023Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-24T08:04:56.875Z",
+          "finished_at": "2026-10-24T08:18:21.023Z",
           "error": null
         }
       }
     },
     "ijuggminors": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-24T08:18:21.027Z",
+      "finished_at": "2026-10-24T08:23:57.240Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-24T08:18:21.027Z",
+          "finished_at": "2026-10-24T08:23:57.240Z",
           "error": null
         }
       }
     },
     "intr0vert.viks": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-24T08:23:57.251Z",
+      "finished_at": "2026-10-24T08:35:21.048Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-24T08:23:57.251Z",
+          "finished_at": "2026-10-24T08:35:21.048Z",
           "error": null
         }
       }
     },
     "birobidzanih": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
+      "status": "complete",
+      "started_at": "2026-10-24T08:35:21.052Z",
+      "finished_at": "2026-10-24T08:36:33.334Z",
       "error": null,
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
+          "status": "complete",
+          "started_at": "2026-10-24T08:35:21.052Z",
+          "finished_at": "2026-10-24T08:36:33.334Z",
           "error": null
         }
       }
     },
     "hnvx.07": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:36:33.343Z",
+      "finished_at": "2026-10-24T08:36:39.655Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:36:33.343Z",
+          "finished_at": "2026-10-24T08:36:39.655Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "prime_senchui": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:36:39.658Z",
+      "finished_at": "2026-10-24T08:36:46.553Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:36:39.658Z",
+          "finished_at": "2026-10-24T08:36:46.553Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "hammergag": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:36:46.557Z",
+      "finished_at": "2026-10-24T08:37:23.088Z",
+      "error": "Instagram did not show the profile header.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:36:46.557Z",
+          "finished_at": "2026-10-24T08:37:23.088Z",
+          "error": "Instagram did not show the profile header."
         }
       }
     },
     "caodogsfofo": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:37:23.098Z",
+      "finished_at": "2026-10-24T08:37:59.136Z",
+      "error": "Instagram did not show the profile header.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:37:23.098Z",
+          "finished_at": "2026-10-24T08:37:59.136Z",
+          "error": "Instagram did not show the profile header."
         }
       }
     },
     "illmisguideyou": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:37:59.139Z",
+      "finished_at": "2026-10-24T08:38:03.973Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:37:59.139Z",
+          "finished_at": "2026-10-24T08:38:03.973Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "vlad.aep_": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:38:03.975Z",
+      "finished_at": "2026-10-24T08:38:10.858Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:38:03.975Z",
+          "finished_at": "2026-10-24T08:38:10.858Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "back": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:38:10.860Z",
+      "finished_at": "2026-10-24T08:38:15.199Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:38:10.860Z",
+          "finished_at": "2026-10-24T08:38:15.199Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "nxx._.nmercy": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:38:15.201Z",
+      "finished_at": "2026-10-24T08:38:19.612Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:38:15.201Z",
+          "finished_at": "2026-10-24T08:38:19.612Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "igpostinggang": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:38:19.615Z",
+      "finished_at": "2026-10-24T08:38:24.021Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:38:19.615Z",
+          "finished_at": "2026-10-24T08:38:24.021Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "rzk.mp4": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:38:24.024Z",
+      "finished_at": "2026-10-24T08:38:28.454Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:38:24.024Z",
+          "finished_at": "2026-10-24T08:38:28.454Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     },
     "renyajichu": {
-      "status": "queued",
-      "started_at": null,
-      "finished_at": null,
-      "error": null,
+      "status": "failed",
+      "started_at": "2026-10-24T08:38:28.456Z",
+      "finished_at": "2026-10-24T08:38:33.047Z",
+      "error": "Instagram reports this page is unavailable.",
       "stages": {
         "profile": {
-          "status": "queued",
-          "started_at": null,
-          "finished_at": null,
-          "error": null
+          "status": "failed",
+          "started_at": "2026-10-24T08:38:28.456Z",
+          "finished_at": "2026-10-24T08:38:33.047Z",
+          "error": "Instagram reports this page is unavailable."
         }
       }
     }
   },
-  "current": "goofvault",
-  "current_stage": "profile",
+  "current": null,
+  "current_stage": null,
   "started_at": "2026-10-24T07:47:09.793Z",
-  "updated_at": "2026-10-24T07:53:54.046Z",
-  "finished_at": null,
+  "updated_at": "2026-10-24T08:38:33.049Z",
+  "finished_at": "2026-10-24T08:38:33.049Z",
   "stop_requested": false,
   "logs": [
-    "Starting @dexea.100k profile",
-    "[13:17:11] Collecting dexea.100k profile",
+    "at captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:76:33)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @caodogsfofo profile: failed",
+    "Starting @illmisguideyou profile",
+    "[14:08:00] Collecting illmisguideyou profile",
     "Error: Instagram reports this page is unavailable.",
     "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
     "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
     "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
     "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
-    "Finished @dexea.100k profile: failed",
-    "Starting @asapcoder.exe profile",
-    "[13:17:22] Collecting asapcoder.exe profile",
-    "[13:17:29] Scanning reel grid",
-    "[13:23:50] reel: 1201 confirmed",
-    "[13:23:50] Done: Instagram posts 1812, reels 1201. Report: D:\\post engg\\dedgram\\collector-v2\\data\\asapcoder.exe\\report.html",
-    "Finished @asapcoder.exe profile: complete"
+    "Finished @illmisguideyou profile: failed",
+    "Starting @vlad.aep_ profile",
+    "[14:08:05] Collecting vlad.aep_ profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @vlad.aep_ profile: failed",
+    "Starting @back profile",
+    "[14:08:12] Collecting back profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @back profile: failed",
+    "Starting @nxx._.nmercy profile",
+    "[14:08:16] Collecting nxx._.nmercy profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @nxx._.nmercy profile: failed",
+    "Starting @igpostinggang profile",
+    "[14:08:21] Collecting igpostinggang profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @igpostinggang profile: failed",
+    "Starting @rzk.mp4 profile",
+    "[14:08:25] Collecting rzk.mp4 profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @rzk.mp4 profile: failed",
+    "Starting @renyajichu profile",
+    "[14:08:29] Collecting renyajichu profile",
+    "Error: Instagram reports this page is unavailable.",
+    "at open (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:33:21)",
+    "at async captureProfile (file:///D:/post%20engg/dedgram/collector-v2/src/browser.mjs:72:3)",
+    "at async collect (file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:136:24)",
+    "at async file:///D:/post%20engg/dedgram/collector-v2/src/cli.mjs:222:35",
+    "Finished @renyajichu profile: failed"
   ]
 }
