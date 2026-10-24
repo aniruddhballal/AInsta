@@ -5,19 +5,29 @@ import { renderOverview } from './overview.js';
 
 const app = document.querySelector('#app');
 const selectionKey = 'dedgram-selected-v2';
+const setupKey = 'dedgram-setup-step-v1';
 const saved = (() => { try { return JSON.parse(localStorage.getItem(selectionKey) || '[]'); } catch { return []; } })();
 const savedMode = localStorage.getItem('dedgram-mode-v2');
 const savedOrder = localStorage.getItem('dedgram-order-v2');
+const savedSetup = sessionStorage.getItem(setupKey);
 const state = {
   catalog: [], batch: null, batchProfiles: [], detail: null, overview: null,
   selected: new Set(Array.isArray(saved) ? saved : []),
   search: '', filter: 'all', layout: 'grid',
   mode: ['profile_only', 'depth_first', 'breadth_first', 'reels_only'].includes(savedMode) ? savedMode : 'depth_first',
   order: ['selection', 'posts_ascending'].includes(savedOrder) ? savedOrder : 'posts_ascending',
+  setupStep: ['profiles', 'mode', 'order', 'review', 'progress'].includes(savedSetup) ? savedSetup : 'profiles',
   itemSearch: '', itemFilter: 'all', itemSort: 'newest', busy: false, error: null, readOnly: false
 };
 const path = () => location.pathname === '/summary' ? '/overview' : location.pathname;
 const saveSelection = () => localStorage.setItem(selectionKey, JSON.stringify([...state.selected]));
+const setupSteps = ['profiles', 'mode', 'order', 'review', 'progress'];
+function setSetupStep(step) {
+  state.setupStep = step;
+  sessionStorage.setItem(setupKey, step);
+  render();
+  window.scrollTo(0, 0);
+}
 
 function render() {
   const focusId = document.activeElement?.id;
@@ -52,6 +62,14 @@ async function refresh() {
   if (current === '/overview') calls.push(api('/api/summary').then((result) => { state.overview = result; }));
   if (current.startsWith('/profiles/')) calls.push(api(`/api/profiles/${encodeURIComponent(decodeURIComponent(current.slice('/profiles/'.length)))}`).then((result) => { state.detail = result; }));
   await Promise.all(calls);
+  if (!sessionStorage.getItem(setupKey) && state.batch?.status === 'running') {
+    state.setupStep = 'progress';
+    sessionStorage.setItem(setupKey, 'progress');
+  }
+  if (!state.selected.size && ['mode', 'order', 'review'].includes(state.setupStep)) {
+    state.setupStep = 'profiles';
+    sessionStorage.setItem(setupKey, 'profiles');
+  }
   render();
 }
 
@@ -73,6 +91,17 @@ document.addEventListener('click', async (event) => {
   if (!button) return;
   const action = button.dataset.action;
   if (action === 'dismiss') { state.error = null; render(); return; }
+  if (action === 'setup-progress' && state.batch) { setSetupStep('progress'); return; }
+  if (action === 'setup-new') { setSetupStep('profiles'); return; }
+  if (action === 'setup-step' && setupSteps.includes(button.dataset.step)) { setSetupStep(button.dataset.step); return; }
+  if (action === 'setup-back') { setSetupStep(setupSteps[Math.max(0, setupSteps.indexOf(state.setupStep) - 1)]); return; }
+  if (action === 'setup-next') {
+    if (!state.selected.size) return;
+    if (state.setupStep === 'mode' && state.mode === 'reels_only'
+      && state.catalog.some((profile) => state.selected.has(profile.username) && !profile.profile_complete)) return;
+    setSetupStep(setupSteps[Math.min(3, setupSteps.indexOf(state.setupStep) + 1)]);
+    return;
+  }
   if (action === 'grid' || action === 'list') { state.layout = action; render(); return; }
   if (action === 'clear') { state.selected.clear(); saveSelection(); render(); return; }
   if (action === 'select-visible') { for (const profile of visibleCatalog(state)) state.selected.add(profile.username); saveSelection(); render(); return; }
@@ -83,6 +112,11 @@ document.addEventListener('click', async (event) => {
     const body = action === 'stop' ? {} : { profiles: action === 'run-one' ? [button.dataset.username] : [...state.selected],
       mode: action === 'run-one' ? 'depth_first' : action === 'start' ? state.mode : button.dataset.mode, order: state.order };
     await api(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (action === 'start' || action === 'run-one') {
+      state.setupStep = 'progress';
+      sessionStorage.setItem(setupKey, 'progress');
+      window.scrollTo(0, 0);
+    }
     await refresh();
   } catch (error) { state.error = error.message; }
   finally { state.busy = false; render(); }

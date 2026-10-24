@@ -43,10 +43,9 @@ const modeOptions = [
 
 function strategy(state) {
   const unavailable = selected(state).filter((profile) => !profile.profile_complete);
-  return `<section class="strategy-section"><div class="flow-head"><div><span class="eyebrow">COLLECTION STRATEGY</span><h2>Choose what to collect</h2><p>Each stage saves its result, so you can run reels later.</p></div></div>
+  return `<section class="strategy-section"><p class="strategy-intro"><span class="eyebrow">COLLECTION STRATEGY</span>Each stage saves its result, so you can run reels later.</p>
     <div class="strategy-options">${modeOptions.map(([mode, title, description]) => `<label class="strategy-option ${state.mode === mode ? 'chosen' : ''}"><input type="radio" name="run-mode" value="${mode}" ${state.mode === mode ? 'checked' : ''}><span><strong>${esc(title)}</strong><small>${esc(description)}</small></span></label>`).join('')}</div>
-    ${orderControl(state)}
-    <p class="strategy-note">Fewest posts first uses saved exact post counts; profiles without one run last. Individual post details will be added later.${state.mode === 'reels_only' && unavailable.length ? ` First finish profile details and reel counts for ${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'}.` : ''}</p>
+    ${state.mode === 'reels_only' && unavailable.length ? `<p class="flow-warning">Finish profile details and reel counts first for ${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'}.</p>` : ''}
   </section>`;
 }
 
@@ -78,13 +77,62 @@ function runPanel(state) {
     ${batch.logs?.length ? `<details class="run-log"><summary>Recent activity</summary><pre>${esc(batch.logs.slice(-18).join('\n'))}</pre></details>` : ''}</section>`;
 }
 
-export function renderSelect(state) {
-  const visible = visibleCatalog(state);
+const setupSteps = [
+  ['profiles', 'Profiles'], ['mode', 'Collection mode'], ['order', 'Run order'], ['review', 'Review & start'], ['progress', 'Progress']
+];
+
+function setupHeader(state, title, description) {
+  const index = setupSteps.findIndex(([key]) => key === state.setupStep);
+  return `<header class="setup-header"><div><span class="eyebrow">DEDGRAM / NEW COLLECTION</span><h1>${esc(title)}</h1><p>${esc(description)}</p></div>${state.batch && state.setupStep !== 'progress' ? `<button class="setup-latest" data-action="setup-progress">View latest run →</button>` : ''}</header>
+    <ol class="setup-steps" aria-label="Collection setup">${setupSteps.map(([key, label], i) => `<li class="${i === index ? 'active' : i < index ? 'done' : ''}" ${i === index ? 'aria-current="step"' : ''}><span>${String(i + 1).padStart(2, '0')}</span>${esc(label)}</li>`).join('')}</ol>`;
+}
+
+function setupActions(back, next, nextDisabled = false, extra = '') {
+  return `<div class="setup-actions">${back ? `<button class="button secondary" data-action="setup-back">← Back</button>` : '<span></span>'}<span>${extra}</span>${next ? `<button class="button primary" data-action="setup-next" ${nextDisabled ? 'disabled' : ''}>${esc(next)} →</button>` : ''}</div>`;
+}
+
+function modeStep(state) {
   const unavailable = selected(state).filter((profile) => !profile.profile_complete);
-  const canRun = state.selected.size && !running(state) && !state.busy && !state.readOnly && (state.mode !== 'reels_only' || !unavailable.length);
-  return `${hero(0, 'Choose your<br>profiles.', 'Select accounts, choose a collection strategy, and run the full workflow or continue through its individual screens.', String(state.selected.size).padStart(2, '0'))}
-    ${stepNav(0)}${runPanel(state)}${strategy(state)}
-    <section class="flow-head"><div><span class="eyebrow">PROFILE CATALOG</span><h2>Pick a collection set</h2><p>Accounts come from the existing bot profile index.</p></div><div class="flow-actions"><button class="button secondary" data-action="select-visible">Select visible</button><button class="button secondary" data-action="clear">Clear</button><button class="button primary" data-action="start" ${canRun ? '' : 'disabled'}>${state.busy ? 'Starting…' : `Run ${state.selected.size ? `${state.selected.size} selected` : 'selection'}`}</button><a class="button secondary ${state.selected.size ? '' : 'disabled'}" href="/collect/profiles" ${state.selected.size ? '' : 'aria-disabled="true"'}>Step by step →</a></div></section>
+  const blocked = state.mode === 'reels_only' && unavailable.length;
+  return `${setupHeader(state, 'Choose what to collect', 'Choose one collection strategy for the selected accounts.')}${strategy(state)}
+    ${setupActions(true, 'Choose run order', !state.selected.size || blocked, `${number(state.selected.size)} profile${state.selected.size === 1 ? '' : 's'} selected`)}`;
+}
+
+function orderStep(state) {
+  return `${setupHeader(state, 'Choose run order', 'Choose how the selected accounts will be queued.')}
+    <section class="setup-choice"><span class="eyebrow">RUN ORDER</span>${orderControl(state)}
+      <p>Fewest posts first uses saved exact post counts; profiles without one run last. Selection order follows the order you selected accounts. Individual post details will be added later.</p></section>
+    ${setupActions(true, 'Review collection', !state.selected.size, `${number(state.selected.size)} profile${state.selected.size === 1 ? '' : 's'} · ${esc(modeOptions.find(([mode]) => mode === state.mode)?.[1] || state.mode)}`)}`;
+}
+
+function reviewStep(state) {
+  const profiles = selected(state);
+  const unavailable = profiles.filter((profile) => !profile.profile_complete);
+  const canRun = profiles.length && !running(state) && !state.busy && !state.readOnly && (state.mode !== 'reels_only' || !unavailable.length);
+  const mode = modeOptions.find(([value]) => value === state.mode)?.[1] || state.mode;
+  const order = state.order === 'posts_ascending' ? 'Fewest posts first' : 'Selection order';
+  return `${setupHeader(state, 'Review and start', 'Check your choices before starting collection.')}
+    <section class="setup-review"><div><span class="eyebrow">PROFILES</span><strong>${number(profiles.length)} selected</strong><p>${profiles.slice(0, 7).map((profile) => `@${esc(profile.username)}`).join(', ')}${profiles.length > 7 ? `, and ${profiles.length - 7} more` : ''}</p><button data-action="setup-step" data-step="profiles">Edit profiles</button></div>
+      <div><span class="eyebrow">COLLECTION MODE</span><strong>${esc(mode)}</strong><p>${esc(modeOptions.find(([value]) => value === state.mode)?.[2] || '')}</p><button data-action="setup-step" data-step="mode">Edit mode</button></div>
+      <div><span class="eyebrow">RUN ORDER</span><strong>${esc(order)}</strong><p>${state.order === 'posts_ascending' ? 'Saved exact post counts determine order.' : 'Accounts run in the order selected.'}</p><button data-action="setup-step" data-step="order">Edit order</button></div></section>
+    ${state.mode === 'reels_only' && unavailable.length ? `<p class="flow-warning">${unavailable.length} selected account${unavailable.length === 1 ? '' : 's'} still need profile details and reel counts before a reels-only run.</p>` : ''}
+    <div class="setup-actions"><button class="button secondary" data-action="setup-back">← Back</button><a class="button secondary ${profiles.length ? '' : 'disabled'}" href="/collect/profiles">Collect step by step →</a><button class="button primary" data-action="start" ${canRun ? '' : 'disabled'}>${state.busy ? 'Starting…' : `Run ${number(profiles.length)} selected →`}</button></div>`;
+}
+
+function progressStep(state) {
+  return `${setupHeader(state, 'Collection progress', 'Follow the current run and inspect its saved results.')}
+    ${runPanel(state)}<div class="setup-actions"><button class="button secondary" data-action="setup-new">New collection</button><a class="button secondary" href="/collection/review">Review saved results →</a></div>`;
+}
+
+export function renderSelect(state) {
+  if (state.setupStep === 'mode') return modeStep(state);
+  if (state.setupStep === 'order') return orderStep(state);
+  if (state.setupStep === 'review') return reviewStep(state);
+  if (state.setupStep === 'progress') return progressStep(state);
+  const visible = visibleCatalog(state);
+  return `${setupHeader(state, 'Choose profiles', 'Find and select the accounts you want to collect.')}
+    <section class="flow-head"><div><span class="eyebrow">PROFILE CATALOG</span><h2>Pick a collection set</h2><p>Accounts come from the existing bot profile index.</p></div><div class="flow-actions"><button class="button secondary" data-action="select-visible">Select visible</button><button class="button secondary" data-action="clear">Clear</button></div></section>
+    <div class="setup-dock"><span><strong>${number(state.selected.size)}</strong> selected</span><button class="button primary" data-action="setup-next" ${state.selected.size ? '' : 'disabled'}>Continue to mode →</button></div>
     <div class="flow-filters"><label>SEARCH PROFILES<input id="catalog-search" type="search" placeholder="Username, country, category, bio" value="${esc(state.search)}"></label><label>SHOW<select id="catalog-filter" aria-label="Filter profiles"><option value="all" ${state.filter === 'all' ? 'selected' : ''}>All profiles</option><option value="uncollected" ${state.filter === 'uncollected' ? 'selected' : ''}>Profile not ready</option><option value="collected" ${state.filter === 'collected' ? 'selected' : ''}>Profile details ready</option><option value="review" ${state.filter === 'review' ? 'selected' : ''}>Needs review</option></select></label><div class="flow-layout" role="group" aria-label="Profile layout"><button data-action="grid" class="${state.layout === 'grid' ? 'current' : ''}" aria-label="Grid view" aria-pressed="${state.layout === 'grid'}">▦</button><button data-action="list" class="${state.layout === 'list' ? 'current' : ''}" aria-label="List view" aria-pressed="${state.layout === 'list'}">☰</button></div></div>
     <div class="flow-list-title"><span>SHOWING ${number(visible.length)} OF ${number(state.catalog.length)} PROFILES</span><span>${number(state.selected.size)} SELECTED</span></div>
     <div class="flow-profile-list ${state.layout === 'list' ? 'list-layout' : ''}">${visible.map((profile) => {
